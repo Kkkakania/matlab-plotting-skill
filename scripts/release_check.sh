@@ -91,6 +91,7 @@ tests/test_positive_negative_area_gallery.sh
 tests/test_multi_line_comparison_safety.sh
 tests/test_confidence_band_safety.sh
 tests/test_zoomed_inset_line_safety.sh
+tests/test_positive_negative_area_safety.sh
 tests/test_gallery_provenance.sh
 tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh

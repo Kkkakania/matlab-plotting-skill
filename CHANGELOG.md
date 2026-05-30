@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.82
+
+- Completed `TASK-050-positive_negative_area-safety` in the 500-task board.
+- Added a dedicated safety regression for the `positive_negative_area` public
+  preview, README link, and provenance row.
+
 ## v0.1.81
 
 - Completed `TASK-049-positive_negative_area-gallery` in the 500-task board.
