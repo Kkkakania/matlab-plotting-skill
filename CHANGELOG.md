@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.91
+
+- Completed `TASK-059-segmented_line-gallery` in the 500-task board.
+- Added a committed gallery preview, README entry, provenance row, and CI
+  coverage for `segmented_line`.
+
 ## v0.1.90
 
 - Completed `TASK-058-segmented_line-report` in the 500-task board.

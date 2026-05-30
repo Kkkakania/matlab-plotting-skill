@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 58 |
-| planned | 442 |
+| done | 59 |
+| planned | 441 |
 
 ## Task Board
 
@@ -103,7 +103,7 @@ Total tasks: 500
 | `TASK-056-segmented_line-png-render` | `segmented_line` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme segmented_line --formats png` | done |
 | `TASK-057-segmented_line-vector-render` | `segmented_line` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme segmented_line --formats svg,pdf` | done |
 | `TASK-058-segmented_line-report` | `segmented_line` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "segmented_line" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
-| `TASK-059-segmented_line-gallery` | `segmented_line` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
+| `TASK-059-segmented_line-gallery` | `segmented_line` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
 | `TASK-060-segmented_line-safety` | `segmented_line` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
 | `TASK-061-scatter_relationship-catalog` | `scatter_relationship` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info scatter_relationship` | planned |
 | `TASK-062-scatter_relationship-data-contract` | `scatter_relationship` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "scatter_relationship" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |

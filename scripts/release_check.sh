@@ -90,6 +90,7 @@ tests/test_multi_line_comparison_gallery.sh
 tests/test_confidence_band_gallery.sh
 tests/test_zoomed_inset_line_gallery.sh
 tests/test_positive_negative_area_gallery.sh
+tests/test_segmented_line_gallery.sh
 tests/test_multi_line_comparison_safety.sh
 tests/test_confidence_band_safety.sh
 tests/test_zoomed_inset_line_safety.sh

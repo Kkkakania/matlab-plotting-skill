@@ -11,6 +11,7 @@ template archives.
 | `confidence_band.png` | `confidence_band` | synthetic CSV example | `examples/data/confidence_band.csv` -> `mpRun` -> PNG export | no private data, no external image source |
 | `zoomed_inset_line.png` | `zoomed_inset_line` | synthetic demo data | `mpDemoDataForScheme` -> temporary CSV -> `mpRun` -> PNG export | no private data, no external image source |
 | `positive_negative_area.png` | `positive_negative_area` | synthetic demo data | `mpDemoDataForScheme` -> temporary CSV -> `mpRun` -> PNG export | no private data, no external image source |
+| `segmented_line.png` | `segmented_line` | synthetic demo data | `mpDemoDataForScheme` -> temporary CSV -> `mpRun` -> PNG export | no private data, no external image source |
 | `density_scatter.png` | `density_scatter` | synthetic demo data | `mpDemoDataForScheme` -> `mpRenderScheme` -> PNG export | no private data, no external image source |
 | `heatmap_matrix.png` | `heatmap_matrix` | synthetic demo data | `mpDemoDataForScheme` -> `mpRenderScheme` -> PNG export | no private data, no external image source |
 | `grouped_bar.png` | `grouped_bar` | synthetic demo data | `mpDemoDataForScheme` -> `mpRenderScheme` -> PNG export | no private data, no external image source |
