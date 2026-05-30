@@ -35,5 +35,6 @@
   "TASK-034-zoomed_inset_line-selection-rule": "done",
   "TASK-035-zoomed_inset_line-explicit-cli": "done",
   "TASK-036-zoomed_inset_line-png-render": "done",
-  "TASK-037-zoomed_inset_line-vector-render": "done"
+  "TASK-037-zoomed_inset_line-vector-render": "done",
+  "TASK-038-zoomed_inset_line-report": "done"
 }

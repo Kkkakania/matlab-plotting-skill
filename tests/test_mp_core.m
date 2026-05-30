@@ -306,6 +306,22 @@ for extension = ["svg", "pdf"]
 end
 end
 
+function testZoomedInsetLineReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_zoomed_inset_report_input.csv');
+writetable(mpDemoDataForScheme("zoomed_inset_line"), dataPath);
+mpRun(dataPath, "show a zoomed local event", outDir, "png", "zoomed_inset_line");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`zoomed_inset_line`'));
+verifyTrue(testCase, contains(markdownReport, 'zoomed_inset_line.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "zoomed_inset_line");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "zoomed_inset_line.png")));
+end
+
 function testConfidenceBandPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-png');
 if exist(outDir, 'dir')

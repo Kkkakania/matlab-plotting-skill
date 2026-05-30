@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 37 |
-| planned | 463 |
+| done | 38 |
+| planned | 462 |
 
 ## Task Board
 
@@ -82,7 +82,7 @@ Total tasks: 500
 | `TASK-035-zoomed_inset_line-explicit-cli` | `zoomed_inset_line` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats png` | done |
 | `TASK-036-zoomed_inset_line-png-render` | `zoomed_inset_line` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats png` | done |
 | `TASK-037-zoomed_inset_line-vector-render` | `zoomed_inset_line` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats svg,pdf` | done |
-| `TASK-038-zoomed_inset_line-report` | `zoomed_inset_line` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "zoomed_inset_line" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |
+| `TASK-038-zoomed_inset_line-report` | `zoomed_inset_line` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "zoomed_inset_line" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
 | `TASK-039-zoomed_inset_line-gallery` | `zoomed_inset_line` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
 | `TASK-040-zoomed_inset_line-safety` | `zoomed_inset_line` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
 | `TASK-041-positive_negative_area-catalog` | `positive_negative_area` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info positive_negative_area` | planned |
