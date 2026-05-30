@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.69
+
+- Completed `TASK-037-zoomed_inset_line-vector-render` in the 500-task board.
+- Added MATLAB regression coverage proving `zoomed_inset_line.svg` and
+  `zoomed_inset_line.pdf` are generated and non-empty.
+
 ## v0.1.68
 
 - Completed `TASK-036-zoomed_inset_line-png-render` in the 500-task board.

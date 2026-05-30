@@ -290,6 +290,22 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testZoomedInsetLineVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_zoomed_inset_vector_input.csv');
+writetable(mpDemoDataForScheme("zoomed_inset_line"), dataPath);
+mpRun(dataPath, "show a zoomed local event", outDir, ["svg", "pdf"], "zoomed_inset_line");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "zoomed_inset_line." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testConfidenceBandPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-png');
 if exist(outDir, 'dir')
