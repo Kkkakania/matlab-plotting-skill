@@ -54,5 +54,6 @@
   "TASK-053-segmented_line-demo-data": "done",
   "TASK-054-segmented_line-selection-rule": "done",
   "TASK-055-segmented_line-explicit-cli": "done",
-  "TASK-056-segmented_line-png-render": "done"
+  "TASK-056-segmented_line-png-render": "done",
+  "TASK-057-segmented_line-vector-render": "done"
 }

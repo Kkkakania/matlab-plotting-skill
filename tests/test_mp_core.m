@@ -373,6 +373,22 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testSegmentedLineVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-segmented-line-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_segmented_line_vector_input.csv');
+writetable(mpDemoDataForScheme("segmented_line"), dataPath);
+mpRun(dataPath, "show phase changes over time", outDir, ["svg", "pdf"], "segmented_line");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "segmented_line." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testPositiveNegativeAreaPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-positive-negative-png');
 if exist(outDir, 'dir')
