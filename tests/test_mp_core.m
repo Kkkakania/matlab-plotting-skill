@@ -413,6 +413,22 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testScatterRelationshipVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-scatter-relationship-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_scatter_relationship_vector_input.csv');
+writetable(mpDemoDataForScheme("scatter_relationship"), dataPath);
+mpRun(dataPath, "show x-y relationship", outDir, ["svg", "pdf"], "scatter_relationship");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "scatter_relationship." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-segmented-line-png');
 if exist(outDir, 'dir')
