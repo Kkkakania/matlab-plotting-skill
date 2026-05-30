@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.36
+
+- Completed `TASK-004-line_trend-selection-rule` in the 500-task board.
+- Added MATLAB regression coverage proving time-series demo data is routed to
+  `line_trend` ahead of unrelated relationship schemes.
+
 ## v0.1.35
 
 - Completed `TASK-003-line_trend-demo-data` in the 500-task board.

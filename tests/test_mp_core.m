@@ -36,6 +36,17 @@ cleanup = onCleanup(@() close(fig));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
 end
 
+function testLineTrendSelectionRulePrefersTimeSeries(testCase)
+data = mpDemoDataForScheme("line_trend");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show a time trend");
+names = string({mpSchemeCatalog().Name});
+lineScore = selection.AllScores(names == "line_trend");
+scatterScore = selection.AllScores(names == "scatter_relationship");
+verifyEqual(testCase, string(selection.Selected.Name), "line_trend");
+verifyGreaterThan(testCase, lineScore, scatterScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);
