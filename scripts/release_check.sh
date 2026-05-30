@@ -62,6 +62,7 @@ tests/test_install_script.sh
 tests/test_check_gallery_outputs.sh
 tests/test_list_schemes.sh
 tests/test_list_schemes_json.sh
+tests/test_scheme_info.sh
 tests/test_repo_docs.sh
 tests/test_github_templates.sh
 tests/test_matlab_check.sh

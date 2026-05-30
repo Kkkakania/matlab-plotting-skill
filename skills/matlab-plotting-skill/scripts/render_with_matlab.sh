@@ -15,7 +15,10 @@ LIST_SCHEMES_JSON=0
 CHECK_ONLY=0
 PLAN_ONLY=0
 INSPECT_DATA=0
+SCHEME_INFO=0
+SCHEME_INFO_JSON=0
 SCHEME_NAME=""
+SCHEME_INFO_NAME=""
 MAT_VARIABLE=""
 
 usage() {
@@ -25,6 +28,8 @@ Usage:
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes
   render_with_matlab.sh --list-schemes-json
+  render_with_matlab.sh --scheme-info <name>
+  render_with_matlab.sh --scheme-info-json <name>
   render_with_matlab.sh --check
   render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
@@ -72,6 +77,16 @@ while [[ $# -gt 0 ]]; do
       LIST_SCHEMES_JSON=1
       shift
       ;;
+    --scheme-info)
+      SCHEME_INFO=1
+      SCHEME_INFO_NAME="${2:-}"
+      shift 2
+      ;;
+    --scheme-info-json)
+      SCHEME_INFO_JSON=1
+      SCHEME_INFO_NAME="${2:-}"
+      shift 2
+      ;;
     --check)
       CHECK_ONLY=1
       shift
@@ -110,6 +125,52 @@ check_matlab_bin() {
   fi
 }
 
+scheme_info() {
+  local scheme_name="$1"
+  local output_mode="$2"
+
+  if [[ -z "$scheme_name" ]]; then
+    echo "Scheme name is required." >&2
+    exit 2
+  fi
+
+  if [[ ! -f "$SCHEME_CATALOG" ]]; then
+    echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
+    exit 1
+  fi
+
+  python3 - "$SCHEME_CATALOG" "$scheme_name" "$output_mode" <<'PY'
+import json
+import re
+import sys
+from pathlib import Path
+
+catalog = Path(sys.argv[1])
+scheme_name = sys.argv[2]
+output_mode = sys.argv[3]
+pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| (?P<family>[^|]+) \| (?P<best_for>[^|]+) \| (?P<palette>[^|]+) \|")
+
+for line in catalog.read_text(encoding="utf-8").splitlines():
+    match = pattern.match(line)
+    if not match:
+        continue
+    item = {key: value.strip() for key, value in match.groupdict().items()}
+    if item["scheme"] != scheme_name:
+        continue
+    if output_mode == "json":
+        print(json.dumps(item, indent=2))
+    else:
+        print(f"Scheme: {item['scheme']}")
+        print(f"Family: {item['family']}")
+        print(f"Best for: {item['best_for']}")
+        print(f"Default palette: {item['palette']}")
+    raise SystemExit(0)
+
+print(f"Unknown scheme: {scheme_name}", file=sys.stderr)
+raise SystemExit(67)
+PY
+}
+
 if [[ "$LIST_SCHEMES" -eq 1 ]]; then
   if [[ ! -f "$SCHEME_CATALOG" ]]; then
     echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
@@ -142,6 +203,16 @@ for line in catalog.read_text(encoding="utf-8").splitlines():
         rows.append({key: value.strip() for key, value in match.groupdict().items()})
 print(json.dumps(rows, indent=2))
 PY
+  exit 0
+fi
+
+if [[ "$SCHEME_INFO" -eq 1 ]]; then
+  scheme_info "$SCHEME_INFO_NAME" text
+  exit 0
+fi
+
+if [[ "$SCHEME_INFO_JSON" -eq 1 ]]; then
+  scheme_info "$SCHEME_INFO_NAME" json
   exit 0
 fi
 

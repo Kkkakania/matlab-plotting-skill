@@ -22,7 +22,8 @@ plotting repositories, encrypted MATLAB files, or article image packs.
 2. If the user provided a file, check whether it is CSV, Excel, or MAT. See
    `references/data-contract.md` when the data shape is unclear.
 3. Choose the plot by reading `references/scheme-catalog.md` only when the
-   built-in name/tag mapping is not enough.
+   built-in name/tag mapping is not enough. To inspect one scheme without
+   opening MATLAB, use `--scheme-info <name>` or `--scheme-info-json <name>`.
    Read `references/example-prompts.md` when writing usage examples for a user.
 4. When the user needs to inspect file structure before choosing a plot, use
    `--inspect-data`, which calls `mpInspectData` and returns schema JSON.

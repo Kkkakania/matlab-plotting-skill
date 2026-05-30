@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.25
+
+- Added CLI `--scheme-info` and `--scheme-info-json` for single-scheme lookup
+  without launching MATLAB.
+- Added release-gate coverage for scheme lookup and unknown-scheme errors.
+
 ## v0.1.24
 
 - Added CLI `--list-schemes-json` for machine-readable scheme catalog output.
