@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Read the scheme catalog
+    url: https://github.com/Kkkakania/matlab-plotting-skill/blob/main/skills/matlab-plotting-skill/references/scheme-catalog.md
+    about: Check existing plotting schemes before opening a request.
+

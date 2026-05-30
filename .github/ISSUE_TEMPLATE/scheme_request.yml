@@ -1,0 +1,41 @@
+name: Scheme request
+description: Suggest a plotting scheme or renderer improvement.
+title: "[Scheme]: "
+labels: ["scheme"]
+body:
+  - type: input
+    id: scheme
+    attributes:
+      label: Scheme name
+      placeholder: grouped_error_bar
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What research or engineering task should this scheme support?
+    validations:
+      required: true
+  - type: textarea
+    id: data_contract
+    attributes:
+      label: Expected data shape
+      description: Describe columns, matrix shape, categories, or units.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected output
+      description: Describe the figure behavior. Avoid copied article images.
+    validations:
+      required: false
+  - type: checkboxes
+    id: provenance
+    attributes:
+      label: Provenance
+      options:
+        - label: This request can be implemented with clean-room code and synthetic demo data.
+          required: true
+

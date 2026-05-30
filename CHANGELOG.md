@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.7
+
+- Added GitHub issue forms for bugs and scheme requests.
+- Added a pull request template with testing and provenance checks.
+
+## v0.1.6
+
+- Added CONTRIBUTING, SECURITY, CODE_OF_CONDUCT, and CHANGELOG.
+- Added repository docs coverage in CI.
+
 ## v0.1.5
 
 - Added `--list-schemes` so users can browse all 50 plotting schemes without
@@ -31,4 +41,3 @@
 - Initial self-contained skill release with 50 plotting schemes, MATLAB CLI
   rendering, synthetic demo data, validation scripts, and privacy/provenance
   checks.
-

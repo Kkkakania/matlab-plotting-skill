@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a broken render, CLI failure, or MATLAB compatibility issue.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the failure and what you expected instead.
+    validations:
+      required: true
+  - type: input
+    id: matlab
+    attributes:
+      label: MATLAB version
+      placeholder: R2025a
+    validations:
+      required: false
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      placeholder: ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a trend"
+    validations:
+      required: false
+  - type: textarea
+    id: data_shape
+    attributes:
+      label: Data shape
+      description: Share column names and rough row count. Do not paste private data.
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output
+      render: text
+    validations:
+      required: false
+
