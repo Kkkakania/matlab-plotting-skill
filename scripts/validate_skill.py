@@ -38,6 +38,7 @@ def main() -> None:
         SKILL / "references" / "scheme-catalog.md",
         SKILL / "references" / "data-contract.md",
         SKILL / "references" / "matlab-cli.md",
+        SKILL / "references" / "example-prompts.md",
         SKILL / "assets" / "matlab" / "mpRun.m",
         SKILL / "assets" / "matlab" / "mpSchemeCatalog.m",
         SKILL / "assets" / "matlab" / "mpRenderScheme.m",
@@ -56,4 +57,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

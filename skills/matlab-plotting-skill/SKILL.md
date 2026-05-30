@@ -23,6 +23,7 @@ plotting repositories, encrypted MATLAB files, or article image packs.
    `references/data-contract.md` when the data shape is unclear.
 3. Choose the plot by reading `references/scheme-catalog.md` only when the
    built-in name/tag mapping is not enough.
+   Read `references/example-prompts.md` when writing usage examples for a user.
 4. Prefer the bundled CLI:
 
    ```bash

@@ -20,8 +20,13 @@ is a working MATLAB command line executable.
 Copy or symlink the skill folder into your Codex skills directory:
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-ln -s "$(pwd)/skills/matlab-plotting-skill" "${CODEX_HOME:-$HOME/.codex}/skills/matlab-plotting-skill"
+./scripts/install_skill.sh
+```
+
+Preview the install target first:
+
+```bash
+./scripts/install_skill.sh --dry-run
 ```
 
 Then ask Codex for tasks such as:
@@ -51,6 +56,9 @@ Render with an explicit scheme:
 ```bash
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
+
+See `skills/matlab-plotting-skill/references/example-prompts.md` for more
+prompts.
 
 Smoke-test all bundled schemes with synthetic data:
 

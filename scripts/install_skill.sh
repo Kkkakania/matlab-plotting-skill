@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SOURCE_DIR="$ROOT_DIR/skills/matlab-plotting-skill"
+TARGET_DIR="${CODEX_HOME:-$HOME/.codex}/skills"
+MODE="link"
+DRY_RUN=0
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  install_skill.sh [--target <skills-dir>] [--copy] [--dry-run]
+
+Default:
+  Symlink skills/matlab-plotting-skill into ${CODEX_HOME:-$HOME/.codex}/skills.
+USAGE
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --target)
+      TARGET_DIR="${2:-}"
+      shift 2
+      ;;
+    --copy)
+      MODE="copy"
+      shift
+      ;;
+    --dry-run)
+      DRY_RUN=1
+      shift
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown argument: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+if [[ ! -f "$SOURCE_DIR/SKILL.md" ]]; then
+  echo "Skill source not found: $SOURCE_DIR" >&2
+  exit 1
+fi
+
+DEST_DIR="$TARGET_DIR/matlab-plotting-skill"
+
+if [[ "$DRY_RUN" -eq 1 ]]; then
+  echo "Would install matlab-plotting-skill"
+  echo "  source: $SOURCE_DIR"
+  echo "  target: $DEST_DIR"
+  echo "  mode:   $MODE"
+  exit 0
+fi
+
+mkdir -p "$TARGET_DIR"
+
+if [[ -e "$DEST_DIR" || -L "$DEST_DIR" ]]; then
+  if [[ -L "$DEST_DIR" && "$(readlink "$DEST_DIR")" == "$SOURCE_DIR" ]]; then
+    echo "matlab-plotting-skill is already linked at $DEST_DIR"
+    exit 0
+  fi
+  echo "Target already exists: $DEST_DIR" >&2
+  echo "Remove it first or choose another --target." >&2
+  exit 1
+fi
+
+if [[ "$MODE" == "copy" ]]; then
+  cp -R "$SOURCE_DIR" "$DEST_DIR"
+else
+  ln -s "$SOURCE_DIR" "$DEST_DIR"
+fi
+
+echo "Installed matlab-plotting-skill at $DEST_DIR"
+

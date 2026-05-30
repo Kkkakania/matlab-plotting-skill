@@ -12,9 +12,13 @@ jobs:
       - name: Shell syntax
         run: |
           bash -n scripts/render_with_matlab.sh
+          bash -n scripts/install_skill.sh
           bash -n scripts/check_forbidden_files.sh
           bash -n scripts/check_privacy.sh
           bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
+          bash -n tests/test_install_script.sh
+      - name: Shell tests
+        run: tests/test_install_script.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan
