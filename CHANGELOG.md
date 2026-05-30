@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.10
+
+- Added a figure quality checklist for reviewing exported MATLAB figures before
+  sharing them.
+- Added CI coverage for the checklist.
+
 ## v0.1.9
 
 - Added `render_report.json` beside the Markdown report for automation.
