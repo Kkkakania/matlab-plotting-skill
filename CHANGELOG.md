@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.72
+
+- Completed `TASK-040-zoomed_inset_line-safety` in the 500-task board.
+- Added release-gate and CI coverage checking the zoomed-inset gallery preview,
+  README reference, and provenance row for private or unclear traces.
+
 ## v0.1.71
 
 - Completed `TASK-039-zoomed_inset_line-gallery` in the 500-task board.

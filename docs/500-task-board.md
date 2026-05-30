@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 39 |
-| planned | 461 |
+| done | 40 |
+| planned | 460 |
 
 ## Task Board
 
@@ -84,7 +84,7 @@ Total tasks: 500
 | `TASK-037-zoomed_inset_line-vector-render` | `zoomed_inset_line` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats svg,pdf` | done |
 | `TASK-038-zoomed_inset_line-report` | `zoomed_inset_line` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "zoomed_inset_line" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
 | `TASK-039-zoomed_inset_line-gallery` | `zoomed_inset_line` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
-| `TASK-040-zoomed_inset_line-safety` | `zoomed_inset_line` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
+| `TASK-040-zoomed_inset_line-safety` | `zoomed_inset_line` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-041-positive_negative_area-catalog` | `positive_negative_area` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info positive_negative_area` | planned |
 | `TASK-042-positive_negative_area-data-contract` | `positive_negative_area` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "positive_negative_area" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
 | `TASK-043-positive_negative_area-demo-data` | `positive_negative_area` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
