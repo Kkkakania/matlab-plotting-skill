@@ -262,6 +262,21 @@ for extension = ["svg", "pdf"]
 end
 end
 
+function testConfidenceBandReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'confidence_band.csv');
+mpRun(dataPath, "show uncertainty bounds", outDir, "png", "confidence_band");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`confidence_band`'));
+verifyTrue(testCase, contains(markdownReport, 'confidence_band.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "confidence_band");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "confidence_band.png")));
+end
+
 function testMultiLineComparisonPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-multi-line-png');
 if exist(outDir, 'dir')
