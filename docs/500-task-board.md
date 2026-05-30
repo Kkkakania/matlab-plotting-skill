@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 61 |
-| planned | 439 |
+| done | 62 |
+| planned | 438 |
 
 ## Task Board
 
@@ -106,7 +106,7 @@ Total tasks: 500
 | `TASK-059-segmented_line-gallery` | `segmented_line` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
 | `TASK-060-segmented_line-safety` | `segmented_line` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-061-scatter_relationship-catalog` | `scatter_relationship` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info scatter_relationship` | done |
-| `TASK-062-scatter_relationship-data-contract` | `scatter_relationship` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "scatter_relationship" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
+| `TASK-062-scatter_relationship-data-contract` | `scatter_relationship` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "scatter_relationship" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
 | `TASK-063-scatter_relationship-demo-data` | `scatter_relationship` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
 | `TASK-064-scatter_relationship-selection-rule` | `scatter_relationship` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme scatter_relationship` | planned |
 | `TASK-065-scatter_relationship-explicit-cli` | `scatter_relationship` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme scatter_relationship --formats png` | planned |

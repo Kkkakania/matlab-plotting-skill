@@ -27,7 +27,8 @@ box, or ranking plot will usually be clearer.
 Use relationship schemes when the question is about how two variables move
 together.
 
-- Simple x-y relation: `scatter_relationship`
+- Simple x-y relation: `scatter_relationship` (paired rows with at least two
+  numeric measurement columns)
 - Groups in x-y data: `grouped_scatter`
 - Dense overlapping points: `density_scatter` or `contour_scatter`
 - Trend line needed: `regression_scatter`

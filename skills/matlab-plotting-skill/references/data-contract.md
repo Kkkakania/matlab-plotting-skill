@@ -83,3 +83,15 @@ If no segment column exists, this scheme should only be selected when the goal
 text names the transition points or explains the phase structure. Otherwise use
 `line_trend`, `multi_line_comparison`, or `zoomed_inset_line` so the chart does
 not imply unsupported regime changes.
+
+### `scatter_relationship`
+
+Use at least two numeric columns representing paired observations, such as
+`x, y` or `input, response`. Each row should be one observation measured on both
+variables. Optional extra numeric columns may exist, but the first two numeric
+columns are treated as the x-y relationship in the default renderer.
+
+Avoid this scheme for already aggregated category summaries, arbitrary x-axis
+orders, or data where one variable is a label rather than a measurement. Use
+`grouped_bar`, `box_jitter`, or `grouped_scatter` when categories or group
+membership are central to the question.

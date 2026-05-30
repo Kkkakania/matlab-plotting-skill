@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.94
+
+- Completed `TASK-062-scatter_relationship-data-contract` in the 500-task board.
+- Documented paired numeric-column expectations and misuse cases for
+  `scatter_relationship`.
+
 ## v0.1.93
 
 - Completed `TASK-061-scatter_relationship-catalog` in the 500-task board.
