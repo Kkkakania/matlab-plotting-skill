@@ -101,6 +101,30 @@ selection = mpSelectScheme(schema, "matrix heatmap");
 verifyEqual(testCase, selection.Selected.Family, "matrix");
 end
 
+function testMatInputAmbiguousVariablesErrorsWithCandidates(testCase)
+matrixData = peaks(8); %#ok<NASGU>
+vectorData = (1:8)'; %#ok<NASGU>
+matPath = fullfile(tempdir, 'mp_skill_ambiguous_input.mat');
+save(matPath, 'matrixData', 'vectorData');
+try
+    mpReadData(matPath);
+    verifyFail(testCase, 'Ambiguous MAT input should require explicit selection.');
+catch err
+    verifyEqual(testCase, err.identifier, 'mpReadData:AmbiguousMatFile');
+    verifyTrue(testCase, contains(err.message, 'matrixData'));
+    verifyTrue(testCase, contains(err.message, 'vectorData'));
+end
+end
+
+function testMatInputWithExplicitVariable(testCase)
+matrixData = peaks(8); %#ok<NASGU>
+vectorData = (1:8)'; %#ok<NASGU>
+matPath = fullfile(tempdir, 'mp_skill_explicit_var_input.mat');
+save(matPath, 'matrixData', 'vectorData');
+data = mpReadData(matPath, "matrixData");
+verifyEqual(testCase, size(data), [8 8]);
+end
+
 function testExcelInput(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-xlsx');
 if exist(outDir, 'dir')

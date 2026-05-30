@@ -13,11 +13,12 @@ SMOKE_TEST=0
 LIST_SCHEMES=0
 CHECK_ONLY=0
 SCHEME_NAME=""
+MAT_VARIABLE=""
 
 usage() {
   cat <<'USAGE'
 Usage:
-  render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--out <dir>] [--formats png,svg]
+  render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>] [--out <dir>] [--formats png,svg]
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes
   render_with_matlab.sh --check
@@ -47,6 +48,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --scheme)
       SCHEME_NAME="${2:-}"
+      shift 2
+      ;;
+    --var)
+      MAT_VARIABLE="${2:-}"
       shift 2
       ;;
     --smoke-test)
@@ -134,4 +139,4 @@ if [[ ! -f "$DATA_PATH" ]]; then
   exit 66
 fi
 
-"$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME")); disp(result.SelectedScheme);"
+"$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(result.SelectedScheme);"

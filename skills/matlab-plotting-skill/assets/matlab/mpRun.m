@@ -1,4 +1,4 @@
-function result = mpRun(dataPath, goalText, outputDir, formats, schemeName)
+function result = mpRun(dataPath, goalText, outputDir, formats, schemeName, variableName)
 %MPRUN Read data, select a plotting scheme, render, export, and report.
 
 if nargin < 1
@@ -16,8 +16,11 @@ end
 if nargin < 5 || isempty(schemeName)
     schemeName = "";
 end
+if nargin < 6 || isempty(variableName)
+    variableName = "";
+end
 
-data = mpReadData(string(dataPath));
+data = mpReadData(string(dataPath), string(variableName));
 schema = mpInferDataSchema(data);
 selection = chooseSelection(schema, string(goalText), string(schemeName));
 fig = mpRenderScheme(selection.Selected.Name, data, schema, string(goalText));

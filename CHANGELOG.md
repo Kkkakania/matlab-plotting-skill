@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.14
+
+- Added explicit MAT variable selection through `mpReadData(..., variableName)`
+  and CLI `--var`.
+- Improved ambiguous MAT-file errors with candidate variable summaries.
+
 ## v0.1.13
 
 - Added palette and accessibility notes for categorical, sequential, diverging,

@@ -59,6 +59,12 @@ Render with an explicit scheme:
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
 
+When a MAT file contains several variables, choose one explicitly:
+
+```bash
+./scripts/render_with_matlab.sh --data data/results.mat --var matrixData --goal "matrix heatmap" --out figures --formats png
+```
+
 See `skills/matlab-plotting-skill/references/example-prompts.md` for more
 prompts.
 
