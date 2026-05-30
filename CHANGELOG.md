@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.62
+
+- Completed `TASK-030-confidence_band-safety` in the 500-task board.
+- Added release-gate and CI coverage checking the confidence-band CSV example,
+  gallery preview, and provenance row for private or unclear traces.
+
 ## v0.1.61
 
 - Completed `TASK-029-confidence_band-gallery` in the 500-task board.

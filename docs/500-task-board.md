@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 29 |
-| planned | 471 |
+| done | 30 |
+| planned | 470 |
 
 ## Task Board
 
@@ -74,7 +74,7 @@ Total tasks: 500
 | `TASK-027-confidence_band-vector-render` | `confidence_band` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats svg,pdf` | done |
 | `TASK-028-confidence_band-report` | `confidence_band` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "confidence_band" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
 | `TASK-029-confidence_band-gallery` | `confidence_band` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
-| `TASK-030-confidence_band-safety` | `confidence_band` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
+| `TASK-030-confidence_band-safety` | `confidence_band` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-031-zoomed_inset_line-catalog` | `zoomed_inset_line` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info zoomed_inset_line` | planned |
 | `TASK-032-zoomed_inset_line-data-contract` | `zoomed_inset_line` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "zoomed_inset_line" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
 | `TASK-033-zoomed_inset_line-demo-data` | `zoomed_inset_line` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
