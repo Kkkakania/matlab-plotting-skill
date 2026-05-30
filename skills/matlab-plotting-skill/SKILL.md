@@ -24,7 +24,14 @@ plotting repositories, encrypted MATLAB files, or article image packs.
 3. Choose the plot by reading `references/scheme-catalog.md` only when the
    built-in name/tag mapping is not enough.
    Read `references/example-prompts.md` when writing usage examples for a user.
-4. Prefer the bundled CLI:
+4. When the user wants to inspect the choice before rendering, preview the
+   selection with `--plan-only`, which calls `mpPlan` and returns JSON:
+
+   ```bash
+   skills/matlab-plotting-skill/scripts/render_with_matlab.sh --plan-only --data <file> --goal "<goal>"
+   ```
+
+5. Prefer the bundled CLI for rendering:
 
    ```bash
    skills/matlab-plotting-skill/scripts/render_with_matlab.sh --data <file> --goal "<goal>" --out <dir> --formats png,svg
@@ -32,9 +39,9 @@ plotting repositories, encrypted MATLAB files, or article image packs.
 
    Use `--scheme <name>` when the user asks for a specific scheme.
 
-5. If MATLAB is missing, explain that the user needs MATLAB CLI and provide the
+6. If MATLAB is missing, explain that the user needs MATLAB CLI and provide the
    exact command to run later. Do not claim a figure was rendered.
-6. After rendering, report the selected scheme, output files, and any quality
+7. After rendering, report the selected scheme, output files, and any quality
    warnings from `render_report.md`. Use `render_report.json` when a script or
    follow-up automation needs structured metadata.
 

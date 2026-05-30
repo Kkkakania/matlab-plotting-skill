@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.21
+
+- Documented `--plan-only` / `mpPlan` in the skill workflow.
+- Added CI coverage so the skill entrypoint keeps the plan-only guidance.
+
 ## v0.1.20
 
 - Added `mpPlan` for selecting a plotting scheme without rendering.
