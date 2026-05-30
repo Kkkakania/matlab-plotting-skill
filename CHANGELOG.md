@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.9
+
+- Added `render_report.json` beside the Markdown report for automation.
+- Kept JSON report paths privacy-safe by storing file names, not absolute paths.
+
 ## v0.1.8
 
 - Added `--check` to verify MATLAB CLI wiring before rendering.

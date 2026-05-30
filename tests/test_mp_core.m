@@ -55,6 +55,21 @@ verifyTrue(testCase, contains(reportText, 'time_series.csv'));
 verifyTrue(testCase, contains(reportText, 'line_trend.png'));
 end
 
+function testRunCreatesMachineReadableReport(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-json-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+mpRun(dataPath, "show time trend", outDir, "png");
+jsonPath = fullfile(outDir, 'render_report.json');
+verifyTrue(testCase, isfile(jsonPath));
+report = jsondecode(fileread(jsonPath));
+verifyEqual(testCase, string(report.selectedScheme), "line_trend");
+verifyEqual(testCase, string(report.dataFile), "time_series.csv");
+verifyFalse(testCase, contains(fileread(jsonPath), outDir));
+end
+
 function testExplicitSchemeOverridesAutomaticSelection(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-explicit-scheme');
 if exist(outDir, 'dir')

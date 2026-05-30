@@ -35,7 +35,8 @@ plotting repositories, encrypted MATLAB files, or article image packs.
 5. If MATLAB is missing, explain that the user needs MATLAB CLI and provide the
    exact command to run later. Do not claim a figure was rendered.
 6. After rendering, report the selected scheme, output files, and any quality
-   warnings from `render_report.md`.
+   warnings from `render_report.md`. Use `render_report.json` when a script or
+   follow-up automation needs structured metadata.
 
 ## MATLAB CLI
 

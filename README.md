@@ -13,7 +13,7 @@ is a working MATLAB command line executable.
 - Selects one of 50 plotting schemes.
 - Renders the figure with clean-room MATLAB code bundled in the skill.
 - Exports PNG and SVG by default, with optional PDF.
-- Writes a short render report explaining the selected scheme and alternatives.
+- Writes Markdown and JSON render reports explaining the selected scheme and alternatives.
 
 ## Install
 
