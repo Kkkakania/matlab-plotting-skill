@@ -94,6 +94,21 @@ cleanup = onCleanup(@() close(fig));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'area'));
 end
 
+function testSegmentedLineDemoDataSupportsPhaseRender(testCase)
+data = mpDemoDataForScheme("segmented_line");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "signal", "phase"], string(data.Properties.VariableNames))));
+verifyGreaterThanOrEqual(testCase, height(data), 120);
+verifyGreaterThanOrEqual(testCase, numel(categories(data.phase)), 3);
+verifyTrue(testCase, data.signal(100) > data.signal(50));
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+verifyEqual(testCase, schema.CategoryCount, 1);
+fig = mpRenderScheme("segmented_line", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'line')), 3);
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);

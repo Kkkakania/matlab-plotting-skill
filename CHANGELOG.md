@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.85
+
+- Completed `TASK-053-segmented_line-demo-data` in the 500-task board.
+- Added synthetic segmented-line data with explicit phases and MATLAB coverage
+  that verifies schema inference and rendering.
+
 ## v0.1.84
 
 - Completed `TASK-052-segmented_line-data-contract` in the 500-task board.

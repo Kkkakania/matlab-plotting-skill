@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 52 |
-| planned | 448 |
+| done | 53 |
+| planned | 447 |
 
 ## Task Board
 
@@ -97,7 +97,7 @@ Total tasks: 500
 | `TASK-050-positive_negative_area-safety` | `positive_negative_area` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-051-segmented_line-catalog` | `segmented_line` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info segmented_line` | done |
 | `TASK-052-segmented_line-data-contract` | `segmented_line` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "segmented_line" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
-| `TASK-053-segmented_line-demo-data` | `segmented_line` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
+| `TASK-053-segmented_line-demo-data` | `segmented_line` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-054-segmented_line-selection-rule` | `segmented_line` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme segmented_line` | planned |
 | `TASK-055-segmented_line-explicit-cli` | `segmented_line` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme segmented_line --formats png` | planned |
 | `TASK-056-segmented_line-png-render` | `segmented_line` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme segmented_line --formats png` | planned |

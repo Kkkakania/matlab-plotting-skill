@@ -50,6 +50,23 @@ if schemeName == "positive_negative_area"
     return
 end
 
+if schemeName == "segmented_line"
+    t = (1:150)';
+    phase = strings(size(t));
+    phase(t <= 50) = "baseline";
+    phase(t > 50 & t <= 100) = "intervention";
+    phase(t > 100) = "recovery";
+    signal = zeros(size(t));
+    signal(t <= 50) = 0.18 + 0.012 * t(t <= 50) + 0.08 * sin(t(t <= 50) / 7);
+    mid = t > 50 & t <= 100;
+    signal(mid) = 1.05 + 0.026 * (t(mid) - 50) + 0.10 * sin(t(mid) / 6);
+    late = t > 100;
+    signal(late) = 2.20 - 0.010 * (t(late) - 100) + 0.09 * sin(t(late) / 8);
+    data = table(t, signal, categorical(phase), ...
+        'VariableNames', {'time', 'signal', 'phase'});
+    return
+end
+
 if schemeName == "zoomed_inset_line"
     t = (1:180)';
     localEvent = 0.85 * exp(-((t - 118) / 9) .^ 2);
