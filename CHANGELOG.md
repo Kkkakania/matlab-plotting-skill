@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.41
+
+- Completed `TASK-009-line_trend-gallery` in the 500-task board.
+- Added an `--only-existing` gallery index mode and a committed gallery index
+  so public previews show real rendered assets without placeholder rows.
+- Added release-gate and CI coverage proving `line_trend` is represented in
+  the generated gallery with catalog metadata.
+
 ## v0.1.40
 
 - Completed `TASK-008-line_trend-report` in the 500-task board.

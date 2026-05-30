@@ -28,7 +28,7 @@ def relative_link(target: Path, base: Path) -> str:
     return target.relative_to(base).as_posix() if target.is_relative_to(base) else target.as_posix()
 
 
-def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str) -> None:
+def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_existing: bool) -> None:
     schemes = parse_catalog(catalog)
     output.parent.mkdir(parents=True, exist_ok=True)
     base = output.parent
@@ -48,6 +48,8 @@ def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str) -> Non
             link = relative_link(image, base)
             output_cell = f"![{row['scheme']}]({link})"
         else:
+            if only_existing:
+                continue
             output_cell = "missing"
         lines.append(
             f"| `{row['scheme']}` | {row['family']} | {row['best_for']} | {output_cell} |"
@@ -63,13 +65,14 @@ def main() -> None:
     parser.add_argument("--catalog", required=True, type=Path, help="Scheme catalog markdown file.")
     parser.add_argument("--out", required=True, type=Path, help="Markdown index output path.")
     parser.add_argument("--format", default="png", help="Rendered file extension to link.")
+    parser.add_argument("--only-existing", action="store_true", help="Only include schemes with non-empty outputs.")
     args = parser.parse_args()
 
     if not args.dir.is_dir():
         raise SystemExit(f"Gallery directory not found: {args.dir}")
     if not args.catalog.is_file():
         raise SystemExit(f"Scheme catalog not found: {args.catalog}")
-    build_index(args.dir, args.catalog, args.out, args.format.lstrip("."))
+    build_index(args.dir, args.catalog, args.out, args.format.lstrip("."), args.only_existing)
 
 
 if __name__ == "__main__":

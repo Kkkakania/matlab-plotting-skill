@@ -20,6 +20,7 @@ is a working MATLAB command line executable.
 ## Preview
 
 All previews below are generated from bundled synthetic data.
+The generated preview index is in `docs/gallery/index.md`.
 
 | Trend | Grouped Bar |
 |---|---|
@@ -103,6 +104,7 @@ Smoke-test all bundled schemes with synthetic data:
 ./scripts/render_with_matlab.sh --smoke-test --out figures/smoke --formats png
 ./scripts/check_gallery_outputs.sh --dir figures/smoke --format png
 python3 scripts/build_gallery_index.py --dir figures/smoke --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out figures/smoke/index.md --format png
+python3 scripts/build_gallery_index.py --dir docs/gallery --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out docs/gallery/index.md --format png --only-existing
 ```
 
 Run the representative visual fixture suite:
