@@ -43,6 +43,14 @@ if schemeName == "confidence_band"
     return
 end
 
+if schemeName == "zoomed_inset_line"
+    t = (1:180)';
+    localEvent = 0.85 * exp(-((t - 118) / 9) .^ 2);
+    signal = 0.012 * t + 0.42 * sin(t / 15) + localEvent + 0.035 * randn(size(t));
+    data = table(t, signal, 'VariableNames', {'time', 'signal'});
+    return
+end
+
 if any(contains(schemeName, ["radar", "parallel"]))
     data = array2table(rand(6, 5), 'VariableNames', "metric" + string(1:5));
     data.group = categorical("sample" + string((1:6)'));

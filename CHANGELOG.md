@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.65
+
+- Completed `TASK-033-zoomed_inset_line-demo-data` in the 500-task board.
+- Added scheme-specific synthetic demo data with a long ordered trend and a
+  visible local event window.
+- Added MATLAB regression coverage proving the demo data renders with a main
+  axis, inset axis, and highlighted detail rectangle.
+
 ## v0.1.64
 
 - Completed `TASK-032-zoomed_inset_line-data-contract` in the 500-task board.

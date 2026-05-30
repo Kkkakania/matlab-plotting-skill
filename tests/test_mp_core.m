@@ -64,6 +64,22 @@ verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'patch'));
 end
 
+function testZoomedInsetLineDemoDataSupportsLocalDetailRender(testCase)
+data = mpDemoDataForScheme("zoomed_inset_line");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "signal"], string(data.Properties.VariableNames))));
+verifyGreaterThanOrEqual(testCase, height(data), 150);
+eventWindow = data.time >= 105 & data.time <= 130;
+baselineWindow = data.time >= 35 & data.time <= 60;
+verifyGreaterThan(testCase, max(data.signal(eventWindow)), max(data.signal(baselineWindow)) + 0.35);
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+fig = mpRenderScheme("zoomed_inset_line", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'axes')), 2);
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'rectangle'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
