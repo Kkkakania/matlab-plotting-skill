@@ -169,6 +169,21 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testLineTrendVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-line-trend-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+mpRun(dataPath, "show a time trend", outDir, ["svg", "pdf"], "line_trend");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "line_trend." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testUnknownExplicitSchemeErrors(testCase)
 dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
 verifyError(testCase, @() mpRun(dataPath, "show a time trend", tempdir, "png", "not_a_scheme"), ...
