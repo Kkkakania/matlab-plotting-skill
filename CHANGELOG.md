@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.58
+
+- Completed `TASK-026-confidence_band-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `confidence_band.png` is generated
+  and non-empty from the synthetic uncertainty CSV example.
+
 ## v0.1.57
 
 - Completed `TASK-025-confidence_band-explicit-cli` in the 500-task board.

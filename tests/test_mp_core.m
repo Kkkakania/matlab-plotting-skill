@@ -234,6 +234,19 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "confidence_band");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "confidence_band.png")));
 end
 
+function testConfidenceBandPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'confidence_band.csv');
+mpRun(dataPath, "show uncertainty bounds", outDir, "png", "confidence_band");
+pngPath = fullfile(outDir, 'confidence_band.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testMultiLineComparisonPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-multi-line-png');
 if exist(outDir, 'dir')
