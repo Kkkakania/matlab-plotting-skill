@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.47
+
+- Completed `TASK-015-multi_line_comparison-explicit-cli` in the 500-task
+  board.
+- Added a small synthetic `examples/data/multi_series.csv` file for explicit
+  multi-line rendering workflows.
+- Added MATLAB regression coverage proving explicit `multi_line_comparison`
+  selection creates deterministic output and report metadata.
+
 ## v0.1.46
 
 - Completed `TASK-014-multi_line_comparison-selection-rule` in the 500-task

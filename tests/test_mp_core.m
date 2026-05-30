@@ -180,6 +180,20 @@ jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
 verifyEqual(testCase, string(jsonReport.selectedScheme), "line_trend");
 end
 
+function testMultiLineComparisonExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-multi-line');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'multi_series.csv');
+result = mpRun(dataPath, "compare multiple time series", outDir, "png", "multi_line_comparison");
+verifyEqual(testCase, result.SelectedScheme, "multi_line_comparison");
+verifyTrue(testCase, isfile(fullfile(outDir, 'multi_line_comparison.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "multi_line_comparison");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "multi_line_comparison.png")));
+end
+
 function testLineTrendPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-line-trend-png');
 if exist(outDir, 'dir')
