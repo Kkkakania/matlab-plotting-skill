@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.44
+
+- Completed `TASK-012-multi_line_comparison-data-contract` in the 500-task
+  board.
+- Documented the expected wide-table input shape for multi-line comparison:
+  one ordered x-axis column plus at least two numeric series columns.
+- Added release-gate and CI coverage for the scheme-specific contract.
+
 ## v0.1.43
 
 - Completed `TASK-011-multi_line_comparison-catalog` in the 500-task board.

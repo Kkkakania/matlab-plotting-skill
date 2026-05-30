@@ -75,6 +75,7 @@ tests/test_docs_quality_checklist.sh
 tests/test_docs_chart_selection.sh
 tests/test_line_trend_data_contract.sh
 tests/test_multi_line_comparison_catalog.sh
+tests/test_multi_line_comparison_data_contract.sh
 tests/test_build_gallery_index.sh
 tests/test_line_trend_gallery.sh
 tests/test_gallery_provenance.sh

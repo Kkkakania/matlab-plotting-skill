@@ -8,7 +8,8 @@ main comparison or pattern easier to see, not just look more complex.
 Use trend schemes when order matters.
 
 - One ordered numeric series: `line_trend`
-- Several comparable series: `multi_line_comparison`
+- Several comparable series: `multi_line_comparison` (wide table with one
+  ordered x-axis column and at least two numeric series columns)
 - Mean with uncertainty: `confidence_band`
 - Local event inside a long series: `zoomed_inset_line`
 - Values above and below zero: `positive_negative_area`
@@ -120,4 +121,3 @@ Use layout schemes after the main story is clear.
 
 When Not To Use: avoid multi-panel figures as a way to hide weak plot choices.
 Each panel should have a job.
-

@@ -26,3 +26,15 @@ Outputs:
 - `render_report.md` with selected scheme, alternatives, data summary, palette,
   output files, and warnings.
 
+## Scheme-Specific Contracts
+
+### `multi_line_comparison`
+
+Use a wide table or numeric matrix with one ordered x-axis column followed by at
+least two numeric series columns. Good column shapes include `time, method_a,
+method_b, method_c` or `sample, baseline, candidate`.
+
+Avoid using a long table with only `time, group, value` for explicit
+`multi_line_comparison` unless it has already been pivoted to one column per
+series. For long grouped observations, first consider `grouped_scatter`,
+`small_multiples`, or a preprocessing step that creates a wide table.
