@@ -111,6 +111,12 @@ Run the representative visual fixture suite:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtures.sh
 ```
 
+Build the automation manifest used to audit scheme coverage:
+
+```bash
+python3 scripts/build_automation_manifest.py --out figures/automation-manifest.json
+```
+
 Run the release gate:
 
 ```bash
@@ -129,6 +135,7 @@ See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
+See `docs/automation-manifest.md` for the generated check matrix.
 
 ## Provenance
 

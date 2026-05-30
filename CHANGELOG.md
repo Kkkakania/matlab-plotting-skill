@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.26
+
+- Added an automation manifest generator that expands the 50 scheme catalog
+  into 1,100 concrete audit checks across catalog, selection, rendering,
+  reporting, and safety stages.
+- Added release-gate coverage to keep the manifest above 500 checks with
+  unique IDs and useful command hints.
+
 ## v0.1.25
 
 - Added CLI `--scheme-info` and `--scheme-info-json` for single-scheme lookup
