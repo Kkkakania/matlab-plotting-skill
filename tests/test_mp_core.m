@@ -344,6 +344,21 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "positive_negative_area
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "positive_negative_area.png")));
 end
 
+function testSegmentedLineExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-segmented-line');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_segmented_line_input.csv');
+writetable(mpDemoDataForScheme("segmented_line"), dataPath);
+result = mpRun(dataPath, "show phase changes over time", outDir, "png", "segmented_line");
+verifyEqual(testCase, result.SelectedScheme, "segmented_line");
+verifyTrue(testCase, isfile(fullfile(outDir, 'segmented_line.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "segmented_line");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "segmented_line.png")));
+end
+
 function testPositiveNegativeAreaPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-positive-negative-png');
 if exist(outDir, 'dir')

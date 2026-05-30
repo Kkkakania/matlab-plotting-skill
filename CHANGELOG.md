@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.87
+
+- Completed `TASK-055-segmented_line-explicit-cli` in the 500-task board.
+- Added MATLAB regression coverage proving explicit `segmented_line` selection
+  creates deterministic PNG output and reports.
+
 ## v0.1.86
 
 - Completed `TASK-054-segmented_line-selection-rule` in the 500-task board.
