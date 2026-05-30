@@ -23,6 +23,7 @@ jobs:
           bash -n tests/test_install_script.sh
           bash -n tests/test_check_gallery_outputs.sh
           bash -n tests/test_list_schemes.sh
+          bash -n tests/test_list_schemes_json.sh
           bash -n tests/test_repo_docs.sh
           bash -n tests/test_github_templates.sh
           bash -n tests/test_matlab_check.sh
@@ -40,6 +41,7 @@ jobs:
           tests/test_install_script.sh
           tests/test_check_gallery_outputs.sh
           tests/test_list_schemes.sh
+          tests/test_list_schemes_json.sh
           tests/test_repo_docs.sh
           tests/test_github_templates.sh
           tests/test_matlab_check.sh

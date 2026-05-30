@@ -82,6 +82,7 @@ Render with an explicit scheme:
 
 ```bash
 ./scripts/render_with_matlab.sh --list-schemes
+./scripts/render_with_matlab.sh --list-schemes-json
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
 

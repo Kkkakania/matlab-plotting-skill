@@ -11,6 +11,7 @@ OUT_DIR="figures"
 FORMATS="png,svg"
 SMOKE_TEST=0
 LIST_SCHEMES=0
+LIST_SCHEMES_JSON=0
 CHECK_ONLY=0
 PLAN_ONLY=0
 INSPECT_DATA=0
@@ -23,6 +24,7 @@ Usage:
   render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>] [--out <dir>] [--formats png,svg]
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes
+  render_with_matlab.sh --list-schemes-json
   render_with_matlab.sh --check
   render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
@@ -64,6 +66,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --list-schemes)
       LIST_SCHEMES=1
+      shift
+      ;;
+    --list-schemes-json)
+      LIST_SCHEMES_JSON=1
       shift
       ;;
     --check)
@@ -113,6 +119,29 @@ if [[ "$LIST_SCHEMES" -eq 1 ]]; then
     while IFS=$'\t' read -r scheme family best_for palette; do
       printf '%-28s %-14s %s [%s]\n' "$scheme" "$family" "$best_for" "$palette"
     done
+  exit 0
+fi
+
+if [[ "$LIST_SCHEMES_JSON" -eq 1 ]]; then
+  if [[ ! -f "$SCHEME_CATALOG" ]]; then
+    echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
+    exit 1
+  fi
+  python3 - "$SCHEME_CATALOG" <<'PY'
+import json
+import re
+import sys
+from pathlib import Path
+
+catalog = Path(sys.argv[1])
+rows = []
+pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| (?P<family>[^|]+) \| (?P<best_for>[^|]+) \| (?P<palette>[^|]+) \|")
+for line in catalog.read_text(encoding="utf-8").splitlines():
+    match = pattern.match(line)
+    if match:
+        rows.append({key: value.strip() for key, value in match.groupdict().items()})
+print(json.dumps(rows, indent=2))
+PY
   exit 0
 fi
 

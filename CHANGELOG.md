@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.24
+
+- Added CLI `--list-schemes-json` for machine-readable scheme catalog output.
+- Added CI and release-gate coverage for JSON catalog output.
+
 ## v0.1.23
 
 - Added example prompts for schema inspection and plan-only selection workflows.
