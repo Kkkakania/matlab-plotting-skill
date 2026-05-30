@@ -113,6 +113,17 @@ verifyEqual(testCase, string(selection.Selected.Name), "confidence_band");
 verifyGreaterThan(testCase, confidenceScore, lineScore);
 end
 
+function testZoomedInsetLineSelectionRulePrefersLocalEventGoal(testCase)
+data = mpDemoDataForScheme("zoomed_inset_line");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show a zoomed inset for the local anomaly window");
+names = string({mpSchemeCatalog().Name});
+zoomScore = selection.AllScores(names == "zoomed_inset_line");
+lineScore = selection.AllScores(names == "line_trend");
+verifyEqual(testCase, string(selection.Selected.Name), "zoomed_inset_line");
+verifyGreaterThan(testCase, zoomScore, lineScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);

@@ -68,8 +68,9 @@ end
 if schema.HasPercent || any(contains(goal, ["percent", "percentage", "composition", "share", "part", "whole"]))
     scores = addFamily(scores, schemes, "composition", 10);
 end
-if any(contains(goal, ["zoom", "inset", "event", "detail", "local"]))
-    scores(nameIndex(schemes, "zoomed_inset_line")) = scores(nameIndex(schemes, "zoomed_inset_line")) + 20;
+if schema.TimeCount > 0 && any(contains(goal, ...
+        ["zoom", "zoomed", "inset", "event", "detail", "local", "anomaly", "window", "highlight"]))
+    scores(nameIndex(schemes, "zoomed_inset_line")) = scores(nameIndex(schemes, "zoomed_inset_line")) + 32;
 end
 if any(contains(goal, ["paper", "panel", "overview", "layout"]))
     scores = addFamily(scores, schemes, "layout", 15);

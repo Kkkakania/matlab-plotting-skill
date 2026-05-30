@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.66
+
+- Completed `TASK-034-zoomed_inset_line-selection-rule` in the 500-task board.
+- Improved scheme scoring so time-series goals mentioning zoomed detail,
+  local events, anomaly windows, or highlights prefer `zoomed_inset_line`.
+- Added MATLAB regression coverage comparing `zoomed_inset_line` and
+  `line_trend` scores for local-detail goals.
+
 ## v0.1.65
 
 - Completed `TASK-033-zoomed_inset_line-demo-data` in the 500-task board.

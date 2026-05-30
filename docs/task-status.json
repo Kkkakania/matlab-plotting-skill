@@ -31,5 +31,6 @@
   "TASK-030-confidence_band-safety": "done",
   "TASK-031-zoomed_inset_line-catalog": "done",
   "TASK-032-zoomed_inset_line-data-contract": "done",
-  "TASK-033-zoomed_inset_line-demo-data": "done"
+  "TASK-033-zoomed_inset_line-demo-data": "done",
+  "TASK-034-zoomed_inset_line-selection-rule": "done"
 }
