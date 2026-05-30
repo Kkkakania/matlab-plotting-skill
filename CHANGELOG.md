@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.32
+
+- Added a committed `docs/500-task-board.md` with all 500 planned goals,
+  acceptance checks, command hints, and statuses.
+- Added release-gate and CI coverage so the committed board must contain
+  exactly 500 task rows.
+
 ## v0.1.31
 
 - Task-roadmap filters now fail fast for unknown scheme or lane names.

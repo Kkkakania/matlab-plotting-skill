@@ -185,14 +185,14 @@ def write_markdown(manifest: dict[str, object], output_path: Path) -> None:
             "",
             "## Task Board",
             "",
-            "| ID | Scheme | Lane | Title | Status |",
-            "|---|---|---|---|---|",
+            "| ID | Scheme | Lane | Goal | Acceptance | Command Hint | Status |",
+            "|---|---|---|---|---|---|---|",
         ]
     )
     for task in tasks:
         lines.append(
             f"| `{task['id']}` | `{task['scheme']}` | {task['lane']} | "
-            f"{task['title']} | {task['status']} |"
+            f"{task['title']} | {task['acceptance']} | `{task['command_hint']}` | {task['status']} |"
         )
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

@@ -159,6 +159,7 @@ See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
 See `docs/automation-manifest.md` for the generated check matrix.
 See `docs/500-task-plan.md` for the exact 500-task roadmap.
+See `docs/500-task-board.md` for the committed 500 planned goals and steps.
 
 ## Provenance
 

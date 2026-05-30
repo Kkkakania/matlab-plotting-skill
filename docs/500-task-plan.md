@@ -17,6 +17,8 @@ The task model is deliberately exact:
 The generated JSON is the source of truth. The Markdown board is a readable
 view for maintainers. It includes family and lane summaries before the full
 task table, so maintainers can review coverage without scanning all 500 rows.
+The repository also commits a full generated board at
+`docs/500-task-board.md`.
 
 For focused work, filter the generated board:
 
