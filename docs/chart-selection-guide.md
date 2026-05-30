@@ -16,7 +16,8 @@ Use trend schemes when order matters.
   best when the full trend matters and one interval needs closer inspection)
 - Values above and below zero: `positive_negative_area` (best when zero is a
   meaningful reference line)
-- Phase or regime changes: `segmented_line`
+- Phase or regime changes: `segmented_line` (best when a segment, phase,
+  regime, stage, or period column marks the boundaries)
 
 When Not To Use: avoid trend plots when the x-axis order is arbitrary. A bar,
 box, or ranking plot will usually be clearer.

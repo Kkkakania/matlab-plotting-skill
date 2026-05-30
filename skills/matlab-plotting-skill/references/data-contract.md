@@ -71,3 +71,15 @@ Avoid this scheme for always-positive totals, cumulative counts, or measurements
 where crossing zero has no interpretation. Use `line_trend`, `grouped_bar`, or
 `waterfall_contribution` instead when the question is about level, category
 comparison, or stepwise contribution.
+
+### `segmented_line`
+
+Use an ordered x-axis column plus one or more numeric series when the same trend
+passes through named phases, operating regimes, policy periods, or experiment
+stages. If available, include a `segment`, `phase`, `regime`, `stage`, or
+`period` column so the renderer or agent can mark boundaries explicitly.
+
+If no segment column exists, this scheme should only be selected when the goal
+text names the transition points or explains the phase structure. Otherwise use
+`line_trend`, `multi_line_comparison`, or `zoomed_inset_line` so the chart does
+not imply unsupported regime changes.

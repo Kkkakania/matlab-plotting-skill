@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.84
+
+- Completed `TASK-052-segmented_line-data-contract` in the 500-task board.
+- Documented the expected ordered axis, numeric series, and optional
+  segment/phase/regime columns for `segmented_line`.
+
 ## v0.1.83
 
 - Completed `TASK-051-segmented_line-catalog` in the 500-task board.
