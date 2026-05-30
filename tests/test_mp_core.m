@@ -189,6 +189,19 @@ verifyEqual(testCase, string(selection.Selected.Name), "segmented_line");
 verifyGreaterThan(testCase, segmentedScore, lineScore);
 end
 
+function testScatterRelationshipSelectionRulePrefersTwoNumericVariables(testCase)
+x = linspace(-2, 2, 120)';
+y = 0.65 * x + 0.25 * sin(3 * x);
+data = table(x, y, 'VariableNames', {'x', 'y'});
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show the relationship between two numeric variables");
+names = string({mpSchemeCatalog().Name});
+scatterScore = selection.AllScores(names == "scatter_relationship");
+densityScore = selection.AllScores(names == "density_scatter");
+verifyEqual(testCase, string(selection.Selected.Name), "scatter_relationship");
+verifyGreaterThanOrEqual(testCase, scatterScore, densityScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);

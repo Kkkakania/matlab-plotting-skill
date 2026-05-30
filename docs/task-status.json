@@ -61,5 +61,6 @@
   "TASK-060-segmented_line-safety": "done",
   "TASK-061-scatter_relationship-catalog": "done",
   "TASK-062-scatter_relationship-data-contract": "done",
-  "TASK-063-scatter_relationship-demo-data": "done"
+  "TASK-063-scatter_relationship-demo-data": "done",
+  "TASK-064-scatter_relationship-selection-rule": "done"
 }

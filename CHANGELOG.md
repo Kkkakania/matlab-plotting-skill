@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.96
+
+- Completed `TASK-064-scatter_relationship-selection-rule` in the 500-task
+  board.
+- Added MATLAB coverage proving simple paired numeric data selects
+  `scatter_relationship`.
+
 ## v0.1.95
 
 - Completed `TASK-063-scatter_relationship-demo-data` in the 500-task board.
