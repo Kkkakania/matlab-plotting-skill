@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.56
+
+- Completed `TASK-024-confidence_band-selection-rule` in the 500-task board.
+- Improved scheme scoring so time-series goals mentioning confidence,
+  uncertainty, intervals, bands, or bounds prefer `confidence_band`.
+- Added MATLAB regression coverage comparing `confidence_band` and `line_trend`
+  scores for uncertainty-focused goals.
+
 ## v0.1.55
 
 - Completed `TASK-023-confidence_band-demo-data` in the 500-task board.

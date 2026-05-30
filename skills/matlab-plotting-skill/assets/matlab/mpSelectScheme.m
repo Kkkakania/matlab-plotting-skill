@@ -31,6 +31,9 @@ if any(contains(goal, ["trend", "time", "series", "signal"]))
     scores = addFamily(scores, schemes, "trend", 12);
     scores(nameIndex(schemes, "line_trend")) = scores(nameIndex(schemes, "line_trend")) + 8;
 end
+if schema.TimeCount > 0 && any(contains(goal, ["confidence", "uncertainty", "band", "interval", "bounds"]))
+    scores(nameIndex(schemes, "confidence_band")) = scores(nameIndex(schemes, "confidence_band")) + 36;
+end
 if schema.TimeCount > 0 && schema.NumericCount >= 3 && ...
         any(contains(goal, ["compare", "comparison", "multiple", "methods", "series"]))
     scores(nameIndex(schemes, "multi_line_comparison")) = scores(nameIndex(schemes, "multi_line_comparison")) + 28;

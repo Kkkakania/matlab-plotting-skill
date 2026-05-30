@@ -86,6 +86,17 @@ verifyEqual(testCase, string(selection.Selected.Name), "multi_line_comparison");
 verifyGreaterThan(testCase, multiLineScore, lineScore);
 end
 
+function testConfidenceBandSelectionRulePrefersUncertaintyGoal(testCase)
+data = mpDemoDataForScheme("confidence_band");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show confidence band with uncertainty bounds");
+names = string({mpSchemeCatalog().Name});
+confidenceScore = selection.AllScores(names == "confidence_band");
+lineScore = selection.AllScores(names == "line_trend");
+verifyEqual(testCase, string(selection.Selected.Name), "confidence_band");
+verifyGreaterThan(testCase, confidenceScore, lineScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);
