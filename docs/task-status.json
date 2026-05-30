@@ -2,5 +2,6 @@
   "TASK-001-line_trend-catalog": "done",
   "TASK-002-line_trend-data-contract": "done",
   "TASK-003-line_trend-demo-data": "done",
-  "TASK-004-line_trend-selection-rule": "done"
+  "TASK-004-line_trend-selection-rule": "done",
+  "TASK-005-line_trend-explicit-cli": "done"
 }

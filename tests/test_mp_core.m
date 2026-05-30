@@ -143,6 +143,19 @@ verifyEqual(testCase, result.SelectedScheme, "heatmap_matrix");
 verifyTrue(testCase, isfile(fullfile(outDir, 'heatmap_matrix.png')));
 end
 
+function testLineTrendExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-line-trend');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv');
+result = mpRun(dataPath, "force a simple line view", outDir, "png", "line_trend");
+verifyEqual(testCase, result.SelectedScheme, "line_trend");
+verifyTrue(testCase, isfile(fullfile(outDir, 'line_trend.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "line_trend");
+end
+
 function testUnknownExplicitSchemeErrors(testCase)
 dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
 verifyError(testCase, @() mpRun(dataPath, "show a time trend", tempdir, "png", "not_a_scheme"), ...

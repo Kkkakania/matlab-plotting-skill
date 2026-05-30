@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.37
+
+- Completed `TASK-005-line_trend-explicit-cli` in the 500-task board.
+- Added MATLAB regression coverage proving explicit `line_trend` selection
+  creates deterministic output and report metadata.
+
 ## v0.1.36
 
 - Completed `TASK-004-line_trend-selection-rule` in the 500-task board.
