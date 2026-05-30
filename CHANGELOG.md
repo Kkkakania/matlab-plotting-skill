@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.93
+
+- Completed `TASK-061-scatter_relationship-catalog` in the 500-task board.
+- Added CLI and JSON catalog regression coverage for `scatter_relationship`.
+
 ## v0.1.92
 
 - Completed `TASK-060-segmented_line-safety` in the 500-task board.
