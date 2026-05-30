@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.88
+
+- Completed `TASK-056-segmented_line-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `segmented_line.png` is generated
+  and non-empty.
+
 ## v0.1.87
 
 - Completed `TASK-055-segmented_line-explicit-cli` in the 500-task board.

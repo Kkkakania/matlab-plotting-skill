@@ -53,5 +53,6 @@
   "TASK-052-segmented_line-data-contract": "done",
   "TASK-053-segmented_line-demo-data": "done",
   "TASK-054-segmented_line-selection-rule": "done",
-  "TASK-055-segmented_line-explicit-cli": "done"
+  "TASK-055-segmented_line-explicit-cli": "done",
+  "TASK-056-segmented_line-png-render": "done"
 }

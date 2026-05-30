@@ -359,6 +359,20 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "segmented_line");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "segmented_line.png")));
 end
 
+function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-segmented-line-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_segmented_line_png_input.csv');
+writetable(mpDemoDataForScheme("segmented_line"), dataPath);
+mpRun(dataPath, "show phase changes over time", outDir, "png", "segmented_line");
+pngPath = fullfile(outDir, 'segmented_line.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testPositiveNegativeAreaPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-positive-negative-png');
 if exist(outDir, 'dir')
