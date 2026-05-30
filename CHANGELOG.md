@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.83
+
+- Completed `TASK-051-segmented_line-catalog` in the 500-task board.
+- Added CLI and JSON catalog regression coverage for `segmented_line`.
+
 ## v0.1.82
 
 - Completed `TASK-050-positive_negative_area-safety` in the 500-task board.

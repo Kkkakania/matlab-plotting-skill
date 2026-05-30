@@ -79,6 +79,7 @@ tests/test_multi_line_comparison_data_contract.sh
 tests/test_confidence_band_catalog.sh
 tests/test_zoomed_inset_line_catalog.sh
 tests/test_positive_negative_area_catalog.sh
+tests/test_segmented_line_catalog.sh
 tests/test_confidence_band_data_contract.sh
 tests/test_zoomed_inset_line_data_contract.sh
 tests/test_positive_negative_area_data_contract.sh
