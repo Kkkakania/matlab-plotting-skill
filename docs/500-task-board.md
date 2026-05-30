@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 10 |
-| planned | 490 |
+| done | 11 |
+| planned | 489 |
 
 ## Task Board
 
@@ -55,7 +55,7 @@ Total tasks: 500
 | `TASK-008-line_trend-report` | `line_trend` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "line_trend" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
 | `TASK-009-line_trend-gallery` | `line_trend` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
 | `TASK-010-line_trend-safety` | `line_trend` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
-| `TASK-011-multi_line_comparison-catalog` | `multi_line_comparison` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info multi_line_comparison` | planned |
+| `TASK-011-multi_line_comparison-catalog` | `multi_line_comparison` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info multi_line_comparison` | done |
 | `TASK-012-multi_line_comparison-data-contract` | `multi_line_comparison` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "multi_line_comparison" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
 | `TASK-013-multi_line_comparison-demo-data` | `multi_line_comparison` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
 | `TASK-014-multi_line_comparison-selection-rule` | `multi_line_comparison` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme multi_line_comparison` | planned |

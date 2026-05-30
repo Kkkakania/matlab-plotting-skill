@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.43
+
+- Completed `TASK-011-multi_line_comparison-catalog` in the 500-task board.
+- Added release-gate and CI coverage proving `multi_line_comparison` is exposed
+  through text and JSON scheme-info with its catalog metadata.
+
 ## v0.1.42
 
 - Completed `TASK-010-line_trend-safety` in the 500-task board.
