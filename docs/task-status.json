@@ -63,5 +63,6 @@
   "TASK-062-scatter_relationship-data-contract": "done",
   "TASK-063-scatter_relationship-demo-data": "done",
   "TASK-064-scatter_relationship-selection-rule": "done",
-  "TASK-065-scatter_relationship-explicit-cli": "done"
+  "TASK-065-scatter_relationship-explicit-cli": "done",
+  "TASK-066-scatter_relationship-png-render": "done"
 }

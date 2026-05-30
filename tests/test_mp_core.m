@@ -399,6 +399,20 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "scatter_relationship")
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "scatter_relationship.png")));
 end
 
+function testScatterRelationshipPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-scatter-relationship-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_scatter_relationship_png_input.csv');
+writetable(mpDemoDataForScheme("scatter_relationship"), dataPath);
+mpRun(dataPath, "show x-y relationship", outDir, "png", "scatter_relationship");
+pngPath = fullfile(outDir, 'scatter_relationship.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-segmented-line-png');
 if exist(outDir, 'dir')

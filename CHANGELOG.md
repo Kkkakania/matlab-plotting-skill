@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.98
+
+- Completed `TASK-066-scatter_relationship-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `scatter_relationship.png` is
+  generated and non-empty.
+
 ## v0.1.97
 
 - Completed `TASK-065-scatter_relationship-explicit-cli` in the 500-task board.
