@@ -138,6 +138,8 @@ python3 scripts/build_task_manifest.py --json-out safety.json --markdown-out saf
 ```
 
 Unknown scheme or lane names fail fast instead of producing an empty board.
+Task progress is tracked in `docs/task-status.json`; the committed task board
+uses that file when generated.
 
 Run the release gate:
 

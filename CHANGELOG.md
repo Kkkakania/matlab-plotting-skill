@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.33
+
+- Added task status overrides for the 500-task roadmap.
+- Marked `TASK-001-line_trend-catalog` as done after verifying
+  `--scheme-info line_trend` exposes the required catalog fields.
+- Added release-gate and CI coverage for valid statuses and task override IDs.
+
 ## v0.1.32
 
 - Added a committed `docs/500-task-board.md` with all 500 planned goals,

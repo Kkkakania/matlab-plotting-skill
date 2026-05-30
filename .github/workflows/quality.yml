@@ -29,6 +29,7 @@ jobs:
           bash -n tests/test_ci_workflow.sh
           bash -n tests/test_task_manifest.sh
           bash -n tests/test_task_manifest_filter.sh
+          bash -n tests/test_task_manifest_status.sh
           bash -n tests/test_repo_docs.sh
           bash -n tests/test_github_templates.sh
           bash -n tests/test_matlab_check.sh
@@ -53,6 +54,7 @@ jobs:
           tests/test_ci_workflow.sh
           tests/test_task_manifest.sh
           tests/test_task_manifest_filter.sh
+          tests/test_task_manifest_status.sh
           tests/test_repo_docs.sh
           tests/test_github_templates.sh
           tests/test_matlab_check.sh
@@ -80,7 +82,7 @@ jobs:
           name: automation-manifest
           path: automation-manifest.json
       - name: Build 500-task plan
-        run: python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md
+        run: python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md --status-overrides docs/task-status.json
       - name: Upload 500-task plan
         uses: actions/upload-artifact@v4
         with:

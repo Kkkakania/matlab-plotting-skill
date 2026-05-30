@@ -37,6 +37,16 @@ python3 scripts/build_task_manifest.py \
 Unknown scheme or lane filters fail with a non-zero exit code so misspellings
 do not quietly produce an empty board.
 
+Task progress is tracked through `docs/task-status.json`. Regenerate the
+committed board with:
+
+```bash
+python3 scripts/build_task_manifest.py \
+  --json-out /tmp/task-manifest.json \
+  --markdown-out docs/500-task-board.md \
+  --status-overrides docs/task-status.json
+```
+
 ## Task Lanes
 
 Every scheme receives these same ten lanes:

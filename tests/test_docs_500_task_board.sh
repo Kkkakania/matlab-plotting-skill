@@ -19,6 +19,8 @@ grep -q "Total tasks: 500" "$BOARD"
 grep -q "TASK-001-line_trend-catalog" "$BOARD"
 grep -q "TASK-500-annotated_callout-safety" "$BOARD"
 grep -q "Command Hint" "$BOARD"
+grep -q "| done | 1 |" "$BOARD"
+grep -q '| `TASK-001-line_trend-catalog` | `line_trend` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info line_trend` | done |' "$BOARD"
 grep -q "Catalog entry names the scheme" "$BOARD"
 grep -q "No private paths, forbidden files" "$BOARD"
 

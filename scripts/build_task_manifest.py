@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = ROOT_DIR / "skills/matlab-plotting-skill/references/scheme-catalog.md"
+ALLOWED_STATUSES = {"planned", "in_progress", "done", "blocked"}
 
 TASK_LANES = [
     {
@@ -91,7 +92,29 @@ def parse_catalog(catalog_path: Path) -> list[dict[str, str]]:
     return rows
 
 
-def build_tasks(catalog_path: Path, scheme_filter: str = "", lane_filter: str = "") -> dict[str, object]:
+def load_status_overrides(overrides_path: Path | None) -> dict[str, str]:
+    if overrides_path is None:
+        return {}
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+    if not isinstance(overrides, dict):
+        print("Status overrides must be a JSON object.", file=sys.stderr)
+        raise SystemExit(2)
+    clean_overrides = {str(task_id): str(status) for task_id, status in overrides.items()}
+    for status in clean_overrides.values():
+        if status not in ALLOWED_STATUSES:
+            print(f"Unknown task status: {status}", file=sys.stderr)
+            print("Allowed statuses: " + ", ".join(sorted(ALLOWED_STATUSES)), file=sys.stderr)
+            raise SystemExit(2)
+    return clean_overrides
+
+
+def build_tasks(
+    catalog_path: Path,
+    scheme_filter: str = "",
+    lane_filter: str = "",
+    status_overrides: dict[str, str] | None = None,
+) -> dict[str, object]:
+    status_overrides = status_overrides or {}
     schemes = parse_catalog(catalog_path)
     scheme_names = {scheme["scheme"] for scheme in schemes}
     lane_names = {lane["lane"] for lane in TASK_LANES}
@@ -123,6 +146,15 @@ def build_tasks(catalog_path: Path, scheme_filter: str = "", lane_filter: str = 
                 }
             )
             task_number += 1
+    task_ids = {str(task["id"]) for task in all_tasks}
+    for task_id in status_overrides:
+        if task_id not in task_ids:
+            print(f"Unknown task override ID: {task_id}", file=sys.stderr)
+            raise SystemExit(2)
+    for task in all_tasks:
+        task_id = str(task["id"])
+        if task_id in status_overrides:
+            task["status"] = status_overrides[task_id]
     tasks = [
         task
         for task in all_tasks
@@ -131,6 +163,7 @@ def build_tasks(catalog_path: Path, scheme_filter: str = "", lane_filter: str = 
     ]
     family_counts = dict(Counter(str(task["family"]) for task in tasks))
     lane_counts = dict(Counter(str(task["lane"]) for task in tasks))
+    status_counts = dict(Counter(str(task["status"]) for task in tasks))
     return {
         "source_catalog": str(catalog_path.relative_to(ROOT_DIR)),
         "scheme_count": len(schemes),
@@ -139,6 +172,7 @@ def build_tasks(catalog_path: Path, scheme_filter: str = "", lane_filter: str = 
         "filters": {"scheme": scheme_filter, "lane": lane_filter},
         "family_counts": family_counts,
         "lane_counts": lane_counts,
+        "status_counts": status_counts,
         "tasks": tasks,
     }
 
@@ -183,6 +217,17 @@ def write_markdown(manifest: dict[str, object], output_path: Path) -> None:
     lines.extend(
         [
             "",
+            "## Status Summary",
+            "",
+            "| Status | Tasks |",
+            "|---|---:|",
+        ]
+    )
+    for status, count in manifest["status_counts"].items():
+        lines.append(f"| {status} | {count} |")
+    lines.extend(
+        [
+            "",
             "## Task Board",
             "",
             "| ID | Scheme | Lane | Goal | Acceptance | Command Hint | Status |",
@@ -204,9 +249,10 @@ def main() -> int:
     parser.add_argument("--markdown-out", type=Path, required=True)
     parser.add_argument("--scheme", default="", help="Only include tasks for one scheme.")
     parser.add_argument("--lane", default="", help="Only include tasks for one task lane.")
+    parser.add_argument("--status-overrides", type=Path, default=None, help="JSON object mapping task IDs to statuses.")
     args = parser.parse_args()
 
-    manifest = build_tasks(args.catalog, args.scheme, args.lane)
+    manifest = build_tasks(args.catalog, args.scheme, args.lane, load_status_overrides(args.status_overrides))
     args.json_out.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     write_markdown(manifest, args.markdown_out)
     print(
