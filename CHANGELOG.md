@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.11
+
+- Added a chart selection guide organized by task and data shape.
+- Added CI coverage for the guide.
+
 ## v0.1.10
 
 - Added a figure quality checklist for reviewing exported MATLAB figures before
