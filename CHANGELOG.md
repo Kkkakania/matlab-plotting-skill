@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.95
+
+- Completed `TASK-063-scatter_relationship-demo-data` in the 500-task board.
+- Added MATLAB coverage proving bundled scatter demo data supports schema
+  inference and x-y rendering.
+
 ## v0.1.94
 
 - Completed `TASK-062-scatter_relationship-data-contract` in the 500-task board.

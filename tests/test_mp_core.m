@@ -109,6 +109,18 @@ cleanup = onCleanup(@() close(fig));
 verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'line')), 3);
 end
 
+function testScatterRelationshipDemoDataSupportsXyRender(testCase)
+data = mpDemoDataForScheme("scatter_relationship");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["x", "y"], string(data.Properties.VariableNames))));
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
+verifyGreaterThanOrEqual(testCase, schema.RowCount, 100);
+fig = mpRenderScheme("scatter_relationship", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
