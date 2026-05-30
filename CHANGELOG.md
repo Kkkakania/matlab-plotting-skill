@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.59
+
+- Completed `TASK-027-confidence_band-vector-render` in the 500-task board.
+- Added MATLAB regression coverage proving `confidence_band.svg` and
+  `confidence_band.pdf` are generated and non-empty.
+
 ## v0.1.58
 
 - Completed `TASK-026-confidence_band-png-render` in the 500-task board.

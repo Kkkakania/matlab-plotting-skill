@@ -247,6 +247,21 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testConfidenceBandVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'confidence_band.csv');
+mpRun(dataPath, "show uncertainty bounds", outDir, ["svg", "pdf"], "confidence_band");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "confidence_band." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testMultiLineComparisonPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-multi-line-png');
 if exist(outDir, 'dir')

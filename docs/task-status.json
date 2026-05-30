@@ -24,5 +24,6 @@
   "TASK-023-confidence_band-demo-data": "done",
   "TASK-024-confidence_band-selection-rule": "done",
   "TASK-025-confidence_band-explicit-cli": "done",
-  "TASK-026-confidence_band-png-render": "done"
+  "TASK-026-confidence_band-png-render": "done",
+  "TASK-027-confidence_band-vector-render": "done"
 }
