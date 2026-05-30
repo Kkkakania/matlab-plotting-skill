@@ -33,5 +33,6 @@
   "TASK-032-zoomed_inset_line-data-contract": "done",
   "TASK-033-zoomed_inset_line-demo-data": "done",
   "TASK-034-zoomed_inset_line-selection-rule": "done",
-  "TASK-035-zoomed_inset_line-explicit-cli": "done"
+  "TASK-035-zoomed_inset_line-explicit-cli": "done",
+  "TASK-036-zoomed_inset_line-png-render": "done"
 }

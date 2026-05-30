@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.68
+
+- Completed `TASK-036-zoomed_inset_line-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `zoomed_inset_line.png` is generated
+  and non-empty from synthetic local-event data.
+
 ## v0.1.67
 
 - Completed `TASK-035-zoomed_inset_line-explicit-cli` in the 500-task board.

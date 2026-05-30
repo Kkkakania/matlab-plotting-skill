@@ -276,6 +276,20 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "zoomed_inset_line");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "zoomed_inset_line.png")));
 end
 
+function testZoomedInsetLinePngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_zoomed_inset_png_input.csv');
+writetable(mpDemoDataForScheme("zoomed_inset_line"), dataPath);
+mpRun(dataPath, "show a zoomed local event", outDir, "png", "zoomed_inset_line");
+pngPath = fullfile(outDir, 'zoomed_inset_line.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testConfidenceBandPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-png');
 if exist(outDir, 'dir')
