@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.53
+
+- Completed `TASK-021-confidence_band-catalog` in the 500-task board.
+- Added release-gate and CI coverage proving `confidence_band` is exposed
+  through text and JSON scheme-info with its catalog metadata.
+
 ## v0.1.52
 
 - Completed `TASK-020-multi_line_comparison-safety` in the 500-task board.

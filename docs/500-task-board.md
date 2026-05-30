@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 20 |
-| planned | 480 |
+| done | 21 |
+| planned | 479 |
 
 ## Task Board
 
@@ -65,7 +65,7 @@ Total tasks: 500
 | `TASK-018-multi_line_comparison-report` | `multi_line_comparison` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "multi_line_comparison" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
 | `TASK-019-multi_line_comparison-gallery` | `multi_line_comparison` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
 | `TASK-020-multi_line_comparison-safety` | `multi_line_comparison` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
-| `TASK-021-confidence_band-catalog` | `confidence_band` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info confidence_band` | planned |
+| `TASK-021-confidence_band-catalog` | `confidence_band` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info confidence_band` | done |
 | `TASK-022-confidence_band-data-contract` | `confidence_band` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "confidence_band" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
 | `TASK-023-confidence_band-demo-data` | `confidence_band` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
 | `TASK-024-confidence_band-selection-rule` | `confidence_band` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme confidence_band` | planned |

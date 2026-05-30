@@ -76,6 +76,7 @@ tests/test_docs_chart_selection.sh
 tests/test_line_trend_data_contract.sh
 tests/test_multi_line_comparison_catalog.sh
 tests/test_multi_line_comparison_data_contract.sh
+tests/test_confidence_band_catalog.sh
 tests/test_build_gallery_index.sh
 tests/test_line_trend_gallery.sh
 tests/test_multi_line_comparison_gallery.sh
