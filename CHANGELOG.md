@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.77
+
+- Completed `TASK-045-positive_negative_area-explicit-cli` in the 500-task
+  board.
+- Added MATLAB regression coverage proving explicit `positive_negative_area`
+  selection creates deterministic output and report metadata from synthetic CSV
+  input.
+
 ## v0.1.76
 
 - Completed `TASK-044-positive_negative_area-selection-rule` in the 500-task

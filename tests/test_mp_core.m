@@ -303,6 +303,21 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "zoomed_inset_line");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "zoomed_inset_line.png")));
 end
 
+function testPositiveNegativeAreaExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-positive-negative');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_positive_negative_input.csv');
+writetable(mpDemoDataForScheme("positive_negative_area"), dataPath);
+result = mpRun(dataPath, "show signed change around zero", outDir, "png", "positive_negative_area");
+verifyEqual(testCase, result.SelectedScheme, "positive_negative_area");
+verifyTrue(testCase, isfile(fullfile(outDir, 'positive_negative_area.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "positive_negative_area");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "positive_negative_area.png")));
+end
+
 function testZoomedInsetLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-png');
 if exist(outDir, 'dir')
