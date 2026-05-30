@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.42
+
+- Completed `TASK-010-line_trend-safety` in the 500-task board.
+- Added a gallery provenance file documenting committed preview assets as
+  synthetic-data renders rather than external figures or private examples.
+- Added release-gate and CI coverage that fails when committed gallery PNGs do
+  not have provenance rows.
+
 ## v0.1.41
 
 - Completed `TASK-009-line_trend-gallery` in the 500-task board.

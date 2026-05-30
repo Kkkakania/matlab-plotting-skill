@@ -76,6 +76,7 @@ tests/test_docs_chart_selection.sh
 tests/test_line_trend_data_contract.sh
 tests/test_build_gallery_index.sh
 tests/test_line_trend_gallery.sh
+tests/test_gallery_provenance.sh
 tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh
 tests/test_docs_500_task_board.sh

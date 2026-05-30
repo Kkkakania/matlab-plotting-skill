@@ -20,7 +20,8 @@ is a working MATLAB command line executable.
 ## Preview
 
 All previews below are generated from bundled synthetic data.
-The generated preview index is in `docs/gallery/index.md`.
+The generated preview index is in `docs/gallery/index.md`, and preview
+provenance is tracked in `docs/gallery/provenance.md`.
 
 | Trend | Grouped Bar |
 |---|---|
