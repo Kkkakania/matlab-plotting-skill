@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.79
+
+- Completed `TASK-047-positive_negative_area-vector-render` in the 500-task
+  board.
+- Added MATLAB regression coverage proving `positive_negative_area.svg` and
+  `positive_negative_area.pdf` are generated and non-empty.
+
 ## v0.1.78
 
 - Completed `TASK-046-positive_negative_area-png-render` in the 500-task board.

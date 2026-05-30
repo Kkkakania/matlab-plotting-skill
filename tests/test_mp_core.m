@@ -332,6 +332,22 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testPositiveNegativeAreaVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-positive-negative-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_positive_negative_vector_input.csv');
+writetable(mpDemoDataForScheme("positive_negative_area"), dataPath);
+mpRun(dataPath, "show signed change around zero", outDir, ["svg", "pdf"], "positive_negative_area");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "positive_negative_area." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testZoomedInsetLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-png');
 if exist(outDir, 'dir')
