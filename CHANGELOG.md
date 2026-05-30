@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.17
+
+- Added top-candidate score snapshots to Markdown and JSON render reports.
+- Extended MATLAB regression coverage for selection transparency.
+
 ## v0.1.16
 
 - Added README gallery preview images generated from bundled synthetic data.

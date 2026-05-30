@@ -81,9 +81,12 @@ reportText = fileread(fullfile(outDir, 'render_report.md'));
 verifyTrue(testCase, contains(reportText, 'Selection Signals'));
 verifyTrue(testCase, contains(reportText, 'time columns: 1'));
 verifyTrue(testCase, contains(reportText, 'goal keywords: trend, time'));
+verifyTrue(testCase, contains(reportText, 'Score Snapshot'));
+verifyTrue(testCase, contains(reportText, '`line_trend`'));
 jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
 verifyTrue(testCase, any(contains(string(jsonReport.selectionSignals), 'time columns: 1')));
 verifyTrue(testCase, any(contains(string(jsonReport.selectionSignals), 'goal keywords: trend, time')));
+verifyEqual(testCase, string(jsonReport.scoreSnapshot(1).name), "line_trend");
 end
 
 function testExplicitSchemeOverridesAutomaticSelection(testCase)

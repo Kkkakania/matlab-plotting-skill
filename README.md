@@ -15,6 +15,7 @@ is a working MATLAB command line executable.
 - Exports PNG and SVG by default, with optional PDF.
 - Writes Markdown and JSON render reports explaining the selected scheme and alternatives.
 - Includes concrete selection signals in reports so automatic choices are easier to audit.
+- Includes a score snapshot for the top scheme candidates.
 
 ## Preview
 

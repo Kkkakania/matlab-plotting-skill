@@ -12,6 +12,7 @@ else
 end
 outputFiles = localFileNames(files);
 selectionSignals = localSelectionSignals(schema, goalText);
+scoreSnapshot = localScoreSnapshot(selection);
 
 reportPath = fullfile(outputDir, 'render_report.md');
 fid = fopen(reportPath, 'w');
@@ -36,6 +37,11 @@ fprintf(fid, '- Time columns: %d\n', schema.TimeCount);
 fprintf(fid, '\n## Selection Signals\n\n');
 for k = 1:numel(selectionSignals)
     fprintf(fid, '- %s\n', selectionSignals(k));
+end
+fprintf(fid, '\n## Score Snapshot\n\n');
+for k = 1:numel(scoreSnapshot)
+    fprintf(fid, '- `%s` (%s): %.0f\n', ...
+        string(scoreSnapshot(k).name), string(scoreSnapshot(k).family), scoreSnapshot(k).score);
 end
 fprintf(fid, '\n## Alternatives\n\n');
 for k = 1:numel(selection.Alternatives)
@@ -67,10 +73,25 @@ summary.dataSummary = struct( ...
     'categoryColumns', schema.CategoryCount, ...
     'timeColumns', schema.TimeCount);
 summary.selectionSignals = cellstr(selectionSignals);
+summary.scoreSnapshot = scoreSnapshot;
 summary.alternatives = localAlternatives(selection);
 summary.outputs = cellstr(outputFiles);
 
 fprintf(jsonFid, '%s\n', jsonencode(summary));
+end
+
+function snapshot = localScoreSnapshot(selection)
+schemes = mpSchemeCatalog();
+scores = selection.AllScores(:);
+[~, order] = sort(scores, 'descend');
+limit = min(5, numel(order));
+snapshot = repmat(struct('name', '', 'family', '', 'score', 0), 1, limit);
+for k = 1:limit
+    idx = order(k);
+    snapshot(k).name = char(schemes(idx).Name);
+    snapshot(k).family = char(schemes(idx).Family);
+    snapshot(k).score = scores(idx);
+end
 end
 
 function signals = localSelectionSignals(schema, goalText)
