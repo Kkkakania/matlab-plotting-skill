@@ -64,6 +64,7 @@ Smoke-test all bundled schemes with synthetic data:
 
 ```bash
 ./scripts/render_with_matlab.sh --smoke-test --out figures/smoke --formats png
+./scripts/check_gallery_outputs.sh --dir figures/smoke --format png
 ```
 
 ## Scheme Coverage
