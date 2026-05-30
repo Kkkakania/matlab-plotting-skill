@@ -207,6 +207,21 @@ fileInfo = dir(pngPath);
 verifyGreaterThan(testCase, fileInfo.bytes, 0);
 end
 
+function testMultiLineComparisonVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-multi-line-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'multi_series.csv');
+mpRun(dataPath, "compare multiple time series", outDir, ["svg", "pdf"], "multi_line_comparison");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "multi_line_comparison." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
 function testLineTrendPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-line-trend-png');
 if exist(outDir, 'dir')

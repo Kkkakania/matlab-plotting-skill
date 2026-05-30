@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.49
+
+- Completed `TASK-017-multi_line_comparison-vector-render` in the 500-task
+  board.
+- Added MATLAB regression coverage proving `multi_line_comparison.svg` and
+  `multi_line_comparison.pdf` are generated and non-empty.
+
 ## v0.1.48
 
 - Completed `TASK-016-multi_line_comparison-png-render` in the 500-task board.

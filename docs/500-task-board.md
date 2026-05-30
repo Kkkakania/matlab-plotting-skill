@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 16 |
-| planned | 484 |
+| done | 17 |
+| planned | 483 |
 
 ## Task Board
 
@@ -61,7 +61,7 @@ Total tasks: 500
 | `TASK-014-multi_line_comparison-selection-rule` | `multi_line_comparison` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme multi_line_comparison` | done |
 | `TASK-015-multi_line_comparison-explicit-cli` | `multi_line_comparison` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats png` | done |
 | `TASK-016-multi_line_comparison-png-render` | `multi_line_comparison` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats png` | done |
-| `TASK-017-multi_line_comparison-vector-render` | `multi_line_comparison` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats svg,pdf` | planned |
+| `TASK-017-multi_line_comparison-vector-render` | `multi_line_comparison` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats svg,pdf` | done |
 | `TASK-018-multi_line_comparison-report` | `multi_line_comparison` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "multi_line_comparison" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |
 | `TASK-019-multi_line_comparison-gallery` | `multi_line_comparison` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
 | `TASK-020-multi_line_comparison-safety` | `multi_line_comparison` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
