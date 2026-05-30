@@ -49,6 +49,21 @@ lines = findobj(fig, 'Type', 'line');
 verifyGreaterThanOrEqual(testCase, numel(lines), 2);
 end
 
+function testConfidenceBandDemoDataSupportsUncertaintyRender(testCase)
+data = mpDemoDataForScheme("confidence_band");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "center", "lower", "upper"], string(data.Properties.VariableNames))));
+verifyTrue(testCase, all(data.lower <= data.center));
+verifyTrue(testCase, all(data.center <= data.upper));
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 4);
+fig = mpRenderScheme("confidence_band", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'patch'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);

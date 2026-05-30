@@ -34,6 +34,15 @@ if any(contains(schemeName, ["bar", "ranking", "lollipop", "pareto", "waterfall"
     return
 end
 
+if schemeName == "confidence_band"
+    t = (1:80)';
+    center = 0.35 * sin(t / 8) + 0.015 * t;
+    spread = 0.12 + 0.03 * cos(t / 10);
+    data = table(t, center, center - spread, center + spread, ...
+        'VariableNames', {'time', 'center', 'lower', 'upper'});
+    return
+end
+
 if any(contains(schemeName, ["radar", "parallel"]))
     data = array2table(rand(6, 5), 'VariableNames', "metric" + string(1:5));
     data.group = categorical("sample" + string((1:6)'));

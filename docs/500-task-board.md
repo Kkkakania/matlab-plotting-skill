@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 22 |
-| planned | 478 |
+| done | 23 |
+| planned | 477 |
 
 ## Task Board
 
@@ -67,7 +67,7 @@ Total tasks: 500
 | `TASK-020-multi_line_comparison-safety` | `multi_line_comparison` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-021-confidence_band-catalog` | `confidence_band` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info confidence_band` | done |
 | `TASK-022-confidence_band-data-contract` | `confidence_band` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "confidence_band" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
-| `TASK-023-confidence_band-demo-data` | `confidence_band` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
+| `TASK-023-confidence_band-demo-data` | `confidence_band` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-024-confidence_band-selection-rule` | `confidence_band` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme confidence_band` | planned |
 | `TASK-025-confidence_band-explicit-cli` | `confidence_band` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats png` | planned |
 | `TASK-026-confidence_band-png-render` | `confidence_band` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats png` | planned |

@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.55
+
+- Completed `TASK-023-confidence_band-demo-data` in the 500-task board.
+- Added scheme-specific synthetic `confidence_band` demo data with `center`,
+  `lower`, and `upper` columns.
+- Updated the confidence-band renderer to use provided lower/upper bounds when
+  present, with MATLAB regression coverage for line and band objects.
+
 ## v0.1.54
 
 - Completed `TASK-022-confidence_band-data-contract` in the 500-task board.

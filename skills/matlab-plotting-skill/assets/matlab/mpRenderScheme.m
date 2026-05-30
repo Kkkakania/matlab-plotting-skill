@@ -57,8 +57,15 @@ switch schemeName
         end
     case "confidence_band"
         center = y(:, 1);
-        spread = 0.15 * std(center) + 0.08 * abs(center);
-        fill(ax, [x; flipud(x)], [center - spread; flipud(center + spread)], ...
+        if size(y, 2) >= 3
+            lower = y(:, 2);
+            upper = y(:, 3);
+        else
+            spread = 0.15 * std(center) + 0.08 * abs(center);
+            lower = center - spread;
+            upper = center + spread;
+        end
+        fill(ax, [x; flipud(x)], [lower; flipud(upper)], ...
             colors(1, :), 'FaceAlpha', 0.18, 'EdgeColor', 'none');
         plot(ax, x, center, 'LineWidth', 1.6, 'Color', colors(1, :));
     case "zoomed_inset_line"
