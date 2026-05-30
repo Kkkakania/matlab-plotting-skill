@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 34 |
-| planned | 466 |
+| done | 35 |
+| planned | 465 |
 
 ## Task Board
 
@@ -79,7 +79,7 @@ Total tasks: 500
 | `TASK-032-zoomed_inset_line-data-contract` | `zoomed_inset_line` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "zoomed_inset_line" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
 | `TASK-033-zoomed_inset_line-demo-data` | `zoomed_inset_line` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-034-zoomed_inset_line-selection-rule` | `zoomed_inset_line` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme zoomed_inset_line` | done |
-| `TASK-035-zoomed_inset_line-explicit-cli` | `zoomed_inset_line` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats png` | planned |
+| `TASK-035-zoomed_inset_line-explicit-cli` | `zoomed_inset_line` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats png` | done |
 | `TASK-036-zoomed_inset_line-png-render` | `zoomed_inset_line` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats png` | planned |
 | `TASK-037-zoomed_inset_line-vector-render` | `zoomed_inset_line` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme zoomed_inset_line --formats svg,pdf` | planned |
 | `TASK-038-zoomed_inset_line-report` | `zoomed_inset_line` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "zoomed_inset_line" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |

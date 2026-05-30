@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.67
+
+- Completed `TASK-035-zoomed_inset_line-explicit-cli` in the 500-task board.
+- Added MATLAB regression coverage proving explicit `zoomed_inset_line`
+  selection creates deterministic output and report metadata from synthetic
+  CSV input.
+
 ## v0.1.66
 
 - Completed `TASK-034-zoomed_inset_line-selection-rule` in the 500-task board.

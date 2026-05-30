@@ -261,6 +261,21 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "confidence_band");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "confidence_band.png")));
 end
 
+function testZoomedInsetLineExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-zoomed-inset');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_zoomed_inset_input.csv');
+writetable(mpDemoDataForScheme("zoomed_inset_line"), dataPath);
+result = mpRun(dataPath, "show a zoomed local event", outDir, "png", "zoomed_inset_line");
+verifyEqual(testCase, result.SelectedScheme, "zoomed_inset_line");
+verifyTrue(testCase, isfile(fullfile(outDir, 'zoomed_inset_line.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "zoomed_inset_line");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "zoomed_inset_line.png")));
+end
+
 function testConfidenceBandPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-confidence-band-png');
 if exist(outDir, 'dir')
