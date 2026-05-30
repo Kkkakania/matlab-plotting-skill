@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.12
+
+- Added Markdown gallery index generation for smoke-test outputs.
+- Added fixture-based CI coverage for the gallery index builder.
+
 ## v0.1.11
 
 - Added a chart selection guide organized by task and data shape.

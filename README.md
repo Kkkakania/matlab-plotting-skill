@@ -67,6 +67,7 @@ Smoke-test all bundled schemes with synthetic data:
 ```bash
 ./scripts/render_with_matlab.sh --smoke-test --out figures/smoke --formats png
 ./scripts/check_gallery_outputs.sh --dir figures/smoke --format png
+python3 scripts/build_gallery_index.py --dir figures/smoke --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out figures/smoke/index.md --format png
 ```
 
 ## Scheme Coverage
