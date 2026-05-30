@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+WITH_MATLAB=0
+MATLAB_BIN="${MATLAB_BIN:-matlab}"
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  release_check.sh [--with-matlab]
+
+Runs the release gate used before tagging a version.
+
+Default checks:
+  - shell syntax
+  - Python syntax
+  - shell-based tests
+  - validate_skill.py
+  - check_forbidden_files.sh
+  - check_privacy.sh
+  - git diff whitespace check
+
+With --with-matlab:
+  - MATLAB unit tests
+  - MATLAB Code Analyzer checks
+  - renderer visual fixtures
+
+Environment:
+  MATLAB_BIN=/path/to/matlab
+USAGE
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --with-matlab)
+      WITH_MATLAB=1
+      shift
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown argument: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+cd "$ROOT_DIR"
+
+echo "== Syntax checks =="
+python3 -m py_compile scripts/build_gallery_index.py
+bash -n scripts/*.sh
+bash -n skills/matlab-plotting-skill/scripts/*.sh
+bash -n tests/*.sh
+
+echo "== Shell tests =="
+tests/test_install_script.sh
+tests/test_check_gallery_outputs.sh
+tests/test_list_schemes.sh
+tests/test_repo_docs.sh
+tests/test_github_templates.sh
+tests/test_matlab_check.sh
+tests/test_docs_quality_checklist.sh
+tests/test_docs_chart_selection.sh
+tests/test_build_gallery_index.sh
+tests/test_docs_palette_accessibility.sh
+tests/test_readme_gallery_assets.sh
+tests/test_visual_fixtures_script.sh
+tests/test_release_check_script.sh
+
+echo "== Repository checks =="
+python3 scripts/validate_skill.py
+scripts/check_forbidden_files.sh
+scripts/check_privacy.sh
+git diff --check
+
+if [[ "$WITH_MATLAB" -eq 1 ]]; then
+  echo "== MATLAB checks =="
+  "$MATLAB_BIN" -batch "addpath(genpath('skills/matlab-plotting-skill/assets/matlab')); results = [runtests('tests/test_mp_core.m'), runtests('tests/test_mp_visual_fixtures.m')]; assertSuccess(results); issues = []; files = dir('skills/matlab-plotting-skill/assets/matlab/*.m'); for k = 1:numel(files), issues = [issues; checkcode(fullfile(files(k).folder, files(k).name), '-id')]; end; assert(isempty(issues));"
+  "$ROOT_DIR/scripts/run_visual_fixtures.sh" --out "${TMPDIR:-/tmp}/mp-release-visual-fixtures"
+fi
+
+echo "Release check passed."

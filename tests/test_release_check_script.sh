@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT="$ROOT_DIR/scripts/release_check.sh"
+
+if [[ ! -x "$SCRIPT" ]]; then
+  echo "missing executable release check script: $SCRIPT" >&2
+  exit 1
+fi
+
+help_output="$("$SCRIPT" --help)"
+
+grep -q "release_check.sh" <<<"$help_output"
+grep -q "with-matlab" <<<"$help_output"
+grep -q "check_privacy.sh" <<<"$help_output"
+
+echo "release check script test passed."

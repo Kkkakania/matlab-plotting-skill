@@ -34,6 +34,7 @@ tests/test_repo_docs.sh
 python3 scripts/validate_skill.py
 scripts/check_forbidden_files.sh
 scripts/check_privacy.sh
+scripts/release_check.sh
 ```
 
 With MATLAB available:
@@ -42,6 +43,7 @@ With MATLAB available:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --smoke-test --out figures/smoke --formats png
 ./scripts/check_gallery_outputs.sh --dir figures/smoke --format png
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtures.sh
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/release_check.sh --with-matlab
 ```
 
 ## Pull Request Notes

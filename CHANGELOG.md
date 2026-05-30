@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.19
+
+- Added `scripts/release_check.sh` as a single release gate for local maintainers.
+- Added optional MATLAB-backed release checks through `--with-matlab`.
+
 ## v0.1.18
 
 - Added a representative renderer-level visual fixture suite.

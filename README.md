@@ -96,6 +96,13 @@ Run the representative visual fixture suite:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtures.sh
 ```
 
+Run the release gate:
+
+```bash
+./scripts/release_check.sh
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/release_check.sh --with-matlab
+```
+
 ## Scheme Coverage
 
 The first release includes 50 plotting schemes across trends, relationships,
