@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.48
+
+- Completed `TASK-016-multi_line_comparison-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `multi_line_comparison.png` is
+  generated and non-empty from the synthetic wide CSV example.
+
 ## v0.1.47
 
 - Completed `TASK-015-multi_line_comparison-explicit-cli` in the 500-task

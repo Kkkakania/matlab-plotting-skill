@@ -194,6 +194,19 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "multi_line_comparison"
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "multi_line_comparison.png")));
 end
 
+function testMultiLineComparisonPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-multi-line-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'multi_series.csv');
+mpRun(dataPath, "compare multiple time series", outDir, "png", "multi_line_comparison");
+pngPath = fullfile(outDir, 'multi_line_comparison.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testLineTrendPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-line-trend-png');
 if exist(outDir, 'dir')
