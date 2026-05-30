@@ -1,0 +1,16 @@
+.DS_Store
+figures/
+tmp/
+*.asv
+*.log
+*.tmp
+*.p
+*.fig
+*.mat
+*.doc
+*.docx
+*.pdf
+*.vsd
+*.xlsx
+*.xls
+

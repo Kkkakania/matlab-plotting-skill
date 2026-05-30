@@ -1,0 +1,70 @@
+---
+name: matlab-plotting-skill
+description: Self-contained MATLAB scientific plotting skill. Use when the user asks Codex to choose, generate, adapt, render, export, or review MATLAB figures from CSV, Excel, MAT, table, matrix, or described data; when they need MATLAB CLI rendering; when they want an automatic plot choice, palette choice, PNG/SVG/PDF export, render report, or a publication-style figure workflow.
+---
+
+# MATLAB Plotting Skill
+
+## Overview
+
+Use this skill to turn user data and a plotting goal into a rendered MATLAB
+figure. The bundled MATLAB assets include 50 plotting schemes, a data-schema
+inference layer, palette defaults, exporters, and a report writer.
+
+This skill is self-contained. Do not rely on private local folders, external
+plotting repositories, encrypted MATLAB files, or article image packs.
+
+## Workflow
+
+1. Inspect the user's request and identify the communication task: trend,
+   relationship, matrix, comparison, distribution, ranking, composition,
+   multivariate, spatial/vector, or layout.
+2. If the user provided a file, check whether it is CSV, Excel, or MAT. See
+   `references/data-contract.md` when the data shape is unclear.
+3. Choose the plot by reading `references/scheme-catalog.md` only when the
+   built-in name/tag mapping is not enough.
+4. Prefer the bundled CLI:
+
+   ```bash
+   skills/matlab-plotting-skill/scripts/render_with_matlab.sh --data <file> --goal "<goal>" --out <dir> --formats png,svg
+   ```
+
+5. If MATLAB is missing, explain that the user needs MATLAB CLI and provide the
+   exact command to run later. Do not claim a figure was rendered.
+6. After rendering, report the selected scheme, output files, and any quality
+   warnings from `render_report.md`.
+
+## MATLAB CLI
+
+The renderer uses `MATLAB_BIN` when set, then falls back to `matlab` on `PATH`.
+On macOS, a common value is:
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
+```
+
+Read `references/matlab-cli.md` for troubleshooting.
+
+## Selection Defaults
+
+- Time column plus numeric values: trend schemes.
+- Two numeric columns: scatter or density scatter.
+- Numeric matrix: heatmap schemes.
+- Category plus numeric values: grouped bar, box/jitter, or ranking schemes.
+- Percent or part-whole language: composition schemes.
+- Positive and negative values: diverging bar or positive-negative area.
+- "Zoom", "event", "detail", or "local": zoomed inset line.
+- "Paper", "panel", "overview", or "layout": multi-panel or annotated layout.
+
+When a MAT file has multiple plausible variables, list the candidates and ask
+the user which variable to render instead of guessing.
+
+## Safety Rules
+
+- Keep generated scripts and outputs in the user's chosen project directory.
+- Do not write into the skill directory during normal use.
+- Do not copy raw private data into this repository.
+- Do not introduce `.p`, `.fig`, committed `.mat`, `.docx`, `.pdf`, article
+  screenshots, local absolute paths, email addresses, or provenance-unclear
+  source files.
+- Use synthetic data for smoke tests and examples.

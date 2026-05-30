@@ -1,0 +1,70 @@
+function tests = test_mp_core
+tests = functiontests(localfunctions);
+end
+
+function setupOnce(testCase)
+root = fileparts(fileparts(mfilename('fullpath')));
+matlabDir = fullfile(root, 'skills', 'matlab-plotting-skill', 'assets', 'matlab');
+addpath(genpath(matlabDir));
+testCase.TestData.Root = root;
+end
+
+function testCatalogHasFiftySchemes(testCase)
+schemes = mpSchemeCatalog();
+verifyEqual(testCase, numel(schemes), 50);
+verifyTrue(testCase, any(string({schemes.Name}) == "line_trend"));
+verifyTrue(testCase, any(string({schemes.Name}) == "annotated_callout"));
+end
+
+function testSelectionForTimeSeries(testCase)
+data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv'));
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show a time trend");
+verifyEqual(testCase, selection.Selected.Family, "trend");
+end
+
+function testSelectionForMethodComparison(testCase)
+data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "compare methods");
+verifyTrue(testCase, any(selection.Selected.Family == ["bar", "ranking"]));
+end
+
+function testRunCreatesOutputs(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-output');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+result = mpRun(dataPath, "show time trend", outDir, "png");
+verifyTrue(testCase, isfile(result.Files(1)));
+verifyTrue(testCase, isfile(fullfile(outDir, 'render_report.md')));
+end
+
+function testMatInput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-mat');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+matrixData = peaks(8); %#ok<NASGU>
+matPath = fullfile(tempdir, 'mp_skill_matrix_input.mat');
+save(matPath, 'matrixData');
+data = mpReadData(matPath);
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "matrix heatmap");
+verifyEqual(testCase, selection.Selected.Family, "matrix");
+end
+
+function testExcelInput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-xlsx');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+tbl = table((1:5)', [2; 4; 5; 7; 8], 'VariableNames', {'time', 'signal'});
+xlsxPath = fullfile(tempdir, 'mp_skill_time_input.xlsx');
+writetable(tbl, xlsxPath);
+data = mpReadData(xlsxPath);
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
+end
+

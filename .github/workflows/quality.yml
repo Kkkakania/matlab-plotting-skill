@@ -1,0 +1,23 @@
+name: Quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell syntax
+        run: |
+          bash -n scripts/render_with_matlab.sh
+          bash -n scripts/check_forbidden_files.sh
+          bash -n scripts/check_privacy.sh
+          bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
+      - name: Forbidden files
+        run: scripts/check_forbidden_files.sh
+      - name: Privacy scan
+        run: scripts/check_privacy.sh
+      - name: Skill validation
+        run: python3 scripts/validate_skill.py

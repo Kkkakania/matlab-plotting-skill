@@ -1,0 +1,3 @@
+display_name: MATLAB Plotting Skill
+short_description: Render MATLAB figures from data.
+default_prompt: Create a MATLAB figure from my data, choose the right plot type, render it with MATLAB CLI, and explain the result.
