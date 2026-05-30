@@ -65,5 +65,6 @@
   "TASK-064-scatter_relationship-selection-rule": "done",
   "TASK-065-scatter_relationship-explicit-cli": "done",
   "TASK-066-scatter_relationship-png-render": "done",
-  "TASK-067-scatter_relationship-vector-render": "done"
+  "TASK-067-scatter_relationship-vector-render": "done",
+  "TASK-068-scatter_relationship-report": "done"
 }

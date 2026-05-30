@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.100
+
+- Completed `TASK-068-scatter_relationship-report` in the 500-task board.
+- Added MATLAB regression coverage proving Markdown and JSON reports record
+  `scatter_relationship` and its generated output.
+
 ## v0.1.99
 
 - Completed `TASK-067-scatter_relationship-vector-render` in the 500-task

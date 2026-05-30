@@ -429,6 +429,22 @@ for extension = ["svg", "pdf"]
 end
 end
 
+function testScatterRelationshipReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-scatter-relationship-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_scatter_relationship_report_input.csv');
+writetable(mpDemoDataForScheme("scatter_relationship"), dataPath);
+mpRun(dataPath, "show x-y relationship", outDir, "png", "scatter_relationship");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`scatter_relationship`'));
+verifyTrue(testCase, contains(markdownReport, 'scatter_relationship.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "scatter_relationship");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "scatter_relationship.png")));
+end
+
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-segmented-line-png');
 if exist(outDir, 'dir')
