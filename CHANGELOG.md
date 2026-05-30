@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.71
+
+- Completed `TASK-039-zoomed_inset_line-gallery` in the 500-task board.
+- Added a committed `zoomed_inset_line` gallery preview generated from bundled
+  synthetic demo data.
+- Updated README preview, gallery index, provenance, release-gate checks, and
+  CI coverage for the new preview.
+
 ## v0.1.70
 
 - Completed `TASK-038-zoomed_inset_line-report` in the 500-task board.

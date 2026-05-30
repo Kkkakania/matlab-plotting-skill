@@ -84,6 +84,7 @@ tests/test_build_gallery_index.sh
 tests/test_line_trend_gallery.sh
 tests/test_multi_line_comparison_gallery.sh
 tests/test_confidence_band_gallery.sh
+tests/test_zoomed_inset_line_gallery.sh
 tests/test_multi_line_comparison_safety.sh
 tests/test_confidence_band_safety.sh
 tests/test_gallery_provenance.sh

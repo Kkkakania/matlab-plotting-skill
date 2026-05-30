@@ -27,9 +27,13 @@ provenance is tracked in `docs/gallery/provenance.md`.
 |---|---|---|
 | ![line trend](docs/gallery/line_trend.png) | ![multi-line comparison](docs/gallery/multi_line_comparison.png) | ![confidence band](docs/gallery/confidence_band.png) |
 
-| Heatmap | Density Scatter | Grouped Bar |
+| Zoomed Inset | Heatmap | Density Scatter |
 |---|---|---|
-| ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
+| ![zoomed inset line](docs/gallery/zoomed_inset_line.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) |
+
+| Grouped Bar |
+|---|
+| ![grouped bar](docs/gallery/grouped_bar.png) |
 
 ## Install
 
