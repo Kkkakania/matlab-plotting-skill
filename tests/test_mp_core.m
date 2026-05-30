@@ -36,6 +36,19 @@ cleanup = onCleanup(@() close(fig));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
 end
 
+function testMultiLineComparisonDemoDataSupportsWideSeriesRender(testCase)
+data = mpDemoDataForScheme("multi_line_comparison");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "signal", "comparison"], string(data.Properties.VariableNames))));
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 3);
+fig = mpRenderScheme("multi_line_comparison", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+lines = findobj(fig, 'Type', 'line');
+verifyGreaterThanOrEqual(testCase, numel(lines), 2);
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);

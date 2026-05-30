@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.45
+
+- Completed `TASK-013-multi_line_comparison-demo-data` in the 500-task board.
+- Added MATLAB regression coverage proving the bundled synthetic demo data
+  contains a wide multi-series shape and renders at least two lines.
+
 ## v0.1.44
 
 - Completed `TASK-012-multi_line_comparison-data-contract` in the 500-task
