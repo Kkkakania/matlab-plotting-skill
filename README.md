@@ -43,6 +43,7 @@ Set MATLAB if it is not already on `PATH`:
 
 ```bash
 export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
+./scripts/render_with_matlab.sh --check
 ```
 
 Render from data:

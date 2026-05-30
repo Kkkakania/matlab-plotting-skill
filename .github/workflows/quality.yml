@@ -22,6 +22,7 @@ jobs:
           bash -n tests/test_list_schemes.sh
           bash -n tests/test_repo_docs.sh
           bash -n tests/test_github_templates.sh
+          bash -n tests/test_matlab_check.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
@@ -29,6 +30,7 @@ jobs:
           tests/test_list_schemes.sh
           tests/test_repo_docs.sh
           tests/test_github_templates.sh
+          tests/test_matlab_check.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan

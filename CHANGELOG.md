@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.8
+
+- Added `--check` to verify MATLAB CLI wiring before rendering.
+- Added shell coverage with a fake MATLAB executable.
+
 ## v0.1.7
 
 - Added GitHub issue forms for bugs and scheme requests.

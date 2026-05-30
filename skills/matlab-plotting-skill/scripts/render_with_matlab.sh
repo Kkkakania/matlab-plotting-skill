@@ -11,6 +11,7 @@ OUT_DIR="figures"
 FORMATS="png,svg"
 SMOKE_TEST=0
 LIST_SCHEMES=0
+CHECK_ONLY=0
 SCHEME_NAME=""
 
 usage() {
@@ -19,6 +20,7 @@ Usage:
   render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--out <dir>] [--formats png,svg]
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes
+  render_with_matlab.sh --check
 
 Environment:
   MATLAB_BIN=/path/to/matlab
@@ -55,6 +57,10 @@ while [[ $# -gt 0 ]]; do
       LIST_SCHEMES=1
       shift
       ;;
+    --check)
+      CHECK_ONLY=1
+      shift
+      ;;
     --help|-h)
       usage
       exit 0
@@ -66,6 +72,20 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+check_matlab_bin() {
+  if [[ "$MATLAB_BIN" == */* ]]; then
+    if [[ ! -x "$MATLAB_BIN" ]]; then
+      echo "MATLAB executable not found: $MATLAB_BIN" >&2
+      echo "Set MATLAB_BIN to the full MATLAB executable path." >&2
+      exit 127
+    fi
+  elif ! command -v "$MATLAB_BIN" >/dev/null 2>&1; then
+    echo "MATLAB executable not found: $MATLAB_BIN" >&2
+    echo "Try: MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab $0 --smoke-test" >&2
+    exit 127
+  fi
+}
 
 if [[ "$LIST_SCHEMES" -eq 1 ]]; then
   if [[ ! -f "$SCHEME_CATALOG" ]]; then
@@ -79,16 +99,12 @@ if [[ "$LIST_SCHEMES" -eq 1 ]]; then
   exit 0
 fi
 
-if [[ "$MATLAB_BIN" == */* ]]; then
-  if [[ ! -x "$MATLAB_BIN" ]]; then
-    echo "MATLAB executable not found: $MATLAB_BIN" >&2
-    echo "Set MATLAB_BIN to the full MATLAB executable path." >&2
-    exit 127
-  fi
-elif ! command -v "$MATLAB_BIN" >/dev/null 2>&1; then
-  echo "MATLAB executable not found: $MATLAB_BIN" >&2
-  echo "Try: MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab $0 --smoke-test" >&2
-  exit 127
+check_matlab_bin
+
+if [[ "$CHECK_ONLY" -eq 1 ]]; then
+  "$MATLAB_BIN" -batch "disp(version)"
+  echo "MATLAB CLI check passed: $MATLAB_BIN"
+  exit 0
 fi
 
 mkdir -p "$OUT_DIR"
