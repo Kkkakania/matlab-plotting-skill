@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.75
+
+- Completed `TASK-043-positive_negative_area-demo-data` in the 500-task board.
+- Added scheme-specific synthetic signed-delta data with values above and below
+  zero.
+- Added MATLAB regression coverage proving the demo data is recognized as
+  positive/negative and renders with area objects.
+
 ## v0.1.74
 
 - Completed `TASK-042-positive_negative_area-data-contract` in the 500-task

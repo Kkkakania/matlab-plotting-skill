@@ -43,6 +43,13 @@ if schemeName == "confidence_band"
     return
 end
 
+if schemeName == "positive_negative_area"
+    t = (1:120)';
+    delta = 0.55 * sin(t / 8) + 0.22 * cos(t / 19) - 0.08 * sin(t / 3);
+    data = table(t, delta, 'VariableNames', {'time', 'delta'});
+    return
+end
+
 if schemeName == "zoomed_inset_line"
     t = (1:180)';
     localEvent = 0.85 * exp(-((t - 118) / 9) .^ 2);

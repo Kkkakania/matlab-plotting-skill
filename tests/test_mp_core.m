@@ -80,6 +80,20 @@ verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'axes')), 2);
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'rectangle'));
 end
 
+function testPositiveNegativeAreaDemoDataSupportsSignedRender(testCase)
+data = mpDemoDataForScheme("positive_negative_area");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "delta"], string(data.Properties.VariableNames))));
+verifyTrue(testCase, any(data.delta > 0));
+verifyTrue(testCase, any(data.delta < 0));
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+verifyTrue(testCase, schema.HasPositiveNegative);
+fig = mpRenderScheme("positive_negative_area", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'area'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
