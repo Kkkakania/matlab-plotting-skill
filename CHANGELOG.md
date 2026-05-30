@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.92
+
+- Completed `TASK-060-segmented_line-safety` in the 500-task board.
+- Added a dedicated safety regression for the `segmented_line` public preview,
+  README link, and provenance row.
+
 ## v0.1.91
 
 - Completed `TASK-059-segmented_line-gallery` in the 500-task board.
