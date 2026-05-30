@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 13 |
-| planned | 487 |
+| done | 14 |
+| planned | 486 |
 
 ## Task Board
 
@@ -58,7 +58,7 @@ Total tasks: 500
 | `TASK-011-multi_line_comparison-catalog` | `multi_line_comparison` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info multi_line_comparison` | done |
 | `TASK-012-multi_line_comparison-data-contract` | `multi_line_comparison` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "multi_line_comparison" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
 | `TASK-013-multi_line_comparison-demo-data` | `multi_line_comparison` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
-| `TASK-014-multi_line_comparison-selection-rule` | `multi_line_comparison` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme multi_line_comparison` | planned |
+| `TASK-014-multi_line_comparison-selection-rule` | `multi_line_comparison` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme multi_line_comparison` | done |
 | `TASK-015-multi_line_comparison-explicit-cli` | `multi_line_comparison` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats png` | planned |
 | `TASK-016-multi_line_comparison-png-render` | `multi_line_comparison` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats png` | planned |
 | `TASK-017-multi_line_comparison-vector-render` | `multi_line_comparison` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme multi_line_comparison --formats svg,pdf` | planned |

@@ -23,10 +23,17 @@ end
 if schema.TimeCount > 0
     scores = addFamily(scores, schemes, "trend", 24);
     scores(nameIndex(schemes, "line_trend")) = scores(nameIndex(schemes, "line_trend")) + 8;
+    if schema.NumericCount >= 3
+        scores(nameIndex(schemes, "multi_line_comparison")) = scores(nameIndex(schemes, "multi_line_comparison")) + 8;
+    end
 end
 if any(contains(goal, ["trend", "time", "series", "signal"]))
     scores = addFamily(scores, schemes, "trend", 12);
     scores(nameIndex(schemes, "line_trend")) = scores(nameIndex(schemes, "line_trend")) + 8;
+end
+if schema.TimeCount > 0 && schema.NumericCount >= 3 && ...
+        any(contains(goal, ["compare", "comparison", "multiple", "methods", "series"]))
+    scores(nameIndex(schemes, "multi_line_comparison")) = scores(nameIndex(schemes, "multi_line_comparison")) + 28;
 end
 if schema.HasMatrix
     scores = addFamily(scores, schemes, "matrix", 14);

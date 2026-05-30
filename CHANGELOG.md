@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.46
+
+- Completed `TASK-014-multi_line_comparison-selection-rule` in the 500-task
+  board.
+- Improved scheme scoring so wide time-series data with compare/multiple-series
+  goals prefers `multi_line_comparison` over single-line trend output.
+- Added MATLAB regression coverage comparing `multi_line_comparison` and
+  `line_trend` scores for a wide synthetic time-series table.
+
 ## v0.1.45
 
 - Completed `TASK-013-multi_line_comparison-demo-data` in the 500-task board.

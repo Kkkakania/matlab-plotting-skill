@@ -60,6 +60,17 @@ verifyEqual(testCase, string(selection.Selected.Name), "line_trend");
 verifyGreaterThan(testCase, lineScore, scatterScore);
 end
 
+function testMultiLineComparisonSelectionRulePrefersWideTimeSeries(testCase)
+data = mpDemoDataForScheme("multi_line_comparison");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "compare multiple time series");
+names = string({mpSchemeCatalog().Name});
+multiLineScore = selection.AllScores(names == "multi_line_comparison");
+lineScore = selection.AllScores(names == "line_trend");
+verifyEqual(testCase, string(selection.Selected.Name), "multi_line_comparison");
+verifyGreaterThan(testCase, multiLineScore, lineScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);

@@ -11,5 +11,6 @@
   "TASK-010-line_trend-safety": "done",
   "TASK-011-multi_line_comparison-catalog": "done",
   "TASK-012-multi_line_comparison-data-contract": "done",
-  "TASK-013-multi_line_comparison-demo-data": "done"
+  "TASK-013-multi_line_comparison-demo-data": "done",
+  "TASK-014-multi_line_comparison-selection-rule": "done"
 }
