@@ -3,12 +3,14 @@ set -euo pipefail
 
 SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MATLAB_DIR="$SKILL_DIR/assets/matlab"
+SCHEME_CATALOG="$SKILL_DIR/references/scheme-catalog.md"
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
 DATA_PATH=""
 GOAL_TEXT=""
 OUT_DIR="figures"
 FORMATS="png,svg"
 SMOKE_TEST=0
+LIST_SCHEMES=0
 SCHEME_NAME=""
 
 usage() {
@@ -16,6 +18,7 @@ usage() {
 Usage:
   render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--out <dir>] [--formats png,svg]
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
+  render_with_matlab.sh --list-schemes
 
 Environment:
   MATLAB_BIN=/path/to/matlab
@@ -48,6 +51,10 @@ while [[ $# -gt 0 ]]; do
       SMOKE_TEST=1
       shift
       ;;
+    --list-schemes)
+      LIST_SCHEMES=1
+      shift
+      ;;
     --help|-h)
       usage
       exit 0
@@ -59,6 +66,18 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+if [[ "$LIST_SCHEMES" -eq 1 ]]; then
+  if [[ ! -f "$SCHEME_CATALOG" ]]; then
+    echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
+    exit 1
+  fi
+  sed -nE 's/^\| `([^`]+)` \| ([^|]+) \| ([^|]+) \| ([^|]+) \|.*/\1\t\2\t\3\t\4/p' "$SCHEME_CATALOG" |
+    while IFS=$'\t' read -r scheme family best_for palette; do
+      printf '%-28s %-14s %s [%s]\n' "$scheme" "$family" "$best_for" "$palette"
+    done
+  exit 0
+fi
 
 if [[ "$MATLAB_BIN" == */* ]]; then
   if [[ ! -x "$MATLAB_BIN" ]]; then
