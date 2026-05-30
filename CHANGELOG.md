@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.52
+
+- Completed `TASK-020-multi_line_comparison-safety` in the 500-task board.
+- Added release-gate and CI coverage checking the multi-line CSV example,
+  gallery preview, and provenance row for private or unclear traces.
+
 ## v0.1.51
 
 - Completed `TASK-019-multi_line_comparison-gallery` in the 500-task board.
