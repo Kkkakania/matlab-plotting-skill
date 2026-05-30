@@ -184,6 +184,21 @@ for extension = ["svg", "pdf"]
 end
 end
 
+function testLineTrendReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-line-trend-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+mpRun(dataPath, "show a time trend", outDir, "png", "line_trend");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`line_trend`'));
+verifyTrue(testCase, contains(markdownReport, 'line_trend.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "line_trend");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "line_trend.png")));
+end
+
 function testUnknownExplicitSchemeErrors(testCase)
 dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
 verifyError(testCase, @() mpRun(dataPath, "show a time trend", tempdir, "png", "not_a_scheme"), ...

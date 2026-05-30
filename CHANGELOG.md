@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.40
+
+- Completed `TASK-008-line_trend-report` in the 500-task board.
+- Added MATLAB regression coverage proving Markdown and JSON reports record
+  `line_trend` and its generated output.
+
 ## v0.1.39
 
 - Completed `TASK-007-line_trend-vector-render` in the 500-task board.
