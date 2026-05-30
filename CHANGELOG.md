@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.28
+
+- Added an exact 500-task roadmap generated from 50 plotting schemes and 10
+  task lanes per scheme.
+- Added JSON and Markdown task-board generation plus CI artifact upload.
+- Added release-gate coverage to prevent the task plan from drifting away from
+  exactly 500 tasks.
+
 ## v0.1.27
 
 - Updated GitHub Actions to run the scheme-info and automation-manifest tests.

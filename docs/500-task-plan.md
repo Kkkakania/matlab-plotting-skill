@@ -1,0 +1,54 @@
+# 500 Task Plan
+
+This roadmap is generated from the public 50-scheme catalog:
+
+```bash
+python3 scripts/build_task_manifest.py \
+  --json-out task-manifest.json \
+  --markdown-out task-board.md
+```
+
+The task model is deliberately exact:
+
+- 50 plotting schemes.
+- 10 task lanes for each scheme.
+- 500 planned tasks total.
+
+The generated JSON is the source of truth. The Markdown board is a readable
+view for maintainers.
+
+## Task Lanes
+
+Every scheme receives these same ten lanes:
+
+1. `catalog`: clarify scheme purpose, family, and palette.
+2. `data-contract`: document the expected input shape.
+3. `demo-data`: provide synthetic demo coverage.
+4. `selection-rule`: make automatic selection explainable.
+5. `explicit-cli`: support direct `--scheme` usage.
+6. `png-render`: support PNG output for previews.
+7. `vector-render`: support SVG/PDF output for papers and reports.
+8. `report`: explain the result in Markdown and JSON reports.
+9. `gallery`: make the rendered example visible in generated galleries.
+10. `safety`: pass privacy, provenance, and forbidden-file checks.
+
+## Task IDs
+
+Task IDs are stable and ordered:
+
+```text
+TASK-001-line_trend-catalog
+TASK-002-line_trend-data-contract
+...
+TASK-500-annotated_callout-safety
+```
+
+## CI
+
+GitHub Actions generates and uploads:
+
+- `task-manifest.json`
+- `task-board.md`
+
+`tests/test_task_manifest.sh` fails if the plan is not exactly 500 tasks, if
+any task ID is duplicated, or if any scheme does not receive exactly 10 tasks.

@@ -120,6 +120,15 @@ python3 scripts/build_automation_manifest.py --out figures/automation-manifest.j
 GitHub Actions also uploads this manifest as a workflow artifact on each push
 and pull request.
 
+Build the exact 500-task plan:
+
+```bash
+python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md
+```
+
+The task plan maps 50 plotting schemes to 10 concrete task lanes each. GitHub
+Actions uploads both `task-manifest.json` and `task-board.md`.
+
 Run the release gate:
 
 ```bash
@@ -139,6 +148,7 @@ See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
 See `docs/automation-manifest.md` for the generated check matrix.
+See `docs/500-task-plan.md` for the exact 500-task roadmap.
 
 ## Provenance
 

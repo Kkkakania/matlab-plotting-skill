@@ -52,7 +52,7 @@ done
 cd "$ROOT_DIR"
 
 echo "== Syntax checks =="
-python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py
+python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
 bash -n scripts/*.sh
 bash -n skills/matlab-plotting-skill/scripts/*.sh
 bash -n tests/*.sh
@@ -65,6 +65,7 @@ tests/test_list_schemes_json.sh
 tests/test_scheme_info.sh
 tests/test_automation_manifest.sh
 tests/test_ci_workflow.sh
+tests/test_task_manifest.sh
 tests/test_repo_docs.sh
 tests/test_github_templates.sh
 tests/test_matlab_check.sh
