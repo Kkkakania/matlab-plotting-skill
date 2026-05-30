@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.23
+
+- Added example prompts for schema inspection and plan-only selection workflows.
+- Added CI coverage for key prompt examples.
+
 ## v0.1.22
 
 - Added `mpInspectData` for schema inspection without plot selection or rendering.

@@ -34,6 +34,7 @@ jobs:
           bash -n tests/test_visual_fixtures_script.sh
           bash -n tests/test_release_check_script.sh
           bash -n tests/test_skill_plan_only_guidance.sh
+          bash -n tests/test_example_prompts.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
@@ -50,6 +51,7 @@ jobs:
           tests/test_visual_fixtures_script.sh
           tests/test_release_check_script.sh
           tests/test_skill_plan_only_guidance.sh
+          tests/test_example_prompts.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan

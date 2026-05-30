@@ -26,3 +26,10 @@ Use the waffle composition scheme for this category-share table.
 Render all 50 built-in schemes as a smoke test so I can inspect the gallery.
 ```
 
+```text
+Use --inspect-data on this CSV before rendering so I can confirm the schema.
+```
+
+```text
+Use --plan-only first and show the selected scheme, alternatives, and score snapshot before rendering.
+```

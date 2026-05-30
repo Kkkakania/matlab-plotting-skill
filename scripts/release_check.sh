@@ -71,6 +71,8 @@ tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh
 tests/test_visual_fixtures_script.sh
 tests/test_release_check_script.sh
+tests/test_skill_plan_only_guidance.sh
+tests/test_example_prompts.sh
 
 echo "== Repository checks =="
 python3 scripts/validate_skill.py
