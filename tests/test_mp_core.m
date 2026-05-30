@@ -222,6 +222,21 @@ for extension = ["svg", "pdf"]
 end
 end
 
+function testMultiLineComparisonReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-multi-line-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'multi_series.csv');
+mpRun(dataPath, "compare multiple time series", outDir, "png", "multi_line_comparison");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`multi_line_comparison`'));
+verifyTrue(testCase, contains(markdownReport, 'multi_line_comparison.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "multi_line_comparison");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "multi_line_comparison.png")));
+end
+
 function testLineTrendPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-line-trend-png');
 if exist(outDir, 'dir')

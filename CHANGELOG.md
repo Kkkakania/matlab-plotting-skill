@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.50
+
+- Completed `TASK-018-multi_line_comparison-report` in the 500-task board.
+- Added MATLAB regression coverage proving Markdown and JSON reports record
+  `multi_line_comparison` and its generated output.
+
 ## v0.1.49
 
 - Completed `TASK-017-multi_line_comparison-vector-render` in the 500-task
