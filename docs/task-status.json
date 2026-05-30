@@ -45,5 +45,6 @@
   "TASK-044-positive_negative_area-selection-rule": "done",
   "TASK-045-positive_negative_area-explicit-cli": "done",
   "TASK-046-positive_negative_area-png-render": "done",
-  "TASK-047-positive_negative_area-vector-render": "done"
+  "TASK-047-positive_negative_area-vector-render": "done",
+  "TASK-048-positive_negative_area-report": "done"
 }

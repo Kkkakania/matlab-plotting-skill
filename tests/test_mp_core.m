@@ -348,6 +348,22 @@ for extension = ["svg", "pdf"]
 end
 end
 
+function testPositiveNegativeAreaReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-positive-negative-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_positive_negative_report_input.csv');
+writetable(mpDemoDataForScheme("positive_negative_area"), dataPath);
+mpRun(dataPath, "show signed change around zero", outDir, "png", "positive_negative_area");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`positive_negative_area`'));
+verifyTrue(testCase, contains(markdownReport, 'positive_negative_area.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "positive_negative_area");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "positive_negative_area.png")));
+end
+
 function testZoomedInsetLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-png');
 if exist(outDir, 'dir')

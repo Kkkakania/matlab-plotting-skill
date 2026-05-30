@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.80
+
+- Completed `TASK-048-positive_negative_area-report` in the 500-task board.
+- Added MATLAB regression coverage proving Markdown and JSON reports record
+  `positive_negative_area` and its generated output.
+
 ## v0.1.79
 
 - Completed `TASK-047-positive_negative_area-vector-render` in the 500-task
