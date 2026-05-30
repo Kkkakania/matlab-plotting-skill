@@ -50,6 +50,16 @@ verifyEqual(testCase, plan.Schema.TimeCount, 1);
 verifyEqual(testCase, string(plan.ScoreSnapshot(1).Name), "line_trend");
 end
 
+function testInspectDataSummarizesSchema(testCase)
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+inspection = mpInspectData(dataPath, "");
+verifyEqual(testCase, string(inspection.FileName), "time_series.csv");
+verifyEqual(testCase, string(inspection.Schema.Kind), "table");
+verifyEqual(testCase, inspection.Schema.TimeCount, 1);
+verifyEqual(testCase, inspection.Schema.NumericCount, 2);
+verifyTrue(testCase, any(string(inspection.Schema.VariableNames) == "signal"));
+end
+
 function testReportDoesNotExposeAbsoluteDataPath(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-report-privacy');
 if exist(outDir, 'dir')

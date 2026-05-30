@@ -13,6 +13,7 @@ SMOKE_TEST=0
 LIST_SCHEMES=0
 CHECK_ONLY=0
 PLAN_ONLY=0
+INSPECT_DATA=0
 SCHEME_NAME=""
 MAT_VARIABLE=""
 
@@ -23,6 +24,7 @@ Usage:
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes
   render_with_matlab.sh --check
+  render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
 
 Environment:
@@ -70,6 +72,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --plan-only)
       PLAN_ONLY=1
+      shift
+      ;;
+    --inspect-data)
+      INSPECT_DATA=1
       shift
       ;;
     --help|-h)
@@ -143,6 +149,11 @@ fi
 if [[ ! -f "$DATA_PATH" ]]; then
   echo "Data file not found: $DATA_PATH" >&2
   exit 66
+fi
+
+if [[ "$INSPECT_DATA" -eq 1 ]]; then
+  "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); inspection = mpInspectData($(matlab_quote "$DATA_PATH"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(inspection));"
+  exit 0
 fi
 
 if [[ "$PLAN_ONLY" -eq 1 ]]; then

@@ -66,6 +66,12 @@ Render from data:
 ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a time trend" --out figures --formats png,svg
 ```
 
+Inspect data schema without selecting or rendering:
+
+```bash
+./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
+```
+
 Preview the selected scheme without rendering:
 
 ```bash

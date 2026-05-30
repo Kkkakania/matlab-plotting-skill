@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.22
+
+- Added `mpInspectData` for schema inspection without plot selection or rendering.
+- Added CLI `--inspect-data` to return schema JSON for CSV, Excel, and MAT inputs.
+
 ## v0.1.21
 
 - Documented `--plan-only` / `mpPlan` in the skill workflow.
