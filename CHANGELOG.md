@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.61
+
+- Completed `TASK-029-confidence_band-gallery` in the 500-task board.
+- Added a committed `confidence_band` gallery preview generated from the
+  synthetic uncertainty CSV example.
+- Updated README preview, gallery index, provenance, release-gate checks, and
+  CI coverage for the new preview.
+
 ## v0.1.60
 
 - Completed `TASK-028-confidence_band-report` in the 500-task board.

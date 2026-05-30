@@ -23,13 +23,13 @@ All previews below are generated from bundled synthetic data.
 The generated preview index is in `docs/gallery/index.md`, and preview
 provenance is tracked in `docs/gallery/provenance.md`.
 
-| Trend | Multi-Line | Grouped Bar |
+| Trend | Multi-Line | Confidence Band |
 |---|---|---|
-| ![line trend](docs/gallery/line_trend.png) | ![multi-line comparison](docs/gallery/multi_line_comparison.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
+| ![line trend](docs/gallery/line_trend.png) | ![multi-line comparison](docs/gallery/multi_line_comparison.png) | ![confidence band](docs/gallery/confidence_band.png) |
 
-| Heatmap | Density Scatter |
-|---|---|
-| ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) |
+| Heatmap | Density Scatter | Grouped Bar |
+|---|---|---|
+| ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
 
 ## Install
 
