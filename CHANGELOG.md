@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.34
+
+- Completed `TASK-002-line_trend-data-contract` in the 500-task board.
+- Added regression coverage proving the `line_trend` data contract appears in
+  both the scheme catalog and chart selection guide.
+
 ## v0.1.33
 
 - Added task status overrides for the 500-task roadmap.

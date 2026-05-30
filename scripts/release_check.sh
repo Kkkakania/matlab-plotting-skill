@@ -73,6 +73,7 @@ tests/test_github_templates.sh
 tests/test_matlab_check.sh
 tests/test_docs_quality_checklist.sh
 tests/test_docs_chart_selection.sh
+tests/test_line_trend_data_contract.sh
 tests/test_build_gallery_index.sh
 tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh

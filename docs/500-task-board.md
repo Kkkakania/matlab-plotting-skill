@@ -38,15 +38,15 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 1 |
-| planned | 499 |
+| done | 2 |
+| planned | 498 |
 
 ## Task Board
 
 | ID | Scheme | Lane | Goal | Acceptance | Command Hint | Status |
 |---|---|---|---|---|---|---|
 | `TASK-001-line_trend-catalog` | `line_trend` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info line_trend` | done |
-| `TASK-002-line_trend-data-contract` | `line_trend` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "line_trend" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
+| `TASK-002-line_trend-data-contract` | `line_trend` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "line_trend" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
 | `TASK-003-line_trend-demo-data` | `line_trend` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
 | `TASK-004-line_trend-selection-rule` | `line_trend` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme line_trend` | planned |
 | `TASK-005-line_trend-explicit-cli` | `line_trend` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme line_trend --formats png` | planned |
