@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.16
+
+- Added README gallery preview images generated from bundled synthetic data.
+- Added CI coverage to ensure README gallery assets remain present and linked.
+
 ## v0.1.15
 
 - Added concrete selection signals to Markdown and JSON render reports.

@@ -28,6 +28,7 @@ jobs:
           bash -n tests/test_docs_chart_selection.sh
           bash -n tests/test_build_gallery_index.sh
           bash -n tests/test_docs_palette_accessibility.sh
+          bash -n tests/test_readme_gallery_assets.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
@@ -40,6 +41,7 @@ jobs:
           tests/test_docs_chart_selection.sh
           tests/test_build_gallery_index.sh
           tests/test_docs_palette_accessibility.sh
+          tests/test_readme_gallery_assets.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan

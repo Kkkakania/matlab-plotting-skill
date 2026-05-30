@@ -16,6 +16,18 @@ is a working MATLAB command line executable.
 - Writes Markdown and JSON render reports explaining the selected scheme and alternatives.
 - Includes concrete selection signals in reports so automatic choices are easier to audit.
 
+## Preview
+
+All previews below are generated from bundled synthetic data.
+
+| Trend | Grouped Bar |
+|---|---|
+| ![line trend](docs/gallery/line_trend.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
+
+| Heatmap | Density Scatter |
+|---|---|
+| ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) |
+
 ## Install
 
 Copy or symlink the skill folder into your Codex skills directory:
