@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.63
+
+- Completed `TASK-031-zoomed_inset_line-catalog` in the 500-task board.
+- Added release-gate and CI coverage proving `zoomed_inset_line` is exposed
+  through text and JSON scheme-info with its catalog metadata.
+- Aligned the MATLAB scheme catalog description with the public scheme catalog.
+
 ## v0.1.62
 
 - Completed `TASK-030-confidence_band-safety` in the 500-task board.

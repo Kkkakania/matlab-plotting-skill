@@ -5,7 +5,7 @@ data = {
     "line_trend", "trend", "One ordered numeric series", ["trend", "time", "line"], "categorical"
     "multi_line_comparison", "trend", "Several comparable numeric series", ["trend", "line", "comparison"], "categorical"
     "confidence_band", "trend", "Mean with uncertainty band", ["trend", "uncertainty"], "categorical"
-    "zoomed_inset_line", "trend", "Long trend with local detail", ["trend", "inset", "zoom"], "categorical"
+    "zoomed_inset_line", "trend", "Long trend with a local event", ["trend", "inset", "zoom"], "categorical"
     "positive_negative_area", "trend", "Signed change around zero", ["trend", "change", "signed"], "diverging"
     "segmented_line", "trend", "Trend with phase changes", ["trend", "phase"], "categorical"
     "scatter_relationship", "relationship", "Two continuous variables", ["scatter", "relationship"], "categorical"
