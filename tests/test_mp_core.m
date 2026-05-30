@@ -318,6 +318,20 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "positive_negative_area
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "positive_negative_area.png")));
 end
 
+function testPositiveNegativeAreaPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-positive-negative-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_positive_negative_png_input.csv');
+writetable(mpDemoDataForScheme("positive_negative_area"), dataPath);
+mpRun(dataPath, "show signed change around zero", outDir, "png", "positive_negative_area");
+pngPath = fullfile(outDir, 'positive_negative_area.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testZoomedInsetLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-zoomed-inset-png');
 if exist(outDir, 'dir')

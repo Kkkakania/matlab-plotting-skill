@@ -43,5 +43,6 @@
   "TASK-042-positive_negative_area-data-contract": "done",
   "TASK-043-positive_negative_area-demo-data": "done",
   "TASK-044-positive_negative_area-selection-rule": "done",
-  "TASK-045-positive_negative_area-explicit-cli": "done"
+  "TASK-045-positive_negative_area-explicit-cli": "done",
+  "TASK-046-positive_negative_area-png-render": "done"
 }

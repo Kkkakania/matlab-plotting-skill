@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.78
+
+- Completed `TASK-046-positive_negative_area-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `positive_negative_area.png` is
+  generated and non-empty from synthetic signed-delta data.
+
 ## v0.1.77
 
 - Completed `TASK-045-positive_negative_area-explicit-cli` in the 500-task
