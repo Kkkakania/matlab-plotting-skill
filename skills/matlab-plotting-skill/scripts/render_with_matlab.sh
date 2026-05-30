@@ -9,11 +9,12 @@ GOAL_TEXT=""
 OUT_DIR="figures"
 FORMATS="png,svg"
 SMOKE_TEST=0
+SCHEME_NAME=""
 
 usage() {
   cat <<'USAGE'
 Usage:
-  render_with_matlab.sh --data <file> --goal "<text>" [--out <dir>] [--formats png,svg]
+  render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--out <dir>] [--formats png,svg]
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
 
 Environment:
@@ -37,6 +38,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --formats)
       FORMATS="${2:-}"
+      shift 2
+      ;;
+    --scheme)
+      SCHEME_NAME="${2:-}"
       shift 2
       ;;
     --smoke-test)
@@ -94,5 +99,4 @@ if [[ ! -f "$DATA_PATH" ]]; then
   exit 66
 fi
 
-"$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr); disp(result.SelectedScheme);"
-
+"$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME")); disp(result.SelectedScheme);"

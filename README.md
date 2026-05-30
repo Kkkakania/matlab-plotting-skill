@@ -46,6 +46,12 @@ Render from data:
 ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a time trend" --out figures --formats png,svg
 ```
 
+Render with an explicit scheme:
+
+```bash
+./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
+```
+
 Smoke-test all bundled schemes with synthetic data:
 
 ```bash
@@ -66,4 +72,3 @@ See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 All MATLAB code is clean-room code written for this repository. The public repo
 does not include encrypted MATLAB files, raw MAT datasets, FIG files, document
 packs, article screenshots, or private local paths.
-

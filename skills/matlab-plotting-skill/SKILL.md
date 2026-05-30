@@ -29,6 +29,8 @@ plotting repositories, encrypted MATLAB files, or article image packs.
    skills/matlab-plotting-skill/scripts/render_with_matlab.sh --data <file> --goal "<goal>" --out <dir> --formats png,svg
    ```
 
+   Use `--scheme <name>` when the user asks for a specific scheme.
+
 5. If MATLAB is missing, explain that the user needs MATLAB CLI and provide the
    exact command to run later. Do not claim a figure was rendered.
 6. After rendering, report the selected scheme, output files, and any quality

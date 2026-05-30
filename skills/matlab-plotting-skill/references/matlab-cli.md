@@ -11,6 +11,16 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
   --formats png,svg
 ```
 
+Use a specific scheme when the user already knows the chart type:
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
+  skills/matlab-plotting-skill/scripts/render_with_matlab.sh \
+  --data examples/data/method_scores.csv \
+  --scheme grouped_bar \
+  --out figures
+```
+
 If `MATLAB_BIN` is not set, the script tries `matlab` on `PATH`.
 
 Common failures:
@@ -22,4 +32,3 @@ Common failures:
 | `MAT file is ambiguous` | Several variables could be plotted | Ask the user to name one variable |
 | Empty output directory | MATLAB failed before export | Inspect command output and `render_report.md` |
 | SVG export fails | Older MATLAB or renderer issue | Render PNG/PDF first, then retry SVG |
-

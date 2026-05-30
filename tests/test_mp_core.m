@@ -41,6 +41,23 @@ verifyTrue(testCase, isfile(result.Files(1)));
 verifyTrue(testCase, isfile(fullfile(outDir, 'render_report.md')));
 end
 
+function testExplicitSchemeOverridesAutomaticSelection(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-scheme');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+result = mpRun(dataPath, "show a time trend", outDir, "png", "heatmap_matrix");
+verifyEqual(testCase, result.SelectedScheme, "heatmap_matrix");
+verifyTrue(testCase, isfile(fullfile(outDir, 'heatmap_matrix.png')));
+end
+
+function testUnknownExplicitSchemeErrors(testCase)
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+verifyError(testCase, @() mpRun(dataPath, "show a time trend", tempdir, "png", "not_a_scheme"), ...
+    'mpRun:UnknownScheme');
+end
+
 function testMatInput(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-mat');
 if exist(outDir, 'dir')
@@ -67,4 +84,3 @@ data = mpReadData(xlsxPath);
 schema = mpInferDataSchema(data);
 verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
 end
-

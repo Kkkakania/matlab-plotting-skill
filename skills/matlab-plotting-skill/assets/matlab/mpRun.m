@@ -1,4 +1,4 @@
-function result = mpRun(dataPath, goalText, outputDir, formats)
+function result = mpRun(dataPath, goalText, outputDir, formats, schemeName)
 %MPRUN Read data, select a plotting scheme, render, export, and report.
 
 if nargin < 1
@@ -13,10 +13,13 @@ end
 if nargin < 4 || isempty(formats)
     formats = ["png", "svg"];
 end
+if nargin < 5 || isempty(schemeName)
+    schemeName = "";
+end
 
 data = mpReadData(string(dataPath));
 schema = mpInferDataSchema(data);
-selection = mpSelectScheme(schema, string(goalText));
+selection = chooseSelection(schema, string(goalText), string(schemeName));
 fig = mpRenderScheme(selection.Selected.Name, data, schema, string(goalText));
 files = mpExportFigure(fig, fullfile(string(outputDir), selection.Selected.Name), string(formats));
 close(fig);
@@ -30,3 +33,24 @@ result = struct( ...
     'ReportPath', reportPath);
 end
 
+function selection = chooseSelection(schema, goalText, schemeName)
+autoSelection = mpSelectScheme(schema, goalText);
+if strlength(schemeName) == 0
+    selection = autoSelection;
+    return
+end
+
+schemes = mpSchemeCatalog();
+idx = find(string({schemes.Name}) == schemeName, 1);
+if isempty(idx)
+    error('mpRun:UnknownScheme', 'Unknown plotting scheme: %s', schemeName);
+end
+
+candidates = [autoSelection.Selected; autoSelection.Alternatives(:)];
+keep = string({candidates.Name}) ~= schemeName;
+selection = struct();
+selection.Selected = schemes(idx);
+selection.Score = NaN;
+selection.Alternatives = candidates(keep);
+selection.AllScores = autoSelection.AllScores;
+end
