@@ -18,7 +18,8 @@ fprintf(fid, '- Scheme family: `%s`\n', selection.Selected.Family);
 fprintf(fid, '- Palette: `%s`\n', selection.Selected.Palette);
 fprintf(fid, '- Goal: %s\n', string(goalText));
 if strlength(string(dataPath)) > 0
-    fprintf(fid, '- Data file: `%s`\n', string(dataPath));
+    [~, dataName, dataExt] = fileparts(string(dataPath));
+    fprintf(fid, '- Data file: `%s`\n', dataName + dataExt);
 else
     fprintf(fid, '- Data file: synthetic demo data\n');
 end
@@ -35,7 +36,7 @@ for k = 1:numel(selection.Alternatives)
 end
 fprintf(fid, '\n## Outputs\n\n');
 for k = 1:numel(files)
-    fprintf(fid, '- `%s`\n', files(k));
+    [~, outputName, outputExt] = fileparts(files(k));
+    fprintf(fid, '- `%s`\n', outputName + outputExt);
 end
 end
-

@@ -41,6 +41,20 @@ verifyTrue(testCase, isfile(result.Files(1)));
 verifyTrue(testCase, isfile(fullfile(outDir, 'render_report.md')));
 end
 
+function testReportDoesNotExposeAbsoluteDataPath(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-report-privacy');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+mpRun(dataPath, "show time trend", outDir, "png");
+reportText = fileread(fullfile(outDir, 'render_report.md'));
+verifyFalse(testCase, contains(reportText, testCase.TestData.Root));
+verifyFalse(testCase, contains(reportText, outDir));
+verifyTrue(testCase, contains(reportText, 'time_series.csv'));
+verifyTrue(testCase, contains(reportText, 'line_trend.png'));
+end
+
 function testExplicitSchemeOverridesAutomaticSelection(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-explicit-scheme');
 if exist(outDir, 'dir')

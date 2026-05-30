@@ -80,4 +80,5 @@ See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 
 All MATLAB code is clean-room code written for this repository. The public repo
 does not include encrypted MATLAB files, raw MAT datasets, FIG files, document
-packs, article screenshots, or private local paths.
+packs, article screenshots, or private local paths. Generated render reports
+store input and output file names rather than absolute local paths.
