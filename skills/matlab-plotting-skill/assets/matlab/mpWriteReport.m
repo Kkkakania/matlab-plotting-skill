@@ -11,6 +11,7 @@ else
     dataFile = "synthetic demo data";
 end
 outputFiles = localFileNames(files);
+selectionSignals = localSelectionSignals(schema, goalText);
 
 reportPath = fullfile(outputDir, 'render_report.md');
 fid = fopen(reportPath, 'w');
@@ -32,6 +33,10 @@ fprintf(fid, '- Columns: %d\n', schema.ColumnCount);
 fprintf(fid, '- Numeric columns: %d\n', schema.NumericCount);
 fprintf(fid, '- Category columns: %d\n', schema.CategoryCount);
 fprintf(fid, '- Time columns: %d\n', schema.TimeCount);
+fprintf(fid, '\n## Selection Signals\n\n');
+for k = 1:numel(selectionSignals)
+    fprintf(fid, '- %s\n', selectionSignals(k));
+end
 fprintf(fid, '\n## Alternatives\n\n');
 for k = 1:numel(selection.Alternatives)
     fprintf(fid, '- `%s` - %s\n', selection.Alternatives(k).Name, selection.Alternatives(k).Task);
@@ -61,10 +66,41 @@ summary.dataSummary = struct( ...
     'numericColumns', schema.NumericCount, ...
     'categoryColumns', schema.CategoryCount, ...
     'timeColumns', schema.TimeCount);
+summary.selectionSignals = cellstr(selectionSignals);
 summary.alternatives = localAlternatives(selection);
 summary.outputs = cellstr(outputFiles);
 
 fprintf(jsonFid, '%s\n', jsonencode(summary));
+end
+
+function signals = localSelectionSignals(schema, goalText)
+signals = strings(0, 1);
+signals(end + 1) = "data kind: " + string(schema.Kind);
+signals(end + 1) = "numeric columns: " + string(schema.NumericCount);
+signals(end + 1) = "category columns: " + string(schema.CategoryCount);
+signals(end + 1) = "time columns: " + string(schema.TimeCount);
+if schema.HasMatrix
+    signals(end + 1) = "matrix-like data: yes";
+end
+if schema.HasPositiveNegative
+    signals(end + 1) = "positive and negative values: yes";
+end
+if schema.HasPercent
+    signals(end + 1) = "percent-like values: yes";
+end
+
+keywords = ["trend", "time", "series", "compare", "comparison", "method", ...
+    "matrix", "heatmap", "percent", "composition", "share", "ranking", ...
+    "distribution", "scatter", "zoom", "event", "paper", "panel"];
+goal = lower(string(goalText));
+hitMask = false(size(keywords));
+for k = 1:numel(keywords)
+    hitMask(k) = contains(goal, keywords(k));
+end
+hits = keywords(hitMask);
+if ~isempty(hits)
+    signals(end + 1) = "goal keywords: " + strjoin(unique(hits, 'stable'), ", ");
+end
 end
 
 function fileName = localFileName(pathValue)

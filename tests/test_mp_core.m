@@ -70,6 +70,22 @@ verifyEqual(testCase, string(report.dataFile), "time_series.csv");
 verifyFalse(testCase, contains(fileread(jsonPath), outDir));
 end
 
+function testReportIncludesSelectionSignals(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-selection-signals');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+mpRun(dataPath, "show time trend", outDir, "png");
+reportText = fileread(fullfile(outDir, 'render_report.md'));
+verifyTrue(testCase, contains(reportText, 'Selection Signals'));
+verifyTrue(testCase, contains(reportText, 'time columns: 1'));
+verifyTrue(testCase, contains(reportText, 'goal keywords: trend, time'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, any(contains(string(jsonReport.selectionSignals), 'time columns: 1')));
+verifyTrue(testCase, any(contains(string(jsonReport.selectionSignals), 'goal keywords: trend, time')));
+end
+
 function testExplicitSchemeOverridesAutomaticSelection(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-explicit-scheme');
 if exist(outDir, 'dir')

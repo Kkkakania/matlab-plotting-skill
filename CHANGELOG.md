@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.15
+
+- Added concrete selection signals to Markdown and JSON render reports.
+- Added MATLAB regression coverage for report transparency.
+
 ## v0.1.14
 
 - Added explicit MAT variable selection through `mpReadData(..., variableName)`
