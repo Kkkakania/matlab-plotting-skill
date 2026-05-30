@@ -20,11 +20,13 @@ jobs:
           bash -n tests/test_install_script.sh
           bash -n tests/test_check_gallery_outputs.sh
           bash -n tests/test_list_schemes.sh
+          bash -n tests/test_repo_docs.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
           tests/test_check_gallery_outputs.sh
           tests/test_list_schemes.sh
+          tests/test_repo_docs.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan
