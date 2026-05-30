@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.81
+
+- Completed `TASK-049-positive_negative_area-gallery` in the 500-task board.
+- Added a committed gallery preview, README entry, provenance row, and CI
+  coverage for `positive_negative_area`.
+
 ## v0.1.80
 
 - Completed `TASK-048-positive_negative_area-report` in the 500-task board.

@@ -8,6 +8,7 @@ assets=(
   "docs/gallery/multi_line_comparison.png"
   "docs/gallery/confidence_band.png"
   "docs/gallery/zoomed_inset_line.png"
+  "docs/gallery/positive_negative_area.png"
   "docs/gallery/grouped_bar.png"
   "docs/gallery/heatmap_matrix.png"
   "docs/gallery/density_scatter.png"

@@ -31,9 +31,9 @@ provenance is tracked in `docs/gallery/provenance.md`.
 |---|---|---|
 | ![zoomed inset line](docs/gallery/zoomed_inset_line.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) |
 
-| Grouped Bar |
-|---|
-| ![grouped bar](docs/gallery/grouped_bar.png) |
+| Grouped Bar | Positive/Negative Area |
+|---|---|
+| ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |
 
 ## Install
 

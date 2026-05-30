@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 48 |
-| planned | 452 |
+| done | 49 |
+| planned | 451 |
 
 ## Task Board
 
@@ -93,7 +93,7 @@ Total tasks: 500
 | `TASK-046-positive_negative_area-png-render` | `positive_negative_area` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme positive_negative_area --formats png` | done |
 | `TASK-047-positive_negative_area-vector-render` | `positive_negative_area` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme positive_negative_area --formats svg,pdf` | done |
 | `TASK-048-positive_negative_area-report` | `positive_negative_area` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "positive_negative_area" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
-| `TASK-049-positive_negative_area-gallery` | `positive_negative_area` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
+| `TASK-049-positive_negative_area-gallery` | `positive_negative_area` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
 | `TASK-050-positive_negative_area-safety` | `positive_negative_area` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
 | `TASK-051-segmented_line-catalog` | `segmented_line` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info segmented_line` | planned |
 | `TASK-052-segmented_line-data-contract` | `segmented_line` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "segmented_line" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
