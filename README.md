@@ -137,6 +137,8 @@ python3 scripts/build_task_manifest.py --json-out line-trend.json --markdown-out
 python3 scripts/build_task_manifest.py --json-out safety.json --markdown-out safety.md --lane safety
 ```
 
+Unknown scheme or lane names fail fast instead of producing an empty board.
+
 Run the release gate:
 
 ```bash

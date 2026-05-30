@@ -51,6 +51,26 @@ PY
 grep -q "Active filters: lane=safety" "$TMP_MD"
 grep -q "TASK-500-annotated_callout-safety" "$TMP_MD"
 
+if python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
+  --json-out "$TMP_JSON" \
+  --markdown-out "$TMP_MD" \
+  --scheme not_a_scheme >/tmp/mp-task-filter.out 2>/tmp/mp-task-filter.err; then
+  echo "unknown scheme filter should fail" >&2
+  exit 1
+fi
+
+grep -q "Unknown scheme filter: not_a_scheme" /tmp/mp-task-filter.err
+
+if python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
+  --json-out "$TMP_JSON" \
+  --markdown-out "$TMP_MD" \
+  --lane not_a_lane >/tmp/mp-task-filter.out 2>/tmp/mp-task-filter.err; then
+  echo "unknown lane filter should fail" >&2
+  exit 1
+fi
+
+grep -q "Unknown lane filter: not_a_lane" /tmp/mp-task-filter.err
+
 rm -f "$TMP_JSON" "$TMP_MD"
 
 echo "task manifest filter test passed."

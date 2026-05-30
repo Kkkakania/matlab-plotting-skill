@@ -32,6 +32,9 @@ python3 scripts/build_task_manifest.py \
   --lane safety
 ```
 
+Unknown scheme or lane filters fail with a non-zero exit code so misspellings
+do not quietly produce an empty board.
+
 ## Task Lanes
 
 Every scheme receives these same ten lanes:

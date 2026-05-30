@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -92,6 +93,16 @@ def parse_catalog(catalog_path: Path) -> list[dict[str, str]]:
 
 def build_tasks(catalog_path: Path, scheme_filter: str = "", lane_filter: str = "") -> dict[str, object]:
     schemes = parse_catalog(catalog_path)
+    scheme_names = {scheme["scheme"] for scheme in schemes}
+    lane_names = {lane["lane"] for lane in TASK_LANES}
+    if scheme_filter and scheme_filter not in scheme_names:
+        print(f"Unknown scheme filter: {scheme_filter}", file=sys.stderr)
+        print("Run with --scheme-info or --list-schemes to inspect available schemes.", file=sys.stderr)
+        raise SystemExit(2)
+    if lane_filter and lane_filter not in lane_names:
+        print(f"Unknown lane filter: {lane_filter}", file=sys.stderr)
+        print("Available lanes: " + ", ".join(lane["lane"] for lane in TASK_LANES), file=sys.stderr)
+        raise SystemExit(2)
     all_tasks: list[dict[str, str | int]] = []
     task_number = 1
     for scheme_info in schemes:

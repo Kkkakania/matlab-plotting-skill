@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.31
+
+- Task-roadmap filters now fail fast for unknown scheme or lane names.
+- Added regression coverage so misspelled filters cannot silently produce empty
+  task boards.
+
 ## v0.1.30
 
 - Added `--scheme` and `--lane` filters to the 500-task roadmap generator.
