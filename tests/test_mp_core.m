@@ -166,6 +166,17 @@ verifyGreaterThan(testCase, areaScore, lineScore);
 verifyGreaterThan(testCase, areaScore, barScore);
 end
 
+function testSegmentedLineSelectionRulePrefersPhaseGoal(testCase)
+data = mpDemoDataForScheme("segmented_line");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show phase and regime changes over time");
+names = string({mpSchemeCatalog().Name});
+segmentedScore = selection.AllScores(names == "segmented_line");
+lineScore = selection.AllScores(names == "line_trend");
+verifyEqual(testCase, string(selection.Selected.Name), "segmented_line");
+verifyGreaterThan(testCase, segmentedScore, lineScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);

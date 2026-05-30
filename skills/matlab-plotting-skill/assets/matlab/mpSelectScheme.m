@@ -76,6 +76,10 @@ if schema.TimeCount > 0 && any(contains(goal, ...
         ["zoom", "zoomed", "inset", "event", "detail", "local", "anomaly", "window", "highlight"]))
     scores(nameIndex(schemes, "zoomed_inset_line")) = scores(nameIndex(schemes, "zoomed_inset_line")) + 32;
 end
+if schema.TimeCount > 0 && any(contains(goal, ...
+        ["segment", "segmented", "phase", "regime", "stage", "period", "transition"]))
+    scores(nameIndex(schemes, "segmented_line")) = scores(nameIndex(schemes, "segmented_line")) + 36;
+end
 if any(contains(goal, ["paper", "panel", "overview", "layout"]))
     scores = addFamily(scores, schemes, "layout", 15);
 end

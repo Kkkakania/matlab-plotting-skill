@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.86
+
+- Completed `TASK-054-segmented_line-selection-rule` in the 500-task board.
+- Boosted `segmented_line` selection for phase, regime, stage, period, and
+  transition goals over ordered data.
+
 ## v0.1.85
 
 - Completed `TASK-053-segmented_line-demo-data` in the 500-task board.

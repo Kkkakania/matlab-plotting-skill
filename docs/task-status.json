@@ -51,5 +51,6 @@
   "TASK-050-positive_negative_area-safety": "done",
   "TASK-051-segmented_line-catalog": "done",
   "TASK-052-segmented_line-data-contract": "done",
-  "TASK-053-segmented_line-demo-data": "done"
+  "TASK-053-segmented_line-demo-data": "done",
+  "TASK-054-segmented_line-selection-rule": "done"
 }
