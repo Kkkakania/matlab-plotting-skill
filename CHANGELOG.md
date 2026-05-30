@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.73
+
+- Completed `TASK-041-positive_negative_area-catalog` in the 500-task board.
+- Added release-gate and CI coverage proving `positive_negative_area` is
+  exposed through text and JSON scheme-info with its catalog metadata.
+
 ## v0.1.72
 
 - Completed `TASK-040-zoomed_inset_line-safety` in the 500-task board.
