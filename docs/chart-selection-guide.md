@@ -10,7 +10,8 @@ Use trend schemes when order matters.
 - One ordered numeric series: `line_trend`
 - Several comparable series: `multi_line_comparison` (wide table with one
   ordered x-axis column and at least two numeric series columns)
-- Mean with uncertainty: `confidence_band`
+- Mean with uncertainty: `confidence_band` (ordered x-axis plus center series;
+  optional lower/upper columns for measured uncertainty)
 - Local event inside a long series: `zoomed_inset_line`
 - Values above and below zero: `positive_negative_area`
 - Phase or regime changes: `segmented_line`

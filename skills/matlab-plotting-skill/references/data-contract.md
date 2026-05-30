@@ -38,3 +38,14 @@ Avoid using a long table with only `time, group, value` for explicit
 `multi_line_comparison` unless it has already been pivoted to one column per
 series. For long grouped observations, first consider `grouped_scatter`,
 `small_multiples`, or a preprocessing step that creates a wide table.
+
+### `confidence_band`
+
+Use an ordered x-axis column plus a central numeric series. If uncertainty
+bounds are already available, use the column order `x, center, lower, upper` so
+the renderer can treat the first value column as the center line and the next
+two value columns as the intended band.
+
+For quick previews without measured uncertainty, a single center series is
+acceptable; the renderer will create a visual band from the center values so the
+layout can still be inspected.

@@ -19,5 +19,6 @@
   "TASK-018-multi_line_comparison-report": "done",
   "TASK-019-multi_line_comparison-gallery": "done",
   "TASK-020-multi_line_comparison-safety": "done",
-  "TASK-021-confidence_band-catalog": "done"
+  "TASK-021-confidence_band-catalog": "done",
+  "TASK-022-confidence_band-data-contract": "done"
 }

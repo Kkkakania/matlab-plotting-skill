@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.54
+
+- Completed `TASK-022-confidence_band-data-contract` in the 500-task board.
+- Documented the expected `confidence_band` shape: ordered x-axis, center
+  series, and optional lower/upper uncertainty columns.
+- Added release-gate and CI coverage for the scheme-specific contract.
+
 ## v0.1.53
 
 - Completed `TASK-021-confidence_band-catalog` in the 500-task board.
