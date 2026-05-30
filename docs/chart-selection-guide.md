@@ -12,7 +12,8 @@ Use trend schemes when order matters.
   ordered x-axis column and at least two numeric series columns)
 - Mean with uncertainty: `confidence_band` (ordered x-axis plus center series;
   optional lower/upper columns for measured uncertainty)
-- Local event inside a long series: `zoomed_inset_line`
+- Local event inside a long series: `zoomed_inset_line` (a zoomed inset works
+  best when the full trend matters and one interval needs closer inspection)
 - Values above and below zero: `positive_negative_area`
 - Phase or regime changes: `segmented_line`
 

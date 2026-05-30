@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.64
+
+- Completed `TASK-032-zoomed_inset_line-data-contract` in the 500-task board.
+- Documented the expected `zoomed_inset_line` shape: long ordered x-axis,
+  one or more numeric series, and a meaningful local interval to inspect.
+- Added release-gate and CI coverage for the scheme-specific contract.
+
 ## v0.1.63
 
 - Completed `TASK-031-zoomed_inset_line-catalog` in the 500-task board.

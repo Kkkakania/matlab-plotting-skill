@@ -49,3 +49,14 @@ two value columns as the intended band.
 For quick previews without measured uncertainty, a single center series is
 acceptable; the renderer will create a visual band from the center values so the
 layout can still be inspected.
+
+### `zoomed_inset_line`
+
+Use a long ordered x-axis when the full trend matters but a local event,
+transition, anomaly, or detail window needs closer inspection. A simple
+two-column table such as `time, signal` is enough for one series.
+
+For comparisons, use one x-axis column plus several numeric series columns, for
+example `time, baseline, candidate`. Keep rows sorted by the ordered axis. If
+the data has no meaningful local interval to inspect, start with `line_trend`
+or `multi_line_comparison` instead.
