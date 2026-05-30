@@ -126,8 +126,9 @@ Build the exact 500-task plan:
 python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md
 ```
 
-The task plan maps 50 plotting schemes to 10 concrete task lanes each. GitHub
-Actions uploads both `task-manifest.json` and `task-board.md`.
+The task plan maps 50 plotting schemes to 10 concrete task lanes each and
+summarizes coverage by family and lane. GitHub Actions uploads both
+`task-manifest.json` and `task-board.md`.
 
 Run the release gate:
 

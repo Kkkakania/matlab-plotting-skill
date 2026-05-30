@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from collections import Counter
 from pathlib import Path
 
 
@@ -111,11 +112,15 @@ def build_tasks(catalog_path: Path) -> dict[str, object]:
                 }
             )
             task_number += 1
+    family_counts = dict(Counter(str(task["family"]) for task in tasks))
+    lane_counts = dict(Counter(str(task["lane"]) for task in tasks))
     return {
         "source_catalog": str(catalog_path.relative_to(ROOT_DIR)),
         "scheme_count": len(schemes),
         "lane_count": len(TASK_LANES),
         "task_count": len(tasks),
+        "family_counts": family_counts,
+        "lane_counts": lane_counts,
         "tasks": tasks,
     }
 
@@ -130,9 +135,33 @@ def write_markdown(manifest: dict[str, object], output_path: Path) -> None:
         f"Task lanes per scheme: {manifest['lane_count']}",
         f"Total tasks: {manifest['task_count']}",
         "",
-        "| ID | Scheme | Lane | Title | Status |",
-        "|---|---|---|---|---|",
+        "## Family Summary",
+        "",
+        "| Family | Tasks |",
+        "|---|---:|",
     ]
+    for family, count in manifest["family_counts"].items():
+        lines.append(f"| {family} | {count} |")
+    lines.extend(
+        [
+            "",
+            "## Lane Summary",
+            "",
+            "| Lane | Tasks |",
+            "|---|---:|",
+        ]
+    )
+    for lane, count in manifest["lane_counts"].items():
+        lines.append(f"| {lane} | {count} |")
+    lines.extend(
+        [
+            "",
+            "## Task Board",
+            "",
+            "| ID | Scheme | Lane | Title | Status |",
+            "|---|---|---|---|---|",
+        ]
+    )
     for task in tasks:
         lines.append(
             f"| `{task['id']}` | `{task['scheme']}` | {task['lane']} | "

@@ -19,10 +19,18 @@ ids = [task["id"] for task in tasks]
 schemes = [task["scheme"] for task in tasks]
 lanes = {task["lane"] for task in tasks}
 per_scheme = Counter(schemes)
+family_counts = manifest["family_counts"]
+lane_counts = manifest["lane_counts"]
 
 assert manifest["scheme_count"] == 50
 assert manifest["lane_count"] == 10
 assert manifest["task_count"] == 500
+assert sum(family_counts.values()) == 500
+assert sum(lane_counts.values()) == 500
+assert lane_counts["catalog"] == 50
+assert lane_counts["safety"] == 50
+assert family_counts["Trend"] == 60
+assert family_counts["Layout"] == 30
 assert len(tasks) == 500
 assert len(ids) == len(set(ids))
 assert ids[0] == "TASK-001-line_trend-catalog"
@@ -48,6 +56,10 @@ PY
 grep -q "TASK-001-line_trend-catalog" "$TMP_MD"
 grep -q "TASK-500-annotated_callout-safety" "$TMP_MD"
 grep -q "Total tasks: 500" "$TMP_MD"
+grep -q "## Family Summary" "$TMP_MD"
+grep -q "## Lane Summary" "$TMP_MD"
+grep -q "| Trend | 60 |" "$TMP_MD"
+grep -q "| catalog | 50 |" "$TMP_MD"
 
 rm -f "$TMP_JSON" "$TMP_MD"
 

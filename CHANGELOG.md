@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.29
+
+- Added family and lane summaries to the generated 500-task roadmap.
+- Extended task-manifest tests so the summary counts must add up to exactly
+  500 tasks.
+
 ## v0.1.28
 
 - Added an exact 500-task roadmap generated from 50 plotting schemes and 10

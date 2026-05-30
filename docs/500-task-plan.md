@@ -15,7 +15,8 @@ The task model is deliberately exact:
 - 500 planned tasks total.
 
 The generated JSON is the source of truth. The Markdown board is a readable
-view for maintainers.
+view for maintainers. It includes family and lane summaries before the full
+task table, so maintainers can review coverage without scanning all 500 rows.
 
 ## Task Lanes
 
@@ -52,3 +53,4 @@ GitHub Actions generates and uploads:
 
 `tests/test_task_manifest.sh` fails if the plan is not exactly 500 tasks, if
 any task ID is duplicated, or if any scheme does not receive exactly 10 tasks.
+It also checks that the generated summaries add up to exactly 500 tasks.
