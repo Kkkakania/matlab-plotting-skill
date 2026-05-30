@@ -65,6 +65,10 @@ if schema.HasPositiveNegative
     scores(nameIndex(schemes, "positive_negative_area")) = scores(nameIndex(schemes, "positive_negative_area")) + 8;
     scores(nameIndex(schemes, "diverging_bar")) = scores(nameIndex(schemes, "diverging_bar")) + 8;
 end
+if schema.TimeCount > 0 && schema.HasPositiveNegative && any(contains(goal, ...
+        ["signed", "delta", "deviation", "residual", "zero", "positive", "negative", "net", "change"]))
+    scores(nameIndex(schemes, "positive_negative_area")) = scores(nameIndex(schemes, "positive_negative_area")) + 32;
+end
 if schema.HasPercent || any(contains(goal, ["percent", "percentage", "composition", "share", "part", "whole"]))
     scores = addFamily(scores, schemes, "composition", 10);
 end

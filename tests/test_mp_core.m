@@ -138,6 +138,19 @@ verifyEqual(testCase, string(selection.Selected.Name), "zoomed_inset_line");
 verifyGreaterThan(testCase, zoomScore, lineScore);
 end
 
+function testPositiveNegativeAreaSelectionRulePrefersSignedChangeGoal(testCase)
+data = mpDemoDataForScheme("positive_negative_area");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show signed delta around zero over time");
+names = string({mpSchemeCatalog().Name});
+areaScore = selection.AllScores(names == "positive_negative_area");
+lineScore = selection.AllScores(names == "line_trend");
+barScore = selection.AllScores(names == "diverging_bar");
+verifyEqual(testCase, string(selection.Selected.Name), "positive_negative_area");
+verifyGreaterThan(testCase, areaScore, lineScore);
+verifyGreaterThan(testCase, areaScore, barScore);
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);

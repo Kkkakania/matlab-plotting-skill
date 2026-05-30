@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.76
+
+- Completed `TASK-044-positive_negative_area-selection-rule` in the 500-task
+  board.
+- Improved scheme scoring so time-series signed-change goals around zero prefer
+  `positive_negative_area`.
+- Added MATLAB regression coverage comparing `positive_negative_area`,
+  `line_trend`, and `diverging_bar` scores for signed-delta goals.
+
 ## v0.1.75
 
 - Completed `TASK-043-positive_negative_area-demo-data` in the 500-task board.
