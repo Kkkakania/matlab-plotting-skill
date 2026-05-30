@@ -23,6 +23,19 @@ selection = mpSelectScheme(schema, "show a time trend");
 verifyEqual(testCase, selection.Selected.Family, "trend");
 end
 
+function testLineTrendDemoDataSupportsSchemaAndRender(testCase)
+data = mpDemoDataForScheme("line_trend");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "signal"], string(data.Properties.VariableNames))));
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+selection = mpSelectScheme(schema, "show a time trend");
+verifyEqual(testCase, string(selection.Selected.Name), "line_trend");
+fig = mpRenderScheme("line_trend", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
+end
+
 function testSelectionForMethodComparison(testCase)
 data = mpReadData(fullfile(testCase.TestData.Root, 'examples', 'data', 'method_scores.csv'));
 schema = mpInferDataSchema(data);

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.35
+
+- Completed `TASK-003-line_trend-demo-data` in the 500-task board.
+- Added MATLAB regression coverage proving the `line_trend` synthetic demo data
+  has the expected schema, selects `line_trend`, and renders a figure.
+
 ## v0.1.34
 
 - Completed `TASK-002-line_trend-data-contract` in the 500-task board.
