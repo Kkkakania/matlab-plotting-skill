@@ -12,6 +12,7 @@ FORMATS="png,svg"
 SMOKE_TEST=0
 LIST_SCHEMES=0
 CHECK_ONLY=0
+PLAN_ONLY=0
 SCHEME_NAME=""
 MAT_VARIABLE=""
 
@@ -22,6 +23,7 @@ Usage:
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes
   render_with_matlab.sh --check
+  render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
 
 Environment:
   MATLAB_BIN=/path/to/matlab
@@ -64,6 +66,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --check)
       CHECK_ONLY=1
+      shift
+      ;;
+    --plan-only)
+      PLAN_ONLY=1
       shift
       ;;
     --help|-h)
@@ -137,6 +143,11 @@ fi
 if [[ ! -f "$DATA_PATH" ]]; then
   echo "Data file not found: $DATA_PATH" >&2
   exit 66
+fi
+
+if [[ "$PLAN_ONLY" -eq 1 ]]; then
+  "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(plan));"
+  exit 0
 fi
 
 "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(result.SelectedScheme);"

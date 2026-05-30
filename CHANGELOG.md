@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.20
+
+- Added `mpPlan` for selecting a plotting scheme without rendering.
+- Added CLI `--plan-only` to return a JSON planning result before export.
+
 ## v0.1.19
 
 - Added `scripts/release_check.sh` as a single release gate for local maintainers.

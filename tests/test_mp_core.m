@@ -41,6 +41,15 @@ verifyTrue(testCase, isfile(result.Files(1)));
 verifyTrue(testCase, isfile(fullfile(outDir, 'render_report.md')));
 end
 
+function testPlanOnlySelectsWithoutRendering(testCase)
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+plan = mpPlan(dataPath, "show a time trend", "", "");
+verifyEqual(testCase, string(plan.SelectedScheme), "line_trend");
+verifyTrue(testCase, any(string(plan.Alternatives) == "multi_line_comparison"));
+verifyEqual(testCase, plan.Schema.TimeCount, 1);
+verifyEqual(testCase, string(plan.ScoreSnapshot(1).Name), "line_trend");
+end
+
 function testReportDoesNotExposeAbsoluteDataPath(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-report-privacy');
 if exist(outDir, 'dir')

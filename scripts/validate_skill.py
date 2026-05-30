@@ -40,6 +40,7 @@ def main() -> None:
         SKILL / "references" / "matlab-cli.md",
         SKILL / "references" / "example-prompts.md",
         SKILL / "assets" / "matlab" / "mpRun.m",
+        SKILL / "assets" / "matlab" / "mpPlan.m",
         SKILL / "assets" / "matlab" / "mpSchemeCatalog.m",
         SKILL / "assets" / "matlab" / "mpRenderScheme.m",
     ]
