@@ -117,6 +117,9 @@ Build the automation manifest used to audit scheme coverage:
 python3 scripts/build_automation_manifest.py --out figures/automation-manifest.json
 ```
 
+GitHub Actions also uploads this manifest as a workflow artifact on each push
+and pull request.
+
 Run the release gate:
 
 ```bash

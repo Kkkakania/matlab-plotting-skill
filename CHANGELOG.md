@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.27
+
+- Updated GitHub Actions to run the scheme-info and automation-manifest tests.
+- Added a CI artifact that uploads `automation-manifest.json` on each push and
+  pull request.
+
 ## v0.1.26
 
 - Added an automation manifest generator that expands the 50 scheme catalog

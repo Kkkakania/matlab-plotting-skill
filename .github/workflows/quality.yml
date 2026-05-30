@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Shell syntax
         run: |
-          python3 -m py_compile scripts/build_gallery_index.py
+          python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py
           bash -n scripts/render_with_matlab.sh
           bash -n scripts/install_skill.sh
           bash -n scripts/check_gallery_outputs.sh
@@ -24,6 +24,9 @@ jobs:
           bash -n tests/test_check_gallery_outputs.sh
           bash -n tests/test_list_schemes.sh
           bash -n tests/test_list_schemes_json.sh
+          bash -n tests/test_scheme_info.sh
+          bash -n tests/test_automation_manifest.sh
+          bash -n tests/test_ci_workflow.sh
           bash -n tests/test_repo_docs.sh
           bash -n tests/test_github_templates.sh
           bash -n tests/test_matlab_check.sh
@@ -42,6 +45,9 @@ jobs:
           tests/test_check_gallery_outputs.sh
           tests/test_list_schemes.sh
           tests/test_list_schemes_json.sh
+          tests/test_scheme_info.sh
+          tests/test_automation_manifest.sh
+          tests/test_ci_workflow.sh
           tests/test_repo_docs.sh
           tests/test_github_templates.sh
           tests/test_matlab_check.sh
@@ -60,3 +66,10 @@ jobs:
         run: scripts/check_privacy.sh
       - name: Skill validation
         run: python3 scripts/validate_skill.py
+      - name: Build automation manifest
+        run: python3 scripts/build_automation_manifest.py --out automation-manifest.json
+      - name: Upload automation manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: automation-manifest
+          path: automation-manifest.json
