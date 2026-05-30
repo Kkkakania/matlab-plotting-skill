@@ -17,6 +17,7 @@ jobs:
           bash -n scripts/check_gallery_outputs.sh
           bash -n scripts/check_forbidden_files.sh
           bash -n scripts/check_privacy.sh
+          bash -n scripts/run_visual_fixtures.sh
           bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
           bash -n tests/test_install_script.sh
           bash -n tests/test_check_gallery_outputs.sh
@@ -29,6 +30,7 @@ jobs:
           bash -n tests/test_build_gallery_index.sh
           bash -n tests/test_docs_palette_accessibility.sh
           bash -n tests/test_readme_gallery_assets.sh
+          bash -n tests/test_visual_fixtures_script.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
@@ -42,6 +44,7 @@ jobs:
           tests/test_build_gallery_index.sh
           tests/test_docs_palette_accessibility.sh
           tests/test_readme_gallery_assets.sh
+          tests/test_visual_fixtures_script.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan

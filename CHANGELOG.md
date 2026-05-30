@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.18
+
+- Added a representative renderer-level visual fixture suite.
+- Added a local MATLAB entrypoint for fixture rendering and report metadata checks.
+
 ## v0.1.17
 
 - Added top-candidate score snapshots to Markdown and JSON render reports.

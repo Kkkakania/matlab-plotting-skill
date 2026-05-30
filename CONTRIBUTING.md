@@ -41,6 +41,7 @@ With MATLAB available:
 ```bash
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --smoke-test --out figures/smoke --formats png
 ./scripts/check_gallery_outputs.sh --dir figures/smoke --format png
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtures.sh
 ```
 
 ## Pull Request Notes
@@ -51,4 +52,3 @@ Please include:
 - Which schemes are affected.
 - What checks were run.
 - Whether any generated images need manual inspection.
-

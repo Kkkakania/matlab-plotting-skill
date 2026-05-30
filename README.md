@@ -90,6 +90,12 @@ Smoke-test all bundled schemes with synthetic data:
 python3 scripts/build_gallery_index.py --dir figures/smoke --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out figures/smoke/index.md --format png
 ```
 
+Run the representative visual fixture suite:
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtures.sh
+```
+
 ## Scheme Coverage
 
 The first release includes 50 plotting schemes across trends, relationships,
