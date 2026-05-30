@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.57
+
+- Completed `TASK-025-confidence_band-explicit-cli` in the 500-task board.
+- Added a small synthetic `examples/data/confidence_band.csv` file for
+  explicit confidence-band rendering workflows.
+- Added MATLAB regression coverage proving explicit `confidence_band` selection
+  creates deterministic output and report metadata.
+
 ## v0.1.56
 
 - Completed `TASK-024-confidence_band-selection-rule` in the 500-task board.

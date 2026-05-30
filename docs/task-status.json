@@ -22,5 +22,6 @@
   "TASK-021-confidence_band-catalog": "done",
   "TASK-022-confidence_band-data-contract": "done",
   "TASK-023-confidence_band-demo-data": "done",
-  "TASK-024-confidence_band-selection-rule": "done"
+  "TASK-024-confidence_band-selection-rule": "done",
+  "TASK-025-confidence_band-explicit-cli": "done"
 }

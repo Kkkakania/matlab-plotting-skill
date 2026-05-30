@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 24 |
-| planned | 476 |
+| done | 25 |
+| planned | 475 |
 
 ## Task Board
 
@@ -69,7 +69,7 @@ Total tasks: 500
 | `TASK-022-confidence_band-data-contract` | `confidence_band` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "confidence_band" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
 | `TASK-023-confidence_band-demo-data` | `confidence_band` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-024-confidence_band-selection-rule` | `confidence_band` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme confidence_band` | done |
-| `TASK-025-confidence_band-explicit-cli` | `confidence_band` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats png` | planned |
+| `TASK-025-confidence_band-explicit-cli` | `confidence_band` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats png` | done |
 | `TASK-026-confidence_band-png-render` | `confidence_band` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats png` | planned |
 | `TASK-027-confidence_band-vector-render` | `confidence_band` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme confidence_band --formats svg,pdf` | planned |
 | `TASK-028-confidence_band-report` | `confidence_band` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "confidence_band" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |

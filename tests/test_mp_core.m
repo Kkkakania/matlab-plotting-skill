@@ -220,6 +220,20 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "multi_line_comparison"
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "multi_line_comparison.png")));
 end
 
+function testConfidenceBandExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-confidence-band');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'confidence_band.csv');
+result = mpRun(dataPath, "show uncertainty bounds", outDir, "png", "confidence_band");
+verifyEqual(testCase, result.SelectedScheme, "confidence_band");
+verifyTrue(testCase, isfile(fullfile(outDir, 'confidence_band.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "confidence_band");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "confidence_band.png")));
+end
+
 function testMultiLineComparisonPngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-multi-line-png');
 if exist(outDir, 'dir')
