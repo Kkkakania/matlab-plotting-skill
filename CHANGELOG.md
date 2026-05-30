@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.74
+
+- Completed `TASK-042-positive_negative_area-data-contract` in the 500-task
+  board.
+- Documented the expected `positive_negative_area` shape: ordered x-axis,
+  signed numeric series, and a meaningful zero reference line.
+- Added release-gate and CI coverage for the scheme-specific contract.
+
 ## v0.1.73
 
 - Completed `TASK-041-positive_negative_area-catalog` in the 500-task board.

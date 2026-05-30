@@ -60,3 +60,14 @@ For comparisons, use one x-axis column plus several numeric series columns, for
 example `time, baseline, candidate`. Keep rows sorted by the ordered axis. If
 the data has no meaningful local interval to inspect, start with `line_trend`
 or `multi_line_comparison` instead.
+
+### `positive_negative_area`
+
+Use an ordered x-axis column plus one signed numeric series that contains both
+positive and negative values. This is a good fit for residuals, deltas, net
+change, or deviation from a baseline where zero is the reference line.
+
+Avoid this scheme for always-positive totals, cumulative counts, or measurements
+where crossing zero has no interpretation. Use `line_trend`, `grouped_bar`, or
+`waterfall_contribution` instead when the question is about level, category
+comparison, or stepwise contribution.

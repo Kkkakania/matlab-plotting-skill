@@ -14,7 +14,8 @@ Use trend schemes when order matters.
   optional lower/upper columns for measured uncertainty)
 - Local event inside a long series: `zoomed_inset_line` (a zoomed inset works
   best when the full trend matters and one interval needs closer inspection)
-- Values above and below zero: `positive_negative_area`
+- Values above and below zero: `positive_negative_area` (best when zero is a
+  meaningful reference line)
 - Phase or regime changes: `segmented_line`
 
 When Not To Use: avoid trend plots when the x-axis order is arbitrary. A bar,
