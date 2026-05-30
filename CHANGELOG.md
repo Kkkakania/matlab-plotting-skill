@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.97
+
+- Completed `TASK-065-scatter_relationship-explicit-cli` in the 500-task board.
+- Added MATLAB regression coverage proving explicit `scatter_relationship`
+  selection creates deterministic PNG output and reports.
+
 ## v0.1.96
 
 - Completed `TASK-064-scatter_relationship-selection-rule` in the 500-task

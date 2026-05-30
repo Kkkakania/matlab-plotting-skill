@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 64 |
-| planned | 436 |
+| done | 65 |
+| planned | 435 |
 
 ## Task Board
 
@@ -109,7 +109,7 @@ Total tasks: 500
 | `TASK-062-scatter_relationship-data-contract` | `scatter_relationship` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "scatter_relationship" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
 | `TASK-063-scatter_relationship-demo-data` | `scatter_relationship` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-064-scatter_relationship-selection-rule` | `scatter_relationship` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme scatter_relationship` | done |
-| `TASK-065-scatter_relationship-explicit-cli` | `scatter_relationship` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme scatter_relationship --formats png` | planned |
+| `TASK-065-scatter_relationship-explicit-cli` | `scatter_relationship` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme scatter_relationship --formats png` | done |
 | `TASK-066-scatter_relationship-png-render` | `scatter_relationship` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme scatter_relationship --formats png` | planned |
 | `TASK-067-scatter_relationship-vector-render` | `scatter_relationship` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme scatter_relationship --formats svg,pdf` | planned |
 | `TASK-068-scatter_relationship-report` | `scatter_relationship` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "scatter_relationship" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |

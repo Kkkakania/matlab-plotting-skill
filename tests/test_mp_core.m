@@ -384,6 +384,21 @@ verifyEqual(testCase, string(jsonReport.selectedScheme), "segmented_line");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "segmented_line.png")));
 end
 
+function testScatterRelationshipExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-scatter-relationship');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_scatter_relationship_input.csv');
+writetable(mpDemoDataForScheme("scatter_relationship"), dataPath);
+result = mpRun(dataPath, "show x-y relationship", outDir, "png", "scatter_relationship");
+verifyEqual(testCase, result.SelectedScheme, "scatter_relationship");
+verifyTrue(testCase, isfile(fullfile(outDir, 'scatter_relationship.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "scatter_relationship");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "scatter_relationship.png")));
+end
+
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)
 outDir = fullfile(tempdir, 'mp-skill-test-segmented-line-png');
 if exist(outDir, 'dir')
