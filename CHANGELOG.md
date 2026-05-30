@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.90
+
+- Completed `TASK-058-segmented_line-report` in the 500-task board.
+- Added MATLAB regression coverage proving Markdown and JSON reports record
+  `segmented_line` and its generated output.
+
 ## v0.1.89
 
 - Completed `TASK-057-segmented_line-vector-render` in the 500-task board.
