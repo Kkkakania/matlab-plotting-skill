@@ -23,9 +23,9 @@ All previews below are generated from bundled synthetic data.
 The generated preview index is in `docs/gallery/index.md`, and preview
 provenance is tracked in `docs/gallery/provenance.md`.
 
-| Trend | Grouped Bar |
-|---|---|
-| ![line trend](docs/gallery/line_trend.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
+| Trend | Multi-Line | Grouped Bar |
+|---|---|---|
+| ![line trend](docs/gallery/line_trend.png) | ![multi-line comparison](docs/gallery/multi_line_comparison.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
 
 | Heatmap | Density Scatter |
 |---|---|

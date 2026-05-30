@@ -5,6 +5,7 @@ Gallery directory: `docs/gallery`
 | Scheme | Family | Best For | Output |
 |---|---|---|---|
 | `line_trend` | Trend | One time or ordered series | ![line_trend](line_trend.png) |
+| `multi_line_comparison` | Trend | Several comparable series | ![multi_line_comparison](multi_line_comparison.png) |
 | `density_scatter` | Relationship | Dense x-y samples | ![density_scatter](density_scatter.png) |
 | `heatmap_matrix` | Matrix | Numeric matrix | ![heatmap_matrix](heatmap_matrix.png) |
 | `grouped_bar` | Bar | Category comparison | ![grouped_bar](grouped_bar.png) |

@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.51
+
+- Completed `TASK-019-multi_line_comparison-gallery` in the 500-task board.
+- Added a committed `multi_line_comparison` gallery preview generated from the
+  synthetic CSV example.
+- Updated README preview, gallery index, provenance, release-gate checks, and
+  CI coverage for the new preview.
+
 ## v0.1.50
 
 - Completed `TASK-018-multi_line_comparison-report` in the 500-task board.
