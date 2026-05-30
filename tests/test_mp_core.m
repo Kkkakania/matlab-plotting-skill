@@ -156,6 +156,19 @@ jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
 verifyEqual(testCase, string(jsonReport.selectedScheme), "line_trend");
 end
 
+function testLineTrendPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-line-trend-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+mpRun(dataPath, "show a time trend", outDir, "png", "line_trend");
+pngPath = fullfile(outDir, 'line_trend.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
 function testUnknownExplicitSchemeErrors(testCase)
 dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
 verifyError(testCase, @() mpRun(dataPath, "show a time trend", tempdir, "png", "not_a_scheme"), ...

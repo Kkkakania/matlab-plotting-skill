@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 5 |
-| planned | 495 |
+| done | 6 |
+| planned | 494 |
 
 ## Task Board
 
@@ -50,7 +50,7 @@ Total tasks: 500
 | `TASK-003-line_trend-demo-data` | `line_trend` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-004-line_trend-selection-rule` | `line_trend` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme line_trend` | done |
 | `TASK-005-line_trend-explicit-cli` | `line_trend` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme line_trend --formats png` | done |
-| `TASK-006-line_trend-png-render` | `line_trend` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme line_trend --formats png` | planned |
+| `TASK-006-line_trend-png-render` | `line_trend` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme line_trend --formats png` | done |
 | `TASK-007-line_trend-vector-render` | `line_trend` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme line_trend --formats svg,pdf` | planned |
 | `TASK-008-line_trend-report` | `line_trend` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "line_trend" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |
 | `TASK-009-line_trend-gallery` | `line_trend` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |

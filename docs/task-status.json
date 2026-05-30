@@ -3,5 +3,6 @@
   "TASK-002-line_trend-data-contract": "done",
   "TASK-003-line_trend-demo-data": "done",
   "TASK-004-line_trend-selection-rule": "done",
-  "TASK-005-line_trend-explicit-cli": "done"
+  "TASK-005-line_trend-explicit-cli": "done",
+  "TASK-006-line_trend-png-render": "done"
 }

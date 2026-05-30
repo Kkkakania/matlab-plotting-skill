@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.38
+
+- Completed `TASK-006-line_trend-png-render` in the 500-task board.
+- Added MATLAB regression coverage proving `line_trend.png` is generated and
+  non-empty.
+
 ## v0.1.37
 
 - Completed `TASK-005-line_trend-explicit-cli` in the 500-task board.
