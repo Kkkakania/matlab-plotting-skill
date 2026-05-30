@@ -27,6 +27,7 @@ slide, report, or issue.
 - The plot remains readable when printed in grayscale.
 - Color is not the only cue for a critical distinction; line style, marker, or
   label helps when needed.
+- Palette choice follows `docs/palette-accessibility-notes.md`.
 
 ## Typography And Layout
 
@@ -63,4 +64,3 @@ slide, report, or issue.
   unrelated article screenshots.
 - Any manual edits made after MATLAB export are noted in the issue, pull
   request, or paper draft.
-

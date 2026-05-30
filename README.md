@@ -80,6 +80,7 @@ skill stays maintainable.
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
+See `docs/palette-accessibility-notes.md` when color choice affects the result.
 
 ## Provenance
 

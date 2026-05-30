@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.13
+
+- Added palette and accessibility notes for categorical, sequential, diverging,
+  and neutral palettes.
+- Linked palette guidance from the figure quality checklist and README.
+
 ## v0.1.12
 
 - Added Markdown gallery index generation for smoke-test outputs.
