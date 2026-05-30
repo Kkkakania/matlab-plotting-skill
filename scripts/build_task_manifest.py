@@ -90,14 +90,14 @@ def parse_catalog(catalog_path: Path) -> list[dict[str, str]]:
     return rows
 
 
-def build_tasks(catalog_path: Path) -> dict[str, object]:
+def build_tasks(catalog_path: Path, scheme_filter: str = "", lane_filter: str = "") -> dict[str, object]:
     schemes = parse_catalog(catalog_path)
-    tasks: list[dict[str, str | int]] = []
+    all_tasks: list[dict[str, str | int]] = []
     task_number = 1
     for scheme_info in schemes:
         scheme = scheme_info["scheme"]
         for lane in TASK_LANES:
-            tasks.append(
+            all_tasks.append(
                 {
                     "number": task_number,
                     "id": f"TASK-{task_number:03d}-{scheme}-{lane['lane']}",
@@ -112,6 +112,12 @@ def build_tasks(catalog_path: Path) -> dict[str, object]:
                 }
             )
             task_number += 1
+    tasks = [
+        task
+        for task in all_tasks
+        if (not scheme_filter or task["scheme"] == scheme_filter)
+        and (not lane_filter or task["lane"] == lane_filter)
+    ]
     family_counts = dict(Counter(str(task["family"]) for task in tasks))
     lane_counts = dict(Counter(str(task["lane"]) for task in tasks))
     return {
@@ -119,6 +125,7 @@ def build_tasks(catalog_path: Path) -> dict[str, object]:
         "scheme_count": len(schemes),
         "lane_count": len(TASK_LANES),
         "task_count": len(tasks),
+        "filters": {"scheme": scheme_filter, "lane": lane_filter},
         "family_counts": family_counts,
         "lane_counts": lane_counts,
         "tasks": tasks,
@@ -135,11 +142,20 @@ def write_markdown(manifest: dict[str, object], output_path: Path) -> None:
         f"Task lanes per scheme: {manifest['lane_count']}",
         f"Total tasks: {manifest['task_count']}",
         "",
-        "## Family Summary",
-        "",
-        "| Family | Tasks |",
-        "|---|---:|",
     ]
+    filters = manifest["filters"]
+    assert isinstance(filters, dict)
+    active_filters = [f"{key}={value}" for key, value in filters.items() if value]
+    if active_filters:
+        lines.extend([f"Active filters: {', '.join(active_filters)}", ""])
+    lines.extend(
+        [
+            "## Family Summary",
+            "",
+            "| Family | Tasks |",
+            "|---|---:|",
+        ]
+    )
     for family, count in manifest["family_counts"].items():
         lines.append(f"| {family} | {count} |")
     lines.extend(
@@ -175,9 +191,11 @@ def main() -> int:
     parser.add_argument("--catalog", type=Path, default=DEFAULT_CATALOG)
     parser.add_argument("--json-out", type=Path, required=True)
     parser.add_argument("--markdown-out", type=Path, required=True)
+    parser.add_argument("--scheme", default="", help="Only include tasks for one scheme.")
+    parser.add_argument("--lane", default="", help="Only include tasks for one task lane.")
     args = parser.parse_args()
 
-    manifest = build_tasks(args.catalog)
+    manifest = build_tasks(args.catalog, args.scheme, args.lane)
     args.json_out.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     write_markdown(manifest, args.markdown_out)
     print(

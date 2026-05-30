@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.30
+
+- Added `--scheme` and `--lane` filters to the 500-task roadmap generator.
+- Added tests for focused task boards, including one-scheme and one-lane views.
+
 ## v0.1.29
 
 - Added family and lane summaries to the generated 500-task roadmap.

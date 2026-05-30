@@ -66,6 +66,7 @@ tests/test_scheme_info.sh
 tests/test_automation_manifest.sh
 tests/test_ci_workflow.sh
 tests/test_task_manifest.sh
+tests/test_task_manifest_filter.sh
 tests/test_repo_docs.sh
 tests/test_github_templates.sh
 tests/test_matlab_check.sh

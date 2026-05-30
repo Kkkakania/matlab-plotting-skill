@@ -130,6 +130,13 @@ The task plan maps 50 plotting schemes to 10 concrete task lanes each and
 summarizes coverage by family and lane. GitHub Actions uploads both
 `task-manifest.json` and `task-board.md`.
 
+Filter the task plan when working on one scheme or one lane:
+
+```bash
+python3 scripts/build_task_manifest.py --json-out line-trend.json --markdown-out line-trend.md --scheme line_trend
+python3 scripts/build_task_manifest.py --json-out safety.json --markdown-out safety.md --lane safety
+```
+
 Run the release gate:
 
 ```bash

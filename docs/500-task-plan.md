@@ -18,6 +18,20 @@ The generated JSON is the source of truth. The Markdown board is a readable
 view for maintainers. It includes family and lane summaries before the full
 task table, so maintainers can review coverage without scanning all 500 rows.
 
+For focused work, filter the generated board:
+
+```bash
+python3 scripts/build_task_manifest.py \
+  --json-out line-trend-tasks.json \
+  --markdown-out line-trend-tasks.md \
+  --scheme line_trend
+
+python3 scripts/build_task_manifest.py \
+  --json-out safety-tasks.json \
+  --markdown-out safety-tasks.md \
+  --lane safety
+```
+
 ## Task Lanes
 
 Every scheme receives these same ten lanes:

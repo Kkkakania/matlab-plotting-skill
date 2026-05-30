@@ -28,6 +28,7 @@ jobs:
           bash -n tests/test_automation_manifest.sh
           bash -n tests/test_ci_workflow.sh
           bash -n tests/test_task_manifest.sh
+          bash -n tests/test_task_manifest_filter.sh
           bash -n tests/test_repo_docs.sh
           bash -n tests/test_github_templates.sh
           bash -n tests/test_matlab_check.sh
@@ -50,6 +51,7 @@ jobs:
           tests/test_automation_manifest.sh
           tests/test_ci_workflow.sh
           tests/test_task_manifest.sh
+          tests/test_task_manifest_filter.sh
           tests/test_repo_docs.sh
           tests/test_github_templates.sh
           tests/test_matlab_check.sh
