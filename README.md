@@ -214,10 +214,14 @@ For the exact policy, see `docs/maintenance-cadence.md`.
 
 ## Scheme Coverage
 
-The first release includes 50 plotting schemes across trends, relationships,
+The catalog contains 50 plotting schemes across trends, relationships,
 heatmaps, bars, distributions, rankings, compositions, multivariate plots, and
-paper layout helpers. Similar schemes share parameterized renderers so the
-skill stays maintainable.
+paper layout helpers. Treat the gallery-backed schemes as the most stable
+first-use path: they have committed previews, data contracts, CLI coverage,
+PNG/vector checks, reports, and safety coverage. Cataloged-only schemes are
+tracked design targets until their support lanes are completed.
+
+Similar schemes share parameterized renderers so the skill stays maintainable.
 
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/first-render-walkthrough.md` for the shortest first-render path.

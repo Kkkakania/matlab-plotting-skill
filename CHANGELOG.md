@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Clarified that the 50 schemes are a catalog and that gallery-backed schemes
+  are the most stable first-use path.
 - Clarified the `v0.1.x` bootstrap release history and future slower release
   cadence in README and maintenance docs.
 - Added an ecosystem status document that links the three MATLAB repositories,
