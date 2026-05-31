@@ -6,6 +6,18 @@ The skill is self-contained. It does not depend on private archives, local
 template folders, or another plotting repository. The only runtime requirement
 is a working MATLAB command line executable.
 
+## Project Ecosystem
+
+This skill is the agent-facing layer in a small MATLAB scientific-figure
+ecosystem:
+
+- [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)
+  is the main clean-room MATLAB gallery and template reference.
+- [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci) provides
+  CI/CLI checks for gallery outputs, provenance, privacy, and release readiness.
+- [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
+  helps agents choose and render suitable MATLAB figures from user data.
+
 ## What It Does
 
 - Reads CSV, Excel, or MAT data.
