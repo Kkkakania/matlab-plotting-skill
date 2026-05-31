@@ -237,6 +237,7 @@ claim boundaries.
 See `docs/automation-manifest.md` for the generated check matrix.
 See `docs/maintenance-cadence.md` for the normal issue, batching, and release
 rhythm.
+See `ROADMAP.md` for the current state, next candidates, and non-goals.
 See `docs/500-task-plan.md` for the long-horizon scheme backlog.
 See `docs/500-task-board.md` for the committed task board used to plan
 incremental scheme work without turning every task into a release.

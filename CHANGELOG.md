@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a top-level roadmap that clarifies the current `v0.1.x` public line,
+  stable gallery-backed scope, next candidates, and non-goals.
 - Added shell-side `--formats` validation so invalid export formats fail before
   MATLAB starts.
 - Clarified that the 50 schemes are a catalog and that gallery-backed schemes
