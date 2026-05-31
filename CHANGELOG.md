@@ -4,10 +4,11 @@
 
 - Added a first-render walkthrough that gives new users a short MATLAB check,
   data inspection, plan-only, render, and post-render review path.
-- Completed `TASK-069` through `TASK-088` in one natural batch instead of
+- Completed `TASK-069` through `TASK-090` in one natural batch instead of
   cutting a release for every task.
 - Added committed previews and provenance checks for `scatter_relationship` and
-  `grouped_scatter`.
+  `grouped_scatter`, and marked the existing `density_scatter` gallery and
+  safety coverage as complete in the task board.
 - Added `grouped_scatter` and `density_scatter` data contracts, selection-rule
   coverage, explicit CLI coverage, PNG/vector render coverage, and report
   coverage.

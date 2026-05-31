@@ -38,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 88 |
-| planned | 412 |
+| done | 90 |
+| planned | 410 |
 
 ## Task Board
 
@@ -133,8 +133,8 @@ Total tasks: 500
 | `TASK-086-density_scatter-png-render` | `density_scatter` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme density_scatter --formats png` | done |
 | `TASK-087-density_scatter-vector-render` | `density_scatter` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme density_scatter --formats svg,pdf` | done |
 | `TASK-088-density_scatter-report` | `density_scatter` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "density_scatter" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
-| `TASK-089-density_scatter-gallery` | `density_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
-| `TASK-090-density_scatter-safety` | `density_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
+| `TASK-089-density_scatter-gallery` | `density_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
+| `TASK-090-density_scatter-safety` | `density_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-091-contour_scatter-catalog` | `contour_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info contour_scatter` | planned |
 | `TASK-092-contour_scatter-data-contract` | `contour_scatter` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "contour_scatter" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
 | `TASK-093-contour_scatter-demo-data` | `contour_scatter` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
