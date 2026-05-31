@@ -88,7 +88,13 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     --out)
-      require_value "$1" "${2:-}"
+      if [[ "$#" -lt 2 || "${2:-}" == --* ]]; then
+        require_value "$1" "${2:-}"
+      fi
+      if [[ -z "$2" ]]; then
+        echo "--out must not be empty." >&2
+        exit 2
+      fi
       OUT_DIR="$2"
       shift 2
       ;;

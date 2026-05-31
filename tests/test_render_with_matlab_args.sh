@@ -72,4 +72,29 @@ check_bad_formats() {
 check_bad_formats "png,jpg" "Invalid --formats entry: jpg"
 check_bad_formats "," "--formats must include at least one"
 
+check_empty_out_dir() {
+  local out_file="$TMP_DIR/outdir.out"
+  local err_file="$TMP_DIR/outdir.err"
+  local status
+
+  set +e
+  "$SCRIPT" --list-schemes --out "" >"$out_file" 2>"$err_file"
+  status=$?
+  set -e
+
+  if [[ "$status" -ne 2 ]]; then
+    echo "expected empty --out to exit 2, got $status" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+
+  if ! grep -q -- "--out must not be empty" "$err_file"; then
+    echo "expected clear empty --out validation message" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+}
+
+check_empty_out_dir
+
 echo "render_with_matlab argument test passed."

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Made `--out ""` fail with a specific empty-output-directory message before
+  MATLAB starts.
 - Added a shareable `docs/first-five-minutes.md` guide for the fresh-clone
   metadata, MATLAB check, bundled CSV planning, and scratch rendering path.
 - Added a README `First 5 Minutes` path that separates metadata checks,
