@@ -12,6 +12,12 @@ that currently have committed gallery previews and completed support tasks.
 | render path started | 0 |
 | cataloged | 39 |
 
+## Stable First-Use Schemes
+
+`line_trend`, `multi_line_comparison`, `confidence_band`, `zoomed_inset_line`, `positive_negative_area`, `segmented_line`, `scatter_relationship`, `grouped_scatter`, `density_scatter`
+
+Start with these before trying cataloged-only schemes.
+
 ## Matrix
 
 | Scheme | Family | Readiness | Gallery | Data Contract | Explicit CLI | PNG | Vector | Report | Safety |

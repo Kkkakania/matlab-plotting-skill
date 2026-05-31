@@ -74,6 +74,19 @@ def write_markdown(rows: list[dict[str, object]], output: Path) -> None:
     ]
     for label in ["gallery-backed", "preview available", "render path started", "cataloged"]:
         lines.append(f"| {label} | {counts.get(label, 0)} |")
+
+    stable = [f"`{row['scheme']}`" for row in rows if row["readiness"] == "gallery-backed"]
+    stable_text = ", ".join(stable) if stable else "(none yet)"
+    lines.extend(
+        [
+            "",
+            "## Stable First-Use Schemes",
+            "",
+            stable_text,
+            "",
+            "Start with these before trying cataloged-only schemes.",
+        ]
+    )
     lines.extend(
         [
             "",

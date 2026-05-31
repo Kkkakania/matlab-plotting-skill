@@ -219,10 +219,11 @@ For the exact policy, see `docs/maintenance-cadence.md`.
 
 The catalog contains 50 plotting schemes across trends, relationships,
 heatmaps, bars, distributions, rankings, compositions, multivariate plots, and
-paper layout helpers. Treat the gallery-backed schemes as the most stable
-first-use path: they have committed previews, data contracts, CLI coverage,
-PNG/vector checks, reports, and safety coverage. Cataloged-only schemes are
-tracked design targets until their support lanes are completed.
+paper layout helpers. Treat the gallery-backed schemes listed in
+`docs/scheme-readiness.md` as the most stable first-use path: they have
+committed previews, data contracts, CLI coverage, PNG/vector checks, reports,
+and safety coverage. Cataloged-only schemes are tracked design targets until
+their support lanes are completed.
 
 Similar schemes share parameterized renderers so the skill stays maintainable.
 
