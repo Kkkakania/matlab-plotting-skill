@@ -15,6 +15,14 @@ body:
       placeholder: "macOS 15, MATLAB R2025a, MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab"
     validations:
       required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit
+      description: Fresh-clone commit or branch tested.
+      placeholder: "main at abc1234"
+    validations:
+      required: true
   - type: dropdown
     id: data_type
     attributes:
@@ -27,6 +35,14 @@ body:
         - Metadata-only commands
     validations:
       required: true
+  - type: input
+    id: goal_text
+    attributes:
+      label: Goal text
+      description: Goal text passed to --goal, or "explicit scheme" when you selected a scheme directly.
+      placeholder: "show a time trend"
+    validations:
+      required: false
   - type: textarea
     id: commands
     attributes:
@@ -39,14 +55,24 @@ body:
     id: result
     attributes:
       label: Result
-      description: What worked, what failed, and which scheme was selected?
+      description: What worked, what failed, which scheme was selected, and which output formats were produced?
     validations:
       required: true
   - type: textarea
     id: report_summary
     attributes:
       label: Report summary
-      description: Paste the scheme name, alternatives, and warnings from render_report.md/json. Do not paste private data.
+      description: Paste selected scheme, top alternatives, output formats, and warnings from render_report.md/json. Do not paste private data.
+    validations:
+      required: false
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected vs actual
+      description: State the expected result and the actual result, especially for confusing choices or failures.
+      placeholder: |
+        Expected result:
+        Actual result:
     validations:
       required: false
   - type: checkboxes
@@ -57,4 +83,6 @@ body:
         - label: I did not upload private data, credentials, copied paper figures, or raw third-party plotting code.
           required: true
         - label: I redacted local absolute paths if they identify private folders.
+          required: true
+        - label: I confirmed private details are redacted from commands and report snippets.
           required: true

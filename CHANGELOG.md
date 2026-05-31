@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Expanded the first-use feedback issue template with commit, goal text, top
+  alternatives, output formats, expected/actual behavior, and explicit
+  redaction confirmation fields.
 - Added a copyable first-use feedback report template to the first-render
   walkthrough so fresh-clone reports are easier to reproduce without private
   paths or data.
