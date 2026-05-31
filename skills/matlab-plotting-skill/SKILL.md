@@ -48,6 +48,10 @@ plotting repositories, encrypted MATLAB files, or article image packs.
    warnings from `render_report.md`. Use `render_report.json` when a script or
    follow-up automation needs structured metadata.
 
+For a first-time user, mirror the sequence in
+`docs/first-render-walkthrough.md`: check MATLAB, inspect data, run
+`--plan-only`, render PNG/SVG, then review the report and privacy checks.
+
 ## MATLAB CLI
 
 The renderer uses `MATLAB_BIN` when set, then falls back to `matlab` on `PATH`.

@@ -1,0 +1,101 @@
+# First Render Walkthrough
+
+This walkthrough is the shortest path from a data file to a rendered MATLAB
+figure. It is written for first-time users who want one safe command sequence
+before reading the full scheme catalog.
+
+## 1. Check MATLAB
+
+Set `MATLAB_BIN` when MATLAB is not already on `PATH`:
+
+```bash
+export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
+./scripts/render_with_matlab.sh --check
+```
+
+If this fails, fix MATLAB first. Metadata-only commands such as
+`--list-schemes`, `--scheme-info`, and `--scheme-info-json` can still run
+without MATLAB.
+
+## 2. Inspect The Data
+
+Use `--inspect-data` before choosing a chart when the file is new to you:
+
+```bash
+./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
+```
+
+For MAT files with several plausible variables, add `--var <name>` after
+inspecting the available variables. Do not guess when the variable choice is
+ambiguous.
+
+## 3. Preview The Choice
+
+Use `--plan-only` to see the selected scheme, alternatives, and score snapshot
+without writing figure files:
+
+```bash
+./scripts/render_with_matlab.sh \
+  --plan-only \
+  --data examples/data/time_series.csv \
+  --goal "show a time trend"
+```
+
+If the selected scheme is not what you want, either adjust the goal text or use
+an explicit scheme:
+
+```bash
+./scripts/render_with_matlab.sh --scheme-info line_trend
+```
+
+## 4. Render PNG And SVG
+
+Render only after the data and scheme make sense:
+
+```bash
+./scripts/render_with_matlab.sh \
+  --data examples/data/time_series.csv \
+  --goal "show a time trend" \
+  --out figures/first-render \
+  --formats png,svg
+```
+
+The output directory should contain figure files plus:
+
+- `render_report.md`
+- `render_report.json`
+
+Use the Markdown report for human review and the JSON report for follow-up
+automation.
+
+## 5. Review Before Sharing
+
+Before using a figure in a paper, report, or repository:
+
+1. Check the selected scheme and alternatives in `render_report.md`.
+2. Confirm axis labels, legend labels, units, and title are meaningful.
+3. Confirm no private file paths, emails, raw screenshots, or personal data were
+   copied into the output directory.
+4. If the figure will be committed, run:
+
+```bash
+./scripts/check_gallery_outputs.sh --dir figures/first-render --format png
+./scripts/check_privacy.sh
+./scripts/check_forbidden_files.sh
+```
+
+## Common First Choices
+
+| Goal | First Scheme To Try |
+|---|---|
+| Show one ordered measurement over time | `line_trend` |
+| Compare several ordered series | `multi_line_comparison` |
+| Show uncertainty around a center line | `confidence_band` |
+| Inspect a local event in a long trend | `zoomed_inset_line` |
+| Show two numeric variables | `scatter_relationship` |
+| Show grouped x-y observations | `grouped_scatter` |
+| Show many overlapping x-y points | `density_scatter` |
+| Compare category scores | `grouped_bar` |
+| Show a numeric matrix | `heatmap_matrix` |
+
+For broader choices, use `docs/chart-selection-guide.md`.

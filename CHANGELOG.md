@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a first-render walkthrough that gives new users a short MATLAB check,
+  data inspection, plan-only, render, and post-render review path.
 - Completed `TASK-069` through `TASK-088` in one natural batch instead of
   cutting a release for every task.
 - Added committed previews and provenance checks for `scatter_relationship` and

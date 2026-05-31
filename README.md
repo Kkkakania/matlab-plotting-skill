@@ -75,6 +75,11 @@ Render a correlation figure from this Excel sheet.
 Choose a plot for this MAT file and export PNG/SVG.
 ```
 
+For a first hands-on pass, follow
+[`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md). It
+walks through MATLAB setup, data inspection, `--plan-only`, rendering, and
+post-render checks with one bundled CSV.
+
 ## CLI
 
 Set MATLAB if it is not already on `PATH`:
@@ -199,6 +204,7 @@ paper layout helpers. Similar schemes share parameterized renderers so the
 skill stays maintainable.
 
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
+See `docs/first-render-walkthrough.md` for the shortest first-render path.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/scheme-readiness.md` for the current user-facing support matrix.
