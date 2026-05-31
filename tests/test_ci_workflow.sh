@@ -10,6 +10,11 @@ if [[ ! -s "$WORKFLOW" ]]; then
 fi
 
 grep -q "scripts/build_automation_manifest.py" "$WORKFLOW"
+grep -q "actions/checkout@v6" "$WORKFLOW"
+if grep -q "actions/checkout@v4" "$WORKFLOW"; then
+  echo "quality workflow still uses checkout@v4" >&2
+  exit 1
+fi
 grep -q "tests/test_scheme_info.sh" "$WORKFLOW"
 grep -q "tests/test_automation_manifest.sh" "$WORKFLOW"
 grep -q "tests/test_ci_workflow.sh" "$WORKFLOW"
