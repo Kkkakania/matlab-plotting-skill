@@ -2,6 +2,16 @@
 
 This project favors steady maintenance over frequent version bumps.
 
+## Release History Boundary
+
+The `v0.1.x` bootstrap line used many small tags while the first public scheme
+catalog, preview gallery, task board, and release gates were assembled. Treat
+that as initial repository hardening, not the normal maintenance rhythm.
+
+Going forward, keep small documentation, checklist, and task-board updates in
+`Unreleased` until they form a user-visible batch. A release should make it
+easier for someone to install, render, inspect, report, or maintain figures.
+
 ## Normal Rhythm
 
 - Review new issues and first-use feedback weekly when there is activity.

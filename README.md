@@ -202,6 +202,16 @@ MATLAB wrapper checks on hosted Linux runners. They do not perform real MATLAB
 rendering. Rendering changes should also pass the MATLAB release gate above on a
 machine with MATLAB installed. See `docs/ci-coverage.md`.
 
+## Release Status
+
+The current public line is `v0.1.x`. Early bootstrap tags were intentionally
+small while the scheme catalog, preview gallery, task board, and release gates
+were being assembled. Future tags should be slower and grouped around
+user-visible changes such as a gallery-backed scheme, a new CLI/report field, a
+renderer behavior fix, or a first-use workflow improvement.
+
+For the exact policy, see `docs/maintenance-cadence.md`.
+
 ## Scheme Coverage
 
 The first release includes 50 plotting schemes across trends, relationships,

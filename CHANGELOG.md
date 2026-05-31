@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Clarified the `v0.1.x` bootstrap release history and future slower release
+  cadence in README and maintenance docs.
 - Added an ecosystem status document that links the three MATLAB repositories,
   feedback channels, and evidence boundaries for this skill.
 - Added a maintenance cadence document that explains weekly issue review,
