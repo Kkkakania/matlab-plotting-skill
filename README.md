@@ -82,6 +82,19 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
+Some commands are metadata-only and can be used before MATLAB is configured.
+Commands that inspect data, plan a figure, smoke-test schemes, or render output
+call MATLAB because the data loading and selection logic lives in the bundled
+MATLAB code.
+
+| Works without MATLAB | Requires MATLAB |
+|---|---|
+| `--list-schemes` | `--check` |
+| `--list-schemes-json` | `--inspect-data --data <file>` |
+| `--scheme-info <name>` | `--plan-only --data <file> --goal "<text>"` |
+| `--scheme-info-json <name>` | `--smoke-test` |
+|  | full rendering with `--data`, `--goal`, and `--out` |
+
 Render from data:
 
 ```bash
