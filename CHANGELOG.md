@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Completed `TASK-069` through `TASK-088` in one natural batch instead of
+  cutting a release for every task.
+- Added committed previews and provenance checks for `scatter_relationship` and
+  `grouped_scatter`.
+- Added `grouped_scatter` and `density_scatter` data contracts, selection-rule
+  coverage, explicit CLI coverage, PNG/vector render coverage, and report
+  coverage.
+
 ## v0.1.100
 
 - Completed `TASK-068-scatter_relationship-report` in the 500-task board.

@@ -50,6 +50,11 @@ if schema.CategoryCount > 0 && schema.NumericCount > 1
     scores(nameIndex(schemes, "grouped_bar")) = scores(nameIndex(schemes, "grouped_bar")) + 10;
     scores(nameIndex(schemes, "grouped_error_bar")) = scores(nameIndex(schemes, "grouped_error_bar")) + 6;
 end
+if schema.CategoryCount > 0 && schema.NumericCount >= 2 && ...
+        any(contains(goal, ["scatter", "relationship", "group", "grouped", "cluster", "cohort"]))
+    scores = addFamily(scores, schemes, "relationship", 10);
+    scores(nameIndex(schemes, "grouped_scatter")) = scores(nameIndex(schemes, "grouped_scatter")) + 34;
+end
 if any(contains(goal, ["compare", "comparison", "method", "methods"]))
     scores = addFamily(scores, schemes, "bar", 8);
     scores(nameIndex(schemes, "grouped_bar")) = scores(nameIndex(schemes, "grouped_bar")) + 8;

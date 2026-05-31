@@ -121,6 +121,33 @@ cleanup = onCleanup(@() close(fig));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
 end
 
+function testGroupedScatterDemoDataSupportsGroupedXyRender(testCase)
+data = mpDemoDataForScheme("grouped_scatter");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["x", "y", "group"], string(data.Properties.VariableNames))));
+verifyGreaterThanOrEqual(testCase, numel(categories(data.group)), 3);
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
+verifyEqual(testCase, schema.CategoryCount, 1);
+fig = mpRenderScheme("grouped_scatter", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'scatter')), 3);
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'legend'));
+end
+
+function testDensityScatterDemoDataSupportsDenseXyRender(testCase)
+data = mpDemoDataForScheme("density_scatter");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["x", "y"], string(data.Properties.VariableNames))));
+verifyGreaterThanOrEqual(testCase, height(data), 500);
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
+fig = mpRenderScheme("density_scatter", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'colorbar'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
@@ -200,6 +227,30 @@ scatterScore = selection.AllScores(names == "scatter_relationship");
 densityScore = selection.AllScores(names == "density_scatter");
 verifyEqual(testCase, string(selection.Selected.Name), "scatter_relationship");
 verifyGreaterThanOrEqual(testCase, scatterScore, densityScore);
+end
+
+function testGroupedScatterSelectionRulePrefersGroupedXyGoal(testCase)
+data = mpDemoDataForScheme("grouped_scatter");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show grouped scatter relationship by group");
+names = string({mpSchemeCatalog().Name});
+groupedScatterScore = selection.AllScores(names == "grouped_scatter");
+groupedBarScore = selection.AllScores(names == "grouped_bar");
+scatterScore = selection.AllScores(names == "scatter_relationship");
+verifyEqual(testCase, string(selection.Selected.Name), "grouped_scatter");
+verifyGreaterThan(testCase, groupedScatterScore, groupedBarScore);
+verifyGreaterThan(testCase, groupedScatterScore, scatterScore);
+end
+
+function testDensityScatterSelectionRulePrefersDenseSamples(testCase)
+data = mpDemoDataForScheme("density_scatter");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show dense overlapping x-y samples");
+names = string({mpSchemeCatalog().Name});
+densityScore = selection.AllScores(names == "density_scatter");
+scatterScore = selection.AllScores(names == "scatter_relationship");
+verifyEqual(testCase, string(selection.Selected.Name), "density_scatter");
+verifyGreaterThan(testCase, densityScore, scatterScore);
 end
 
 function testSelectionForMethodComparison(testCase)
@@ -443,6 +494,128 @@ verifyTrue(testCase, contains(markdownReport, '`scatter_relationship`'));
 verifyTrue(testCase, contains(markdownReport, 'scatter_relationship.png'));
 verifyEqual(testCase, string(jsonReport.selectedScheme), "scatter_relationship");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "scatter_relationship.png")));
+end
+
+function testGroupedScatterExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-grouped-scatter');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_grouped_scatter_input.csv');
+writetable(mpDemoDataForScheme("grouped_scatter"), dataPath);
+result = mpRun(dataPath, "show grouped x-y relationship", outDir, "png", "grouped_scatter");
+verifyEqual(testCase, result.SelectedScheme, "grouped_scatter");
+verifyTrue(testCase, isfile(fullfile(outDir, 'grouped_scatter.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "grouped_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "grouped_scatter.png")));
+end
+
+function testGroupedScatterPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-grouped-scatter-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_grouped_scatter_png_input.csv');
+writetable(mpDemoDataForScheme("grouped_scatter"), dataPath);
+mpRun(dataPath, "show grouped x-y relationship", outDir, "png", "grouped_scatter");
+pngPath = fullfile(outDir, 'grouped_scatter.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
+function testGroupedScatterVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-grouped-scatter-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_grouped_scatter_vector_input.csv');
+writetable(mpDemoDataForScheme("grouped_scatter"), dataPath);
+mpRun(dataPath, "show grouped x-y relationship", outDir, ["svg", "pdf"], "grouped_scatter");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "grouped_scatter." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
+function testGroupedScatterReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-grouped-scatter-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_grouped_scatter_report_input.csv');
+writetable(mpDemoDataForScheme("grouped_scatter"), dataPath);
+mpRun(dataPath, "show grouped x-y relationship", outDir, "png", "grouped_scatter");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`grouped_scatter`'));
+verifyTrue(testCase, contains(markdownReport, 'grouped_scatter.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "grouped_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "grouped_scatter.png")));
+end
+
+function testDensityScatterExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-density-scatter');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_density_scatter_input.csv');
+writetable(mpDemoDataForScheme("density_scatter"), dataPath);
+result = mpRun(dataPath, "show dense x-y samples", outDir, "png", "density_scatter");
+verifyEqual(testCase, result.SelectedScheme, "density_scatter");
+verifyTrue(testCase, isfile(fullfile(outDir, 'density_scatter.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "density_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "density_scatter.png")));
+end
+
+function testDensityScatterPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-density-scatter-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_density_scatter_png_input.csv');
+writetable(mpDemoDataForScheme("density_scatter"), dataPath);
+mpRun(dataPath, "show dense x-y samples", outDir, "png", "density_scatter");
+pngPath = fullfile(outDir, 'density_scatter.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
+function testDensityScatterVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-density-scatter-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_density_scatter_vector_input.csv');
+writetable(mpDemoDataForScheme("density_scatter"), dataPath);
+mpRun(dataPath, "show dense x-y samples", outDir, ["svg", "pdf"], "density_scatter");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "density_scatter." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
+function testDensityScatterReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-density-scatter-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_density_scatter_report_input.csv');
+writetable(mpDemoDataForScheme("density_scatter"), dataPath);
+mpRun(dataPath, "show dense x-y samples", outDir, "png", "density_scatter");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`density_scatter`'));
+verifyTrue(testCase, contains(markdownReport, 'density_scatter.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "density_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "density_scatter.png")));
 end
 
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)

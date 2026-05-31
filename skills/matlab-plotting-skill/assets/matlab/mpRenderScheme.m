@@ -119,7 +119,8 @@ switch schemeName
             idx = categorical(group) == cats{k};
             scatter(ax, x(idx), y(idx), 28, colors(k, :), 'filled', 'MarkerFaceAlpha', 0.72);
         end
-        legend(ax, cats, 'Location', 'best');
+        lgd = legend(ax, cats, 'Location', 'best');
+        styleLegend(lgd);
     case "density_scatter"
         scatter(ax, x, y, 24, localDensity(x, y), 'filled');
         colormap(ax, mpPalette("sequential", 128));
@@ -716,6 +717,12 @@ box(ax, 'on');
 ax.LineWidth = 0.8;
 ax.GridAlpha = 0.18;
 ax.Color = 'w';
+end
+
+function styleLegend(lgd)
+lgd.Color = [1 1 1];
+lgd.TextColor = [0.20 0.20 0.20];
+lgd.EdgeColor = [0.78 0.78 0.78];
 end
 
 function q = simplePercentiles(v, p)

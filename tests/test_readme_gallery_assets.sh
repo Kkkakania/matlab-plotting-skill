@@ -8,6 +8,8 @@ assets=(
   "docs/gallery/multi_line_comparison.png"
   "docs/gallery/confidence_band.png"
   "docs/gallery/zoomed_inset_line.png"
+  "docs/gallery/scatter_relationship.png"
+  "docs/gallery/grouped_scatter.png"
   "docs/gallery/positive_negative_area.png"
   "docs/gallery/segmented_line.png"
   "docs/gallery/grouped_bar.png"

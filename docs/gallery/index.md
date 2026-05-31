@@ -10,6 +10,8 @@ Gallery directory: `docs/gallery`
 | `zoomed_inset_line` | Trend | Long trend with a local event | ![zoomed_inset_line](zoomed_inset_line.png) |
 | `positive_negative_area` | Trend | Signed change around zero | ![positive_negative_area](positive_negative_area.png) |
 | `segmented_line` | Trend | Phase or regime changes | ![segmented_line](segmented_line.png) |
+| `scatter_relationship` | Relationship | Two continuous variables | ![scatter_relationship](scatter_relationship.png) |
+| `grouped_scatter` | Relationship | Two variables with groups | ![grouped_scatter](grouped_scatter.png) |
 | `density_scatter` | Relationship | Dense x-y samples | ![density_scatter](density_scatter.png) |
 | `heatmap_matrix` | Matrix | Numeric matrix | ![heatmap_matrix](heatmap_matrix.png) |
 | `grouped_bar` | Bar | Category comparison | ![grouped_bar](grouped_bar.png) |

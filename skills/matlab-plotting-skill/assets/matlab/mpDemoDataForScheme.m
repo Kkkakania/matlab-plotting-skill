@@ -10,6 +10,29 @@ if any(contains(schemeName, ["heatmap", "matrix", "bubble_matrix", "correlation"
     return
 end
 
+if schemeName == "grouped_scatter"
+    nPerGroup = 70;
+    groupNames = ["low"; "mid"; "high"];
+    group = categorical(repelem(groupNames, nPerGroup), groupNames);
+    [~, ~, groupIndex] = unique(string(group));
+    x = randn(numel(group), 1) * 0.55 + double(groupIndex) * 0.8 - 1.6;
+    y = 0.55 * x + double(groupIndex) * 0.42 + 0.34 * randn(numel(group), 1);
+    magnitude = abs(y - mean(y)) + 0.35;
+    data = table(x, y, group, magnitude, ...
+        'VariableNames', {'x', 'y', 'group', 'magnitude'});
+    return
+end
+
+if schemeName == "density_scatter"
+    n = 720;
+    cluster = randi(3, n, 1);
+    centers = [-1.15 -0.75; 0.20 0.15; 1.05 0.85];
+    x = centers(cluster, 1) + 0.42 * randn(n, 1);
+    y = centers(cluster, 2) + 0.55 * randn(n, 1) + 0.35 * x;
+    data = table(x, y, 'VariableNames', {'x', 'y'});
+    return
+end
+
 if any(contains(schemeName, ["scatter", "pca"]))
     n = 180;
     x = linspace(-2, 2, n)';

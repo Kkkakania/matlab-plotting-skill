@@ -27,13 +27,17 @@ provenance is tracked in `docs/gallery/provenance.md`.
 |---|---|---|
 | ![line trend](docs/gallery/line_trend.png) | ![multi-line comparison](docs/gallery/multi_line_comparison.png) | ![confidence band](docs/gallery/confidence_band.png) |
 
-| Zoomed Inset | Heatmap | Density Scatter |
+| Zoomed Inset | Scatter | Density Scatter |
 |---|---|---|
-| ![zoomed inset line](docs/gallery/zoomed_inset_line.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![density scatter](docs/gallery/density_scatter.png) |
+| ![zoomed inset line](docs/gallery/zoomed_inset_line.png) | ![scatter relationship](docs/gallery/scatter_relationship.png) | ![density scatter](docs/gallery/density_scatter.png) |
 
-| Grouped Bar | Positive/Negative Area | Segmented Line |
+| Grouped Scatter | Heatmap | Grouped Bar |
 |---|---|---|
-| ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) | ![segmented line](docs/gallery/segmented_line.png) |
+| ![grouped scatter](docs/gallery/grouped_scatter.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
+
+| Positive/Negative Area | Segmented Line |
+|---|---|
+| ![positive negative area](docs/gallery/positive_negative_area.png) | ![segmented line](docs/gallery/segmented_line.png) |
 
 ## Install
 

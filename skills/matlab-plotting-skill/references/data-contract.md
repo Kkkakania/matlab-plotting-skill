@@ -95,3 +95,26 @@ Avoid this scheme for already aggregated category summaries, arbitrary x-axis
 orders, or data where one variable is a label rather than a measurement. Use
 `grouped_bar`, `box_jitter`, or `grouped_scatter` when categories or group
 membership are central to the question.
+
+### `grouped_scatter`
+
+Use at least two numeric columns plus one grouping column, for example
+`x, y, group` or `input, response, cohort`. Each row should still be a paired
+observation; the group column explains why points should be colored or compared
+as separate cohorts.
+
+Avoid this scheme when the group column is only an ID with many unique values,
+or when the data has already been reduced to one value per category. Use
+`scatter_relationship` when groups are not important, and use `grouped_bar` or
+`box_jitter` when category comparison is the main question.
+
+### `density_scatter`
+
+Use at least two numeric columns with hundreds of paired observations, especially
+when overlapping points would hide the actual sample density. A table like
+`x, y` is enough; optional extra numeric columns are ignored by the default
+renderer.
+
+Avoid this scheme for small datasets where individual points are easy to see.
+Use `scatter_relationship` for simple sparse x-y data, or `contour_scatter`
+when local density contours are easier to read than colored points.

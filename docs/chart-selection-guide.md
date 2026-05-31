@@ -29,8 +29,10 @@ together.
 
 - Simple x-y relation: `scatter_relationship` (paired rows with at least two
   numeric measurement columns)
-- Groups in x-y data: `grouped_scatter`
-- Dense overlapping points: `density_scatter` or `contour_scatter`
+- Groups in x-y data: `grouped_scatter` (columns such as `x, y, group`, where
+  the group changes how the relationship should be read)
+- Dense overlapping points: `density_scatter` or `contour_scatter` when sample
+  overlap hides individual points
 - Trend line needed: `regression_scatter`
 - Third magnitude variable: `bubble_scatter`
 - Model checking: `residual_scatter`
