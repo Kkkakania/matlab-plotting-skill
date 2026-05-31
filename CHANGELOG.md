@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a maintenance cadence document that explains weekly issue review,
+  batching, release shapes, and when not to tag.
 - Reframed the 500-task planning board as a long-horizon scheme backlog rather
   than a release cadence, and added tests to keep that language visible.
 - Expanded the first-use feedback issue template with commit, goal text, top
