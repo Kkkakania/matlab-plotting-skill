@@ -85,6 +85,39 @@ commands run, selected scheme, report summary, and any redacted failure output.
 Use the first-use feedback issue template for that path instead of pasting
 private data files or local path dumps.
 
+## First 5 Minutes
+
+Use this narrow path on a fresh clone before trying private data:
+
+1. Check the catalog without MATLAB.
+
+   ```bash
+   ./scripts/render_with_matlab.sh --list-schemes
+   ./scripts/render_with_matlab.sh --scheme-info line_trend
+   ```
+
+2. Confirm MATLAB is callable.
+
+   ```bash
+   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --check
+   ```
+
+3. Inspect and plan with the bundled CSV.
+
+   ```bash
+   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
+   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --plan-only --data examples/data/time_series.csv --goal "show a time trend"
+   ```
+
+4. Render into a scratch directory.
+
+   ```bash
+   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a time trend" --out /tmp/matlab-plotting-skill-first-render --formats png,svg
+   ```
+
+SFT_OUTPUT_DIR is not used by this repository; pass `--out <directory>` to
+choose the render location.
+
 ## CLI
 
 ### Try Metadata First

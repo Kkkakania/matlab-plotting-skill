@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a README `First 5 Minutes` path that separates metadata checks,
+  MATLAB availability, CSV inspection, plan-only selection, and scratch-output
+  rendering for fresh clones.
 - Added the metadata-first CLI path to the first-render walkthrough so users
   can verify the catalog before troubleshooting MATLAB.
 - Added a metadata-first CLI path in the README so new users can inspect the
