@@ -1,4 +1,4 @@
-# 500 Task Plan
+# Long-Horizon Scheme Backlog
 
 This roadmap is generated from the public 50-scheme catalog:
 
@@ -8,16 +8,21 @@ python3 scripts/build_task_manifest.py \
   --markdown-out task-board.md
 ```
 
-The task model is deliberately exact:
+The task model is deliberately exact, but it is a backlog, not a release
+cadence. Maintainers should batch related tasks into normal releases, keep
+small documentation fixes in `Unreleased`, and avoid publishing a tag for every
+row.
+
+Current scope:
 
 - 50 plotting schemes.
 - 10 task lanes for each scheme.
 - 500 planned tasks total.
 
-The generated JSON is the source of truth. The Markdown board is a readable
-view for maintainers. It includes family and lane summaries before the full
-task table, so maintainers can review coverage without scanning all 500 rows.
-The repository also commits a full generated board at
+The generated JSON is the source of truth for planning coverage. The Markdown
+board is a readable view for maintainers. It includes family and lane summaries
+before the full task table, so maintainers can review coverage without scanning
+all 500 rows. The repository also commits a full generated board at
 `docs/500-task-board.md`.
 
 For focused work, filter the generated board:

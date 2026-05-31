@@ -86,5 +86,7 @@
   "TASK-085-density_scatter-explicit-cli": "done",
   "TASK-086-density_scatter-png-render": "done",
   "TASK-087-density_scatter-vector-render": "done",
-  "TASK-088-density_scatter-report": "done"
+  "TASK-088-density_scatter-report": "done",
+  "TASK-089-density_scatter-gallery": "done",
+  "TASK-090-density_scatter-safety": "done"
 }

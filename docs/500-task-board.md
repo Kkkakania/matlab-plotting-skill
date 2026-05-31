@@ -1,4 +1,7 @@
-# 500 Task Plan
+# Long-Horizon Scheme Backlog
+
+This board is a planning backlog, not a release cadence. Batch related
+tasks into normal maintenance releases instead of tagging every row.
 
 Total schemes: 50
 Task lanes per scheme: 10

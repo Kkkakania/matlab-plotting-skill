@@ -7,8 +7,8 @@ that currently have committed gallery previews and completed support tasks.
 
 | Readiness | Schemes |
 |---|---:|
-| gallery-backed | 8 |
-| preview available | 3 |
+| gallery-backed | 9 |
+| preview available | 2 |
 | render path started | 0 |
 | cataloged | 39 |
 
@@ -24,7 +24,7 @@ that currently have committed gallery previews and completed support tasks.
 | `segmented_line` | Trend | gallery-backed | [preview](gallery/segmented_line.png) | yes | yes | yes | yes | yes | yes |
 | `scatter_relationship` | Relationship | gallery-backed | [preview](gallery/scatter_relationship.png) | yes | yes | yes | yes | yes | yes |
 | `grouped_scatter` | Relationship | gallery-backed | [preview](gallery/grouped_scatter.png) | yes | yes | yes | yes | yes | yes |
-| `density_scatter` | Relationship | preview available | [preview](gallery/density_scatter.png) | yes | yes | yes | yes | yes | no |
+| `density_scatter` | Relationship | gallery-backed | [preview](gallery/density_scatter.png) | yes | yes | yes | yes | yes | yes |
 | `contour_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |
 | `regression_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |
 | `bubble_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |

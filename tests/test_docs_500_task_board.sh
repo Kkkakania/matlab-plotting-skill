@@ -16,6 +16,8 @@ if [[ "$task_count" -ne 500 ]]; then
 fi
 
 grep -q "Total tasks: 500" "$BOARD"
+grep -q "Long-Horizon Scheme Backlog" "$BOARD"
+grep -q "planning backlog, not a release cadence" "$BOARD"
 grep -q "TASK-001-line_trend-catalog" "$BOARD"
 grep -q "TASK-500-annotated_callout-safety" "$BOARD"
 grep -q "Command Hint" "$BOARD"

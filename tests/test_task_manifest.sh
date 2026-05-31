@@ -55,6 +55,8 @@ PY
 
 grep -q "TASK-001-line_trend-catalog" "$TMP_MD"
 grep -q "TASK-500-annotated_callout-safety" "$TMP_MD"
+grep -q "Long-Horizon Scheme Backlog" "$TMP_MD"
+grep -q "planning backlog, not a release cadence" "$TMP_MD"
 grep -q "Total tasks: 500" "$TMP_MD"
 grep -q "| ID | Scheme | Lane | Goal | Acceptance | Command Hint | Status |" "$TMP_MD"
 grep -q "Catalog entry names the scheme" "$TMP_MD"

@@ -168,17 +168,18 @@ python3 scripts/build_automation_manifest.py --out figures/automation-manifest.j
 GitHub Actions also uploads this manifest as a workflow artifact on each push
 and pull request.
 
-Build the exact 500-task plan:
+Build the long-horizon scheme backlog:
 
 ```bash
 python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md
 ```
 
-The task plan maps 50 plotting schemes to 10 concrete task lanes each and
-summarizes coverage by family and lane. GitHub Actions uploads both
-`task-manifest.json` and `task-board.md`.
+The backlog maps 50 plotting schemes to 10 concrete task lanes each and
+summarizes coverage by family and lane. It is planning infrastructure, not a
+release cadence, so related rows should be batched into normal maintenance
+releases. GitHub Actions uploads both `task-manifest.json` and `task-board.md`.
 
-Filter the task plan when working on one scheme or one lane:
+Filter the backlog when working on one scheme or one lane:
 
 ```bash
 python3 scripts/build_task_manifest.py --json-out line-trend.json --markdown-out line-trend.md --scheme line_trend
@@ -215,8 +216,9 @@ See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
 See `docs/automation-manifest.md` for the generated check matrix.
-See `docs/500-task-plan.md` for the exact 500-task roadmap.
-See `docs/500-task-board.md` for the committed 500 planned goals and steps.
+See `docs/500-task-plan.md` for the long-horizon scheme backlog.
+See `docs/500-task-board.md` for the committed task board used to plan
+incremental scheme work without turning every task into a release.
 
 ## Provenance
 

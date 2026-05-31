@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build an exact 500-task roadmap for the plotting skill."""
+"""Build the long-horizon scheme backlog for the plotting skill."""
 
 from __future__ import annotations
 
@@ -181,7 +181,10 @@ def write_markdown(manifest: dict[str, object], output_path: Path) -> None:
     tasks = manifest["tasks"]
     assert isinstance(tasks, list)
     lines = [
-        "# 500 Task Plan",
+        "# Long-Horizon Scheme Backlog",
+        "",
+        "This board is a planning backlog, not a release cadence. Batch related",
+        "tasks into normal maintenance releases instead of tagging every row.",
         "",
         f"Total schemes: {manifest['scheme_count']}",
         f"Task lanes per scheme: {manifest['lane_count']}",
@@ -256,7 +259,7 @@ def main() -> int:
     args.json_out.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     write_markdown(manifest, args.markdown_out)
     print(
-        f"Wrote {manifest['task_count']} planned tasks for "
+        f"Wrote {manifest['task_count']} backlog tasks for "
         f"{manifest['scheme_count']} schemes: {args.json_out}, {args.markdown_out}"
     )
     return 0

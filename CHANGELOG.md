@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Reframed the 500-task planning board as a long-horizon scheme backlog rather
+  than a release cadence, and added tests to keep that language visible.
 - Expanded the first-use feedback issue template with commit, goal text, top
   alternatives, output formats, expected/actual behavior, and explicit
   redaction confirmation fields.
