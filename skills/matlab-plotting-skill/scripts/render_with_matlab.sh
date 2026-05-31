@@ -5,6 +5,7 @@ SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MATLAB_DIR="$SKILL_DIR/assets/matlab"
 SCHEME_CATALOG="$SKILL_DIR/references/scheme-catalog.md"
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
+MP_MATLAB_TIMEOUT_SECONDS="${MP_MATLAB_TIMEOUT_SECONDS:-600}"
 DATA_PATH=""
 GOAL_TEXT=""
 OUT_DIR="figures"
@@ -36,6 +37,7 @@ Usage:
 
 Environment:
   MATLAB_BIN=/path/to/matlab
+  MP_MATLAB_TIMEOUT_SECONDS=600
 USAGE
 }
 
@@ -177,6 +179,63 @@ check_matlab_bin() {
   fi
 }
 
+run_with_timeout() {
+  local seconds="$1"
+  shift
+
+  if [[ "$seconds" == "0" ]]; then
+    "$@"
+    return
+  fi
+
+  if [[ ! "$seconds" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+    echo "Invalid timeout seconds: $seconds" >&2
+    return 2
+  fi
+
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 not found; running MATLAB command without timeout guard." >&2
+    "$@"
+    return
+  fi
+
+  python3 - "$seconds" "$@" <<'PY'
+import os
+import signal
+import subprocess
+import sys
+import time
+
+seconds = float(sys.argv[1])
+command = sys.argv[2:]
+
+try:
+    process = subprocess.Popen(command, start_new_session=True)
+except OSError as exc:
+    print(f"Failed to start command: {exc}", file=sys.stderr)
+    sys.exit(127)
+
+try:
+    sys.exit(process.wait(timeout=seconds))
+except subprocess.TimeoutExpired:
+    print(f"Command timed out after {seconds:g}s.", file=sys.stderr)
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    try:
+        process.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        process.wait()
+    time.sleep(0.1)
+    sys.exit(124)
+PY
+}
+
 scheme_info() {
   local scheme_name="$1"
   local output_mode="$2"
@@ -271,7 +330,7 @@ fi
 check_matlab_bin
 
 if [[ "$CHECK_ONLY" -eq 1 ]]; then
-  "$MATLAB_BIN" -batch "disp(version)"
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "disp(version)"
   echo "MATLAB CLI check passed: $MATLAB_BIN"
   exit 0
 fi
@@ -288,7 +347,7 @@ matlab_quote() {
 formats_expr="split(string($(matlab_quote "$FORMATS")), ',')"
 
 if [[ "$SMOKE_TEST" -eq 1 ]]; then
-  "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); mpSmokeTest($(matlab_quote "$OUT_DIR"), $formats_expr);"
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); mpSmokeTest($(matlab_quote "$OUT_DIR"), $formats_expr);"
   exit 0
 fi
 
@@ -304,13 +363,13 @@ if [[ ! -f "$DATA_PATH" ]]; then
 fi
 
 if [[ "$INSPECT_DATA" -eq 1 ]]; then
-  "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); inspection = mpInspectData($(matlab_quote "$DATA_PATH"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(inspection));"
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); inspection = mpInspectData($(matlab_quote "$DATA_PATH"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(inspection));"
   exit 0
 fi
 
 if [[ "$PLAN_ONLY" -eq 1 ]]; then
-  "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(plan));"
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(plan));"
   exit 0
 fi
 
-"$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(result.SelectedScheme);"
+run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(result.SelectedScheme);"

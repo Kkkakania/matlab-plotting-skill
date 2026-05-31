@@ -55,6 +55,8 @@ For a first-time user, mirror the sequence in
 ## MATLAB CLI
 
 The renderer uses `MATLAB_BIN` when set, then falls back to `matlab` on `PATH`.
+MATLAB-backed commands have a 600-second timeout by default; set
+`MP_MATLAB_TIMEOUT_SECONDS=0` only for deliberate long local renders.
 On macOS, a common value is:
 
 ```bash

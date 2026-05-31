@@ -97,4 +97,28 @@ check_empty_out_dir() {
 
 check_empty_out_dir
 
+FAKE_MATLAB="$TMP_DIR/fake_matlab"
+cat >"$FAKE_MATLAB" <<'SH'
+#!/usr/bin/env bash
+exit 0
+SH
+chmod +x "$FAKE_MATLAB"
+
+set +e
+env MP_MATLAB_TIMEOUT_SECONDS=bad MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --check >"$TMP_DIR/timeout.out" 2>"$TMP_DIR/timeout.err"
+timeout_status=$?
+set -e
+
+if [[ "$timeout_status" -ne 2 ]]; then
+  echo "expected invalid timeout to exit 2, got $timeout_status" >&2
+  cat "$TMP_DIR/timeout.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "Invalid timeout seconds" "$TMP_DIR/timeout.err"; then
+  echo "expected clear invalid timeout message" >&2
+  cat "$TMP_DIR/timeout.err" >&2
+  exit 1
+fi
+
 echo "render_with_matlab argument test passed."
