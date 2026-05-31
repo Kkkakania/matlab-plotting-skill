@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added an ecosystem status document that links the three MATLAB repositories,
+  feedback channels, and evidence boundaries for this skill.
 - Added a maintenance cadence document that explains weekly issue review,
   batching, release shapes, and when not to tag.
 - Reframed the 500-task planning board as a long-horizon scheme backlog rather

@@ -215,6 +215,8 @@ See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
+See `docs/ecosystem-status.md` for repository roles, feedback channels, and
+claim boundaries.
 See `docs/automation-manifest.md` for the generated check matrix.
 See `docs/maintenance-cadence.md` for the normal issue, batching, and release
 rhythm.
