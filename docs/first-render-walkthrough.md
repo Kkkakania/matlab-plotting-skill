@@ -95,6 +95,24 @@ selected scheme, `render_report.md` summary, and a short description of what was
 expected. Redact private paths, research data, emails, and local account names
 before posting.
 
+Copy this template when reporting a first-use result:
+
+```text
+OS:
+MATLAB:
+Commit:
+Command sequence:
+Data shape:
+Goal text:
+Selected scheme:
+Top alternatives:
+Output formats:
+render_report.md summary:
+Expected result:
+Actual result:
+Private details redacted: yes/no
+```
+
 ## Common First Choices
 
 | Goal | First Scheme To Try |

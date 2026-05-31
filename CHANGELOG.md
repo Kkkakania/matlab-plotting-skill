@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a copyable first-use feedback report template to the first-render
+  walkthrough so fresh-clone reports are easier to reproduce without private
+  paths or data.
 - Linked the first-render walkthrough to the public first-use feedback issue
   and added a privacy-safe feedback checklist for fresh-clone testers.
 - Added a first-use feedback issue template and README guidance so fresh-clone
