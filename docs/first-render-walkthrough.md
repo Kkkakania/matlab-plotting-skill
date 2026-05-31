@@ -84,6 +84,17 @@ Before using a figure in a paper, report, or repository:
 ./scripts/check_forbidden_files.sh
 ```
 
+## 6. Share First-Use Feedback
+
+If this walkthrough fails on a fresh clone, open the first-use feedback issue:
+
+https://github.com/Kkkakania/matlab-plotting-skill/issues/11
+
+Useful reports include the MATLAB version, operating system, command sequence,
+selected scheme, `render_report.md` summary, and a short description of what was
+expected. Redact private paths, research data, emails, and local account names
+before posting.
+
 ## Common First Choices
 
 | Goal | First Scheme To Try |

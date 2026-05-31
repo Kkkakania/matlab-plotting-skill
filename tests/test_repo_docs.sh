@@ -33,6 +33,8 @@ grep -q "# First Render Walkthrough" "$ROOT_DIR/docs/first-render-walkthrough.md
 grep -q -- "--inspect-data" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q -- "--plan-only" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q "render_report.md" "$ROOT_DIR/docs/first-render-walkthrough.md"
+grep -q "matlab-plotting-skill/issues/11" "$ROOT_DIR/docs/first-render-walkthrough.md"
+grep -q "Redact private paths" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q "The public workflow does not render figures with MATLAB" "$ROOT_DIR/docs/ci-coverage.md"
 grep -q "MATLAB release gate" "$ROOT_DIR/docs/ci-coverage.md"
 grep -q "# Scheme Readiness" "$ROOT_DIR/docs/scheme-readiness.md"

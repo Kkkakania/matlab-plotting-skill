@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Linked the first-render walkthrough to the public first-use feedback issue
+  and added a privacy-safe feedback checklist for fresh-clone testers.
 - Added a first-use feedback issue template and README guidance so fresh-clone
   testers can report MATLAB setup, commands, selected schemes, and report
   summaries without sharing private data.
