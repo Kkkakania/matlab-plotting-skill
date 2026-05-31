@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a shareable `docs/first-five-minutes.md` guide for the fresh-clone
+  metadata, MATLAB check, bundled CSV planning, and scratch rendering path.
 - Added a README `First 5 Minutes` path that separates metadata checks,
   MATLAB availability, CSV inspection, plan-only selection, and scratch-output
   rendering for fresh clones.
