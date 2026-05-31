@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a metadata-first CLI path in the README so new users can inspect the
+  scheme catalog before configuring MATLAB.
 - Added a generated stable first-use scheme list to the readiness matrix so
   users can start from gallery-backed schemes before exploring the full catalog.
 - Added a top-level roadmap that clarifies the current `v0.1.x` public line,

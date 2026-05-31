@@ -87,6 +87,20 @@ private data files or local path dumps.
 
 ## CLI
 
+### Try Metadata First
+
+Use these commands before configuring MATLAB:
+
+```bash
+./scripts/render_with_matlab.sh --list-schemes
+./scripts/render_with_matlab.sh --scheme-info line_trend
+./scripts/render_with_matlab.sh --scheme-info-json line_trend
+```
+
+These commands do not render figures. They help confirm that the repository,
+skill catalog, and shell wrapper are working before you point the workflow at a
+MATLAB executable.
+
 Set MATLAB if it is not already on `PATH`:
 
 ```bash
