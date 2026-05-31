@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a first-use feedback issue template and README guidance so fresh-clone
+  testers can report MATLAB setup, commands, selected schemes, and report
+  summaries without sharing private data.
 - Added a first-render walkthrough that gives new users a short MATLAB check,
   data inspection, plan-only, render, and post-render review path.
 - Completed `TASK-069` through `TASK-090` in one natural batch instead of

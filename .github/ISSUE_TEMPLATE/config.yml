@@ -1,6 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: First render walkthrough
+    url: https://github.com/Kkkakania/matlab-plotting-skill/blob/main/docs/first-render-walkthrough.md
+    about: Try the shortest safe path before opening a first-use feedback issue.
   - name: Read the scheme catalog
     url: https://github.com/Kkkakania/matlab-plotting-skill/blob/main/skills/matlab-plotting-skill/references/scheme-catalog.md
     about: Check existing plotting schemes before opening a request.
-

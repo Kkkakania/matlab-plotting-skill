@@ -80,6 +80,11 @@ For a first hands-on pass, follow
 walks through MATLAB setup, data inspection, `--plan-only`, rendering, and
 post-render checks with one bundled CSV.
 
+Fresh-clone feedback is most useful when it includes the MATLAB version,
+commands run, selected scheme, report summary, and any redacted failure output.
+Use the first-use feedback issue template for that path instead of pasting
+private data files or local path dumps.
+
 ## CLI
 
 Set MATLAB if it is not already on `PATH`:
