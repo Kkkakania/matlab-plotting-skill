@@ -34,6 +34,8 @@ ecosystem:
 All previews below are generated from bundled synthetic data.
 The generated preview index is in `docs/gallery/index.md`, and preview
 provenance is tracked in `docs/gallery/provenance.md`.
+Current support status is tracked in `docs/scheme-readiness.md`, which separates
+the 50-scheme catalog from gallery-backed and still-maturing schemes.
 
 | Trend | Multi-Line | Confidence Band |
 |---|---|---|
@@ -199,6 +201,7 @@ skill stays maintainable.
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
+See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
 See `docs/automation-manifest.md` for the generated check matrix.
 See `docs/500-task-plan.md` for the exact 500-task roadmap.
