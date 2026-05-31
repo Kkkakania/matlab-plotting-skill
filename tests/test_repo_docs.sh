@@ -25,5 +25,8 @@ grep -q "Works without MATLAB" "$ROOT_DIR/README.md"
 grep -q "Requires MATLAB" "$ROOT_DIR/README.md"
 grep -q -- "--list-schemes" "$ROOT_DIR/README.md"
 grep -q -- "--plan-only" "$ROOT_DIR/README.md"
+grep -q "docs/ci-coverage.md" "$ROOT_DIR/README.md"
+grep -q "The public workflow does not render figures with MATLAB" "$ROOT_DIR/docs/ci-coverage.md"
+grep -q "MATLAB release gate" "$ROOT_DIR/docs/ci-coverage.md"
 
 echo "repository docs test passed."

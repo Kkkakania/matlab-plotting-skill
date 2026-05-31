@@ -134,6 +134,10 @@ jobs:
           tests/test_release_check_script.sh
           tests/test_skill_plan_only_guidance.sh
           tests/test_example_prompts.sh
+      - name: MATLAB CLI shim tests (no rendering)
+        run: |
+          tests/test_matlab_check.sh
+          tests/test_render_with_matlab_args.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan

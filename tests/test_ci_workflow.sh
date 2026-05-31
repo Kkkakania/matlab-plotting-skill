@@ -55,5 +55,7 @@ grep -q "task-manifest.json" "$WORKFLOW"
 grep -q "task-board.md" "$WORKFLOW"
 grep -q "docs/task-status.json" "$WORKFLOW"
 grep -q "actions/upload-artifact" "$WORKFLOW"
+grep -q "MATLAB CLI shim tests (no rendering)" "$WORKFLOW"
+grep -q "tests/test_render_with_matlab_args.sh" "$WORKFLOW"
 
 echo "CI workflow test passed."

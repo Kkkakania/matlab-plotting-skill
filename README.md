@@ -184,6 +184,11 @@ Run the release gate:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/release_check.sh --with-matlab
 ```
 
+Public GitHub Actions run packaging, docs, manifest, privacy, provenance, and
+MATLAB wrapper checks on hosted Linux runners. They do not perform real MATLAB
+rendering. Rendering changes should also pass the MATLAB release gate above on a
+machine with MATLAB installed. See `docs/ci-coverage.md`.
+
 ## Scheme Coverage
 
 The first release includes 50 plotting schemes across trends, relationships,
