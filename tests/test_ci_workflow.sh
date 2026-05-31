@@ -56,7 +56,11 @@ grep -q "task-manifest.json" "$WORKFLOW"
 grep -q "task-board.md" "$WORKFLOW"
 grep -q "docs/task-status.json" "$WORKFLOW"
 grep -q "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true" "$WORKFLOW"
-grep -q "actions/upload-artifact" "$WORKFLOW"
+grep -q "actions/upload-artifact@v5" "$WORKFLOW"
+if grep -q "actions/upload-artifact@v4" "$WORKFLOW"; then
+  echo "quality workflow still uses upload-artifact@v4" >&2
+  exit 1
+fi
 grep -q "MATLAB CLI shim tests (no rendering)" "$WORKFLOW"
 grep -q "tests/test_render_with_matlab_args.sh" "$WORKFLOW"
 
