@@ -39,30 +39,47 @@ Environment:
 USAGE
 }
 
+require_value() {
+  local option="$1"
+  local value="${2:-}"
+
+  if [[ -z "$value" || "$value" == --* ]]; then
+    echo "$option requires a value." >&2
+    usage >&2
+    exit 2
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --data)
-      DATA_PATH="${2:-}"
+      require_value "$1" "${2:-}"
+      DATA_PATH="$2"
       shift 2
       ;;
     --goal)
-      GOAL_TEXT="${2:-}"
+      require_value "$1" "${2:-}"
+      GOAL_TEXT="$2"
       shift 2
       ;;
     --out)
-      OUT_DIR="${2:-}"
+      require_value "$1" "${2:-}"
+      OUT_DIR="$2"
       shift 2
       ;;
     --formats)
-      FORMATS="${2:-}"
+      require_value "$1" "${2:-}"
+      FORMATS="$2"
       shift 2
       ;;
     --scheme)
-      SCHEME_NAME="${2:-}"
+      require_value "$1" "${2:-}"
+      SCHEME_NAME="$2"
       shift 2
       ;;
     --var)
-      MAT_VARIABLE="${2:-}"
+      require_value "$1" "${2:-}"
+      MAT_VARIABLE="$2"
       shift 2
       ;;
     --smoke-test)
@@ -78,13 +95,15 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --scheme-info)
+      require_value "$1" "${2:-}"
       SCHEME_INFO=1
-      SCHEME_INFO_NAME="${2:-}"
+      SCHEME_INFO_NAME="$2"
       shift 2
       ;;
     --scheme-info-json)
+      require_value "$1" "${2:-}"
       SCHEME_INFO_JSON=1
-      SCHEME_INFO_NAME="${2:-}"
+      SCHEME_INFO_NAME="$2"
       shift 2
       ;;
     --check)

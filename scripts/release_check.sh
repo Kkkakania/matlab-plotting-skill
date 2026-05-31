@@ -71,6 +71,7 @@ tests/test_task_manifest_status.sh
 tests/test_repo_docs.sh
 tests/test_github_templates.sh
 tests/test_matlab_check.sh
+tests/test_render_with_matlab_args.sh
 tests/test_docs_quality_checklist.sh
 tests/test_docs_chart_selection.sh
 tests/test_line_trend_data_contract.sh
