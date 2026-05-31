@@ -16,18 +16,32 @@ gallery directory.
 USAGE
 }
 
+require_value() {
+  local option="$1"
+  local value="${2:-}"
+
+  if [[ -z "$value" || "$value" == --* ]]; then
+    echo "$option requires a value." >&2
+    usage >&2
+    exit 2
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dir)
-      GALLERY_DIR="${2:-}"
+      require_value "$1" "${2:-}"
+      GALLERY_DIR="$2"
       shift 2
       ;;
     --format)
-      FORMAT="${2:-}"
+      require_value "$1" "${2:-}"
+      FORMAT="$2"
       shift 2
       ;;
     --catalog)
-      CATALOG="${2:-}"
+      require_value "$1" "${2:-}"
+      CATALOG="$2"
       shift 2
       ;;
     --help|-h)

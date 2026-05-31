@@ -17,10 +17,22 @@ Default:
 USAGE
 }
 
+require_value() {
+  local option="$1"
+  local value="${2:-}"
+
+  if [[ -z "$value" || "$value" == --* ]]; then
+    echo "$option requires a value." >&2
+    usage >&2
+    exit 2
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --target)
-      TARGET_DIR="${2:-}"
+      require_value "$1" "${2:-}"
+      TARGET_DIR="$2"
       shift 2
       ;;
     --copy)
@@ -77,4 +89,3 @@ else
 fi
 
 echo "Installed matlab-plotting-skill at $DEST_DIR"
-
