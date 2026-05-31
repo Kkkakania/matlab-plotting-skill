@@ -50,6 +50,31 @@ require_value() {
   fi
 }
 
+validate_formats() {
+  local raw="$1"
+  local found=0
+  local format
+
+  IFS=',' read -r -a requested_formats <<<"$raw"
+  for format in "${requested_formats[@]}"; do
+    format="${format//[[:space:]]/}"
+    if [[ -z "$format" ]]; then
+      continue
+    fi
+    if [[ ! "$format" =~ ^(png|svg|pdf)$ ]]; then
+      echo "Invalid --formats entry: $format" >&2
+      echo "Use a comma-separated list containing png, svg, and/or pdf." >&2
+      exit 2
+    fi
+    found=1
+  done
+
+  if [[ "$found" -eq 0 ]]; then
+    echo "--formats must include at least one of: png, svg, pdf." >&2
+    exit 2
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --data)
@@ -129,6 +154,8 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+validate_formats "$FORMATS"
 
 check_matlab_bin() {
   if [[ "$MATLAB_BIN" == */* ]]; then

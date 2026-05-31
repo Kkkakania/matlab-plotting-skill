@@ -113,6 +113,9 @@ Render from data:
 ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a time trend" --out figures --formats png,svg
 ```
 
+`--formats` accepts a comma-separated list containing `png`, `svg`, and `pdf`.
+Invalid entries fail before MATLAB starts.
+
 Inspect data schema without selecting or rendering:
 
 ```bash

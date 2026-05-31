@@ -60,6 +60,9 @@ Render only after the data and scheme make sense:
   --formats png,svg
 ```
 
+Use `--formats png,svg,pdf` when you need both raster and paper-ready vector
+exports. The CLI rejects unknown format names before MATLAB starts.
+
 The output directory should contain figure files plus:
 
 - `render_report.md`

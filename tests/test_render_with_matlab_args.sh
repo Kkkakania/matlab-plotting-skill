@@ -44,4 +44,32 @@ check_missing_value --var
 check_missing_value --scheme-info
 check_missing_value --scheme-info-json
 
+check_bad_formats() {
+  local formats="$1"
+  local expected="$2"
+  local out_file="$TMP_DIR/formats.out"
+  local err_file="$TMP_DIR/formats.err"
+  local status
+
+  set +e
+  "$SCRIPT" --list-schemes --formats "$formats" >"$out_file" 2>"$err_file"
+  status=$?
+  set -e
+
+  if [[ "$status" -ne 2 ]]; then
+    echo "expected --formats '$formats' to exit 2, got $status" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+
+  if ! grep -q -- "$expected" "$err_file"; then
+    echo "expected clear format validation message for '$formats'" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+}
+
+check_bad_formats "png,jpg" "Invalid --formats entry: jpg"
+check_bad_formats "," "--formats must include at least one"
+
 echo "render_with_matlab argument test passed."
