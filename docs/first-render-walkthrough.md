@@ -4,7 +4,20 @@ This walkthrough is the shortest path from a data file to a rendered MATLAB
 figure. It is written for first-time users who want one safe command sequence
 before reading the full scheme catalog.
 
-## 1. Check MATLAB
+## 1. Try Metadata First
+
+Use these commands before configuring MATLAB:
+
+```bash
+./scripts/render_with_matlab.sh --list-schemes
+./scripts/render_with_matlab.sh --scheme-info line_trend
+./scripts/render_with_matlab.sh --scheme-info-json line_trend
+```
+
+They do not render figures. They confirm that the repository, scheme catalog,
+and shell wrapper are available before you troubleshoot MATLAB itself.
+
+## 2. Check MATLAB
 
 Set `MATLAB_BIN` when MATLAB is not already on `PATH`:
 
@@ -17,7 +30,7 @@ If this fails, fix MATLAB first. Metadata-only commands such as
 `--list-schemes`, `--scheme-info`, and `--scheme-info-json` can still run
 without MATLAB.
 
-## 2. Inspect The Data
+## 3. Inspect The Data
 
 Use `--inspect-data` before choosing a chart when the file is new to you:
 
@@ -29,7 +42,7 @@ For MAT files with several plausible variables, add `--var <name>` after
 inspecting the available variables. Do not guess when the variable choice is
 ambiguous.
 
-## 3. Preview The Choice
+## 4. Preview The Choice
 
 Use `--plan-only` to see the selected scheme, alternatives, and score snapshot
 without writing figure files:
@@ -48,7 +61,7 @@ an explicit scheme:
 ./scripts/render_with_matlab.sh --scheme-info line_trend
 ```
 
-## 4. Render PNG And SVG
+## 5. Render PNG And SVG
 
 Render only after the data and scheme make sense:
 
@@ -71,7 +84,7 @@ The output directory should contain figure files plus:
 Use the Markdown report for human review and the JSON report for follow-up
 automation.
 
-## 5. Review Before Sharing
+## 6. Review Before Sharing
 
 Before using a figure in a paper, report, or repository:
 
@@ -87,7 +100,7 @@ Before using a figure in a paper, report, or repository:
 ./scripts/check_forbidden_files.sh
 ```
 
-## 6. Share First-Use Feedback
+## 7. Share First-Use Feedback
 
 If this walkthrough fails on a fresh clone, open the first-use feedback issue:
 

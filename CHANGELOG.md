@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added the metadata-first CLI path to the first-render walkthrough so users
+  can verify the catalog before troubleshooting MATLAB.
 - Added a metadata-first CLI path in the README so new users can inspect the
   scheme catalog before configuring MATLAB.
 - Added a generated stable first-use scheme list to the readiness matrix so
