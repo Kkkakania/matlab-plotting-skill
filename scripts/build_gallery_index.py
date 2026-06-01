@@ -59,6 +59,13 @@ def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_e
     print(f"Wrote gallery index: {output}")
 
 
+def normalize_format(raw_format: str) -> str:
+    fmt = raw_format.strip().lstrip(".").lower()
+    if fmt not in {"png", "svg", "pdf"}:
+        raise SystemExit("Invalid gallery format. Use one of: png, svg, pdf.")
+    return fmt
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dir", required=True, type=Path, help="Directory containing rendered files.")
@@ -72,7 +79,7 @@ def main() -> None:
         raise SystemExit(f"Gallery directory not found: {args.dir}")
     if not args.catalog.is_file():
         raise SystemExit(f"Scheme catalog not found: {args.catalog}")
-    build_index(args.dir, args.catalog, args.out, args.format.lstrip("."), args.only_existing)
+    build_index(args.dir, args.catalog, args.out, normalize_format(args.format), args.only_existing)
 
 
 if __name__ == "__main__":

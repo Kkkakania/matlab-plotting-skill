@@ -23,4 +23,15 @@ grep -q "grouped_bar" "$TMP_DIR/index.md"
 grep -q "line_trend.png" "$TMP_DIR/index.md"
 grep -q "Category comparison" "$TMP_DIR/index.md"
 
+if python3 "$ROOT_DIR/scripts/build_gallery_index.py" \
+  --dir "$TMP_DIR" \
+  --catalog "$CATALOG" \
+  --out "$TMP_DIR/bad-index.md" \
+  --format '../png' >"$TMP_DIR/bad-format.out" 2>"$TMP_DIR/bad-format.err"; then
+  echo "invalid gallery index format should fail" >&2
+  exit 1
+fi
+
+grep -q "Invalid gallery format" "$TMP_DIR/bad-format.err"
+
 echo "gallery index test passed."
