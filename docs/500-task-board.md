@@ -1,7 +1,4 @@
-# Long-Horizon Scheme Backlog
-
-This board is a planning backlog, not a release cadence. Batch related
-tasks into normal maintenance releases instead of tagging every row.
+# 500 Task Plan
 
 Total schemes: 50
 Task lanes per scheme: 10
@@ -41,8 +38,8 @@ Total tasks: 500
 
 | Status | Tasks |
 |---|---:|
-| done | 90 |
-| planned | 410 |
+| done | 103 |
+| planned | 397 |
 
 ## Task Board
 
@@ -138,19 +135,19 @@ Total tasks: 500
 | `TASK-088-density_scatter-report` | `density_scatter` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "density_scatter" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
 | `TASK-089-density_scatter-gallery` | `density_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
 | `TASK-090-density_scatter-safety` | `density_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
-| `TASK-091-contour_scatter-catalog` | `contour_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info contour_scatter` | planned |
-| `TASK-092-contour_scatter-data-contract` | `contour_scatter` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "contour_scatter" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
-| `TASK-093-contour_scatter-demo-data` | `contour_scatter` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
-| `TASK-094-contour_scatter-selection-rule` | `contour_scatter` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme contour_scatter` | planned |
-| `TASK-095-contour_scatter-explicit-cli` | `contour_scatter` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme contour_scatter --formats png` | planned |
-| `TASK-096-contour_scatter-png-render` | `contour_scatter` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme contour_scatter --formats png` | planned |
-| `TASK-097-contour_scatter-vector-render` | `contour_scatter` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme contour_scatter --formats svg,pdf` | planned |
-| `TASK-098-contour_scatter-report` | `contour_scatter` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "contour_scatter" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |
-| `TASK-099-contour_scatter-gallery` | `contour_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
-| `TASK-100-contour_scatter-safety` | `contour_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
-| `TASK-101-regression_scatter-catalog` | `regression_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info regression_scatter` | planned |
-| `TASK-102-regression_scatter-data-contract` | `regression_scatter` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "regression_scatter" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
-| `TASK-103-regression_scatter-demo-data` | `regression_scatter` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |
+| `TASK-091-contour_scatter-catalog` | `contour_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info contour_scatter` | done |
+| `TASK-092-contour_scatter-data-contract` | `contour_scatter` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "contour_scatter" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
+| `TASK-093-contour_scatter-demo-data` | `contour_scatter` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
+| `TASK-094-contour_scatter-selection-rule` | `contour_scatter` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme contour_scatter` | done |
+| `TASK-095-contour_scatter-explicit-cli` | `contour_scatter` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme contour_scatter --formats png` | done |
+| `TASK-096-contour_scatter-png-render` | `contour_scatter` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme contour_scatter --formats png` | done |
+| `TASK-097-contour_scatter-vector-render` | `contour_scatter` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme contour_scatter --formats svg,pdf` | done |
+| `TASK-098-contour_scatter-report` | `contour_scatter` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "contour_scatter" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
+| `TASK-099-contour_scatter-gallery` | `contour_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
+| `TASK-100-contour_scatter-safety` | `contour_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
+| `TASK-101-regression_scatter-catalog` | `regression_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info regression_scatter` | done |
+| `TASK-102-regression_scatter-data-contract` | `regression_scatter` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "regression_scatter" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
+| `TASK-103-regression_scatter-demo-data` | `regression_scatter` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
 | `TASK-104-regression_scatter-selection-rule` | `regression_scatter` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme regression_scatter` | planned |
 | `TASK-105-regression_scatter-explicit-cli` | `regression_scatter` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme regression_scatter --formats png` | planned |
 | `TASK-106-regression_scatter-png-render` | `regression_scatter` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme regression_scatter --formats png` | planned |

@@ -13,5 +13,6 @@ Gallery directory: `docs/gallery`
 | `scatter_relationship` | Relationship | Two continuous variables | ![scatter_relationship](scatter_relationship.png) |
 | `grouped_scatter` | Relationship | Two variables with groups | ![grouped_scatter](grouped_scatter.png) |
 | `density_scatter` | Relationship | Dense x-y samples | ![density_scatter](density_scatter.png) |
+| `contour_scatter` | Relationship | Dense local structure | ![contour_scatter](contour_scatter.png) |
 | `heatmap_matrix` | Matrix | Numeric matrix | ![heatmap_matrix](heatmap_matrix.png) |
 | `grouped_bar` | Bar | Category comparison | ![grouped_bar](grouped_bar.png) |

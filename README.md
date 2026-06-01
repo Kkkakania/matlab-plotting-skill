@@ -6,18 +6,6 @@ The skill is self-contained. It does not depend on private archives, local
 template folders, or another plotting repository. The only runtime requirement
 is a working MATLAB command line executable.
 
-## Project Ecosystem
-
-This skill is the agent-facing layer in a small MATLAB scientific-figure
-ecosystem:
-
-- [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)
-  is the main clean-room MATLAB gallery and template reference.
-- [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci) provides
-  CI/CLI checks for gallery outputs, provenance, privacy, and release readiness.
-- [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
-  helps agents choose and render suitable MATLAB figures from user data.
-
 ## What It Does
 
 - Reads CSV, Excel, or MAT data.
@@ -34,8 +22,6 @@ ecosystem:
 All previews below are generated from bundled synthetic data.
 The generated preview index is in `docs/gallery/index.md`, and preview
 provenance is tracked in `docs/gallery/provenance.md`.
-Current support status is tracked in `docs/scheme-readiness.md`, which separates
-the 50-scheme catalog from gallery-backed and still-maturing schemes.
 
 | Trend | Multi-Line | Confidence Band |
 |---|---|---|
@@ -45,13 +31,13 @@ the 50-scheme catalog from gallery-backed and still-maturing schemes.
 |---|---|---|
 | ![zoomed inset line](docs/gallery/zoomed_inset_line.png) | ![scatter relationship](docs/gallery/scatter_relationship.png) | ![density scatter](docs/gallery/density_scatter.png) |
 
-| Grouped Scatter | Heatmap | Grouped Bar |
+| Grouped Scatter | Contour Scatter | Heatmap |
 |---|---|---|
-| ![grouped scatter](docs/gallery/grouped_scatter.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) |
+| ![grouped scatter](docs/gallery/grouped_scatter.png) | ![contour scatter](docs/gallery/contour_scatter.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) |
 
-| Positive/Negative Area | Segmented Line |
-|---|---|
-| ![positive negative area](docs/gallery/positive_negative_area.png) | ![segmented line](docs/gallery/segmented_line.png) |
+| Grouped Bar | Positive/Negative Area | Segmented Line |
+|---|---|---|
+| ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) | ![segmented line](docs/gallery/segmented_line.png) |
 
 ## Install
 
@@ -75,67 +61,7 @@ Render a correlation figure from this Excel sheet.
 Choose a plot for this MAT file and export PNG/SVG.
 ```
 
-For a first hands-on pass, follow
-[`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md). It
-walks through MATLAB setup, data inspection, `--plan-only`, rendering, and
-post-render checks with one bundled CSV.
-
-Fresh-clone feedback is most useful when it includes the MATLAB version,
-commands run, selected scheme, report summary, and any redacted failure output.
-Use the first-use feedback issue template for that path instead of pasting
-private data files or local path dumps.
-
-## First 5 Minutes
-
-Use this narrow path on a fresh clone before trying private data:
-
-1. Check the catalog without MATLAB.
-
-   ```bash
-   ./scripts/render_with_matlab.sh --list-schemes
-   ./scripts/render_with_matlab.sh --scheme-info line_trend
-   ```
-
-2. Confirm MATLAB is callable.
-
-   ```bash
-   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --check
-   ```
-
-3. Inspect and plan with the bundled CSV.
-
-   ```bash
-   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
-   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --plan-only --data examples/data/time_series.csv --goal "show a time trend"
-   ```
-
-4. Render into a scratch directory.
-
-   ```bash
-   MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a time trend" --out /tmp/matlab-plotting-skill-first-render --formats png,svg
-   ```
-
-SFT_OUTPUT_DIR is not used by this repository; pass `--out <directory>` to
-choose the render location.
-
-The same sequence is available as a shareable
-[`docs/first-five-minutes.md`](docs/first-five-minutes.md) guide.
-
 ## CLI
-
-### Try Metadata First
-
-Use these commands before configuring MATLAB:
-
-```bash
-./scripts/render_with_matlab.sh --list-schemes
-./scripts/render_with_matlab.sh --scheme-info line_trend
-./scripts/render_with_matlab.sh --scheme-info-json line_trend
-```
-
-These commands do not render figures. They help confirm that the repository,
-skill catalog, and shell wrapper are working before you point the workflow at a
-MATLAB executable.
 
 Set MATLAB if it is not already on `PATH`:
 
@@ -144,31 +70,11 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
-MATLAB-backed commands use a 600-second timeout by default. Set
-`MP_MATLAB_TIMEOUT_SECONDS=0` to disable the guard for a long local render, or
-set a smaller value when testing CI behavior.
-
-Some commands are metadata-only and can be used before MATLAB is configured.
-Commands that inspect data, plan a figure, smoke-test schemes, or render output
-call MATLAB because the data loading and selection logic lives in the bundled
-MATLAB code.
-
-| Works without MATLAB | Requires MATLAB |
-|---|---|
-| `--list-schemes` | `--check` |
-| `--list-schemes-json` | `--inspect-data --data <file>` |
-| `--scheme-info <name>` | `--plan-only --data <file> --goal "<text>"` |
-| `--scheme-info-json <name>` | `--smoke-test` |
-|  | full rendering with `--data`, `--goal`, and `--out` |
-
 Render from data:
 
 ```bash
 ./scripts/render_with_matlab.sh --data examples/data/time_series.csv --goal "show a time trend" --out figures --formats png,svg
 ```
-
-`--formats` accepts a comma-separated list containing `png`, `svg`, and `pdf`.
-Invalid entries fail before MATLAB starts.
 
 Inspect data schema without selecting or rendering:
 
@@ -225,18 +131,17 @@ python3 scripts/build_automation_manifest.py --out figures/automation-manifest.j
 GitHub Actions also uploads this manifest as a workflow artifact on each push
 and pull request.
 
-Build the long-horizon scheme backlog:
+Build the exact 500-task plan:
 
 ```bash
 python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md
 ```
 
-The backlog maps 50 plotting schemes to 10 concrete task lanes each and
-summarizes coverage by family and lane. It is planning infrastructure, not a
-release cadence, so related rows should be batched into normal maintenance
-releases. GitHub Actions uploads both `task-manifest.json` and `task-board.md`.
+The task plan maps 50 plotting schemes to 10 concrete task lanes each and
+summarizes coverage by family and lane. GitHub Actions uploads both
+`task-manifest.json` and `task-board.md`.
 
-Filter the backlog when working on one scheme or one lane:
+Filter the task plan when working on one scheme or one lane:
 
 ```bash
 python3 scripts/build_task_manifest.py --json-out line-trend.json --markdown-out line-trend.md --scheme line_trend
@@ -254,48 +159,20 @@ Run the release gate:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/release_check.sh --with-matlab
 ```
 
-Public GitHub Actions run packaging, docs, manifest, privacy, provenance, and
-MATLAB wrapper checks on hosted Linux runners. They do not perform real MATLAB
-rendering. Rendering changes should also pass the MATLAB release gate above on a
-machine with MATLAB installed. See `docs/ci-coverage.md`.
-
-## Release Status
-
-The current public line is `v0.1.x`. Early bootstrap tags were intentionally
-small while the scheme catalog, preview gallery, task board, and release gates
-were being assembled. Future tags should be slower and grouped around
-user-visible changes such as a gallery-backed scheme, a new CLI/report field, a
-renderer behavior fix, or a first-use workflow improvement.
-
-For the exact policy, see `docs/maintenance-cadence.md`.
-
 ## Scheme Coverage
 
-The catalog contains 50 plotting schemes across trends, relationships,
+The first release includes 50 plotting schemes across trends, relationships,
 heatmaps, bars, distributions, rankings, compositions, multivariate plots, and
-paper layout helpers. Treat the gallery-backed schemes listed in
-`docs/scheme-readiness.md` as the most stable first-use path: they have
-committed previews, data contracts, CLI coverage, PNG/vector checks, reports,
-and safety coverage. Cataloged-only schemes are tracked design targets until
-their support lanes are completed.
-
-Similar schemes share parameterized renderers so the skill stays maintainable.
+paper layout helpers. Similar schemes share parameterized renderers so the
+skill stays maintainable.
 
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
-See `docs/first-render-walkthrough.md` for the shortest first-render path.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
-See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
-See `docs/ecosystem-status.md` for repository roles, feedback channels, and
-claim boundaries.
 See `docs/automation-manifest.md` for the generated check matrix.
-See `docs/maintenance-cadence.md` for the normal issue, batching, and release
-rhythm.
-See `ROADMAP.md` for the current state, next candidates, and non-goals.
-See `docs/500-task-plan.md` for the long-horizon scheme backlog.
-See `docs/500-task-board.md` for the committed task board used to plan
-incremental scheme work without turning every task into a release.
+See `docs/500-task-plan.md` for the exact 500-task roadmap.
+See `docs/500-task-board.md` for the committed 500 planned goals and steps.
 
 ## Provenance
 

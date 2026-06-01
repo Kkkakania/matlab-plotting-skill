@@ -2,59 +2,14 @@
 
 ## Unreleased
 
-- Added required privacy/provenance confirmations to the bug report issue
-  template so troubleshooting stays reproducible without private files.
-- Added a regression check that keeps the top-level `scripts/render_with_matlab.sh`
-  entrypoint as a thin wrapper around the bundled Skill renderer.
-- Added a MATLAB command timeout guard to `render_with_matlab.sh`, configurable
-  with `MP_MATLAB_TIMEOUT_SECONDS`, so stuck local renders fail predictably.
-- Kept `--plan-only` and `--inspect-data` from creating the default `figures/`
-  directory because those modes should not write render outputs.
-- Made `--out ""` fail with a specific empty-output-directory message before
-  MATLAB starts.
-- Added a shareable `docs/first-five-minutes.md` guide for the fresh-clone
-  metadata, MATLAB check, bundled CSV planning, and scratch rendering path.
-- Added a README `First 5 Minutes` path that separates metadata checks,
-  MATLAB availability, CSV inspection, plan-only selection, and scratch-output
-  rendering for fresh clones.
-- Added the metadata-first CLI path to the first-render walkthrough so users
-  can verify the catalog before troubleshooting MATLAB.
-- Added a metadata-first CLI path in the README so new users can inspect the
-  scheme catalog before configuring MATLAB.
-- Added a generated stable first-use scheme list to the readiness matrix so
-  users can start from gallery-backed schemes before exploring the full catalog.
-- Added a top-level roadmap that clarifies the current `v0.1.x` public line,
-  stable gallery-backed scope, next candidates, and non-goals.
-- Added shell-side `--formats` validation so invalid export formats fail before
-  MATLAB starts.
-- Clarified that the 50 schemes are a catalog and that gallery-backed schemes
-  are the most stable first-use path.
-- Clarified the `v0.1.x` bootstrap release history and future slower release
-  cadence in README and maintenance docs.
-- Added an ecosystem status document that links the three MATLAB repositories,
-  feedback channels, and evidence boundaries for this skill.
-- Added a maintenance cadence document that explains weekly issue review,
-  batching, release shapes, and when not to tag.
-- Reframed the 500-task planning board as a long-horizon scheme backlog rather
-  than a release cadence, and added tests to keep that language visible.
-- Expanded the first-use feedback issue template with commit, goal text, top
-  alternatives, output formats, expected/actual behavior, and explicit
-  redaction confirmation fields.
-- Added a copyable first-use feedback report template to the first-render
-  walkthrough so fresh-clone reports are easier to reproduce without private
-  paths or data.
-- Linked the first-render walkthrough to the public first-use feedback issue
-  and added a privacy-safe feedback checklist for fresh-clone testers.
-- Added a first-use feedback issue template and README guidance so fresh-clone
-  testers can report MATLAB setup, commands, selected schemes, and report
-  summaries without sharing private data.
-- Added a first-render walkthrough that gives new users a short MATLAB check,
-  data inspection, plan-only, render, and post-render review path.
-- Completed `TASK-069` through `TASK-090` in one natural batch instead of
+- Completed `TASK-089` through `TASK-103` as a relationship-plotting batch.
+- Added `contour_scatter` demo data, selection-rule coverage, explicit CLI
+  coverage, PNG/vector/report coverage, gallery preview, and safety checks.
+- Added `regression_scatter` catalog, data-contract, and demo-data coverage.
+- Completed `TASK-069` through `TASK-088` in one natural batch instead of
   cutting a release for every task.
 - Added committed previews and provenance checks for `scatter_relationship` and
-  `grouped_scatter`, and marked the existing `density_scatter` gallery and
-  safety coverage as complete in the task board.
+  `grouped_scatter`.
 - Added `grouped_scatter` and `density_scatter` data contracts, selection-rule
   coverage, explicit CLI coverage, PNG/vector render coverage, and report
   coverage.

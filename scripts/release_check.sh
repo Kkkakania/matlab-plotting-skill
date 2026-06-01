@@ -52,7 +52,7 @@ done
 cd "$ROOT_DIR"
 
 echo "== Syntax checks =="
-python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py scripts/build_scheme_readiness.py
+python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
 bash -n scripts/*.sh
 bash -n skills/matlab-plotting-skill/scripts/*.sh
 bash -n tests/*.sh
@@ -68,11 +68,9 @@ tests/test_ci_workflow.sh
 tests/test_task_manifest.sh
 tests/test_task_manifest_filter.sh
 tests/test_task_manifest_status.sh
-tests/test_scheme_readiness.sh
 tests/test_repo_docs.sh
 tests/test_github_templates.sh
 tests/test_matlab_check.sh
-tests/test_render_with_matlab_args.sh
 tests/test_docs_quality_checklist.sh
 tests/test_docs_chart_selection.sh
 tests/test_line_trend_data_contract.sh
@@ -85,6 +83,8 @@ tests/test_segmented_line_catalog.sh
 tests/test_scatter_relationship_catalog.sh
 tests/test_grouped_scatter_catalog.sh
 tests/test_density_scatter_catalog.sh
+tests/test_contour_scatter_catalog.sh
+tests/test_regression_scatter_catalog.sh
 tests/test_confidence_band_data_contract.sh
 tests/test_zoomed_inset_line_data_contract.sh
 tests/test_positive_negative_area_data_contract.sh
@@ -92,6 +92,8 @@ tests/test_segmented_line_data_contract.sh
 tests/test_scatter_relationship_data_contract.sh
 tests/test_grouped_scatter_data_contract.sh
 tests/test_density_scatter_data_contract.sh
+tests/test_contour_scatter_data_contract.sh
+tests/test_regression_scatter_data_contract.sh
 tests/test_build_gallery_index.sh
 tests/test_line_trend_gallery.sh
 tests/test_multi_line_comparison_gallery.sh
@@ -101,6 +103,8 @@ tests/test_positive_negative_area_gallery.sh
 tests/test_segmented_line_gallery.sh
 tests/test_scatter_relationship_gallery.sh
 tests/test_grouped_scatter_gallery.sh
+tests/test_density_scatter_gallery.sh
+tests/test_contour_scatter_gallery.sh
 tests/test_multi_line_comparison_safety.sh
 tests/test_confidence_band_safety.sh
 tests/test_zoomed_inset_line_safety.sh
@@ -108,6 +112,8 @@ tests/test_positive_negative_area_safety.sh
 tests/test_segmented_line_safety.sh
 tests/test_scatter_relationship_safety.sh
 tests/test_grouped_scatter_safety.sh
+tests/test_density_scatter_safety.sh
+tests/test_contour_scatter_safety.sh
 tests/test_gallery_provenance.sh
 tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh

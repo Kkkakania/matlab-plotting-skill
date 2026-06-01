@@ -66,6 +66,11 @@ if schema.RowCount > 400 && schema.NumericCount >= 2
     scores(nameIndex(schemes, "density_scatter")) = scores(nameIndex(schemes, "density_scatter")) + 8;
     scores(nameIndex(schemes, "contour_scatter")) = scores(nameIndex(schemes, "contour_scatter")) + 6;
 end
+if schema.NumericCount >= 2 && any(contains(goal, ...
+        ["contour", "contours", "local density", "density contour", "structure"]))
+    scores = addFamily(scores, schemes, "relationship", 8);
+    scores(nameIndex(schemes, "contour_scatter")) = scores(nameIndex(schemes, "contour_scatter")) + 34;
+end
 if schema.HasPositiveNegative
     scores(nameIndex(schemes, "positive_negative_area")) = scores(nameIndex(schemes, "positive_negative_area")) + 8;
     scores(nameIndex(schemes, "diverging_bar")) = scores(nameIndex(schemes, "diverging_bar")) + 8;

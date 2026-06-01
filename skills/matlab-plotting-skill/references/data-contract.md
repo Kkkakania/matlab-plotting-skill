@@ -118,3 +118,26 @@ renderer.
 Avoid this scheme for small datasets where individual points are easy to see.
 Use `scatter_relationship` for simple sparse x-y data, or `contour_scatter`
 when local density contours are easier to read than colored points.
+
+### `contour_scatter`
+
+Use dense paired observations when the local density contours are more important
+than the identity of individual points. This works best for hundreds of x-y
+rows where the viewer needs to see the broad structure, clusters, or curved
+regions in the cloud.
+
+Avoid this scheme for sparse datasets, strong category/group comparisons, or
+cases where a fitted line is the main message. Use `density_scatter` for a
+color-density view, `grouped_scatter` for cohorts, or `regression_scatter` when
+the trend line is explanatory.
+
+### `regression_scatter`
+
+Use two numeric columns when the scatter pattern matters but a trend line is
+explanatory, such as `input, response` or `dose, effect`. The default renderer
+uses the first two numeric columns and overlays a simple fitted line so the
+relationship is visible without hiding the points.
+
+Avoid this scheme when a fitted trend would imply unsupported causality or when
+the data is too nonlinear for a simple line to be a useful summary. Use
+`scatter_relationship`, `density_scatter`, or `contour_scatter` instead.

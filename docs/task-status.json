@@ -88,5 +88,18 @@
   "TASK-087-density_scatter-vector-render": "done",
   "TASK-088-density_scatter-report": "done",
   "TASK-089-density_scatter-gallery": "done",
-  "TASK-090-density_scatter-safety": "done"
+  "TASK-090-density_scatter-safety": "done",
+  "TASK-091-contour_scatter-catalog": "done",
+  "TASK-092-contour_scatter-data-contract": "done",
+  "TASK-093-contour_scatter-demo-data": "done",
+  "TASK-094-contour_scatter-selection-rule": "done",
+  "TASK-095-contour_scatter-explicit-cli": "done",
+  "TASK-096-contour_scatter-png-render": "done",
+  "TASK-097-contour_scatter-vector-render": "done",
+  "TASK-098-contour_scatter-report": "done",
+  "TASK-099-contour_scatter-gallery": "done",
+  "TASK-100-contour_scatter-safety": "done",
+  "TASK-101-regression_scatter-catalog": "done",
+  "TASK-102-regression_scatter-data-contract": "done",
+  "TASK-103-regression_scatter-demo-data": "done"
 }

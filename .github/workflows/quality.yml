@@ -4,14 +4,11 @@ on:
   push:
   pull_request:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
       - name: Shell syntax
         run: |
           python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
@@ -33,7 +30,6 @@ jobs:
           bash -n tests/test_task_manifest.sh
           bash -n tests/test_task_manifest_filter.sh
           bash -n tests/test_task_manifest_status.sh
-          bash -n tests/test_scheme_readiness.sh
           bash -n tests/test_repo_docs.sh
           bash -n tests/test_github_templates.sh
           bash -n tests/test_matlab_check.sh
@@ -49,6 +45,8 @@ jobs:
           bash -n tests/test_scatter_relationship_catalog.sh
           bash -n tests/test_grouped_scatter_catalog.sh
           bash -n tests/test_density_scatter_catalog.sh
+          bash -n tests/test_contour_scatter_catalog.sh
+          bash -n tests/test_regression_scatter_catalog.sh
           bash -n tests/test_confidence_band_data_contract.sh
           bash -n tests/test_zoomed_inset_line_data_contract.sh
           bash -n tests/test_positive_negative_area_data_contract.sh
@@ -56,6 +54,8 @@ jobs:
           bash -n tests/test_scatter_relationship_data_contract.sh
           bash -n tests/test_grouped_scatter_data_contract.sh
           bash -n tests/test_density_scatter_data_contract.sh
+          bash -n tests/test_contour_scatter_data_contract.sh
+          bash -n tests/test_regression_scatter_data_contract.sh
           bash -n tests/test_build_gallery_index.sh
           bash -n tests/test_line_trend_gallery.sh
           bash -n tests/test_multi_line_comparison_gallery.sh
@@ -65,6 +65,8 @@ jobs:
           bash -n tests/test_segmented_line_gallery.sh
           bash -n tests/test_scatter_relationship_gallery.sh
           bash -n tests/test_grouped_scatter_gallery.sh
+          bash -n tests/test_density_scatter_gallery.sh
+          bash -n tests/test_contour_scatter_gallery.sh
           bash -n tests/test_multi_line_comparison_safety.sh
           bash -n tests/test_confidence_band_safety.sh
           bash -n tests/test_zoomed_inset_line_safety.sh
@@ -72,6 +74,8 @@ jobs:
           bash -n tests/test_segmented_line_safety.sh
           bash -n tests/test_scatter_relationship_safety.sh
           bash -n tests/test_grouped_scatter_safety.sh
+          bash -n tests/test_density_scatter_safety.sh
+          bash -n tests/test_contour_scatter_safety.sh
           bash -n tests/test_gallery_provenance.sh
           bash -n tests/test_docs_palette_accessibility.sh
           bash -n tests/test_readme_gallery_assets.sh
@@ -92,7 +96,6 @@ jobs:
           tests/test_task_manifest.sh
           tests/test_task_manifest_filter.sh
           tests/test_task_manifest_status.sh
-          tests/test_scheme_readiness.sh
           tests/test_repo_docs.sh
           tests/test_github_templates.sh
           tests/test_matlab_check.sh
@@ -108,6 +111,8 @@ jobs:
           tests/test_scatter_relationship_catalog.sh
           tests/test_grouped_scatter_catalog.sh
           tests/test_density_scatter_catalog.sh
+          tests/test_contour_scatter_catalog.sh
+          tests/test_regression_scatter_catalog.sh
           tests/test_confidence_band_data_contract.sh
           tests/test_zoomed_inset_line_data_contract.sh
           tests/test_positive_negative_area_data_contract.sh
@@ -115,6 +120,8 @@ jobs:
           tests/test_scatter_relationship_data_contract.sh
           tests/test_grouped_scatter_data_contract.sh
           tests/test_density_scatter_data_contract.sh
+          tests/test_contour_scatter_data_contract.sh
+          tests/test_regression_scatter_data_contract.sh
           tests/test_build_gallery_index.sh
           tests/test_line_trend_gallery.sh
           tests/test_multi_line_comparison_gallery.sh
@@ -124,6 +131,8 @@ jobs:
           tests/test_segmented_line_gallery.sh
           tests/test_scatter_relationship_gallery.sh
           tests/test_grouped_scatter_gallery.sh
+          tests/test_density_scatter_gallery.sh
+          tests/test_contour_scatter_gallery.sh
           tests/test_multi_line_comparison_safety.sh
           tests/test_confidence_band_safety.sh
           tests/test_zoomed_inset_line_safety.sh
@@ -131,6 +140,8 @@ jobs:
           tests/test_segmented_line_safety.sh
           tests/test_scatter_relationship_safety.sh
           tests/test_grouped_scatter_safety.sh
+          tests/test_density_scatter_safety.sh
+          tests/test_contour_scatter_safety.sh
           tests/test_gallery_provenance.sh
           tests/test_docs_palette_accessibility.sh
           tests/test_readme_gallery_assets.sh
@@ -139,10 +150,6 @@ jobs:
           tests/test_release_check_script.sh
           tests/test_skill_plan_only_guidance.sh
           tests/test_example_prompts.sh
-      - name: MATLAB CLI shim tests (no rendering)
-        run: |
-          tests/test_matlab_check.sh
-          tests/test_render_with_matlab_args.sh
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan
@@ -152,14 +159,14 @@ jobs:
       - name: Build automation manifest
         run: python3 scripts/build_automation_manifest.py --out automation-manifest.json
       - name: Upload automation manifest
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           name: automation-manifest
           path: automation-manifest.json
       - name: Build 500-task plan
         run: python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md --status-overrides docs/task-status.json
       - name: Upload 500-task plan
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           name: task-plan
           path: |

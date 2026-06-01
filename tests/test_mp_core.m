@@ -148,6 +148,31 @@ verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'colorbar'));
 end
 
+function testContourScatterDemoDataSupportsLocalStructureRender(testCase)
+data = mpDemoDataForScheme("contour_scatter");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["x", "y"], string(data.Properties.VariableNames))));
+verifyGreaterThanOrEqual(testCase, height(data), 450);
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
+fig = mpRenderScheme("contour_scatter", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
+verifyGreaterThan(testCase, numel(findall(fig)), 12);
+end
+
+function testRegressionScatterDemoDataSupportsTrendLineRender(testCase)
+data = mpDemoDataForScheme("regression_scatter");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["x", "y"], string(data.Properties.VariableNames))));
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 2);
+fig = mpRenderScheme("regression_scatter", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
@@ -251,6 +276,17 @@ densityScore = selection.AllScores(names == "density_scatter");
 scatterScore = selection.AllScores(names == "scatter_relationship");
 verifyEqual(testCase, string(selection.Selected.Name), "density_scatter");
 verifyGreaterThan(testCase, densityScore, scatterScore);
+end
+
+function testContourScatterSelectionRulePrefersLocalDensityContours(testCase)
+data = mpDemoDataForScheme("contour_scatter");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show local density contours for overlapping points");
+names = string({mpSchemeCatalog().Name});
+contourScore = selection.AllScores(names == "contour_scatter");
+densityScore = selection.AllScores(names == "density_scatter");
+verifyEqual(testCase, string(selection.Selected.Name), "contour_scatter");
+verifyGreaterThan(testCase, contourScore, densityScore);
 end
 
 function testSelectionForMethodComparison(testCase)
@@ -616,6 +652,67 @@ verifyTrue(testCase, contains(markdownReport, '`density_scatter`'));
 verifyTrue(testCase, contains(markdownReport, 'density_scatter.png'));
 verifyEqual(testCase, string(jsonReport.selectedScheme), "density_scatter");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "density_scatter.png")));
+end
+
+function testContourScatterExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-contour-scatter');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_contour_scatter_input.csv');
+writetable(mpDemoDataForScheme("contour_scatter"), dataPath);
+result = mpRun(dataPath, "show local density contours", outDir, "png", "contour_scatter");
+verifyEqual(testCase, result.SelectedScheme, "contour_scatter");
+verifyTrue(testCase, isfile(fullfile(outDir, 'contour_scatter.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "contour_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "contour_scatter.png")));
+end
+
+function testContourScatterPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-contour-scatter-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_contour_scatter_png_input.csv');
+writetable(mpDemoDataForScheme("contour_scatter"), dataPath);
+mpRun(dataPath, "show local density contours", outDir, "png", "contour_scatter");
+pngPath = fullfile(outDir, 'contour_scatter.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
+function testContourScatterVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-contour-scatter-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_contour_scatter_vector_input.csv');
+writetable(mpDemoDataForScheme("contour_scatter"), dataPath);
+mpRun(dataPath, "show local density contours", outDir, ["svg", "pdf"], "contour_scatter");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "contour_scatter." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
+function testContourScatterReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-contour-scatter-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_contour_scatter_report_input.csv');
+writetable(mpDemoDataForScheme("contour_scatter"), dataPath);
+mpRun(dataPath, "show local density contours", outDir, "png", "contour_scatter");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`contour_scatter`'));
+verifyTrue(testCase, contains(markdownReport, 'contour_scatter.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "contour_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "contour_scatter.png")));
 end
 
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)

@@ -33,6 +33,24 @@ if schemeName == "density_scatter"
     return
 end
 
+if schemeName == "contour_scatter"
+    n = 560;
+    theta = 2 * pi * rand(n, 1);
+    radius = 0.35 + 1.15 * rand(n, 1);
+    x = radius .* cos(theta) + 0.22 * randn(n, 1);
+    y = 0.55 * radius .* sin(theta) + 0.28 * x .^ 2 + 0.18 * randn(n, 1);
+    data = table(x, y, 'VariableNames', {'x', 'y'});
+    return
+end
+
+if schemeName == "regression_scatter"
+    n = 180;
+    x = linspace(-2.4, 2.4, n)';
+    y = 0.82 * x + 0.26 * sin(2.5 * x) + 0.34 * randn(n, 1);
+    data = table(x, y, 'VariableNames', {'x', 'y'});
+    return
+end
+
 if any(contains(schemeName, ["scatter", "pca"]))
     n = 180;
     x = linspace(-2, 2, n)';

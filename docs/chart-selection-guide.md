@@ -32,7 +32,8 @@ together.
 - Groups in x-y data: `grouped_scatter` (columns such as `x, y, group`, where
   the group changes how the relationship should be read)
 - Dense overlapping points: `density_scatter` or `contour_scatter` when sample
-  overlap hides individual points
+  overlap hides individual points; prefer `contour_scatter` when
+  contour lines are easier to read than color density
 - Trend line needed: `regression_scatter`
 - Third magnitude variable: `bubble_scatter`
 - Model checking: `residual_scatter`
