@@ -112,6 +112,31 @@ check_empty_out_dir() {
 
 check_empty_out_dir
 
+check_missing_required_data_before_matlab() {
+  local out_file="$TMP_DIR/missing-data.out"
+  local err_file="$TMP_DIR/missing-data.err"
+  local status
+
+  set +e
+  env MATLAB_BIN=/no/such/matlab "$SCRIPT" --plan-only --goal "show trend" >"$out_file" 2>"$err_file"
+  status=$?
+  set -e
+
+  if [[ "$status" -ne 2 ]]; then
+    echo "expected missing --data to exit 2 before MATLAB lookup, got $status" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+
+  if ! grep -q -- "--data is required" "$err_file"; then
+    echo "expected clear missing --data validation message" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+}
+
+check_missing_required_data_before_matlab
+
 FAKE_MATLAB="$TMP_DIR/fake_matlab"
 cat >"$FAKE_MATLAB" <<'SH'
 #!/usr/bin/env bash
@@ -138,6 +163,23 @@ fi
 
 DATA_FILE="$TMP_DIR/data.csv"
 printf 'x,y\n1,2\n' >"$DATA_FILE"
+
+set +e
+env MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --plan-only --data "$DATA_FILE" >"$TMP_DIR/missing-goal.out" 2>"$TMP_DIR/missing-goal.err"
+missing_goal_status=$?
+set -e
+
+if [[ "$missing_goal_status" -ne 2 ]]; then
+  echo "expected missing --goal to exit 2, got $missing_goal_status" >&2
+  cat "$TMP_DIR/missing-goal.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "--goal is required" "$TMP_DIR/missing-goal.err"; then
+  echo "expected clear missing --goal validation message" >&2
+  cat "$TMP_DIR/missing-goal.err" >&2
+  exit 1
+fi
 
 (cd "$TMP_DIR" && env MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --plan-only --data "$DATA_FILE" --goal "show trend" >/dev/null)
 if [[ -d "$TMP_DIR/figures" ]]; then

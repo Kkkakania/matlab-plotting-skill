@@ -327,14 +327,6 @@ if [[ "$SCHEME_INFO_JSON" -eq 1 ]]; then
   exit 0
 fi
 
-check_matlab_bin
-
-if [[ "$CHECK_ONLY" -eq 1 ]]; then
-  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "disp(version)"
-  echo "MATLAB CLI check passed: $MATLAB_BIN"
-  exit 0
-fi
-
 matlab_quote() {
   local value="$1"
   value="${value//\\/\\\\}"
@@ -344,21 +336,37 @@ matlab_quote() {
 
 formats_expr="split(string($(matlab_quote "$FORMATS")), ',')"
 
+if [[ "$SMOKE_TEST" -eq 0 && "$CHECK_ONLY" -eq 0 ]]; then
+  if [[ -z "$DATA_PATH" ]]; then
+    echo "--data is required unless --smoke-test, --check, or metadata listing is used." >&2
+    usage >&2
+    exit 2
+  fi
+
+  if [[ "$INSPECT_DATA" -eq 0 && -z "$GOAL_TEXT" ]]; then
+    echo "--goal is required unless --inspect-data, --smoke-test, --check, or metadata listing is used." >&2
+    usage >&2
+    exit 2
+  fi
+fi
+
+if [[ -n "$DATA_PATH" && ! -f "$DATA_PATH" ]]; then
+  echo "Data file not found: $DATA_PATH" >&2
+  exit 66
+fi
+
+check_matlab_bin
+
+if [[ "$CHECK_ONLY" -eq 1 ]]; then
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "disp(version)"
+  echo "MATLAB CLI check passed: $MATLAB_BIN"
+  exit 0
+fi
+
 if [[ "$SMOKE_TEST" -eq 1 ]]; then
   mkdir -p "$OUT_DIR"
   run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); mpSmokeTest($(matlab_quote "$OUT_DIR"), $formats_expr);"
   exit 0
-fi
-
-if [[ -z "$DATA_PATH" ]]; then
-  echo "--data is required unless --smoke-test is used." >&2
-  usage >&2
-  exit 2
-fi
-
-if [[ ! -f "$DATA_PATH" ]]; then
-  echo "Data file not found: $DATA_PATH" >&2
-  exit 66
 fi
 
 if [[ "$INSPECT_DATA" -eq 1 ]]; then
