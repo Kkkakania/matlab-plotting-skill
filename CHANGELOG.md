@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added required privacy/provenance confirmations to the bug report issue
+  template so troubleshooting stays reproducible without private files.
 - Added a regression check that keeps the top-level `scripts/render_with_matlab.sh`
   entrypoint as a thin wrapper around the bundled Skill renderer.
 - Added a MATLAB command timeout guard to `render_with_matlab.sh`, configurable

@@ -19,6 +19,8 @@ for file in "${required[@]}"; do
 done
 
 grep -q "MATLAB" "$ROOT_DIR/.github/ISSUE_TEMPLATE/bug_report.yml"
+grep -q "I did not upload private data" "$ROOT_DIR/.github/ISSUE_TEMPLATE/bug_report.yml"
+grep -q "I redacted local absolute paths" "$ROOT_DIR/.github/ISSUE_TEMPLATE/bug_report.yml"
 grep -q "First-use feedback" "$ROOT_DIR/.github/ISSUE_TEMPLATE/first_use_feedback.yml"
 grep -q "render_report.md" "$ROOT_DIR/.github/ISSUE_TEMPLATE/first_use_feedback.yml"
 grep -q "Commit" "$ROOT_DIR/.github/ISSUE_TEMPLATE/first_use_feedback.yml"
