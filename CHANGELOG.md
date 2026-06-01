@@ -4,6 +4,8 @@
 
 - Added a MATLAB command timeout guard to `render_with_matlab.sh`, configurable
   with `MP_MATLAB_TIMEOUT_SECONDS`, so stuck local renders fail predictably.
+- Kept `--plan-only` and `--inspect-data` from creating the default `figures/`
+  directory because those modes should not write render outputs.
 - Made `--out ""` fail with a specific empty-output-directory message before
   MATLAB starts.
 - Added a shareable `docs/first-five-minutes.md` guide for the fresh-clone

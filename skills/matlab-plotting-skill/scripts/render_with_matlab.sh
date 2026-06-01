@@ -335,8 +335,6 @@ if [[ "$CHECK_ONLY" -eq 1 ]]; then
   exit 0
 fi
 
-mkdir -p "$OUT_DIR"
-
 matlab_quote() {
   local value="$1"
   value="${value//\\/\\\\}"
@@ -347,6 +345,7 @@ matlab_quote() {
 formats_expr="split(string($(matlab_quote "$FORMATS")), ',')"
 
 if [[ "$SMOKE_TEST" -eq 1 ]]; then
+  mkdir -p "$OUT_DIR"
   run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); mpSmokeTest($(matlab_quote "$OUT_DIR"), $formats_expr);"
   exit 0
 fi
@@ -372,4 +371,5 @@ if [[ "$PLAN_ONLY" -eq 1 ]]; then
   exit 0
 fi
 
+mkdir -p "$OUT_DIR"
 run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpRun($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(result.SelectedScheme);"

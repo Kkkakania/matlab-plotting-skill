@@ -121,4 +121,19 @@ if ! grep -q -- "Invalid timeout seconds" "$TMP_DIR/timeout.err"; then
   exit 1
 fi
 
+DATA_FILE="$TMP_DIR/data.csv"
+printf 'x,y\n1,2\n' >"$DATA_FILE"
+
+(cd "$TMP_DIR" && env MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --plan-only --data "$DATA_FILE" --goal "show trend" >/dev/null)
+if [[ -d "$TMP_DIR/figures" ]]; then
+  echo "expected --plan-only not to create the default figures directory" >&2
+  exit 1
+fi
+
+(cd "$TMP_DIR" && env MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --inspect-data --data "$DATA_FILE" >/dev/null)
+if [[ -d "$TMP_DIR/figures" ]]; then
+  echo "expected --inspect-data not to create the default figures directory" >&2
+  exit 1
+fi
+
 echo "render_with_matlab argument test passed."
