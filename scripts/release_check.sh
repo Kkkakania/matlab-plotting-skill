@@ -69,6 +69,7 @@ tests/test_task_manifest.sh
 tests/test_task_manifest_filter.sh
 tests/test_task_manifest_status.sh
 tests/test_scheme_readiness.sh
+tests/test_scheme_readiness_fresh.sh
 tests/test_repo_docs.sh
 tests/test_github_templates.sh
 tests/test_matlab_check.sh

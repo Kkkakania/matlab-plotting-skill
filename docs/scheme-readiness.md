@@ -9,8 +9,8 @@ that currently have committed gallery previews and completed support tasks.
 |---|---:|
 | gallery-backed | 10 |
 | preview available | 2 |
-| render path started | 1 |
-| cataloged | 37 |
+| render path started | 0 |
+| cataloged | 38 |
 
 ## Stable First-Use Schemes
 
@@ -32,7 +32,7 @@ Start with these before trying cataloged-only schemes.
 | `grouped_scatter` | Relationship | gallery-backed | [preview](gallery/grouped_scatter.png) | yes | yes | yes | yes | yes | yes |
 | `density_scatter` | Relationship | gallery-backed | [preview](gallery/density_scatter.png) | yes | yes | yes | yes | yes | yes |
 | `contour_scatter` | Relationship | gallery-backed | [preview](gallery/contour_scatter.png) | yes | yes | yes | yes | yes | yes |
-| `regression_scatter` | Relationship | render path started | no | yes | no | no | no | no | no |
+| `regression_scatter` | Relationship | cataloged | no | yes | no | no | no | no | no |
 | `bubble_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |
 | `residual_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |
 | `heatmap_matrix` | Matrix | preview available | [preview](gallery/heatmap_matrix.png) | no | no | no | no | no | no |

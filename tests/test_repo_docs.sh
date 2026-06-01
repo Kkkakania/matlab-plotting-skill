@@ -89,7 +89,7 @@ grep -q "claim broad adoption" "$ROOT_DIR/docs/ecosystem-status.md"
 grep -q "# Scheme Readiness" "$ROOT_DIR/docs/scheme-readiness.md"
 grep -q "| gallery-backed | 10 |" "$ROOT_DIR/docs/scheme-readiness.md"
 grep -q '| `contour_scatter` | Relationship | gallery-backed |' "$ROOT_DIR/docs/scheme-readiness.md"
-grep -q '| `regression_scatter` | Relationship | render path started |' "$ROOT_DIR/docs/scheme-readiness.md"
+grep -q '| `regression_scatter` | Relationship | cataloged |' "$ROOT_DIR/docs/scheme-readiness.md"
 grep -q "## Stable First-Use Schemes" "$ROOT_DIR/docs/scheme-readiness.md"
 
 echo "repository docs test passed."
