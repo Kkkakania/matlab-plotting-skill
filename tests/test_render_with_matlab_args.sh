@@ -112,6 +112,31 @@ check_empty_out_dir() {
 
 check_empty_out_dir
 
+check_control_char_out_dir() {
+  local out_file="$TMP_DIR/outdir-control.out"
+  local err_file="$TMP_DIR/outdir-control.err"
+  local status
+
+  set +e
+  "$SCRIPT" --list-schemes --out $'bad\npath' >"$out_file" 2>"$err_file"
+  status=$?
+  set -e
+
+  if [[ "$status" -ne 2 ]]; then
+    echo "expected control-character --out to exit 2, got $status" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+
+  if ! grep -q -- "--out may not contain control characters" "$err_file"; then
+    echo "expected clear control-character --out validation message" >&2
+    cat "$err_file" >&2
+    exit 1
+  fi
+}
+
+check_control_char_out_dir
+
 check_missing_required_data_before_matlab() {
   local out_file="$TMP_DIR/missing-data.out"
   local err_file="$TMP_DIR/missing-data.err"

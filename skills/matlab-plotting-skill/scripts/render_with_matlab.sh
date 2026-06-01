@@ -97,6 +97,10 @@ while [[ $# -gt 0 ]]; do
         echo "--out must not be empty." >&2
         exit 2
       fi
+      if [[ "$2" =~ [[:cntrl:]] ]]; then
+        echo "--out may not contain control characters." >&2
+        exit 2
+      fi
       OUT_DIR="$2"
       shift 2
       ;;
