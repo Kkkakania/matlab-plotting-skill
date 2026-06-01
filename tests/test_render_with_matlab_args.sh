@@ -3,8 +3,23 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT="$ROOT_DIR/scripts/render_with_matlab.sh"
+INNER_SCRIPT="$ROOT_DIR/skills/matlab-plotting-skill/scripts/render_with_matlab.sh"
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_DIR"' EXIT
+
+wrapper_nonblank_lines="$(grep -cv '^[[:space:]]*$' "$SCRIPT")"
+if [[ "$wrapper_nonblank_lines" -ne 4 ]]; then
+  echo "top-level render_with_matlab.sh should remain a thin wrapper around the skill script" >&2
+  exit 1
+fi
+grep -Fxq '#!/usr/bin/env bash' "$SCRIPT"
+grep -Fxq 'set -euo pipefail' "$SCRIPT"
+grep -Fxq 'exec "$ROOT_DIR/skills/matlab-plotting-skill/scripts/render_with_matlab.sh" "$@"' "$SCRIPT"
+
+if [[ ! -x "$INNER_SCRIPT" ]]; then
+  echo "inner render_with_matlab.sh is not executable" >&2
+  exit 1
+fi
 
 check_missing_value() {
   local option="$1"

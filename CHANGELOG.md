@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a regression check that keeps the top-level `scripts/render_with_matlab.sh`
+  entrypoint as a thin wrapper around the bundled Skill renderer.
 - Added a MATLAB command timeout guard to `render_with_matlab.sh`, configurable
   with `MP_MATLAB_TIMEOUT_SECONDS`, so stuck local renders fail predictably.
 - Kept `--plan-only` and `--inspect-data` from creating the default `figures/`
