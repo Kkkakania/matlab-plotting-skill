@@ -260,9 +260,17 @@ def main() -> int:
     write_markdown(manifest, args.markdown_out)
     print(
         f"Wrote {manifest['task_count']} backlog tasks for "
-        f"{manifest['scheme_count']} schemes: {args.json_out}, {args.markdown_out}"
+        f"{_format_scheme_count(manifest)}: {args.json_out}, {args.markdown_out}"
     )
     return 0
+
+
+def _format_scheme_count(manifest: dict[str, object]) -> str:
+    tasks = manifest["tasks"]
+    assert isinstance(tasks, list)
+    active_scheme_count = len({str(task["scheme"]) for task in tasks})
+    noun = "scheme" if active_scheme_count == 1 else "schemes"
+    return f"{active_scheme_count} {noun}"
 
 
 if __name__ == "__main__":

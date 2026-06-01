@@ -5,10 +5,19 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TMP_JSON="$(mktemp)"
 TMP_MD="$(mktemp)"
 
-python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
+SCHEME_OUT="$(python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
   --json-out "$TMP_JSON" \
   --markdown-out "$TMP_MD" \
-  --scheme line_trend
+  --scheme line_trend)"
+
+case "$SCHEME_OUT" in
+  *"Wrote 10 backlog tasks for 1 scheme:"*) ;;
+  *)
+    echo "scheme-filter summary should report one scheme" >&2
+    echo "$SCHEME_OUT" >&2
+    exit 1
+    ;;
+esac
 
 python3 - "$TMP_JSON" <<'PY'
 import json
@@ -28,10 +37,19 @@ PY
 grep -q "Active filters: scheme=line_trend" "$TMP_MD"
 grep -q "TASK-010-line_trend-safety" "$TMP_MD"
 
-python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
+LANE_OUT="$(python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
   --json-out "$TMP_JSON" \
   --markdown-out "$TMP_MD" \
-  --lane safety
+  --lane safety)"
+
+case "$LANE_OUT" in
+  *"Wrote 50 backlog tasks for 50 schemes:"*) ;;
+  *)
+    echo "lane-filter summary should report all 50 schemes" >&2
+    echo "$LANE_OUT" >&2
+    exit 1
+    ;;
+esac
 
 python3 - "$TMP_JSON" <<'PY'
 import json
