@@ -17,7 +17,8 @@ schemes = json.load(sys.stdin)
 names = {item["scheme"] for item in schemes}
 assert "line_trend" in names
 assert "annotated_callout" in names
-assert all({"scheme", "family", "best_for", "palette"} <= set(item) for item in schemes)
+assert all({"schema_version", "scheme", "family", "best_for", "palette"} <= set(item) for item in schemes)
+assert {item["schema_version"] for item in schemes} == {"1.0"}
 '
 
 status_json_output="$("$ROOT_DIR/scripts/render_with_matlab.sh" --list-schemes-json --status)"

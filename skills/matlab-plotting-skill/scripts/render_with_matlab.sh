@@ -279,6 +279,7 @@ for line in catalog.read_text(encoding="utf-8").splitlines():
     item = {key: value.strip() for key, value in match.groupdict().items()}
     if item["scheme"] != scheme_name:
         continue
+    item["schema_version"] = "1.0"
     if output_mode == "json":
         print(json.dumps(item, indent=2))
     else:
@@ -362,6 +363,7 @@ for line in catalog.read_text(encoding="utf-8").splitlines():
     match = pattern.match(line)
     if match:
         item = {key: value.strip() for key, value in match.groupdict().items()}
+        item["schema_version"] = "1.0"
         if show_status:
             item.update(readiness.get(item["scheme"], {"readiness": "unknown", "gallery": "unknown"}))
         rows.append(item)

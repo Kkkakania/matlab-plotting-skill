@@ -24,6 +24,7 @@ json_output="$("$ROOT_DIR/scripts/render_with_matlab.sh" --scheme-info-json line
 printf '%s\n' "$json_output" | python3 -c '
 import json, sys
 item = json.load(sys.stdin)
+assert item["schema_version"] == "1.0"
 assert item["scheme"] == "line_trend"
 assert item["family"] == "Trend"
 assert item["best_for"] == "One time or ordered series"

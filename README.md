@@ -199,6 +199,10 @@ Render with an explicit scheme:
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
 
+The JSON catalog commands keep the existing array/item shape and include a
+`schema_version` field on each record so downstream scripts can detect future
+format changes without brittle key guessing.
+
 When a MAT file contains several variables, choose one explicitly:
 
 ```bash
