@@ -133,6 +133,7 @@ tests/test_skill_plan_only_guidance.sh
 tests/test_example_prompts.sh
 
 echo "== Repository checks =="
+find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +
 python3 scripts/validate_skill.py
 scripts/check_forbidden_files.sh
 scripts/check_privacy.sh

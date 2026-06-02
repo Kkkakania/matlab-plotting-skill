@@ -10,7 +10,7 @@ if [[ ! -s "$WORKFLOW" ]]; then
 fi
 
 grep -q "scripts/build_automation_manifest.py" "$WORKFLOW"
-grep -q "find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +" "$WORKFLOW"
+grep -Fq "find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +" "$WORKFLOW"
 grep -q "tests/test_check_privacy.sh" "$WORKFLOW"
 grep -q "tests/test_scheme_info.sh" "$WORKFLOW"
 grep -q "tests/test_automation_manifest.sh" "$WORKFLOW"
@@ -73,5 +73,7 @@ grep -q "task-manifest.json" "$WORKFLOW"
 grep -q "task-board.md" "$WORKFLOW"
 grep -q "docs/task-status.json" "$WORKFLOW"
 grep -q "actions/upload-artifact" "$WORKFLOW"
+grep -q "Clean generated Python cache" "$WORKFLOW"
+grep -Fq "find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +" "$WORKFLOW"
 
 echo "CI workflow test passed."

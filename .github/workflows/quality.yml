@@ -165,6 +165,8 @@ jobs:
           tests/test_release_check_script.sh
           tests/test_skill_plan_only_guidance.sh
           tests/test_example_prompts.sh
+      - name: Clean generated Python cache
+        run: find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan
