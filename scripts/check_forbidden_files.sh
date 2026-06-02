@@ -4,7 +4,8 @@ set -euo pipefail
 bad=$(find . -type f \( \
   -name '*.p' -o -name '*.fig' -o -name '*.mat' -o -name '*.doc' -o \
   -name '*.docx' -o -name '*.vsd' -o -name '*.pdf' -o -name '*.xlsx' -o \
-  -name '*.xls' -o -name '*.zip' -o -name '*.rar' -o -name '*.7z' \) \
+  -name '*.xls' -o -name '*.zip' -o -name '*.rar' -o -name '*.7z' -o \
+  -name '.DS_Store' -o -name 'Thumbs.db' -o -name 'desktop.ini' \) \
   -not -path './.git/*' -print)
 
 if [[ -n "$bad" ]]; then
