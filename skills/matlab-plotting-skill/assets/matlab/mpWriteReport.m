@@ -60,6 +60,7 @@ end
 jsonCleaner = onCleanup(@() fclose(jsonFid));
 
 summary = struct();
+summary.schema_version = '1.0';
 summary.selectedScheme = char(selection.Selected.Name);
 summary.schemeFamily = char(selection.Selected.Family);
 summary.palette = char(selection.Selected.Palette);

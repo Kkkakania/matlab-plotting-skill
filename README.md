@@ -97,6 +97,7 @@ Use this narrow path on a fresh clone before trying private data:
 
    ```bash
    ./scripts/render_with_matlab.sh --list-schemes
+   ./scripts/render_with_matlab.sh --list-schemes --status
    ./scripts/render_with_matlab.sh --scheme-info line_trend
    ```
 
@@ -123,7 +124,9 @@ SFT_OUTPUT_DIR is not used by this repository; pass `--out <directory>` to
 choose the render location.
 
 The same sequence is available as a shareable
-[`docs/first-five-minutes.md`](docs/first-five-minutes.md) guide.
+[`docs/first-five-minutes.md`](docs/first-five-minutes.md) guide, including
+additional bundled fixtures such as `multi_series.csv`, `confidence_band.csv`,
+and `method_scores.csv`.
 
 ## CLI
 

@@ -65,6 +65,7 @@ tests/test_check_gallery_outputs.sh
 tests/test_check_privacy.sh
 tests/test_list_schemes.sh
 tests/test_list_schemes_json.sh
+tests/test_first_five_minutes_fixtures.sh
 tests/test_scheme_info.sh
 tests/test_automation_manifest.sh
 tests/test_ci_workflow.sh

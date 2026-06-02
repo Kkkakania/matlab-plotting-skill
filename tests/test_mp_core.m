@@ -384,6 +384,7 @@ mpRun(dataPath, "show time trend", outDir, "png");
 jsonPath = fullfile(outDir, 'render_report.json');
 verifyTrue(testCase, isfile(jsonPath));
 report = jsondecode(fileread(jsonPath));
+verifyEqual(testCase, string(report.schema_version), "1.0");
 verifyEqual(testCase, string(report.selectedScheme), "line_trend");
 verifyEqual(testCase, string(report.dataFile), "time_series.csv");
 verifyFalse(testCase, contains(fileread(jsonPath), outDir));

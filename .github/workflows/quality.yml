@@ -26,6 +26,7 @@ jobs:
           bash -n tests/test_check_privacy.sh
           bash -n tests/test_list_schemes.sh
           bash -n tests/test_list_schemes_json.sh
+          bash -n tests/test_first_five_minutes_fixtures.sh
           bash -n tests/test_scheme_info.sh
           bash -n tests/test_automation_manifest.sh
           bash -n tests/test_ci_workflow.sh
@@ -99,6 +100,7 @@ jobs:
           tests/test_check_privacy.sh
           tests/test_list_schemes.sh
           tests/test_list_schemes_json.sh
+          tests/test_first_five_minutes_fixtures.sh
           tests/test_scheme_info.sh
           tests/test_automation_manifest.sh
           tests/test_ci_workflow.sh

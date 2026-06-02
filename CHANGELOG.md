@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Added `schema_version` to machine-readable MATLAB JSON outputs so downstream
+  scripts can detect report/plan/inspection schema changes.
+- Added `--list-schemes --status` and `--list-schemes-json --status` so users
+  can see gallery-backed, preview, and render-path readiness without opening
+  the readiness matrix first.
+- Expanded the First 5 Minutes path to surface all bundled CSV fixtures before
+  users try private data.
 - Completed `TASK-104` through `TASK-118` as a focused relationship-plotting
   batch without cutting a new tag.
 - Promoted `regression_scatter` to a gallery-backed scheme with selection-rule,

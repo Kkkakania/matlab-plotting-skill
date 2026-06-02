@@ -4,6 +4,8 @@ set -euo pipefail
 SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MATLAB_DIR="$SKILL_DIR/assets/matlab"
 SCHEME_CATALOG="$SKILL_DIR/references/scheme-catalog.md"
+REPO_ROOT="$(cd "$SKILL_DIR/../.." && pwd)"
+SCHEME_READINESS="$REPO_ROOT/docs/scheme-readiness.md"
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
 MP_MATLAB_TIMEOUT_SECONDS="${MP_MATLAB_TIMEOUT_SECONDS:-600}"
 DATA_PATH=""
@@ -18,6 +20,7 @@ PLAN_ONLY=0
 INSPECT_DATA=0
 SCHEME_INFO=0
 SCHEME_INFO_JSON=0
+SHOW_STATUS=0
 SCHEME_NAME=""
 SCHEME_INFO_NAME=""
 MAT_VARIABLE=""
@@ -27,8 +30,8 @@ usage() {
 Usage:
   render_with_matlab.sh --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>] [--out <dir>] [--formats png,svg]
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
-  render_with_matlab.sh --list-schemes
-  render_with_matlab.sh --list-schemes-json
+  render_with_matlab.sh --list-schemes [--status]
+  render_with_matlab.sh --list-schemes-json [--status]
   render_with_matlab.sh --scheme-info <name>
   render_with_matlab.sh --scheme-info-json <name>
   render_with_matlab.sh --check
@@ -129,6 +132,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --list-schemes-json)
       LIST_SCHEMES_JSON=1
+      shift
+      ;;
+    --status)
+      SHOW_STATUS=1
       shift
       ;;
     --scheme-info)
@@ -291,10 +298,38 @@ if [[ "$LIST_SCHEMES" -eq 1 ]]; then
     echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
     exit 1
   fi
-  sed -nE 's/^\| `([^`]+)` \| ([^|]+) \| ([^|]+) \| ([^|]+) \|.*/\1\t\2\t\3\t\4/p' "$SCHEME_CATALOG" |
-    while IFS=$'\t' read -r scheme family best_for palette; do
-      printf '%-28s %-14s %s [%s]\n' "$scheme" "$family" "$best_for" "$palette"
-    done
+  python3 - "$SCHEME_CATALOG" "$SCHEME_READINESS" "$SHOW_STATUS" text <<'PY'
+import re
+import sys
+from pathlib import Path
+
+catalog = Path(sys.argv[1])
+readiness_path = Path(sys.argv[2])
+show_status = sys.argv[3] == "1"
+mode = sys.argv[4]
+catalog_pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| (?P<family>[^|]+) \| (?P<best_for>[^|]+) \| (?P<palette>[^|]+) \|")
+readiness_pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| [^|]+ \| (?P<readiness>[^|]+) \| (?P<gallery>[^|]+) \|")
+
+readiness = {}
+if show_status and readiness_path.is_file():
+    for line in readiness_path.read_text(encoding="utf-8").splitlines():
+        match = readiness_pattern.match(line)
+        if match:
+            item = {key: value.strip() for key, value in match.groupdict().items()}
+            gallery = "preview" if item["gallery"].startswith("[preview]") else item["gallery"]
+            readiness[item["scheme"]] = {"readiness": item["readiness"], "gallery": gallery}
+
+for line in catalog.read_text(encoding="utf-8").splitlines():
+    match = catalog_pattern.match(line)
+    if not match:
+        continue
+    item = {key: value.strip() for key, value in match.groupdict().items()}
+    if show_status:
+        status = readiness.get(item["scheme"], {"readiness": "unknown", "gallery": "unknown"})
+        print(f"{item['scheme']:<28} {item['family']:<14} {status['readiness']:<20} {status['gallery']:<8} {item['best_for']} [{item['palette']}]")
+    else:
+        print(f"{item['scheme']:<28} {item['family']:<14} {item['best_for']} [{item['palette']}]")
+PY
   exit 0
 fi
 
@@ -303,19 +338,33 @@ if [[ "$LIST_SCHEMES_JSON" -eq 1 ]]; then
     echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
     exit 1
   fi
-  python3 - "$SCHEME_CATALOG" <<'PY'
+  python3 - "$SCHEME_CATALOG" "$SCHEME_READINESS" "$SHOW_STATUS" <<'PY'
 import json
 import re
 import sys
 from pathlib import Path
 
 catalog = Path(sys.argv[1])
+readiness_path = Path(sys.argv[2])
+show_status = sys.argv[3] == "1"
 rows = []
 pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| (?P<family>[^|]+) \| (?P<best_for>[^|]+) \| (?P<palette>[^|]+) \|")
+readiness_pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| [^|]+ \| (?P<readiness>[^|]+) \| (?P<gallery>[^|]+) \|")
+readiness = {}
+if show_status and readiness_path.is_file():
+    for line in readiness_path.read_text(encoding="utf-8").splitlines():
+        match = readiness_pattern.match(line)
+        if match:
+            item = {key: value.strip() for key, value in match.groupdict().items()}
+            item["gallery"] = "preview" if item["gallery"].startswith("[preview]") else item["gallery"]
+            readiness[item["scheme"]] = {"readiness": item["readiness"], "gallery": item["gallery"]}
 for line in catalog.read_text(encoding="utf-8").splitlines():
     match = pattern.match(line)
     if match:
-        rows.append({key: value.strip() for key, value in match.groupdict().items()})
+        item = {key: value.strip() for key, value in match.groupdict().items()}
+        if show_status:
+            item.update(readiness.get(item["scheme"], {"readiness": "unknown", "gallery": "unknown"}))
+        rows.append(item)
 print(json.dumps(rows, indent=2))
 PY
   exit 0

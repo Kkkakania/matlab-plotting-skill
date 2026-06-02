@@ -20,4 +20,17 @@ assert "annotated_callout" in names
 assert all({"scheme", "family", "best_for", "palette"} <= set(item) for item in schemes)
 '
 
+status_json_output="$("$ROOT_DIR/scripts/render_with_matlab.sh" --list-schemes-json --status)"
+
+printf '%s\n' "$status_json_output" | python3 -c '
+import json, sys
+schemes = json.load(sys.stdin)
+by_name = {item["scheme"]: item for item in schemes}
+assert by_name["regression_scatter"]["readiness"] == "gallery-backed"
+assert by_name["regression_scatter"]["gallery"] == "preview"
+assert by_name["bubble_scatter"]["readiness"] == "render path started"
+assert by_name["bubble_scatter"]["gallery"] == "no"
+assert all({"scheme", "family", "best_for", "palette", "readiness", "gallery"} <= set(item) for item in schemes)
+'
+
 echo "scheme JSON list test passed."

@@ -8,6 +8,7 @@ These commands only read bundled metadata:
 
 ```bash
 ./scripts/render_with_matlab.sh --list-schemes
+./scripts/render_with_matlab.sh --list-schemes --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
 ```
@@ -36,7 +37,23 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matl
 The plan-only command should name the selected scheme and top alternatives
 without writing figure files.
 
-## 4. Render Into A Scratch Directory
+## 4. Use More Bundled Fixtures
+
+After the first time-series pass, try the other public fixtures. They are tiny,
+synthetic, and safe to share in issue reports.
+
+| Fixture | Goal text | Expected direction |
+|---|---|---|
+| `examples/data/time_series.csv` | `show a time trend` | `line_trend` |
+| `examples/data/multi_series.csv` | `compare multiple time series` | `multi_line_comparison` |
+| `examples/data/confidence_band.csv` | `show uncertainty bounds` | `confidence_band` |
+| `examples/data/method_scores.csv` | `compare methods` | `grouped_bar` or another comparison scheme |
+
+Use the same inspect -> plan-only -> render rhythm for each fixture. This gives
+you a quick feel for how the selector responds to data shape and goal wording
+before you use private files.
+
+## 5. Render Into A Scratch Directory
 
 Render only after catalog, MATLAB, inspection, and plan-only checks pass:
 

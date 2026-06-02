@@ -12,6 +12,7 @@ fi
 grep -q "scripts/build_automation_manifest.py" "$WORKFLOW"
 grep -Fq "find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +" "$WORKFLOW"
 grep -q "tests/test_check_privacy.sh" "$WORKFLOW"
+grep -q "tests/test_first_five_minutes_fixtures.sh" "$WORKFLOW"
 grep -q "tests/test_scheme_info.sh" "$WORKFLOW"
 grep -q "tests/test_automation_manifest.sh" "$WORKFLOW"
 grep -q "tests/test_ci_workflow.sh" "$WORKFLOW"

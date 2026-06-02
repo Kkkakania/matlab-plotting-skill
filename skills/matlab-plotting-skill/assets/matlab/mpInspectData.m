@@ -14,6 +14,7 @@ data = mpReadData(dataPath, variableName);
 schema = mpInferDataSchema(data);
 
 inspection = struct();
+inspection.schema_version = "1.0";
 inspection.FileName = localFileName(dataPath);
 inspection.VariableName = variableName;
 inspection.Schema = schema;

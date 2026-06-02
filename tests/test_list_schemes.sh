@@ -21,4 +21,21 @@ if [[ "$count" -ne 50 ]]; then
   exit 1
 fi
 
+status_output="$("$ROOT_DIR/scripts/render_with_matlab.sh" --list-schemes --status)"
+
+if [[ "$status_output" != *"gallery-backed"* ]]; then
+  echo "scheme list with status should include readiness labels" >&2
+  exit 1
+fi
+
+if [[ "$status_output" != *"render path started"* ]]; then
+  echo "scheme list with status should surface partially supported schemes" >&2
+  exit 1
+fi
+
+if [[ "$status_output" != *"regression_scatter"* || "$status_output" != *"bubble_scatter"* ]]; then
+  echo "scheme list with status should include relationship schemes" >&2
+  exit 1
+fi
+
 echo "scheme list test passed."
