@@ -8,7 +8,7 @@ bad=$(find . -type f \( \
   -name '.DS_Store' -o -name 'Thumbs.db' -o -name 'desktop.ini' \) \
   -not -path './.git/*' -print)
 bad_dirs=$(find . -type d \( \
-  -name '__MACOSX' -o -name '.ipynb_checkpoints' \) \
+  -name '__MACOSX' -o -name '.ipynb_checkpoints' -o -name '.pytest_cache' \) \
   -not -path './.git/*' -print)
 
 if [[ -n "$bad" || -n "$bad_dirs" ]]; then
