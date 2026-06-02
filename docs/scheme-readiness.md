@@ -7,14 +7,14 @@ that currently have committed gallery previews and completed support tasks.
 
 | Readiness | Schemes |
 |---|---:|
-| gallery-backed | 10 |
+| gallery-backed | 11 |
 | preview available | 2 |
-| render path started | 0 |
-| cataloged | 38 |
+| render path started | 1 |
+| cataloged | 36 |
 
 ## Stable First-Use Schemes
 
-`line_trend`, `multi_line_comparison`, `confidence_band`, `zoomed_inset_line`, `positive_negative_area`, `segmented_line`, `scatter_relationship`, `grouped_scatter`, `density_scatter`, `contour_scatter`
+`line_trend`, `multi_line_comparison`, `confidence_band`, `zoomed_inset_line`, `positive_negative_area`, `segmented_line`, `scatter_relationship`, `grouped_scatter`, `density_scatter`, `contour_scatter`, `regression_scatter`
 
 Start with these before trying cataloged-only schemes.
 
@@ -32,8 +32,8 @@ Start with these before trying cataloged-only schemes.
 | `grouped_scatter` | Relationship | gallery-backed | [preview](gallery/grouped_scatter.png) | yes | yes | yes | yes | yes | yes |
 | `density_scatter` | Relationship | gallery-backed | [preview](gallery/density_scatter.png) | yes | yes | yes | yes | yes | yes |
 | `contour_scatter` | Relationship | gallery-backed | [preview](gallery/contour_scatter.png) | yes | yes | yes | yes | yes | yes |
-| `regression_scatter` | Relationship | cataloged | no | yes | no | no | no | no | no |
-| `bubble_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |
+| `regression_scatter` | Relationship | gallery-backed | [preview](gallery/regression_scatter.png) | yes | yes | yes | yes | yes | yes |
+| `bubble_scatter` | Relationship | render path started | no | yes | yes | yes | yes | yes | no |
 | `residual_scatter` | Relationship | cataloged | no | no | no | no | no | no | no |
 | `heatmap_matrix` | Matrix | preview available | [preview](gallery/heatmap_matrix.png) | no | no | no | no | no | no |
 | `clustered_heatmap` | Matrix | cataloged | no | no | no | no | no | no | no |

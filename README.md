@@ -45,13 +45,17 @@ the 50-scheme catalog from gallery-backed and still-maturing schemes.
 |---|---|---|
 | ![zoomed inset line](docs/gallery/zoomed_inset_line.png) | ![scatter relationship](docs/gallery/scatter_relationship.png) | ![density scatter](docs/gallery/density_scatter.png) |
 
-| Grouped Scatter | Contour Scatter | Heatmap |
+| Grouped Scatter | Contour Scatter | Regression Scatter |
 |---|---|---|
-| ![grouped scatter](docs/gallery/grouped_scatter.png) | ![contour scatter](docs/gallery/contour_scatter.png) | ![heatmap matrix](docs/gallery/heatmap_matrix.png) |
+| ![grouped scatter](docs/gallery/grouped_scatter.png) | ![contour scatter](docs/gallery/contour_scatter.png) | ![regression scatter](docs/gallery/regression_scatter.png) |
 
-| Grouped Bar | Positive/Negative Area | Segmented Line |
+| Heatmap | Grouped Bar | Positive/Negative Area |
 |---|---|---|
-| ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) | ![segmented line](docs/gallery/segmented_line.png) |
+| ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |
+
+| Segmented Line |
+|---|
+| ![segmented line](docs/gallery/segmented_line.png) |
 
 ## Install
 

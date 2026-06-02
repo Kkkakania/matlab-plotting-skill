@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Completed `TASK-104` through `TASK-118` as a focused relationship-plotting
+  batch without cutting a new tag.
+- Promoted `regression_scatter` to a gallery-backed scheme with selection-rule,
+  explicit CLI, PNG/vector/report, preview, provenance, and safety coverage.
+- Added `bubble_scatter` data-contract, synthetic demo-data, selection-rule,
+  explicit CLI, PNG/vector/report, and readiness coverage while leaving gallery
+  and safety as the next natural tasks.
 - Completed `TASK-089` through `TASK-103` as a relationship-plotting batch.
 - Added `contour_scatter` demo data, selection-rule coverage, explicit CLI
   coverage, PNG/vector/report coverage, gallery preview, and safety checks.

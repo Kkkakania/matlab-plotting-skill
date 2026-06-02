@@ -62,6 +62,7 @@ bash -n tests/*.sh
 echo "== Shell tests =="
 tests/test_install_script.sh
 tests/test_check_gallery_outputs.sh
+tests/test_check_privacy.sh
 tests/test_list_schemes.sh
 tests/test_list_schemes_json.sh
 tests/test_scheme_info.sh
@@ -89,6 +90,7 @@ tests/test_grouped_scatter_catalog.sh
 tests/test_density_scatter_catalog.sh
 tests/test_contour_scatter_catalog.sh
 tests/test_regression_scatter_catalog.sh
+tests/test_bubble_scatter_catalog.sh
 tests/test_confidence_band_data_contract.sh
 tests/test_zoomed_inset_line_data_contract.sh
 tests/test_positive_negative_area_data_contract.sh
@@ -98,6 +100,7 @@ tests/test_grouped_scatter_data_contract.sh
 tests/test_density_scatter_data_contract.sh
 tests/test_contour_scatter_data_contract.sh
 tests/test_regression_scatter_data_contract.sh
+tests/test_bubble_scatter_data_contract.sh
 tests/test_build_gallery_index.sh
 tests/test_line_trend_gallery.sh
 tests/test_multi_line_comparison_gallery.sh
@@ -109,6 +112,7 @@ tests/test_scatter_relationship_gallery.sh
 tests/test_grouped_scatter_gallery.sh
 tests/test_density_scatter_gallery.sh
 tests/test_contour_scatter_gallery.sh
+tests/test_regression_scatter_gallery.sh
 tests/test_multi_line_comparison_safety.sh
 tests/test_confidence_band_safety.sh
 tests/test_zoomed_inset_line_safety.sh
@@ -118,6 +122,7 @@ tests/test_scatter_relationship_safety.sh
 tests/test_grouped_scatter_safety.sh
 tests/test_density_scatter_safety.sh
 tests/test_contour_scatter_safety.sh
+tests/test_regression_scatter_safety.sh
 tests/test_gallery_provenance.sh
 tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh

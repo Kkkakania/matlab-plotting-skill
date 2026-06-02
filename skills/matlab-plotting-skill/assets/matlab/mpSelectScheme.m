@@ -71,6 +71,16 @@ if schema.NumericCount >= 2 && any(contains(goal, ...
     scores = addFamily(scores, schemes, "relationship", 8);
     scores(nameIndex(schemes, "contour_scatter")) = scores(nameIndex(schemes, "contour_scatter")) + 34;
 end
+if schema.NumericCount >= 2 && any(contains(goal, ...
+        ["regression", "trend line", "fit", "fitted", "linear", "slope"]))
+    scores = addFamily(scores, schemes, "relationship", 10);
+    scores(nameIndex(schemes, "regression_scatter")) = scores(nameIndex(schemes, "regression_scatter")) + 52;
+end
+if schema.NumericCount >= 3 && any(contains(goal, ...
+        ["bubble", "magnitude", "size", "sized", "weight", "third variable", "third numeric"]))
+    scores = addFamily(scores, schemes, "relationship", 10);
+    scores(nameIndex(schemes, "bubble_scatter")) = scores(nameIndex(schemes, "bubble_scatter")) + 52;
+end
 if schema.HasPositiveNegative
     scores(nameIndex(schemes, "positive_negative_area")) = scores(nameIndex(schemes, "positive_negative_area")) + 8;
     scores(nameIndex(schemes, "diverging_bar")) = scores(nameIndex(schemes, "diverging_bar")) + 8;

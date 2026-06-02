@@ -16,5 +16,6 @@ template archives.
 | `grouped_scatter.png` | `grouped_scatter` | synthetic demo data | `mpDemoDataForScheme` -> temporary CSV -> `mpRun` -> PNG export | no private data, no external image source |
 | `density_scatter.png` | `density_scatter` | synthetic demo data | `mpDemoDataForScheme` -> `mpRenderScheme` -> PNG export | no private data, no external image source |
 | `contour_scatter.png` | `contour_scatter` | synthetic demo data | `mpDemoDataForScheme` -> temporary CSV -> `mpRun` -> PNG export | no private data, no external image source |
+| `regression_scatter.png` | `regression_scatter` | synthetic demo data | `mpDemoDataForScheme` -> temporary CSV -> `mpRun` -> PNG export | no private data, no external image source |
 | `heatmap_matrix.png` | `heatmap_matrix` | synthetic demo data | `mpDemoDataForScheme` -> `mpRenderScheme` -> PNG export | no private data, no external image source |
 | `grouped_bar.png` | `grouped_bar` | synthetic demo data | `mpDemoDataForScheme` -> `mpRenderScheme` -> PNG export | no private data, no external image source |

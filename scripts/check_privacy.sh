@@ -5,6 +5,7 @@ patterns='(/Users/wi|17 akun|akun|Nature论文|Science论文|Author:|Copyright T
 
 if grep -RInE "$patterns" . \
   --exclude-dir=.git \
+  --exclude='.git' \
   --exclude='check_privacy.sh' \
   --exclude='README.md'; then
   echo "Privacy or provenance-like trace found." >&2
@@ -12,4 +13,3 @@ if grep -RInE "$patterns" . \
 fi
 
 echo "Privacy check passed."
-

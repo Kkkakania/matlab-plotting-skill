@@ -141,3 +141,15 @@ relationship is visible without hiding the points.
 Avoid this scheme when a fitted trend would imply unsupported causality or when
 the data is too nonlinear for a simple line to be a useful summary. Use
 `scatter_relationship`, `density_scatter`, or `contour_scatter` instead.
+
+### `bubble_scatter`
+
+Use at least three numeric columns when each row has an x-y location plus a
+third magnitude, weight, or intensity value. A clear table shape is
+`x, y, magnitude`; the default renderer uses the first two numeric columns for
+position and the third numeric column for bubble size and color.
+
+Avoid this scheme when the third numeric column is only an identifier, timestamp,
+or arbitrary code. Use `scatter_relationship` when the x-y pattern is the whole
+story, `grouped_scatter` when a category explains the points, or
+`density_scatter` when point overlap is more important than magnitude.

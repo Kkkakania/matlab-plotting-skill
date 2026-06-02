@@ -51,6 +51,15 @@ if schemeName == "regression_scatter"
     return
 end
 
+if schemeName == "bubble_scatter"
+    n = 220;
+    x = linspace(-2.2, 2.2, n)';
+    y = 0.45 * x + 0.32 * cos(2.1 * x) + 0.36 * randn(n, 1);
+    magnitude = 0.35 + abs(0.7 * x - 0.25 * y) + 0.18 * rand(n, 1);
+    data = table(x, y, magnitude, 'VariableNames', {'x', 'y', 'magnitude'});
+    return
+end
+
 if any(contains(schemeName, ["scatter", "pca"]))
     n = 180;
     x = linspace(-2, 2, n)';

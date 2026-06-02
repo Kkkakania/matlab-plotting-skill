@@ -35,7 +35,8 @@ together.
   overlap hides individual points; prefer `contour_scatter` when
   contour lines are easier to read than color density
 - Trend line needed: `regression_scatter`
-- Third magnitude variable: `bubble_scatter`
+- Third magnitude variable: `bubble_scatter` for at least three numeric columns
+  such as `x, y, magnitude`
 - Model checking: `residual_scatter`
 
 When Not To Use: avoid scatter plots for tiny category comparisons or already

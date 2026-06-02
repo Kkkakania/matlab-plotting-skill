@@ -101,5 +101,20 @@
   "TASK-100-contour_scatter-safety": "done",
   "TASK-101-regression_scatter-catalog": "done",
   "TASK-102-regression_scatter-data-contract": "done",
-  "TASK-103-regression_scatter-demo-data": "done"
+  "TASK-103-regression_scatter-demo-data": "done",
+  "TASK-104-regression_scatter-selection-rule": "done",
+  "TASK-105-regression_scatter-explicit-cli": "done",
+  "TASK-106-regression_scatter-png-render": "done",
+  "TASK-107-regression_scatter-vector-render": "done",
+  "TASK-108-regression_scatter-report": "done",
+  "TASK-109-regression_scatter-gallery": "done",
+  "TASK-110-regression_scatter-safety": "done",
+  "TASK-111-bubble_scatter-catalog": "done",
+  "TASK-112-bubble_scatter-data-contract": "done",
+  "TASK-113-bubble_scatter-demo-data": "done",
+  "TASK-114-bubble_scatter-selection-rule": "done",
+  "TASK-115-bubble_scatter-explicit-cli": "done",
+  "TASK-116-bubble_scatter-png-render": "done",
+  "TASK-117-bubble_scatter-vector-render": "done",
+  "TASK-118-bubble_scatter-report": "done"
 }

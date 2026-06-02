@@ -173,6 +173,18 @@ verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'line'));
 end
 
+function testBubbleScatterDemoDataSupportsMagnitudeRender(testCase)
+data = mpDemoDataForScheme("bubble_scatter");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["x", "y", "magnitude"], string(data.Properties.VariableNames))));
+schema = mpInferDataSchema(data);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 3);
+fig = mpRenderScheme("bubble_scatter", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
+verifyNotEmpty(testCase, findobj(fig, 'Type', 'colorbar'));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
@@ -287,6 +299,28 @@ contourScore = selection.AllScores(names == "contour_scatter");
 densityScore = selection.AllScores(names == "density_scatter");
 verifyEqual(testCase, string(selection.Selected.Name), "contour_scatter");
 verifyGreaterThan(testCase, contourScore, densityScore);
+end
+
+function testRegressionScatterSelectionRulePrefersTrendLineGoal(testCase)
+data = mpDemoDataForScheme("regression_scatter");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show an x-y regression trend line with fitted slope");
+names = string({mpSchemeCatalog().Name});
+regressionScore = selection.AllScores(names == "regression_scatter");
+scatterScore = selection.AllScores(names == "scatter_relationship");
+verifyEqual(testCase, string(selection.Selected.Name), "regression_scatter");
+verifyGreaterThan(testCase, regressionScore, scatterScore);
+end
+
+function testBubbleScatterSelectionRulePrefersMagnitudeGoal(testCase)
+data = mpDemoDataForScheme("bubble_scatter");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show x-y relationship with bubble size for magnitude");
+names = string({mpSchemeCatalog().Name});
+bubbleScore = selection.AllScores(names == "bubble_scatter");
+scatterScore = selection.AllScores(names == "scatter_relationship");
+verifyEqual(testCase, string(selection.Selected.Name), "bubble_scatter");
+verifyGreaterThan(testCase, bubbleScore, scatterScore);
 end
 
 function testSelectionForMethodComparison(testCase)
@@ -713,6 +747,128 @@ verifyTrue(testCase, contains(markdownReport, '`contour_scatter`'));
 verifyTrue(testCase, contains(markdownReport, 'contour_scatter.png'));
 verifyEqual(testCase, string(jsonReport.selectedScheme), "contour_scatter");
 verifyTrue(testCase, any(contains(string(jsonReport.outputs), "contour_scatter.png")));
+end
+
+function testRegressionScatterExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-regression-scatter');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_regression_scatter_input.csv');
+writetable(mpDemoDataForScheme("regression_scatter"), dataPath);
+result = mpRun(dataPath, "show a regression trend line", outDir, "png", "regression_scatter");
+verifyEqual(testCase, result.SelectedScheme, "regression_scatter");
+verifyTrue(testCase, isfile(fullfile(outDir, 'regression_scatter.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "regression_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "regression_scatter.png")));
+end
+
+function testRegressionScatterPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-regression-scatter-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_regression_scatter_png_input.csv');
+writetable(mpDemoDataForScheme("regression_scatter"), dataPath);
+mpRun(dataPath, "show a regression trend line", outDir, "png", "regression_scatter");
+pngPath = fullfile(outDir, 'regression_scatter.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
+function testRegressionScatterVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-regression-scatter-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_regression_scatter_vector_input.csv');
+writetable(mpDemoDataForScheme("regression_scatter"), dataPath);
+mpRun(dataPath, "show a regression trend line", outDir, ["svg", "pdf"], "regression_scatter");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "regression_scatter." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
+function testRegressionScatterReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-regression-scatter-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_regression_scatter_report_input.csv');
+writetable(mpDemoDataForScheme("regression_scatter"), dataPath);
+mpRun(dataPath, "show a regression trend line", outDir, "png", "regression_scatter");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`regression_scatter`'));
+verifyTrue(testCase, contains(markdownReport, 'regression_scatter.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "regression_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "regression_scatter.png")));
+end
+
+function testBubbleScatterExplicitSchemeCreatesDeterministicOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-explicit-bubble-scatter');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_bubble_scatter_input.csv');
+writetable(mpDemoDataForScheme("bubble_scatter"), dataPath);
+result = mpRun(dataPath, "show bubble magnitude relationship", outDir, "png", "bubble_scatter");
+verifyEqual(testCase, result.SelectedScheme, "bubble_scatter");
+verifyTrue(testCase, isfile(fullfile(outDir, 'bubble_scatter.png')));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "bubble_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "bubble_scatter.png")));
+end
+
+function testBubbleScatterPngRenderOutputIsNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-bubble-scatter-png');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_bubble_scatter_png_input.csv');
+writetable(mpDemoDataForScheme("bubble_scatter"), dataPath);
+mpRun(dataPath, "show bubble magnitude relationship", outDir, "png", "bubble_scatter");
+pngPath = fullfile(outDir, 'bubble_scatter.png');
+verifyTrue(testCase, isfile(pngPath));
+fileInfo = dir(pngPath);
+verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+
+function testBubbleScatterVectorRenderOutputsAreNonEmpty(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-bubble-scatter-vector');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_bubble_scatter_vector_input.csv');
+writetable(mpDemoDataForScheme("bubble_scatter"), dataPath);
+mpRun(dataPath, "show bubble magnitude relationship", outDir, ["svg", "pdf"], "bubble_scatter");
+for extension = ["svg", "pdf"]
+    outputPath = fullfile(outDir, "bubble_scatter." + extension);
+    verifyTrue(testCase, isfile(outputPath));
+    fileInfo = dir(outputPath);
+    verifyGreaterThan(testCase, fileInfo.bytes, 0);
+end
+end
+
+function testBubbleScatterReportsNameSchemeAndOutput(testCase)
+outDir = fullfile(tempdir, 'mp-skill-test-bubble-scatter-report');
+if exist(outDir, 'dir')
+    rmdir(outDir, 's');
+end
+dataPath = fullfile(tempdir, 'mp_skill_bubble_scatter_report_input.csv');
+writetable(mpDemoDataForScheme("bubble_scatter"), dataPath);
+mpRun(dataPath, "show bubble magnitude relationship", outDir, "png", "bubble_scatter");
+markdownReport = fileread(fullfile(outDir, 'render_report.md'));
+jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
+verifyTrue(testCase, contains(markdownReport, '`bubble_scatter`'));
+verifyTrue(testCase, contains(markdownReport, 'bubble_scatter.png'));
+verifyEqual(testCase, string(jsonReport.selectedScheme), "bubble_scatter");
+verifyTrue(testCase, any(contains(string(jsonReport.outputs), "bubble_scatter.png")));
 end
 
 function testSegmentedLinePngRenderOutputIsNonEmpty(testCase)

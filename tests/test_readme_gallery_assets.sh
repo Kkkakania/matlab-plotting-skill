@@ -11,6 +11,7 @@ assets=(
   "docs/gallery/scatter_relationship.png"
   "docs/gallery/grouped_scatter.png"
   "docs/gallery/contour_scatter.png"
+  "docs/gallery/regression_scatter.png"
   "docs/gallery/positive_negative_area.png"
   "docs/gallery/segmented_line.png"
   "docs/gallery/grouped_bar.png"

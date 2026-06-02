@@ -22,6 +22,7 @@ jobs:
           bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
           bash -n tests/test_install_script.sh
           bash -n tests/test_check_gallery_outputs.sh
+          bash -n tests/test_check_privacy.sh
           bash -n tests/test_list_schemes.sh
           bash -n tests/test_list_schemes_json.sh
           bash -n tests/test_scheme_info.sh
@@ -49,6 +50,7 @@ jobs:
           bash -n tests/test_density_scatter_catalog.sh
           bash -n tests/test_contour_scatter_catalog.sh
           bash -n tests/test_regression_scatter_catalog.sh
+          bash -n tests/test_bubble_scatter_catalog.sh
           bash -n tests/test_confidence_band_data_contract.sh
           bash -n tests/test_zoomed_inset_line_data_contract.sh
           bash -n tests/test_positive_negative_area_data_contract.sh
@@ -58,6 +60,7 @@ jobs:
           bash -n tests/test_density_scatter_data_contract.sh
           bash -n tests/test_contour_scatter_data_contract.sh
           bash -n tests/test_regression_scatter_data_contract.sh
+          bash -n tests/test_bubble_scatter_data_contract.sh
           bash -n tests/test_build_gallery_index.sh
           bash -n tests/test_line_trend_gallery.sh
           bash -n tests/test_multi_line_comparison_gallery.sh
@@ -69,6 +72,7 @@ jobs:
           bash -n tests/test_grouped_scatter_gallery.sh
           bash -n tests/test_density_scatter_gallery.sh
           bash -n tests/test_contour_scatter_gallery.sh
+          bash -n tests/test_regression_scatter_gallery.sh
           bash -n tests/test_multi_line_comparison_safety.sh
           bash -n tests/test_confidence_band_safety.sh
           bash -n tests/test_zoomed_inset_line_safety.sh
@@ -78,6 +82,7 @@ jobs:
           bash -n tests/test_grouped_scatter_safety.sh
           bash -n tests/test_density_scatter_safety.sh
           bash -n tests/test_contour_scatter_safety.sh
+          bash -n tests/test_regression_scatter_safety.sh
           bash -n tests/test_gallery_provenance.sh
           bash -n tests/test_docs_palette_accessibility.sh
           bash -n tests/test_readme_gallery_assets.sh
@@ -90,6 +95,7 @@ jobs:
         run: |
           tests/test_install_script.sh
           tests/test_check_gallery_outputs.sh
+          tests/test_check_privacy.sh
           tests/test_list_schemes.sh
           tests/test_list_schemes_json.sh
           tests/test_scheme_info.sh
@@ -117,6 +123,7 @@ jobs:
           tests/test_density_scatter_catalog.sh
           tests/test_contour_scatter_catalog.sh
           tests/test_regression_scatter_catalog.sh
+          tests/test_bubble_scatter_catalog.sh
           tests/test_confidence_band_data_contract.sh
           tests/test_zoomed_inset_line_data_contract.sh
           tests/test_positive_negative_area_data_contract.sh
@@ -126,6 +133,7 @@ jobs:
           tests/test_density_scatter_data_contract.sh
           tests/test_contour_scatter_data_contract.sh
           tests/test_regression_scatter_data_contract.sh
+          tests/test_bubble_scatter_data_contract.sh
           tests/test_build_gallery_index.sh
           tests/test_line_trend_gallery.sh
           tests/test_multi_line_comparison_gallery.sh
@@ -137,6 +145,7 @@ jobs:
           tests/test_grouped_scatter_gallery.sh
           tests/test_density_scatter_gallery.sh
           tests/test_contour_scatter_gallery.sh
+          tests/test_regression_scatter_gallery.sh
           tests/test_multi_line_comparison_safety.sh
           tests/test_confidence_band_safety.sh
           tests/test_zoomed_inset_line_safety.sh
@@ -146,6 +155,7 @@ jobs:
           tests/test_grouped_scatter_safety.sh
           tests/test_density_scatter_safety.sh
           tests/test_contour_scatter_safety.sh
+          tests/test_regression_scatter_safety.sh
           tests/test_gallery_provenance.sh
           tests/test_docs_palette_accessibility.sh
           tests/test_readme_gallery_assets.sh
