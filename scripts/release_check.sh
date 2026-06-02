@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WITH_MATLAB=0
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
+export PYTHONDONTWRITEBYTECODE=1
 
 usage() {
   cat <<'USAGE'
@@ -53,6 +54,7 @@ cd "$ROOT_DIR"
 
 echo "== Syntax checks =="
 python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
+find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +
 bash -n scripts/*.sh
 bash -n skills/matlab-plotting-skill/scripts/*.sh
 bash -n tests/*.sh

@@ -14,5 +14,7 @@ help_output="$("$SCRIPT" --help)"
 grep -q "release_check.sh" <<<"$help_output"
 grep -q "with-matlab" <<<"$help_output"
 grep -q "check_privacy.sh" <<<"$help_output"
+grep -q "PYTHONDONTWRITEBYTECODE=1" "$SCRIPT"
+grep -q "find scripts -type d -name '__pycache__'" "$SCRIPT"
 
 echo "release check script test passed."
