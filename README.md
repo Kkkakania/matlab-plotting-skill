@@ -1,5 +1,7 @@
 # MATLAB Plotting Skill
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 An Agent Skill that chooses and renders MATLAB scientific figures from user data.
 
 The skill is self-contained. It does not depend on private archives, local
