@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Make `run_visual_fixtures.sh` write to a `/tmp` scratch path by default so
+  first-use checks do not leave generated files in a fresh checkout.
 - Added `schema_version` to machine-readable MATLAB JSON outputs so downstream
   scripts can detect report/plan/inspection schema changes.
 - Added `--list-schemes --status` and `--list-schemes-json --status` so users

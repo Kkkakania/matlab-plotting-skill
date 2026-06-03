@@ -46,6 +46,10 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtu
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/release_check.sh --with-matlab
 ```
 
+`run_visual_fixtures.sh` writes to `/tmp/matlab-plotting-skill-visual-fixtures`
+by default. Use `--out <directory>` when you intentionally want to keep the
+fixture images.
+
 ## Pull Request Notes
 
 Please include:

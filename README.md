@@ -227,6 +227,10 @@ Run the representative visual fixture suite:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/run_visual_fixtures.sh
 ```
 
+By default, this writes to `/tmp/matlab-plotting-skill-visual-fixtures` so a
+fresh checkout stays clean. Add `--out <directory>` when you want to keep the
+fixture images somewhere else.
+
 Build the automation manifest used to audit scheme coverage:
 
 ```bash

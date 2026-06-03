@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
-OUT_DIR="$ROOT_DIR/figures/visual-fixtures"
+OUT_DIR="/tmp/matlab-plotting-skill-visual-fixtures"
 
 usage() {
   cat <<'USAGE'
@@ -11,7 +11,9 @@ Usage:
   run_visual_fixtures.sh [--out <dir>]
 
 Runs tests/test_mp_visual_fixtures.m with MATLAB and writes fixture images to
-figures/visual-fixtures by default.
+/tmp/matlab-plotting-skill-visual-fixtures by default.
+
+Use --out to keep outputs somewhere else.
 
 Environment:
   MATLAB_BIN=/path/to/matlab

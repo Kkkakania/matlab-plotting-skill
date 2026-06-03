@@ -33,6 +33,7 @@ help_output="$("$SCRIPT" --help)"
 
 grep -q "test_mp_visual_fixtures.m" <<<"$help_output"
 grep -q "MATLAB_BIN" <<<"$help_output"
-grep -q "figures/visual-fixtures" <<<"$help_output"
+grep -q "/tmp/matlab-plotting-skill-visual-fixtures" <<<"$help_output"
+grep -q "Use --out to keep outputs somewhere else" <<<"$help_output"
 
 echo "visual fixtures script test passed."
