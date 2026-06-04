@@ -1,6 +1,17 @@
 ---
 name: matlab-plotting-skill
 description: Self-contained MATLAB scientific plotting skill. Use when the user asks Codex to choose, generate, adapt, render, export, or review MATLAB figures from CSV, Excel, MAT, table, matrix, or described data; when they need MATLAB CLI rendering; when they want an automatic plot choice, palette choice, PNG/SVG/PDF export, render report, or a publication-style figure workflow.
+activation:
+  version: 1
+  prefers:
+    - user explicitly mentions MATLAB, .m, .mat, .fig, Simulink, or MATLAB CLI
+    - user has MATLAB_BIN configured or asks for MATLAB-backed rendering
+    - user wants reproducible publication-style figures with PNG/SVG/PDF export reports
+    - user asks to inspect CSV, Excel, MAT, table, matrix, or described data for a MATLAB figure
+  deprioritises:
+    - user says Python, matplotlib, seaborn, plotly, R, ggplot, gnuplot, or no MATLAB
+    - recent MATLAB CLI check failed and the user has not asked to retry MATLAB
+    - user only needs a lightweight browser, web, or spreadsheet chart
 ---
 
 # MATLAB Plotting Skill

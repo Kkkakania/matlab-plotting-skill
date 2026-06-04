@@ -225,6 +225,7 @@ GitHub Actions 会检查打包、文档、manifest、隐私、来源和 MATLAB w
 - [`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md)：英文第一次渲染流程。
 - [`docs/chart-selection-guide.md`](docs/chart-selection-guide.md)：如何按研究任务选图。
 - [`docs/selection-algorithm.md`](docs/selection-algorithm.md)：选择算法和解释字段。
+- [`docs/activation-contract.md`](docs/activation-contract.md)：Agent 什么时候应该优先或暂缓使用这个 MATLAB Skill。
 - [`docs/figure-quality-checklist.md`](docs/figure-quality-checklist.md)：论文图质量检查清单。
 - [`docs/scheme-readiness.md`](docs/scheme-readiness.md)：当前方案成熟度。
 - [`docs/palette-accessibility-notes.md`](docs/palette-accessibility-notes.md)：配色和可访问性说明。

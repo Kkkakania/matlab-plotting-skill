@@ -320,6 +320,8 @@ See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/first-render-walkthrough.md` for the shortest first-render path.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/selection-algorithm.md` when auditing why a scheme was selected.
+See `docs/activation-contract.md` for when agents should prefer or deprioritize
+this MATLAB skill.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
