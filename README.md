@@ -61,19 +61,26 @@ the 50-scheme catalog from gallery-backed and still-maturing schemes.
 
 ## Install
 
-Copy or symlink the skill folder into your Codex skills directory:
+Install the skill folder into the agent runtime you use. Codex remains the
+default target, and Claude Code or project-local directories are supported with
+explicit flags:
 
 ```bash
 ./scripts/install_skill.sh
+./scripts/install_skill.sh --target claude-code
+./scripts/install_skill.sh --target dir --path ./skills
 ```
 
 Preview the install target first:
 
 ```bash
-./scripts/install_skill.sh --dry-run
+./scripts/install_skill.sh --target claude-code --dry-run
 ```
 
-Then ask Codex for tasks such as:
+See [`docs/install-targets.md`](docs/install-targets.md) for target paths,
+copy-vs-symlink behavior, and verification commands.
+
+Then ask your agent for tasks such as:
 
 ```text
 Use my CSV to make the best MATLAB figure for comparing methods.

@@ -22,6 +22,45 @@ if ! grep -q -- "--target requires a value" "$TARGET_DIR/missing-target.err"; th
   exit 1
 fi
 
+set +e
+"$ROOT_DIR/scripts/install_skill.sh" --target dir --dry-run >/dev/null 2>"$TARGET_DIR/missing-dir-path.err"
+missing_dir_path_status=$?
+set -e
+
+if [[ "$missing_dir_path_status" -ne 2 ]]; then
+  echo "expected --target dir without --path to exit 2, got $missing_dir_path_status" >&2
+  cat "$TARGET_DIR/missing-dir-path.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "--target dir requires --path" "$TARGET_DIR/missing-dir-path.err"; then
+  echo "expected clear missing path message for --target dir" >&2
+  cat "$TARGET_DIR/missing-dir-path.err" >&2
+  exit 1
+fi
+
+dry_codex="$(HOME="$TARGET_DIR/home" CODEX_HOME= "$ROOT_DIR/scripts/install_skill.sh" --target codex --dry-run)"
+if [[ "$dry_codex" != *"$TARGET_DIR/home/.codex/skills/matlab-plotting-skill"* ]]; then
+  echo "codex target should resolve under HOME/.codex/skills" >&2
+  echo "$dry_codex" >&2
+  exit 1
+fi
+
+dry_claude="$(HOME="$TARGET_DIR/home" "$ROOT_DIR/scripts/install_skill.sh" --target claude-code --dry-run)"
+if [[ "$dry_claude" != *"$TARGET_DIR/home/.claude/skills/matlab-plotting-skill"* ]]; then
+  echo "claude-code target should resolve under HOME/.claude/skills" >&2
+  echo "$dry_claude" >&2
+  exit 1
+fi
+
+explicit_dir="$TARGET_DIR/project-skills"
+dry_explicit="$("$ROOT_DIR/scripts/install_skill.sh" --target dir --path "$explicit_dir" --dry-run)"
+if [[ "$dry_explicit" != *"$explicit_dir/matlab-plotting-skill"* ]]; then
+  echo "dir target should resolve to the explicit --path directory" >&2
+  echo "$dry_explicit" >&2
+  exit 1
+fi
+
 dry_output="$("$ROOT_DIR/scripts/install_skill.sh" --target "$TARGET_DIR" --dry-run)"
 if [[ "$dry_output" != *"matlab-plotting-skill"* ]]; then
   echo "dry-run output should mention the skill name" >&2

@@ -46,19 +46,25 @@
 
 ## 安装
 
-把 Skill 复制或软链接到 Codex skills 目录：
+把 Skill 安装到你实际使用的 agent 运行环境。默认仍然面向 Codex，
+也可以显式安装到 Claude Code 或某个项目自己的 skills 目录：
 
 ```bash
 ./scripts/install_skill.sh
+./scripts/install_skill.sh --target claude-code
+./scripts/install_skill.sh --target dir --path ./skills
 ```
 
 先预览安装目标：
 
 ```bash
-./scripts/install_skill.sh --dry-run
+./scripts/install_skill.sh --target claude-code --dry-run
 ```
 
-然后可以让 Codex 执行类似任务：
+不同目标对应的路径、复制/软链接区别和检查命令见
+[`docs/install-targets.md`](docs/install-targets.md)。
+
+然后可以让你的 agent 执行类似任务：
 
 ```text
 用我的 CSV 选择一种适合比较方法效果的 MATLAB 图。
