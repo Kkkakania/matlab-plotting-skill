@@ -19,6 +19,7 @@ jobs:
           bash -n scripts/render_with_matlab.sh
           bash -n scripts/install_skill.sh
           bash -n scripts/check_gallery_outputs.sh
+          bash -n scripts/collect_first_use_feedback.sh
           bash -n scripts/check_forbidden_files.sh
           bash -n scripts/check_privacy.sh
           bash -n scripts/run_visual_fixtures.sh
@@ -26,6 +27,7 @@ jobs:
           bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
           bash -n tests/test_install_script.sh
           bash -n tests/test_check_gallery_outputs.sh
+          bash -n tests/test_collect_first_use_feedback.sh
           bash -n tests/test_check_privacy.sh
           bash -n tests/test_list_schemes.sh
           bash -n tests/test_list_schemes_json.sh
@@ -100,6 +102,7 @@ jobs:
         run: |
           tests/test_install_script.sh
           tests/test_check_gallery_outputs.sh
+          tests/test_collect_first_use_feedback.sh
           tests/test_check_privacy.sh
           tests/test_list_schemes.sh
           tests/test_list_schemes_json.sh

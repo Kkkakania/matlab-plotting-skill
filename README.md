@@ -97,6 +97,8 @@ Fresh-clone feedback is most useful when it includes the MATLAB version,
 commands run, selected scheme, report summary, and any redacted failure output.
 Use the first-use feedback issue template for that path instead of pasting
 private data files or local path dumps.
+After a render, `./scripts/collect_first_use_feedback.sh --out <render-output>`
+can generate a redacted Markdown draft for that issue.
 
 ## First 5 Minutes
 

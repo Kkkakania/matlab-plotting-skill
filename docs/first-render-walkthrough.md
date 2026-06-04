@@ -116,6 +116,23 @@ selected scheme, `render_report.md` summary, and a short description of what was
 expected. Redact private paths, research data, emails, and local account names
 before posting.
 
+After rendering, you can generate a redacted Markdown draft from the output
+directory:
+
+```bash
+./scripts/collect_first_use_feedback.sh \
+  --out figures/first-render \
+  --command './scripts/render_with_matlab.sh --data <redacted> --goal "show a time trend" --out figures/first-render --formats png,svg' \
+  --matlab R2025a \
+  --os macOS \
+  --commit "$(git rev-parse --short HEAD)" \
+  --goal "show a time trend"
+```
+
+Review the draft before posting it. The helper redacts common local absolute
+paths and emails, but you are still responsible for removing private research
+data, lab names, account names, and anything that should not be public.
+
 Copy this template when reporting a first-use result:
 
 ```text
