@@ -24,6 +24,31 @@ reproducible MATLAB rendering commands.
 Good feedback includes OS, MATLAB version, commit, command sequence, selected
 scheme, report summary, output formats, and redacted failure output.
 
+The most useful first-use path is the paired walkthrough:
+[`docs/first-render-walkthrough.md`](first-render-walkthrough.md) and
+[`docs/first-render-walkthrough.zh-CN.md`](first-render-walkthrough.zh-CN.md).
+They separate metadata checks, MATLAB CLI checks, plan-only inspection, actual
+rendering, and feedback collection so contributors can report one narrow failure
+instead of a vague "the skill does not work" result.
+
+## Coordination Snapshot
+
+The wider ecosystem is tracked through small, verifiable maintenance checks
+rather than broad adoption claims.
+
+- `matlab-scientific-figures` maintains the gallery-facing coordination issue
+  and temporary triage helpers while the public GitHub Project board is pending.
+  The current Project-board task is
+  [`matlab-scientific-figures#31`](https://github.com/Kkkakania/matlab-scientific-figures/issues/31).
+- Its maintenance docs include helpers for visible fork intake and open issue/PR triage.
+  These helpers are status snapshots, not a replacement for a real public
+  Project board once the account has the required GitHub Projects scopes.
+- `matlab-figure-ci` records downstream adoption status for
+  `matlab-scientific-figures`, including gallery checks, provenance/privacy
+  checks, and the current no-render CI boundary.
+- This repository should keep its own issue queue small and focused on first-use
+  rendering, installer behavior, scheme selection, and report clarity.
+
 ## Current Boundaries
 
 - The skill uses bundled clean-room renderers and synthetic examples.
