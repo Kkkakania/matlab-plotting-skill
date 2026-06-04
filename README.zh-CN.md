@@ -126,7 +126,7 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
-MATLAB 相关命令默认有 600 秒超时保护。长时间本地渲染时，可以设置：
+MATLAB 相关命令默认有 600 秒超时保护。`--smoke-test` 会根据 catalog 里的 scheme 数自动扩展预算，并在启动 MATLAB 前打印本次使用的预算。长时间本地渲染时，可以设置：
 
 ```bash
 export MP_MATLAB_TIMEOUT_SECONDS=0

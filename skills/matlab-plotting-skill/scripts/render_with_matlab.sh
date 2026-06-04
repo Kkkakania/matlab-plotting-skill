@@ -8,6 +8,8 @@ REPO_ROOT="$(cd "$SKILL_DIR/../.." && pwd)"
 SCHEME_READINESS="$REPO_ROOT/docs/scheme-readiness.md"
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
 MP_MATLAB_TIMEOUT_SECONDS="${MP_MATLAB_TIMEOUT_SECONDS:-600}"
+MP_MATLAB_COLD_START_BUDGET_SECONDS="${MP_MATLAB_COLD_START_BUDGET_SECONDS:-60}"
+MP_PER_SCHEME_BUDGET_SECONDS="${MP_PER_SCHEME_BUDGET_SECONDS:-45}"
 DATA_PATH=""
 GOAL_TEXT=""
 OUT_DIR="figures"
@@ -43,6 +45,8 @@ Usage:
 Environment:
   MATLAB_BIN=/path/to/matlab
   MP_MATLAB_TIMEOUT_SECONDS=600
+  MP_MATLAB_COLD_START_BUDGET_SECONDS=60
+  MP_PER_SCHEME_BUDGET_SECONDS=45
 USAGE
 }
 
@@ -253,6 +257,62 @@ except subprocess.TimeoutExpired:
 PY
 }
 
+count_catalog_schemes() {
+  if [[ ! -f "$SCHEME_CATALOG" ]]; then
+    echo "Scheme catalog not found: $SCHEME_CATALOG" >&2
+    return 1
+  fi
+
+  python3 - "$SCHEME_CATALOG" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+catalog = Path(sys.argv[1])
+pattern = re.compile(r"^\| `[^`]+` \|")
+count = sum(1 for line in catalog.read_text(encoding="utf-8").splitlines() if pattern.match(line))
+print(count)
+PY
+}
+
+smoke_timeout_budget() {
+  local scheme_count="$1"
+
+  python3 - "$MP_MATLAB_TIMEOUT_SECONDS" "$MP_MATLAB_COLD_START_BUDGET_SECONDS" "$MP_PER_SCHEME_BUDGET_SECONDS" "$scheme_count" <<'PY'
+import math
+import sys
+
+labels = [
+    "MP_MATLAB_TIMEOUT_SECONDS",
+    "MP_MATLAB_COLD_START_BUDGET_SECONDS",
+    "MP_PER_SCHEME_BUDGET_SECONDS",
+]
+raw_base, raw_cold, raw_per, raw_count = sys.argv[1:]
+
+def parse_number(raw, label):
+    try:
+        value = float(raw)
+    except ValueError:
+        print(f"Invalid {label}: {raw}", file=sys.stderr)
+        raise SystemExit(2)
+    if value < 0 or not math.isfinite(value):
+        print(f"Invalid {label}: {raw}", file=sys.stderr)
+        raise SystemExit(2)
+    return value
+
+base = parse_number(raw_base, labels[0])
+cold = parse_number(raw_cold, labels[1])
+per_scheme = parse_number(raw_per, labels[2])
+scheme_count = int(raw_count)
+
+if base == 0:
+    print("0")
+else:
+    budget = max(base, cold + per_scheme * scheme_count)
+    print(f"{budget:g}")
+PY
+}
+
 scheme_info() {
   local scheme_name="$1"
   local output_mode="$2"
@@ -430,7 +490,14 @@ fi
 
 if [[ "$SMOKE_TEST" -eq 1 ]]; then
   mkdir -p "$OUT_DIR"
-  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); mpSmokeTest($(matlab_quote "$OUT_DIR"), $formats_expr);"
+  scheme_count="$(count_catalog_schemes)"
+  smoke_timeout="$(smoke_timeout_budget "$scheme_count")"
+  if [[ "$smoke_timeout" == "0" ]]; then
+    echo "Smoke test: $scheme_count schemes, timeout guard disabled (MP_MATLAB_TIMEOUT_SECONDS=0)."
+  else
+    echo "Smoke test: $scheme_count schemes, budget ${smoke_timeout}s (cold_start=${MP_MATLAB_COLD_START_BUDGET_SECONDS}s + per_scheme=${MP_PER_SCHEME_BUDGET_SECONDS}s * $scheme_count; floor=${MP_MATLAB_TIMEOUT_SECONDS}s)."
+  fi
+  run_with_timeout "$smoke_timeout" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); mpSmokeTest($(matlab_quote "$OUT_DIR"), $formats_expr);"
   exit 0
 fi
 

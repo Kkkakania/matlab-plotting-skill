@@ -11,8 +11,10 @@ end
 schemes = mpSchemeCatalog();
 passed = false(numel(schemes), 1);
 message = strings(numel(schemes), 1);
+elapsedSeconds = zeros(numel(schemes), 1);
 
 for k = 1:numel(schemes)
+    schemeTimer = tic;
     try
         data = mpDemoDataForScheme(schemes(k).Name);
         schema = mpInferDataSchema(data);
@@ -23,11 +25,11 @@ for k = 1:numel(schemes)
     catch err
         message(k) = string(err.message);
     end
+    elapsedSeconds(k) = toc(schemeTimer);
 end
 
-report = table(string({schemes.Name})', passed, message, ...
-    'VariableNames', {'Scheme', 'Passed', 'Message'});
+report = table(string({schemes.Name})', passed, elapsedSeconds, message, ...
+    'VariableNames', {'Scheme', 'Passed', 'ElapsedSeconds', 'Message'});
 disp(report);
 assert(all(passed), 'mpSmokeTest:Failed', 'Some plotting schemes failed.');
 end
-

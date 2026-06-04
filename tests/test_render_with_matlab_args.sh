@@ -16,6 +16,7 @@ grep -Fxq '#!/usr/bin/env bash' "$SCRIPT"
 grep -Fxq 'set -euo pipefail' "$SCRIPT"
 grep -Fxq 'exec "$ROOT_DIR/skills/matlab-plotting-skill/scripts/render_with_matlab.sh" "$@"' "$SCRIPT"
 grep -q -- "--explain --data <file> --goal" "$INNER_SCRIPT"
+grep -q -- "ElapsedSeconds" "$ROOT_DIR/skills/matlab-plotting-skill/assets/matlab/mpSmokeTest.m"
 
 if [[ ! -x "$INNER_SCRIPT" ]]; then
   echo "inner render_with_matlab.sh is not executable" >&2
@@ -216,6 +217,33 @@ fi
 (cd "$TMP_DIR" && env MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --inspect-data --data "$DATA_FILE" >/dev/null)
 if [[ -d "$TMP_DIR/figures" ]]; then
   echo "expected --inspect-data not to create the default figures directory" >&2
+  exit 1
+fi
+
+SMOKE_FAKE="$TMP_DIR/fake_smoke_matlab"
+cat >"$SMOKE_FAKE" <<'SH'
+#!/usr/bin/env bash
+echo "$*" >"${MP_FAKE_MATLAB_ARGS_FILE:?}"
+exit 0
+SH
+chmod +x "$SMOKE_FAKE"
+
+MP_FAKE_MATLAB_ARGS_FILE="$TMP_DIR/smoke.args" env MATLAB_BIN="$SMOKE_FAKE" MP_MATLAB_TIMEOUT_SECONDS=10 "$SCRIPT" --smoke-test --out "$TMP_DIR/smoke" --formats png >"$TMP_DIR/smoke.out"
+if ! grep -q -- "Smoke test:" "$TMP_DIR/smoke.out"; then
+  echo "smoke-test should report the applied timeout budget" >&2
+  cat "$TMP_DIR/smoke.out" >&2
+  exit 1
+fi
+if ! grep -q -- "budget 2310s" "$TMP_DIR/smoke.out"; then
+  echo "smoke-test should auto-scale timeout from scheme count" >&2
+  cat "$TMP_DIR/smoke.out" >&2
+  exit 1
+fi
+
+MP_FAKE_MATLAB_ARGS_FILE="$TMP_DIR/smoke-no-guard.args" env MATLAB_BIN="$SMOKE_FAKE" MP_MATLAB_TIMEOUT_SECONDS=0 "$SCRIPT" --smoke-test --out "$TMP_DIR/smoke-no-guard" --formats png >"$TMP_DIR/smoke-no-guard.out"
+if ! grep -q -- "timeout guard disabled" "$TMP_DIR/smoke-no-guard.out"; then
+  echo "smoke-test should preserve MP_MATLAB_TIMEOUT_SECONDS=0 as disabled guard" >&2
+  cat "$TMP_DIR/smoke-no-guard.out" >&2
   exit 1
 fi
 

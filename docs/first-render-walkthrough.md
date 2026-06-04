@@ -30,9 +30,10 @@ If this fails, fix MATLAB first. Metadata-only commands such as
 `--list-schemes`, `--scheme-info`, and `--scheme-info-json` can still run
 without MATLAB.
 
-MATLAB-backed commands have a 600-second timeout guard. Use
-`MP_MATLAB_TIMEOUT_SECONDS=0` only when you deliberately want to let a long
-local render run without that guard.
+MATLAB-backed commands have a 600-second timeout guard. `--smoke-test`
+auto-scales the guard from the catalog size and prints the applied budget before
+MATLAB starts. Use `MP_MATLAB_TIMEOUT_SECONDS=0` only when you deliberately
+want to let a long local render run without that guard.
 
 ## 3. Inspect The Data
 

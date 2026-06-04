@@ -153,9 +153,12 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
-MATLAB-backed commands use a 600-second timeout by default. Set
-`MP_MATLAB_TIMEOUT_SECONDS=0` to disable the guard for a long local render, or
-set a smaller value when testing CI behavior.
+MATLAB-backed commands use a 600-second timeout by default. `--smoke-test`
+auto-scales that budget from the number of catalog schemes
+(`MP_MATLAB_COLD_START_BUDGET_SECONDS + MP_PER_SCHEME_BUDGET_SECONDS * N`) and
+treats `MP_MATLAB_TIMEOUT_SECONDS` as a floor. Set
+`MP_MATLAB_TIMEOUT_SECONDS=0` to disable the guard for a deliberate long local
+render, or set a smaller value when testing CI behavior on non-smoke commands.
 
 Some commands are metadata-only and can be used before MATLAB is configured.
 Commands that inspect data, plan a figure, smoke-test schemes, or render output
