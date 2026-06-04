@@ -23,6 +23,10 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
 
 If `MATLAB_BIN` is not set, the script tries `matlab` on `PATH`.
 
+Use `--explain` when you want to inspect why a scheme was selected without
+rendering a figure. It still requires MATLAB because data loading, schema
+inference, and scoring run in the bundled MATLAB code.
+
 Common failures:
 
 | Symptom | Cause | Fix |

@@ -21,6 +21,7 @@ INSPECT_DATA=0
 SCHEME_INFO=0
 SCHEME_INFO_JSON=0
 SHOW_STATUS=0
+EXPLAIN=0
 SCHEME_NAME=""
 SCHEME_INFO_NAME=""
 MAT_VARIABLE=""
@@ -37,6 +38,7 @@ Usage:
   render_with_matlab.sh --check
   render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
+  render_with_matlab.sh --explain --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
 
 Environment:
   MATLAB_BIN=/path/to/matlab
@@ -136,6 +138,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --status)
       SHOW_STATUS=1
+      shift
+      ;;
+    --explain)
+      EXPLAIN=1
       shift
       ;;
     --scheme-info)
@@ -405,6 +411,10 @@ if [[ "$SMOKE_TEST" -eq 0 && "$CHECK_ONLY" -eq 0 ]]; then
   fi
 fi
 
+if [[ "$EXPLAIN" -eq 1 ]]; then
+  PLAN_ONLY=1
+fi
+
 if [[ -n "$DATA_PATH" && ! -f "$DATA_PATH" ]]; then
   echo "Data file not found: $DATA_PATH" >&2
   exit 66
@@ -430,7 +440,11 @@ if [[ "$INSPECT_DATA" -eq 1 ]]; then
 fi
 
 if [[ "$PLAN_ONLY" -eq 1 ]]; then
-  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(plan));"
+  if [[ "$EXPLAIN" -eq 1 ]]; then
+    run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(mpFormatPlanExplanation(plan));"
+  else
+    run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(plan));"
+  fi
   exit 0
 fi
 

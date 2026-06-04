@@ -191,6 +191,12 @@ Preview the selected scheme without rendering:
 ./scripts/render_with_matlab.sh --plan-only --data examples/data/time_series.csv --goal "show a time trend"
 ```
 
+Explain the selected scheme in terminal-friendly language:
+
+```bash
+./scripts/render_with_matlab.sh --explain --data examples/data/time_series.csv --goal "show a time trend"
+```
+
 Render with an explicit scheme:
 
 ```bash
@@ -301,6 +307,7 @@ Similar schemes share parameterized renderers so the skill stays maintainable.
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/first-render-walkthrough.md` for the shortest first-render path.
 See `docs/chart-selection-guide.md` when choosing between schemes.
+See `docs/selection-algorithm.md` when auditing why a scheme was selected.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
 See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.

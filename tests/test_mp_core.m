@@ -347,7 +347,21 @@ plan = mpPlan(dataPath, "show a time trend", "", "");
 verifyEqual(testCase, string(plan.SelectedScheme), "line_trend");
 verifyTrue(testCase, any(string(plan.Alternatives) == "multi_line_comparison"));
 verifyEqual(testCase, plan.Schema.TimeCount, 1);
+verifyTrue(testCase, isfield(plan, 'Explanation'));
+verifyTrue(testCase, contains(string(plan.Explanation.selectedReason), "line_trend"));
+verifyTrue(testCase, any(contains(string(plan.Explanation.schemaSignals), "time_columns=1")));
 verifyEqual(testCase, string(plan.ScoreSnapshot(1).Name), "line_trend");
+end
+
+function testPlanExplanationFormatsForCli(testCase)
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+plan = mpPlan(dataPath, "show a time trend", "", "");
+text = mpFormatPlanExplanation(plan);
+verifyTrue(testCase, contains(text, "Selection explanation"));
+verifyTrue(testCase, contains(text, "Selected scheme: line_trend"));
+verifyTrue(testCase, contains(text, "Matched rules:"));
+verifyTrue(testCase, contains(text, "time-series data"));
+verifyTrue(testCase, contains(text, "Top score snapshot:"));
 end
 
 function testInspectDataSummarizesSchema(testCase)
@@ -399,6 +413,7 @@ dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv
 mpRun(dataPath, "show time trend", outDir, "png");
 reportText = fileread(fullfile(outDir, 'render_report.md'));
 verifyTrue(testCase, contains(reportText, 'Selection Signals'));
+verifyTrue(testCase, contains(reportText, 'Selection Explanation'));
 verifyTrue(testCase, contains(reportText, 'time columns: 1'));
 verifyTrue(testCase, contains(reportText, 'goal keywords: trend, time'));
 verifyTrue(testCase, contains(reportText, 'Score Snapshot'));
@@ -406,6 +421,8 @@ verifyTrue(testCase, contains(reportText, '`line_trend`'));
 jsonReport = jsondecode(fileread(fullfile(outDir, 'render_report.json')));
 verifyTrue(testCase, any(contains(string(jsonReport.selectionSignals), 'time columns: 1')));
 verifyTrue(testCase, any(contains(string(jsonReport.selectionSignals), 'goal keywords: trend, time')));
+verifyTrue(testCase, isfield(jsonReport, 'selectionExplanation'));
+verifyTrue(testCase, contains(string(jsonReport.selectionExplanation.selectedReason), "line_trend"));
 verifyEqual(testCase, string(jsonReport.scoreSnapshot(1).name), "line_trend");
 end
 

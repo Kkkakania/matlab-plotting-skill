@@ -15,6 +15,7 @@ fi
 grep -Fxq '#!/usr/bin/env bash' "$SCRIPT"
 grep -Fxq 'set -euo pipefail' "$SCRIPT"
 grep -Fxq 'exec "$ROOT_DIR/skills/matlab-plotting-skill/scripts/render_with_matlab.sh" "$@"' "$SCRIPT"
+grep -q -- "--explain --data <file> --goal" "$INNER_SCRIPT"
 
 if [[ ! -x "$INNER_SCRIPT" ]]; then
   echo "inner render_with_matlab.sh is not executable" >&2

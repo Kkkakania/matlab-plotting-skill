@@ -13,6 +13,7 @@ end
 outputFiles = localFileNames(files);
 selectionSignals = localSelectionSignals(schema, goalText);
 scoreSnapshot = localScoreSnapshot(selection);
+explanation = mpExplainSelection(schema, goalText, selection);
 
 reportPath = fullfile(outputDir, 'render_report.md');
 fid = fopen(reportPath, 'w');
@@ -42,6 +43,13 @@ fprintf(fid, '\n## Score Snapshot\n\n');
 for k = 1:numel(scoreSnapshot)
     fprintf(fid, '- `%s` (%s): %.0f\n', ...
         string(scoreSnapshot(k).name), string(scoreSnapshot(k).family), scoreSnapshot(k).score);
+end
+fprintf(fid, '\n## Selection Explanation\n\n');
+fprintf(fid, '- %s\n', string(explanation.selectedReason));
+fprintf(fid, '- %s\n', string(explanation.caution));
+for k = 1:numel(explanation.matchedRules)
+    rule = explanation.matchedRules(k);
+    fprintf(fid, '- %s: %s %s\n', string(rule.rule), string(rule.reason), string(rule.effect));
 end
 fprintf(fid, '\n## Alternatives\n\n');
 for k = 1:numel(selection.Alternatives)
@@ -74,6 +82,7 @@ summary.dataSummary = struct( ...
     'categoryColumns', schema.CategoryCount, ...
     'timeColumns', schema.TimeCount);
 summary.selectionSignals = cellstr(selectionSignals);
+summary.selectionExplanation = explanation;
 summary.scoreSnapshot = scoreSnapshot;
 summary.alternatives = localAlternatives(selection);
 summary.outputs = cellstr(outputFiles);
