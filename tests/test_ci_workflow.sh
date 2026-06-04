@@ -10,6 +10,8 @@ if [[ ! -s "$WORKFLOW" ]]; then
 fi
 
 grep -q "scripts/build_automation_manifest.py" "$WORKFLOW"
+grep -q "actions/checkout@v6" "$WORKFLOW"
+grep -q "actions/upload-artifact@v5" "$WORKFLOW"
 grep -Fq "find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +" "$WORKFLOW"
 grep -q "tests/test_check_privacy.sh" "$WORKFLOW"
 grep -q "tests/test_first_five_minutes_fixtures.sh" "$WORKFLOW"
