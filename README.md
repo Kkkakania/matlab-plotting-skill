@@ -20,6 +20,11 @@ ecosystem:
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
   helps agents choose and render suitable MATLAB figures from user data.
 
+Local course folders or legacy plotting collections may inform the backlog only
+as clean-room requirements. The public skill does not copy private templates,
+paper figures, binary project files, watermarks, or author-marked code. See
+[`docs/local-resource-intake.md`](docs/local-resource-intake.md).
+
 ## What It Does
 
 - Reads CSV, Excel, or MAT data.

@@ -14,6 +14,8 @@
 - [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci)：用于检查 gallery 输出、隐私、来源和发布质量的 CI/CLI 工具。
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)：帮助 Agent 从用户数据中选择并渲染合适的 MATLAB 图。
 
+本地课程资料、旧绘图库和个人示例可以启发“还缺什么图形任务”，但不能作为公开仓库的素材来源。这个 Skill 不复制私有模板、论文图片、二进制工程文件、水印、作者标记代码或来源不清的脚本；相关边界见 [`docs/local-resource-intake.md`](docs/local-resource-intake.md)。
+
 ## 它能做什么
 
 - 读取 CSV、Excel 或 MAT 数据。

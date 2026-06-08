@@ -24,6 +24,8 @@ inference layer, palette defaults, exporters, and a report writer.
 
 This skill is self-contained. Do not rely on private local folders, external
 plotting repositories, encrypted MATLAB files, or article image packs.
+If local plotting folders are present, use them only to identify chart tasks and
+read `docs/local-resource-intake.md` before turning any idea into public code.
 
 ## Workflow
 
@@ -96,6 +98,9 @@ the user which variable to render instead of guessing.
 - Keep generated scripts and outputs in the user's chosen project directory.
 - Do not write into the skill directory during normal use.
 - Do not copy raw private data into this repository.
+- Treat local plotting collections as requirements sources only; do not copy
+  their code, labels, screenshots, watermarks, binary artifacts, or author
+  metadata.
 - Do not introduce `.p`, `.fig`, committed `.mat`, `.docx`, `.pdf`, article
   screenshots, local absolute paths, email addresses, or provenance-unclear
   source files.
