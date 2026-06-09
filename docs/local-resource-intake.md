@@ -61,6 +61,38 @@ The rule is the same for every row: new schemes need synthetic data, new MATLAB
 code, gallery provenance, and tests. A chart name is allowed to become a task.
 A local source file is not.
 
+## Private Prototype Library Review
+
+A separate private prototype pass now contains 216 plotting ideas with Python
+and MATLAB counterparts, 27 palette families, and a small Origin automation
+sketch. That is a useful map of user needs, but it is still private workspace
+material.
+
+The skill should only use that prototype in three ways:
+
+- backlog grouping, such as electrical, signal, control, RF, ML, CFD,
+  optimization, distribution, polar, and 3D;
+- prompt and selection vocabulary, such as "I have an impedance curve" or "I
+  need a calibration plot";
+- quality-policy pressure, such as better palette documentation, stricter
+  binary-file checks, and clearer Origin interop notes.
+
+The skill should not import the prototype functions, gallery images, palette
+files, Origin scripts, or local README text. A future public scheme still needs
+the normal path: data contract, synthetic demo data, MATLAB implementation,
+report text, gallery provenance, and tests.
+
+## Palette And Origin Boundary
+
+Palette work is welcome, but it should be small and reviewable. Add palettes
+only when the scheme needs them, document the intended use, and keep color
+accessibility notes close to the gallery output.
+
+Origin support is interoperability work, not a reason to publish Origin
+workbooks. Public docs may explain how `originpro` or LabTalk could fit into a
+workflow, but `.opju`, `.opj`, `.ogwu`, copied workbooks, and local Origin
+gallery exports stay out of this repository.
+
 ## Agent Rule
 
 If a user asks to open-source local plotting material, first separate:

@@ -30,6 +30,10 @@ does not copy private templates, paper figures, binary project files,
 watermarks, or author-marked code. See
 [`docs/local-resource-intake.md`](docs/local-resource-intake.md).
 
+I keep this boundary strict because the skill is meant to be installed into
+other people's agent runtimes. It should explain its choices from public code
+and synthetic examples, not from a private folder the user cannot inspect.
+
 ## What It Does
 
 - Reads CSV, Excel, or MAT data.

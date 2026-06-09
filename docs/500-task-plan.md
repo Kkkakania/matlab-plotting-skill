@@ -25,6 +25,11 @@ diagnostic plots, model-evaluation views, distribution comparisons, directional
 plots, and a small number of 3D views. Those ideas belong in the backlog only
 after they are rewritten with synthetic data and new MATLAB code.
 
+A larger private prototype library now covers 216 plotting ideas. Treat that as
+a map, not as an import queue. The first public follow-up should be a small
+batch of schemes that agents can explain well, for example impedance,
+calibration, PSD, confusion-matrix, or residual-history plots.
+
 The generated JSON is the source of truth for planning coverage. The Markdown
 board is a readable view for maintainers. It includes family and lane summaries
 before the full task table, so maintainers can review coverage without scanning
