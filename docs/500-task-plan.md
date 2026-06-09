@@ -19,6 +19,12 @@ Current scope:
 - 10 task lanes for each scheme.
 - 500 planned tasks total.
 
+The next catalog refresh should be driven by task gaps, not by copying local
+examples. Recent local review points toward signal-processing plots, electrical
+diagnostic plots, model-evaluation views, distribution comparisons, directional
+plots, and a small number of 3D views. Those ideas belong in the backlog only
+after they are rewritten with synthetic data and new MATLAB code.
+
 The generated JSON is the source of truth for planning coverage. The Markdown
 board is a readable view for maintainers. It includes family and lane summaries
 before the full task table, so maintainers can review coverage without scanning

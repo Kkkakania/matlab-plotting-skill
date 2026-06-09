@@ -44,6 +44,23 @@ Local resource review may influence the backlog at the task level. For example:
 
 These are maintenance signals, not usage claims or evidence of adoption.
 
+## Current Backlog Signals
+
+The latest local review suggests these public, clean-room additions:
+
+| Area | Candidate schemes |
+|---|---|
+| Signal processing | `fft_spectrum`, `welch_psd`, `spectrogram`, `coherence_plot`, `group_delay`, `hilbert_envelope` |
+| Electrical engineering | `impedance_locus`, `harmonic_spectrum`, `three_phase_waveform`, `voltage_sag`, `thd_bars`, `smith_chart` |
+| Model evaluation | `roc_curve`, `precision_recall`, `calibration_curve`, `confusion_matrix`, `residual_plot`, `learning_curve` |
+| Distribution comparison | `raincloud`, `violin_split`, `swarm_plot`, `ecdf`, `qq_plot`, `ridgeline` |
+| Directional and polar plots | `polar_rose`, `antenna_pattern_polar`, `polar_heatmap`, `compass_plot` |
+| 3D views | `surface_3d`, `wireframe_3d`, `isosurface`, `slice_3d`, `quiver_3d` |
+
+The rule is the same for every row: new schemes need synthetic data, new MATLAB
+code, gallery provenance, and tests. A chart name is allowed to become a task.
+A local source file is not.
+
 ## Agent Rule
 
 If a user asks to open-source local plotting material, first separate:

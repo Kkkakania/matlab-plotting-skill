@@ -2,11 +2,15 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-An Agent Skill that chooses and renders MATLAB scientific figures from user data.
+This is a small Agent Skill for the part of plotting that usually gets messy:
+looking at a table or matrix, deciding which MATLAB figure is a sensible first
+try, rendering it through MATLAB CLI, and leaving a report that explains the
+choice.
 
 The skill is self-contained. It does not depend on private archives, local
-template folders, or another plotting repository. The only runtime requirement
-is a working MATLAB command line executable.
+template folders, or another plotting repository. If MATLAB is available, it can
+render. If MATLAB is not available yet, the metadata commands still let you
+inspect the catalog and plan the next step.
 
 ## Project Ecosystem
 
@@ -20,9 +24,10 @@ ecosystem:
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
   helps agents choose and render suitable MATLAB figures from user data.
 
-Local course folders or legacy plotting collections may inform the backlog only
-as clean-room requirements. The public skill does not copy private templates,
-paper figures, binary project files, watermarks, or author-marked code. See
+Local course folders or legacy plotting collections can be useful for spotting
+missing chart tasks. They are not treated as source material. The public skill
+does not copy private templates, paper figures, binary project files,
+watermarks, or author-marked code. See
 [`docs/local-resource-intake.md`](docs/local-resource-intake.md).
 
 ## What It Does

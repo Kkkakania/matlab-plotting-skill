@@ -2,9 +2,9 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-一个面向 Agent 的 MATLAB 科研绘图 Skill。它会读取用户的数据，判断数据结构和作图目标，选择合适的图形方案，然后调用本机 MATLAB CLI 渲染出 PNG、SVG 或 PDF。
+这是一个面向 Agent 的 MATLAB 科研绘图 Skill。我做它主要是为了解决一个很具体的问题：Agent 拿到表格、矩阵或 MAT 文件后，怎样先判断数据形状，再选择一个合理的 MATLAB 图形方案，最后通过 MATLAB CLI 渲染，并留下可复查的报告。
 
-这个仓库是自包含的：不依赖私有资料夹、不依赖本地模板库，也不要求用户再克隆其他绘图库。唯一前提是电脑上可以调用 MATLAB 命令行。
+这个仓库是自包含的，不依赖私有资料夹、本地模板库，也不要求用户再克隆其他绘图库。有 MATLAB 时可以渲染；暂时没有 MATLAB 时，也可以先用元数据命令查看方案目录和使用边界。
 
 ## 项目定位
 
@@ -14,7 +14,7 @@
 - [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci)：用于检查 gallery 输出、隐私、来源和发布质量的 CI/CLI 工具。
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)：帮助 Agent 从用户数据中选择并渲染合适的 MATLAB 图。
 
-本地课程资料、旧绘图库和个人示例可以启发“还缺什么图形任务”，但不能作为公开仓库的素材来源。这个 Skill 不复制私有模板、论文图片、二进制工程文件、水印、作者标记代码或来源不清的脚本；相关边界见 [`docs/local-resource-intake.md`](docs/local-resource-intake.md)。
+本地课程资料、旧绘图库和个人示例可以帮助我发现“还缺什么图形任务”，但不能作为公开仓库的素材来源。这个 Skill 不复制私有模板、论文图片、二进制工程文件、水印、作者标记代码或来源不清的脚本；相关边界见 [`docs/local-resource-intake.md`](docs/local-resource-intake.md)。
 
 ## 它能做什么
 
