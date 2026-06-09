@@ -38,6 +38,9 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    built-in name/tag mapping is not enough. To inspect one scheme without
    opening MATLAB, use `--scheme-info <name>` or `--scheme-info-json <name>`.
    Read `references/example-prompts.md` when writing usage examples for a user.
+   If the idea came from a private local plotting folder, write it as a public
+   communication task first and check `docs/local-resource-intake.md` before
+   touching code.
 4. When the user needs to inspect file structure before choosing a plot, use
    `--inspect-data`, which calls `mpInspectData` and returns schema JSON.
 5. When the user wants to inspect the choice before rendering, preview the

@@ -61,6 +61,21 @@ The rule is the same for every row: new schemes need synthetic data, new MATLAB
 code, gallery provenance, and tests. A chart name is allowed to become a task.
 A local source file is not.
 
+## Promotion Checklist
+
+Before a private-resource signal becomes a public skill change, write the task
+in maintainer language and check every item below:
+
+- the task describes a communication need, not a copied file or screenshot;
+- the scheme can be demonstrated with deterministic synthetic data;
+- the MATLAB implementation is newly written against the public helpers;
+- generated images live in reviewed output or gallery folders, not source
+  folders;
+- the docs explain when to use the scheme and what can go wrong;
+- tests or static checks cover the new command, manifest row, or safety rule.
+
+If any item is missing, keep the idea in the backlog instead of promoting it.
+
 ## Private Prototype Library Review
 
 A separate private prototype pass now contains 216 plotting ideas with Python
