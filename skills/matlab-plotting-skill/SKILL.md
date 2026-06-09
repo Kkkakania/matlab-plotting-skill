@@ -104,4 +104,6 @@ the user which variable to render instead of guessing.
 - Do not introduce `.p`, `.fig`, committed `.mat`, `.docx`, `.pdf`, article
   screenshots, local absolute paths, email addresses, or provenance-unclear
   source files.
+- Keep generated preview assets out of `skills/`, `scripts/`, and source or
+  template directories; use reviewed output or gallery folders.
 - Use synthetic data for smoke tests and examples.

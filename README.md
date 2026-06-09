@@ -245,6 +245,8 @@ When a MAT file contains several variables, choose one explicitly:
 
 See `skills/matlab-plotting-skill/references/example-prompts.md` for more
 prompts.
+Use `docs/local-resource-intake.md` when turning local plotting resources into
+auditable scheme candidates.
 
 Smoke-test all bundled schemes with synthetic data:
 
