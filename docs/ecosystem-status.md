@@ -119,6 +119,13 @@ first-use feedback link, `mfigci-report.md` if exported figures were checked,
 and one redacted issue or PR link. This is not an approval argument. It is a
 record of what was checked and where the boundary sits.
 
+If exported figures are checked with `matlab-figure-ci`, generate the shared
+evidence draft from its working results:
+
+```bash
+mfigci report --style evidence --output mfigci-evidence.md
+```
+
 Do not include private datasets, local screenshots, raw MATLAB paths,
 unreviewed local prototype outputs, or claims that an external benefit program
 will approve the project.
