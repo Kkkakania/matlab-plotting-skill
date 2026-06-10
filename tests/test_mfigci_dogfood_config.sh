@@ -31,6 +31,7 @@ grep -q "mfigci rules --config mfigci.yml" "$WORKFLOW"
 grep -q "mfigci check --config mfigci.yml --report mfigci-report.md" "$WORKFLOW"
 grep -q "name: mfigci-report" "$WORKFLOW"
 grep -q ".mfigci-results.json" "$WORKFLOW"
+grep -q "include-hidden-files: true" "$WORKFLOW"
 
 grep -q "mfigci check --config mfigci.yml --report mfigci-report.md" "$ROOT_DIR/README.md"
 grep -q "mfigci check --config mfigci.yml --report mfigci-report.md" "$ROOT_DIR/README.zh-CN.md"
