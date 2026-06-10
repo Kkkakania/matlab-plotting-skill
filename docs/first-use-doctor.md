@@ -8,6 +8,10 @@ spends time debugging MATLAB:
 
 > Is this checkout healthy enough to start planning or rendering figures?
 
+The root `scripts/doctor.sh` entry point is intentionally a thin wrapper around
+`skills/matlab-plotting-skill/scripts/doctor.sh`, so the repository checkout and
+the copied Skill install use the same doctor implementation.
+
 The doctor does not render figures. It checks repository metadata, public
 catalog health, readiness docs, privacy/provenance scans, and optional data-file
 shape hints. MATLAB is only called when `--with-matlab` is provided.

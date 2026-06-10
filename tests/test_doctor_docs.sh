@@ -18,6 +18,8 @@ grep -q -- "--with-matlab" "$DOC"
 grep -q "metadata-only" "$DOC"
 grep -q "first_use_doctor.json" "$DOC"
 grep -q "does not render figures" "$DOC"
+grep -q "thin wrapper" "$DOC"
+grep -q "skills/matlab-plotting-skill/scripts/doctor.sh" "$DOC"
 
 grep -q "docs/first-use-doctor.md" "$ROOT_DIR/README.md"
 grep -q "docs/first-use-doctor.md" "$ROOT_DIR/README.zh-CN.md"
