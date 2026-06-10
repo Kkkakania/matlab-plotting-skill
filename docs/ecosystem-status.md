@@ -21,15 +21,18 @@ reproducible MATLAB rendering commands.
 - CI/adoption feedback for figure repositories:
   [`matlab-figure-ci#1`](https://github.com/Kkkakania/matlab-figure-ci/issues/1).
 
-Good feedback includes OS, MATLAB version, commit, command sequence, selected
-scheme, report summary, output formats, and redacted failure output.
+Good feedback includes OS, MATLAB version, commit, command sequence, the
+`first_use_doctor.md/json` summary when setup is uncertain, selected scheme,
+report summary, output formats, and redacted failure output.
 
 The most useful first-use path is the paired walkthrough:
 [`docs/first-render-walkthrough.md`](first-render-walkthrough.md) and
 [`docs/first-render-walkthrough.zh-CN.md`](first-render-walkthrough.zh-CN.md).
-They separate metadata checks, MATLAB CLI checks, plan-only inspection, actual
-rendering, and feedback collection so contributors can report one narrow failure
-instead of a vague "the skill does not work" result.
+They start with the pre-render doctor in
+[`docs/first-use-doctor.md`](first-use-doctor.md), then separate metadata
+checks, MATLAB CLI checks, plan-only inspection, actual rendering, and feedback
+collection so contributors can report one narrow failure instead of a vague "the
+skill does not work" result.
 
 ## Coordination Snapshot
 
@@ -77,6 +80,8 @@ small and reproducible:
 - link the current commit, `Quality` workflow result, and `./scripts/release_check.sh`
   command used for local validation;
 - link the first-render feedback issue and any issue that motivated the change;
+- include the doctor report summary when the change touches setup, checkout, or
+  MATLAB discovery behavior;
 - include the selected scheme, command sequence, and redacted report summary
   when a first-use test is relevant;
 - link `docs/private-data-handling.md` and `docs/local-resource-intake.md` when
