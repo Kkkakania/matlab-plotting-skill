@@ -11,6 +11,15 @@ if [[ ! -x "$SCRIPT" ]]; then
   exit 1
 fi
 
+wrapper_nonblank_lines="$(grep -cv '^[[:space:]]*$' "$SCRIPT")"
+if [[ "$wrapper_nonblank_lines" -ne 4 ]]; then
+  echo "top-level doctor.sh should remain a thin wrapper around the skill-local doctor" >&2
+  exit 1
+fi
+grep -Fxq '#!/usr/bin/env bash' "$SCRIPT"
+grep -Fxq 'set -euo pipefail' "$SCRIPT"
+grep -Fxq 'exec "$ROOT_DIR/skills/matlab-plotting-skill/scripts/doctor.sh" "$@"' "$SCRIPT"
+
 help_output="$("$SCRIPT" --help)"
 grep -q "doctor.sh" <<<"$help_output"
 grep -q -- "--with-matlab" <<<"$help_output"

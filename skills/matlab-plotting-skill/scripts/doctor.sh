@@ -107,7 +107,7 @@ run_repo_check_if_available() {
   local name="$1"
   local command="$2"
 
-  if [[ -d "$REPO_ROOT/.git" && -x "$REPO_ROOT/$command" ]]; then
+  if [[ ( -d "$REPO_ROOT/.git" || -f "$REPO_ROOT/.git" ) && -x "$REPO_ROOT/$command" ]]; then
     if (cd "$REPO_ROOT" && "$REPO_ROOT/$command" >/dev/null 2>&1); then
       add_check "$name" "pass" "passed"
     else
