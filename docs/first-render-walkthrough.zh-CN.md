@@ -115,6 +115,7 @@ https://github.com/Kkkakania/matlab-plotting-skill/issues/11
 ```bash
 ./scripts/collect_first_use_feedback.sh \
   --out figures/first-render \
+  --doctor /tmp/matlab-plotting-skill-doctor \
   --command './scripts/render_with_matlab.sh --data <redacted> --goal "show a time trend" --out figures/first-render --formats png,svg' \
   --matlab R2025a \
   --os macOS \

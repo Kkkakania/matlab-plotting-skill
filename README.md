@@ -116,7 +116,8 @@ metadata-only checkout diagnostic and write `first_use_doctor.md/json`. The
 same diagnostic is also available through the main CLI:
 `./scripts/render_with_matlab.sh --doctor --out <diagnostic-dir>`.
 After a render, `./scripts/collect_first_use_feedback.sh --out <render-output>`
-can generate a redacted Markdown draft for that issue.
+can generate a redacted Markdown draft for that issue. Pass
+`--doctor <diagnostic-dir>` too when you have a doctor report.
 If something fails before a useful report appears, start with
 [`docs/troubleshooting.md`](docs/troubleshooting.md).
 

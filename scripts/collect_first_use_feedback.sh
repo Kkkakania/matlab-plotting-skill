@@ -2,6 +2,7 @@
 set -euo pipefail
 
 OUT_DIR=""
+DOCTOR_DIR=""
 COMMAND_TEXT=""
 MATLAB_VERSION=""
 OS_NAME=""
@@ -15,6 +16,7 @@ Usage:
 
 Options:
   --command <text>  Command sequence to include in the draft.
+  --doctor <dir>    Directory containing first_use_doctor.md/json.
   --matlab <text>   MATLAB version or launch detail.
   --os <text>       Operating system.
   --commit <text>   Commit or branch tested.
@@ -45,6 +47,11 @@ while [[ $# -gt 0 ]]; do
     --command)
       require_value "$1" "${2:-}"
       COMMAND_TEXT="$2"
+      shift 2
+      ;;
+    --doctor)
+      require_value "$1" "${2:-}"
+      DOCTOR_DIR="$2"
       shift 2
       ;;
     --matlab)
@@ -92,10 +99,24 @@ fi
 
 REPORT_MD="$OUT_DIR/render_report.md"
 REPORT_JSON="$OUT_DIR/render_report.json"
+DOCTOR_SUMMARY="not provided"
 
 if [[ ! -f "$REPORT_MD" && ! -f "$REPORT_JSON" ]]; then
   echo "Expected render_report.md or render_report.json in: $OUT_DIR" >&2
   exit 2
+fi
+
+if [[ -n "$DOCTOR_DIR" ]]; then
+  if [[ ! -d "$DOCTOR_DIR" ]]; then
+    echo "Doctor output directory not found: $DOCTOR_DIR" >&2
+    exit 2
+  fi
+  DOCTOR_MD="$DOCTOR_DIR/first_use_doctor.md"
+  DOCTOR_JSON="$DOCTOR_DIR/first_use_doctor.json"
+  if [[ ! -f "$DOCTOR_MD" && ! -f "$DOCTOR_JSON" ]]; then
+    echo "Expected first_use_doctor.md or first_use_doctor.json in: $DOCTOR_DIR" >&2
+    exit 2
+  fi
 fi
 
 redact() {
@@ -152,6 +173,52 @@ extract_markdown_value() {
   grep -Ei "^[*-]?[[:space:]]*$label:" "$REPORT_MD" | head -n 1 | sed -E "s/^[*-]?[[:space:]]*$label:[[:space:]]*//I"
 }
 
+extract_doctor_summary() {
+  if [[ -z "$DOCTOR_DIR" ]]; then
+    printf 'not provided\n'
+    return 0
+  fi
+
+  if [[ -f "$DOCTOR_JSON" ]]; then
+    python3 - "$DOCTOR_JSON" <<'PY'
+import json
+import sys
+
+try:
+    data = json.loads(open(sys.argv[1], encoding="utf-8").read())
+except Exception:
+    sys.exit(0)
+
+overall = data.get("overall_status") or "unknown"
+mode = data.get("mode") or "unknown"
+print(f"Overall status: {overall}")
+print(f"Mode: {mode}")
+
+checks = [
+    item for item in data.get("checks", [])
+    if item.get("status") in {"warn", "fail"}
+]
+if checks:
+    print("Failed or warn checks:")
+    for item in checks:
+        name = item.get("name", "unknown check")
+        status = item.get("status", "unknown")
+        detail = item.get("detail", "")
+        if detail:
+            print(f"- {name}: {status} - {detail}")
+        else:
+            print(f"- {name}: {status}")
+else:
+    print("Failed or warn checks: none")
+PY
+    return 0
+  fi
+
+  if [[ -f "$DOCTOR_MD" ]]; then
+    sed -n '1,60p' "$DOCTOR_MD"
+  fi
+}
+
 SELECTED_SCHEME="$(extract_json_field selected)"
 TOP_ALTERNATIVES="$(extract_json_field alternatives)"
 OUTPUT_FORMATS="$(extract_json_field formats)"
@@ -170,6 +237,7 @@ REPORT_SUMMARY=""
 if [[ -f "$REPORT_MD" ]]; then
   REPORT_SUMMARY="$(sed -n '1,40p' "$REPORT_MD")"
 fi
+DOCTOR_SUMMARY="$(extract_doctor_summary)"
 
 cat <<REPORT | redact
 # First-use feedback draft
@@ -185,6 +253,11 @@ Goal text: ${GOAL_TEXT:-not provided}
 Selected scheme: ${SELECTED_SCHEME:-unknown}
 Top alternatives: ${TOP_ALTERNATIVES:-unknown}
 Output formats: ${OUTPUT_FORMATS:-unknown}
+
+first_use_doctor.md/json summary:
+\`\`\`text
+${DOCTOR_SUMMARY:-not available}
+\`\`\`
 
 render_report.md summary:
 \`\`\`text

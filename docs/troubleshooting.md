@@ -121,7 +121,9 @@ only the redacted variable summary.
 For first-use feedback, generate a draft:
 
 ```bash
-./scripts/collect_first_use_feedback.sh --out /path/to/render-output
+./scripts/collect_first_use_feedback.sh \
+  --out /path/to/render-output \
+  --doctor /path/to/doctor-output
 ```
 
 Review it before posting. Remove private data values, full local paths, names,

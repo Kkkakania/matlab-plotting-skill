@@ -84,7 +84,7 @@
 
 如果你要提交第一次使用反馈，最好附上 MATLAB 版本、运行过的命令、选中的 scheme、报告摘要，以及已经脱敏的错误输出。不要直接上传私有数据文件、本地绝对路径或包含个人信息的日志。
 渲染前，可以先运行 `./scripts/doctor.sh --out <诊断输出目录>` 做一次 metadata-only 体检，并生成 `first_use_doctor.md/json`。
-渲染完成后，可以运行 `./scripts/collect_first_use_feedback.sh --out <渲染输出目录>` 生成一份已经做基础脱敏的 Markdown 反馈草稿，再人工检查后粘贴到 issue。
+渲染完成后，可以运行 `./scripts/collect_first_use_feedback.sh --out <渲染输出目录> --doctor <诊断输出目录>` 生成一份已经做基础脱敏的 Markdown 反馈草稿，再人工检查后粘贴到 issue。
 
 ## 前 5 分钟
 

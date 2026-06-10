@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Let `collect_first_use_feedback.sh` include a short doctor-summary block from
+  `first_use_doctor.md/json` when a diagnostic output directory is provided.
 - Added a doctor-summary field to first-use feedback so issue reports can
   separate checkout health from rendering failures.
 - Added a skill-local doctor script and `render_with_matlab.sh --doctor` so a
