@@ -372,6 +372,11 @@ verifyEqual(testCase, string(inspection.Schema.Kind), "table");
 verifyEqual(testCase, inspection.Schema.TimeCount, 1);
 verifyEqual(testCase, inspection.Schema.NumericCount, 2);
 verifyTrue(testCase, any(string(inspection.Schema.VariableNames) == "signal"));
+verifyEqual(testCase, string(inspection.RoleHint), "looks like a single time series");
+verifyTrue(testCase, contains(string(inspection.NextCommandHint), "--plan-only"));
+verifyTrue(testCase, contains(string(inspection.NextCommandHint), "--data time_series.csv"));
+verifyTrue(testCase, contains(string(inspection.NextCommandHint), 'show a time trend'));
+verifyFalse(testCase, contains(string(inspection.NextCommandHint), testCase.TestData.Root));
 end
 
 function testReportDoesNotExposeAbsoluteDataPath(testCase)

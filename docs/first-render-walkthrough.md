@@ -56,6 +56,12 @@ Use `--inspect-data` before choosing a chart when the file is new to you:
 ./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
 ```
 
+In the JSON output, check `RoleHint` and `NextCommandHint` first. They are the
+quick human-facing bridge from schema inspection to planning: for example, a
+single time-series CSV should report `looks like a single time series` and
+suggest a `--plan-only` command. The command hint uses the file name or a
+placeholder, not an absolute local path.
+
 For MAT files with several plausible variables, add `--var <name>` after
 inspecting the available variables. Do not guess when the variable choice is
 ambiguous.

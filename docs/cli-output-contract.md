@@ -34,6 +34,13 @@ stderr.
 - `FileName`
 - `VariableName`
 - `Schema`
+- `RoleHint`
+- `NextCommandHint`
+
+`RoleHint` is a short first-use classification such as `looks like a single
+time series`. `NextCommandHint` suggests a `--plan-only` command.
+It does not include absolute local paths. It uses the data file name when that
+is safe, or a `<data-file>` placeholder otherwise.
 
 `--plan-only` returns JSON from `mpPlan`:
 

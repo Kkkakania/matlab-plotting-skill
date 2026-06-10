@@ -231,6 +231,10 @@ Inspect data schema without selecting or rendering:
 ./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
 ```
 
+The JSON includes `RoleHint` and `NextCommandHint` so a first-time user can see
+what the data resembles and which `--plan-only` command to try next without
+leaking an absolute local path.
+
 Preview the selected scheme without rendering:
 
 ```bash

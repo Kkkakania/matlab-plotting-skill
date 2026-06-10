@@ -51,6 +51,8 @@ export MP_MATLAB_TIMEOUT_SECONDS=0
 ./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
 ```
 
+JSON 输出里优先看 `RoleHint` 和 `NextCommandHint`。前者用一句话说明这个数据大概像什么，例如 `looks like a single time series`；后者给出下一步可以尝试的 `--plan-only` 命令。这个提示只使用文件名或 `<data-file>` 占位，不写入完整本地绝对路径。
+
 如果 MAT 文件里有多个变量，请先确认变量名，再用 `--var <name>` 指定。不要在变量含义不清楚时直接渲染。
 
 ## 4. 先生成计划，不直接渲染

@@ -182,6 +182,8 @@ export MP_MATLAB_TIMEOUT_SECONDS=0
 ./scripts/render_with_matlab.sh --inspect-data --data examples/data/time_series.csv
 ```
 
+JSON 里会包含 `RoleHint` 和 `NextCommandHint`。前者说明数据大概像什么，后者给出下一步可以尝试的 `--plan-only` 命令，并避免写入完整本地绝对路径。
+
 只生成方案，不渲染：
 
 ```bash
