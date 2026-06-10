@@ -82,6 +82,10 @@ rather than broad adoption claims.
 - `matlab-scientific-figures` currently pins its figure-quality workflow to
   `matlab-figure-ci` `v2.5.0`, so the gallery repository is testing the same
   checker release described by the companion adoption report.
+- This repository now has its own companion adoption report at
+  [`adoption-report-matlab-plotting-skill.md`](https://github.com/Kkkakania/matlab-figure-ci/blob/main/docs/adoption-report-matlab-plotting-skill.md),
+  with the current `mfigci` dogfooding evidence tied to workflow run
+  `27293977420`.
 - This repository should keep its own issue queue small and focused on first-use
   rendering, installer behavior, scheme selection, and report clarity.
 
