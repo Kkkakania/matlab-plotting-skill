@@ -70,9 +70,10 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    `docs/cli-output-contract.md` before depending on JSON fields.
 
 For a first-time user, mirror the sequence in
-`docs/first-render-walkthrough.md`: run `scripts/doctor.sh` when the checkout
-is new or confusing, check MATLAB, inspect data, run `--plan-only`, render
-PNG/SVG, then review the report and privacy checks.
+`docs/first-render-walkthrough.md`: run `scripts/doctor.sh` or
+`render_with_matlab.sh --doctor --out <dir>` when the checkout or installed
+Skill is new or confusing, check MATLAB, inspect data, run `--plan-only`,
+render PNG/SVG, then review the report and privacy checks.
 Use `docs/troubleshooting.md` when MATLAB cannot be found, a render hangs, no
 figure files appear, or the selected scheme looks wrong.
 

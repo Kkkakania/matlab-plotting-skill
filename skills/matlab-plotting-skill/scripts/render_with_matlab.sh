@@ -24,6 +24,9 @@ SCHEME_INFO=0
 SCHEME_INFO_JSON=0
 SHOW_STATUS=0
 EXPLAIN=0
+DOCTOR=0
+DOCTOR_WITH_MATLAB=0
+OUT_DIR_EXPLICIT=0
 SCHEME_NAME=""
 SCHEME_INFO_NAME=""
 MAT_VARIABLE=""
@@ -37,6 +40,7 @@ Usage:
   render_with_matlab.sh --list-schemes-json [--status]
   render_with_matlab.sh --scheme-info <name> [--status]
   render_with_matlab.sh --scheme-info-json <name> [--status]
+  render_with_matlab.sh --doctor --out <dir> [--data <file>] [--with-matlab]
   render_with_matlab.sh --check
   render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
@@ -111,6 +115,7 @@ while [[ $# -gt 0 ]]; do
         exit 2
       fi
       OUT_DIR="$2"
+      OUT_DIR_EXPLICIT=1
       shift 2
       ;;
     --formats)
@@ -146,6 +151,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --explain)
       EXPLAIN=1
+      shift
+      ;;
+    --doctor)
+      DOCTOR=1
+      shift
+      ;;
+    --with-matlab)
+      DOCTOR_WITH_MATLAB=1
       shift
       ;;
     --scheme-info)
@@ -185,6 +198,29 @@ while [[ $# -gt 0 ]]; do
 done
 
 validate_formats "$FORMATS"
+
+if [[ "$DOCTOR_WITH_MATLAB" -eq 1 && "$DOCTOR" -ne 1 ]]; then
+  echo "--with-matlab is only valid with --doctor." >&2
+  usage >&2
+  exit 2
+fi
+
+if [[ "$DOCTOR" -eq 1 ]]; then
+  if [[ "$OUT_DIR_EXPLICIT" -ne 1 ]]; then
+    echo "--doctor requires --out <dir>." >&2
+    usage >&2
+    exit 2
+  fi
+
+  doctor_args=(--out "$OUT_DIR")
+  if [[ -n "$DATA_PATH" ]]; then
+    doctor_args+=(--data "$DATA_PATH")
+  fi
+  if [[ "$DOCTOR_WITH_MATLAB" -eq 1 ]]; then
+    doctor_args+=(--with-matlab)
+  fi
+  exec "$SKILL_DIR/scripts/doctor.sh" "${doctor_args[@]}"
+fi
 
 check_matlab_bin() {
   if [[ "$MATLAB_BIN" == */* ]]; then

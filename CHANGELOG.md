@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a skill-local doctor script and `render_with_matlab.sh --doctor` so a
+  copied Skill install can run first-use diagnostics without the repository
+  root.
 - Added `docs/troubleshooting.md` for first-render failures, MATLAB path
   problems, missing outputs, MAT-variable ambiguity, and redacted issue reports.
 - Added `docs/writing-style.md` and a docs voice check so README, walkthrough,

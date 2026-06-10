@@ -10,11 +10,12 @@ Run the metadata-only doctor first:
 
 ```bash
 ./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
+./scripts/render_with_matlab.sh --doctor --out /tmp/matlab-plotting-skill-doctor
 ```
 
 Open `/tmp/matlab-plotting-skill-doctor/first_use_doctor.md`. It checks the
-repository layout, key docs, shell scripts, catalog metadata, and privacy scan
-without starting MATLAB.
+skill layout, catalog metadata, and any available repository checks without
+starting MATLAB.
 
 ## MATLAB is not found
 

@@ -112,7 +112,9 @@ commands run, selected scheme, report summary, and any redacted failure output.
 Use the first-use feedback issue template for that path instead of pasting
 private data files or local path dumps.
 Before rendering, `./scripts/doctor.sh --out <diagnostic-dir>` can run a
-metadata-only checkout diagnostic and write `first_use_doctor.md/json`.
+metadata-only checkout diagnostic and write `first_use_doctor.md/json`. The
+same diagnostic is also available through the main CLI:
+`./scripts/render_with_matlab.sh --doctor --out <diagnostic-dir>`.
 After a render, `./scripts/collect_first_use_feedback.sh --out <render-output>`
 can generate a redacted Markdown draft for that issue.
 If something fails before a useful report appears, start with
@@ -126,6 +128,7 @@ Use this narrow path on a fresh clone before trying private data:
 
    ```bash
    ./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
+   ./scripts/render_with_matlab.sh --doctor --out /tmp/matlab-plotting-skill-doctor
    ./scripts/render_with_matlab.sh --list-schemes
    ./scripts/render_with_matlab.sh --list-schemes --status
    ./scripts/render_with_matlab.sh --scheme-info line_trend

@@ -18,5 +18,6 @@ grep -q "PYTHONDONTWRITEBYTECODE=1" "$SCRIPT"
 grep -q "find scripts -type d -name '__pycache__'" "$SCRIPT"
 grep -q "tests/test_docs_voice.sh" "$SCRIPT"
 grep -q "tests/test_troubleshooting_docs.sh" "$SCRIPT"
+grep -q "tests/test_render_with_matlab_args.sh" "$SCRIPT"
 
 echo "release check script test passed."

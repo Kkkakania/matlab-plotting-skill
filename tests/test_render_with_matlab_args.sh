@@ -15,6 +15,7 @@ fi
 grep -Fxq '#!/usr/bin/env bash' "$SCRIPT"
 grep -Fxq 'set -euo pipefail' "$SCRIPT"
 grep -Fxq 'exec "$ROOT_DIR/skills/matlab-plotting-skill/scripts/render_with_matlab.sh" "$@"' "$SCRIPT"
+grep -q -- "--doctor --out <dir>" "$INNER_SCRIPT"
 grep -q -- "--explain --data <file> --goal" "$INNER_SCRIPT"
 grep -q -- "ElapsedSeconds" "$ROOT_DIR/skills/matlab-plotting-skill/assets/matlab/mpSmokeTest.m"
 
@@ -138,6 +139,38 @@ check_control_char_out_dir() {
 }
 
 check_control_char_out_dir
+
+set +e
+"$SCRIPT" --doctor >"$TMP_DIR/doctor-missing-out.out" 2>"$TMP_DIR/doctor-missing-out.err"
+doctor_missing_out_status=$?
+set -e
+
+if [[ "$doctor_missing_out_status" -ne 2 ]]; then
+  echo "expected --doctor without explicit --out to exit 2, got $doctor_missing_out_status" >&2
+  cat "$TMP_DIR/doctor-missing-out.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "--doctor requires --out <dir>" "$TMP_DIR/doctor-missing-out.err"; then
+  echo "expected clear --doctor missing --out message" >&2
+  cat "$TMP_DIR/doctor-missing-out.err" >&2
+  exit 1
+fi
+
+"$SCRIPT" --doctor --out "$TMP_DIR/doctor" >"$TMP_DIR/doctor.out"
+grep -q "first_use_doctor.md" "$TMP_DIR/doctor.out"
+grep -q "first_use_doctor.json" "$TMP_DIR/doctor.out"
+
+if [[ ! -s "$TMP_DIR/doctor/first_use_doctor.md" || ! -s "$TMP_DIR/doctor/first_use_doctor.json" ]]; then
+  echo "--doctor should write first-use diagnostic reports" >&2
+  exit 1
+fi
+
+grep -q "metadata-only" "$TMP_DIR/doctor/first_use_doctor.md"
+if grep -q "$ROOT_DIR" "$TMP_DIR/doctor/first_use_doctor.md" "$TMP_DIR/doctor/first_use_doctor.json"; then
+  echo "--doctor reports should not leak the absolute repository path" >&2
+  exit 1
+fi
 
 check_missing_required_data_before_matlab() {
   local out_file="$TMP_DIR/missing-data.out"

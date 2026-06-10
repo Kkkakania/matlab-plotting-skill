@@ -79,4 +79,19 @@ if [[ ! -f "$TARGET_DIR/matlab-plotting-skill/SKILL.md" ]]; then
   exit 1
 fi
 
+if [[ ! -x "$TARGET_DIR/matlab-plotting-skill/scripts/doctor.sh" ]]; then
+  echo "copy install should include an executable skill-local doctor script" >&2
+  exit 1
+fi
+
+"$TARGET_DIR/matlab-plotting-skill/scripts/render_with_matlab.sh" --doctor --out "$TARGET_DIR/installed-doctor" >/dev/null
+if [[ ! -s "$TARGET_DIR/installed-doctor/first_use_doctor.md" || ! -s "$TARGET_DIR/installed-doctor/first_use_doctor.json" ]]; then
+  echo "installed skill should run --doctor without the repository root" >&2
+  exit 1
+fi
+if grep -q "$TARGET_DIR" "$TARGET_DIR/installed-doctor/first_use_doctor.md" "$TARGET_DIR/installed-doctor/first_use_doctor.json"; then
+  echo "installed skill doctor reports should not leak the install path" >&2
+  exit 1
+fi
+
 echo "install script test passed."

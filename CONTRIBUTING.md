@@ -33,6 +33,7 @@ tests/test_list_schemes.sh
 tests/test_repo_docs.sh
 tests/test_docs_voice.sh
 tests/test_troubleshooting_docs.sh
+tests/test_render_with_matlab_args.sh
 python3 scripts/validate_skill.py
 scripts/check_forbidden_files.sh
 scripts/check_privacy.sh

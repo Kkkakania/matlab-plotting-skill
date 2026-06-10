@@ -26,6 +26,7 @@ jobs:
           bash -n scripts/run_visual_fixtures.sh
           bash -n scripts/release_check.sh
           bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
+          bash -n skills/matlab-plotting-skill/scripts/doctor.sh
           bash -n tests/test_install_script.sh
           bash -n tests/test_doctor.sh
           bash -n tests/test_doctor_docs.sh
@@ -104,6 +105,7 @@ jobs:
           bash -n tests/test_release_check_script.sh
           bash -n tests/test_skill_plan_only_guidance.sh
           bash -n tests/test_example_prompts.sh
+          bash -n tests/test_render_with_matlab_args.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
@@ -184,6 +186,7 @@ jobs:
           tests/test_release_check_script.sh
           tests/test_skill_plan_only_guidance.sh
           tests/test_example_prompts.sh
+          tests/test_render_with_matlab_args.sh
       - name: Clean generated Python cache
         run: find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +
       - name: Forbidden files

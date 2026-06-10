@@ -1,7 +1,10 @@
 # First-use Doctor
 
-`scripts/doctor.sh` is a pre-render diagnostic for a fresh clone. It is meant
-to answer a simple question before a user spends time debugging MATLAB:
+`scripts/doctor.sh` is a pre-render diagnostic for a fresh clone. The same
+check is available through the main CLI as
+`scripts/render_with_matlab.sh --doctor --out <dir>`, which also works from a
+copied Skill install. It is meant to answer a simple question before a user
+spends time debugging MATLAB:
 
 > Is this checkout healthy enough to start planning or rendering figures?
 
@@ -17,6 +20,12 @@ Run this first:
 
 ```bash
 ./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
+```
+
+Or use the main CLI entry:
+
+```bash
+./scripts/render_with_matlab.sh --doctor --out /tmp/matlab-plotting-skill-doctor
 ```
 
 This writes:
@@ -37,6 +46,15 @@ Before exposing private data to rendering, check the filename and extension:
   --data examples/data/time_series.csv
 ```
 
+The equivalent main-CLI form is:
+
+```bash
+./scripts/render_with_matlab.sh \
+  --doctor \
+  --out /tmp/matlab-plotting-skill-doctor \
+  --data examples/data/time_series.csv
+```
+
 The report stores only the file name, such as `time_series.csv`, not the
 absolute local path. It does not inspect file contents unless MATLAB-backed
 commands are run later through `--inspect-data`, `--plan-only`, or rendering.
@@ -48,6 +66,16 @@ Use this when you want the doctor to verify MATLAB can start:
 ```bash
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
   ./scripts/doctor.sh \
+  --out /tmp/matlab-plotting-skill-doctor \
+  --with-matlab
+```
+
+Or:
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
+  ./scripts/render_with_matlab.sh \
+  --doctor \
   --out /tmp/matlab-plotting-skill-doctor \
   --with-matlab
 ```
