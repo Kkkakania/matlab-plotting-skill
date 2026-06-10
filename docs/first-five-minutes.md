@@ -7,6 +7,7 @@ Use this path on a fresh clone before pointing the skill at private data.
 These commands only read bundled metadata:
 
 ```bash
+./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
 ./scripts/render_with_matlab.sh --list-schemes
 ./scripts/render_with_matlab.sh --list-schemes --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
@@ -15,6 +16,8 @@ These commands only read bundled metadata:
 ```
 
 If they fail, fix the checkout or shell wrapper before troubleshooting MATLAB.
+The doctor report is written to `first_use_doctor.md/json` and does not render
+figures.
 
 ## 2. Confirm MATLAB Is Callable
 

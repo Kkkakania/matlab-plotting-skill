@@ -61,6 +61,8 @@ bash -n tests/*.sh
 
 echo "== Shell tests =="
 tests/test_install_script.sh
+tests/test_doctor.sh
+tests/test_doctor_docs.sh
 tests/test_check_gallery_outputs.sh
 tests/test_collect_first_use_feedback.sh
 tests/test_check_privacy.sh

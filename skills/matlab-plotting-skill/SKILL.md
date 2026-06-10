@@ -70,8 +70,9 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    `docs/cli-output-contract.md` before depending on JSON fields.
 
 For a first-time user, mirror the sequence in
-`docs/first-render-walkthrough.md`: check MATLAB, inspect data, run
-`--plan-only`, render PNG/SVG, then review the report and privacy checks.
+`docs/first-render-walkthrough.md`: run `scripts/doctor.sh` when the checkout
+is new or confusing, check MATLAB, inspect data, run `--plan-only`, render
+PNG/SVG, then review the report and privacy checks.
 
 ## MATLAB CLI
 

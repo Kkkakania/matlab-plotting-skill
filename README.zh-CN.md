@@ -83,6 +83,7 @@
 第一次使用建议从 [`docs/first-render-walkthrough.zh-CN.md`](docs/first-render-walkthrough.zh-CN.md) 开始。它会带你完成 MATLAB 设置、数据检查、`--plan-only`、实际渲染、结果检查和反馈草稿生成。英文版见 [`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md)。
 
 如果你要提交第一次使用反馈，最好附上 MATLAB 版本、运行过的命令、选中的 scheme、报告摘要，以及已经脱敏的错误输出。不要直接上传私有数据文件、本地绝对路径或包含个人信息的日志。
+渲染前，可以先运行 `./scripts/doctor.sh --out <诊断输出目录>` 做一次 metadata-only 体检，并生成 `first_use_doctor.md/json`。
 渲染完成后，可以运行 `./scripts/collect_first_use_feedback.sh --out <渲染输出目录>` 生成一份已经做基础脱敏的 Markdown 反馈草稿，再人工检查后粘贴到 issue。
 
 ## 前 5 分钟
@@ -92,6 +93,7 @@
 1. 不启动 MATLAB，先检查方案目录。
 
    ```bash
+   ./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
    ./scripts/render_with_matlab.sh --list-schemes
    ./scripts/render_with_matlab.sh --list-schemes --status
    ./scripts/render_with_matlab.sh --scheme-info line_trend
@@ -233,6 +235,7 @@ GitHub Actions 会检查打包、文档、manifest、隐私、来源和 MATLAB w
 
 ## 重要文档
 
+- [`docs/first-use-doctor.md`](docs/first-use-doctor.md)：渲染前的 checkout 体检。
 - [`docs/first-render-walkthrough.zh-CN.md`](docs/first-render-walkthrough.zh-CN.md)：中文第一次渲染流程。
 - [`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md)：英文第一次渲染流程。
 - [`docs/chart-selection-guide.md`](docs/chart-selection-guide.md)：如何按研究任务选图。

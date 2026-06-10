@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `scripts/doctor.sh` and `docs/first-use-doctor.md` for pre-render
+  checkout diagnostics that do not require MATLAB by default.
 - Auto-scale `--smoke-test` timeout budgets from the catalog size and print the
   applied budget before MATLAB starts.
 - Added single-scheme readiness output through `--scheme-info <name> --status`

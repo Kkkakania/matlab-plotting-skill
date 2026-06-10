@@ -9,6 +9,7 @@ before reading the full scheme catalog.
 Use these commands before configuring MATLAB:
 
 ```bash
+./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
 ./scripts/render_with_matlab.sh --list-schemes
 ./scripts/render_with_matlab.sh --list-schemes --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
@@ -18,6 +19,8 @@ Use these commands before configuring MATLAB:
 
 They do not render figures. They confirm that the repository, scheme catalog,
 and shell wrapper are available before you troubleshoot MATLAB itself.
+The doctor writes `first_use_doctor.md/json`, which is useful when a fresh clone
+fails before rendering.
 
 ## 2. Check MATLAB
 

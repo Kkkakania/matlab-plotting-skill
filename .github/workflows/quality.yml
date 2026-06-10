@@ -17,6 +17,7 @@ jobs:
           python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
           find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +
           bash -n scripts/render_with_matlab.sh
+          bash -n scripts/doctor.sh
           bash -n scripts/install_skill.sh
           bash -n scripts/check_gallery_outputs.sh
           bash -n scripts/collect_first_use_feedback.sh
@@ -26,6 +27,8 @@ jobs:
           bash -n scripts/release_check.sh
           bash -n skills/matlab-plotting-skill/scripts/render_with_matlab.sh
           bash -n tests/test_install_script.sh
+          bash -n tests/test_doctor.sh
+          bash -n tests/test_doctor_docs.sh
           bash -n tests/test_check_gallery_outputs.sh
           bash -n tests/test_collect_first_use_feedback.sh
           bash -n tests/test_check_privacy.sh
@@ -102,6 +105,8 @@ jobs:
       - name: Shell tests
         run: |
           tests/test_install_script.sh
+          tests/test_doctor.sh
+          tests/test_doctor_docs.sh
           tests/test_check_gallery_outputs.sh
           tests/test_collect_first_use_feedback.sh
           tests/test_check_privacy.sh

@@ -111,6 +111,8 @@ Fresh-clone feedback is most useful when it includes the MATLAB version,
 commands run, selected scheme, report summary, and any redacted failure output.
 Use the first-use feedback issue template for that path instead of pasting
 private data files or local path dumps.
+Before rendering, `./scripts/doctor.sh --out <diagnostic-dir>` can run a
+metadata-only checkout diagnostic and write `first_use_doctor.md/json`.
 After a render, `./scripts/collect_first_use_feedback.sh --out <render-output>`
 can generate a redacted Markdown draft for that issue.
 
@@ -121,6 +123,7 @@ Use this narrow path on a fresh clone before trying private data:
 1. Check the catalog without MATLAB.
 
    ```bash
+   ./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
    ./scripts/render_with_matlab.sh --list-schemes
    ./scripts/render_with_matlab.sh --list-schemes --status
    ./scripts/render_with_matlab.sh --scheme-info line_trend
@@ -339,6 +342,7 @@ their support lanes are completed.
 Similar schemes share parameterized renderers so the skill stays maintainable.
 
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
+See `docs/first-use-doctor.md` for the pre-render checkout diagnostic.
 See `docs/first-render-walkthrough.md` for the shortest first-render path.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/selection-algorithm.md` when auditing why a scheme was selected.

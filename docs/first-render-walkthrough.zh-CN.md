@@ -9,12 +9,14 @@
 这些命令不需要 MATLAB：
 
 ```bash
+./scripts/doctor.sh --out /tmp/matlab-plotting-skill-doctor
 ./scripts/render_with_matlab.sh --list-schemes
 ./scripts/render_with_matlab.sh --scheme-info line_trend
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
 ```
 
 它们用于确认仓库、scheme catalog 和 shell wrapper 都能正常工作。先跑这一步，可以把“仓库本身不可用”和“MATLAB 路径不可用”分开排查。
+doctor 会生成 `first_use_doctor.md/json`，但不会渲染图形。
 
 ## 2. 确认 MATLAB CLI
 
@@ -155,4 +157,3 @@ Private details redacted: yes/no
 | 展示数值矩阵 | `heatmap_matrix` |
 
 更完整的选择说明见 [`docs/chart-selection-guide.md`](chart-selection-guide.md)。
-
