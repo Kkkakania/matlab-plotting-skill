@@ -27,6 +27,14 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
+在 Windows Git Bash 里，通常需要写出 `.exe` 后缀，并给 `Program Files`
+路径加引号：
+
+```bash
+MATLAB_BIN="/c/Program Files/MATLAB/R2024b/bin/matlab.exe" \
+  ./scripts/render_with_matlab.sh --check
+```
+
 如果这一步失败，先修 MATLAB 调用路径。元数据命令，例如 `--list-schemes`、`--scheme-info` 和 `--scheme-info-json`，仍然可以继续使用。
 
 MATLAB 相关命令默认有 600 秒超时保护。`--smoke-test` 会根据 catalog 大小自动扩展预算，并在启动 MATLAB 前打印本次预算。只有当你明确要让一次本地长渲染不受这个保护限制时，才使用：
@@ -60,6 +68,15 @@ export MP_MATLAB_TIMEOUT_SECONDS=0
 
 ```bash
 ./scripts/render_with_matlab.sh --scheme-info line_trend
+```
+
+使用 `--scheme` 会跳过自动规划，适合你已经明确知道要用哪个 renderer 的时候：
+
+```bash
+./scripts/render_with_matlab.sh \
+  --data examples/data/time_series.csv \
+  --scheme line_trend \
+  --out figures/first-render
 ```
 
 ## 5. 渲染 PNG 和 SVG

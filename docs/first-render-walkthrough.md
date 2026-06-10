@@ -31,6 +31,14 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
+On Windows Git Bash, the executable path usually needs the `.exe` suffix and
+quotes around `Program Files`:
+
+```bash
+MATLAB_BIN="/c/Program Files/MATLAB/R2024b/bin/matlab.exe" \
+  ./scripts/render_with_matlab.sh --check
+```
+
 If this fails, fix MATLAB first. Metadata-only commands such as
 `--list-schemes`, `--scheme-info`, and `--scheme-info-json` can still run
 without MATLAB.
@@ -69,6 +77,16 @@ an explicit scheme:
 
 ```bash
 ./scripts/render_with_matlab.sh --scheme-info line_trend
+```
+
+Use `--scheme` to bypass planning when you already know which renderer should
+handle the data:
+
+```bash
+./scripts/render_with_matlab.sh \
+  --data examples/data/time_series.csv \
+  --scheme line_trend \
+  --out figures/first-render
 ```
 
 For a terminal-friendly explanation of the selector's reasoning, use:

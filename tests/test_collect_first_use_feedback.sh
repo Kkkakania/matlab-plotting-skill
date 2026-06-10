@@ -55,7 +55,7 @@ JSON
 feedback="$("$ROOT_DIR/scripts/collect_first_use_feedback.sh" \
   --out "$OUT_DIR" \
   --doctor "$DOCTOR_DIR" \
-  --command './scripts/render_with_matlab.sh --data /Users/example/private/project/data.csv --goal "show a trend"' \
+  --command './scripts/render_with_matlab.sh --data /Users/example/private/project/data.csv --goal "show a trend"; MATLAB_BIN=C:\Users\Alice\Research Projects\MATLAB\bin\matlab.exe ./scripts/render_with_matlab.sh --data C:\Users\Alice\Research Projects\private-data.csv --goal "show a trend"' \
   --matlab R2025a \
   --os "macOS" \
   --commit abc1234 \
@@ -79,6 +79,16 @@ if grep -q "/Users/example" <<<"$feedback"; then
   exit 1
 fi
 
+if grep -q "private-data.csv" <<<"$feedback"; then
+  echo "feedback draft leaked a Windows user-path filename from a path with spaces" >&2
+  echo "$feedback" >&2
+  exit 1
+fi
+
+positional_feedback="$("$ROOT_DIR/scripts/collect_first_use_feedback.sh" "$OUT_DIR")"
+grep -q "First-use feedback draft" <<<"$positional_feedback"
+grep -q "Selected scheme: line_trend" <<<"$positional_feedback"
+
 missing_doctor_status=0
 "$ROOT_DIR/scripts/collect_first_use_feedback.sh" --out "$OUT_DIR" --doctor "$TMP_DIR/missing-doctor" >/dev/null 2>"$TMP_DIR/missing-doctor.err" || missing_doctor_status=$?
 if [[ "$missing_doctor_status" -ne 2 ]]; then
@@ -95,5 +105,15 @@ if [[ "$missing_status" -ne 2 ]]; then
   cat "$TMP_DIR/missing.err" >&2
   exit 1
 fi
+grep -q "Output directory not found" "$TMP_DIR/missing.err"
+
+missing_positional_status=0
+"$ROOT_DIR/scripts/collect_first_use_feedback.sh" "$TMP_DIR/missing-positional" >/dev/null 2>"$TMP_DIR/missing-positional.err" || missing_positional_status=$?
+if [[ "$missing_positional_status" -ne 2 ]]; then
+  echo "expected missing positional output directory to exit 2, got $missing_positional_status" >&2
+  cat "$TMP_DIR/missing-positional.err" >&2
+  exit 1
+fi
+grep -q "Output directory not found" "$TMP_DIR/missing-positional.err"
 
 echo "first-use feedback collector test passed."

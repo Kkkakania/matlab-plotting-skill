@@ -145,6 +145,13 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
+在 Windows Git Bash 里，路径通常要写到 `matlab.exe`，并且给 `Program Files`
+加引号：
+
+```bash
+MATLAB_BIN="/c/Program Files/MATLAB/R2024b/bin/matlab.exe" ./scripts/render_with_matlab.sh --check
+```
+
 MATLAB 相关命令默认有 600 秒超时保护。`--smoke-test` 会根据 catalog 里的 scheme 数自动扩展预算，并在启动 MATLAB 前打印本次使用的预算。长时间本地渲染时，可以设置：
 
 ```bash
@@ -192,6 +199,8 @@ export MP_MATLAB_TIMEOUT_SECONDS=0
 ```bash
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
+
+使用 `--scheme` 会跳过自动规划，适合你已经知道要用哪个图形方案的情况。如果希望 Skill 根据数据和目标来选择，就只写 `--goal`，不要同时写 `--scheme`。
 
 如果你要用脚本读取 JSON 输出，请先看 [`docs/cli-output-contract.md`](docs/cli-output-contract.md)。这里说明了 `schema_version`、catalog 字段、readiness 字段、`--plan-only` 输出和 `render_report.json` 的稳定边界。
 

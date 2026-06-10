@@ -189,6 +189,13 @@ export MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ./scripts/render_with_matlab.sh --check
 ```
 
+On Windows Git Bash, include the `.exe` suffix and quote the `Program Files`
+path:
+
+```bash
+MATLAB_BIN="/c/Program Files/MATLAB/R2024b/bin/matlab.exe" ./scripts/render_with_matlab.sh --check
+```
+
 MATLAB-backed commands use a 600-second timeout by default. `--smoke-test`
 auto-scales that budget from the number of catalog schemes
 (`MP_MATLAB_COLD_START_BUDGET_SECONDS + MP_PER_SCHEME_BUDGET_SECONDS * N`) and
@@ -245,6 +252,9 @@ Render with an explicit scheme:
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
+
+Use `--scheme` to bypass planning when you already know the chart family. If
+you want the skill to choose, use `--goal` without `--scheme`.
 
 The JSON catalog commands keep the existing array/item shape and include a
 `schema_version` field on each record so downstream scripts can detect future

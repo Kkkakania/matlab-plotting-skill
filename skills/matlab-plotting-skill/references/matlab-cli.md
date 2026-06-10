@@ -23,9 +23,20 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
 
 If `MATLAB_BIN` is not set, the script tries `matlab` on `PATH`.
 
+On Windows Git Bash, include the `.exe` suffix and quote paths under
+`Program Files`:
+
+```bash
+MATLAB_BIN="/c/Program Files/MATLAB/R2024b/bin/matlab.exe" \
+  skills/matlab-plotting-skill/scripts/render_with_matlab.sh --check
+```
+
 Use `--explain` when you want to inspect why a scheme was selected without
 rendering a figure. It still requires MATLAB because data loading, schema
 inference, and scoring run in the bundled MATLAB code.
+
+Use `--scheme <name>` only when you already know the chart family you want. It
+bypasses automatic planning and sends the data directly to that renderer.
 
 Use `--scheme-info <name> --status` or `--scheme-info-json <name> --status`
 when you need readiness for one scheme without scanning the full matrix.

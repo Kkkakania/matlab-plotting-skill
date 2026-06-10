@@ -79,9 +79,14 @@ while [[ $# -gt 0 ]]; do
       exit 0
       ;;
     *)
-      echo "Unknown argument: $1" >&2
-      usage >&2
-      exit 2
+      if [[ -z "$OUT_DIR" && "$1" != --* ]]; then
+        OUT_DIR="$1"
+        shift
+      else
+        echo "Unknown argument: $1" >&2
+        usage >&2
+        exit 2
+      fi
       ;;
   esac
 done
@@ -123,6 +128,10 @@ redact() {
   python3 -c 'import re, sys
 text = sys.stdin.read()
 patterns = [
+    r"C:\\Users\\[^;\n\r`\"'\'')]+?matlab\.exe",
+    r"C:\\Users\\[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
+    r"/Users/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
+    r"/home/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
     r"/Users/[^\s\"'\'')]+",
     r"/home/[^\s\"'\'')]+",
     r"C:\\Users\\[^\s\"'\'')]+",
