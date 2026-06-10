@@ -65,3 +65,22 @@ This repository is early and should be described through reproducible evidence:
 commands, docs, tests, gallery previews, issue links, and CI results. Do not
 claim broad adoption, download volume, guaranteed program eligibility, or
 approval by any external benefit program.
+
+## Maintainer Evidence Packet
+
+When using this repository as evidence of real maintenance, keep the packet
+small and reproducible:
+
+- link the current commit, `Quality` workflow result, and `./scripts/release_check.sh`
+  command used for local validation;
+- link the first-render feedback issue and any issue that motivated the change;
+- include the selected scheme, command sequence, and redacted report summary
+  when a first-use test is relevant;
+- link `docs/private-data-handling.md` and `docs/local-resource-intake.md` when
+  explaining why private data or local templates were not published;
+- say "agent-facing layer for the MATLAB plotting ecosystem" rather than
+  claiming independent adoption before public usage evidence exists.
+
+Do not include private datasets, local screenshots, raw MATLAB paths,
+unreviewed local prototype outputs, or claims that an external benefit program
+will approve the project.
