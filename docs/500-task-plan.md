@@ -25,9 +25,11 @@ diagnostic plots, model-evaluation views, distribution comparisons, directional
 plots, and a small number of 3D views. Those ideas belong in the backlog only
 after they are rewritten with synthetic data and new MATLAB code.
 
-A larger private prototype library now covers 216 plotting ideas. Treat that as
-a map, not as an import queue. The first public follow-up should be a small
-batch of schemes that agents can explain well, for example impedance,
+A larger private prototype library first covered 216 plotting ideas.
+The newer private index reports 239 template ideas plus 60 palette families.
+Treat that as a map, not as an import queue.
+The first public follow-up should be a small batch of schemes that agents can
+explain well, for example impedance, power/energy, workflow panels,
 calibration, PSD, confusion-matrix, or residual-history plots.
 
 The generated JSON is the source of truth for planning coverage. The Markdown

@@ -56,6 +56,8 @@ The latest local review suggests these public, clean-room additions:
 | Distribution comparison | `raincloud`, `violin_split`, `swarm_plot`, `ecdf`, `qq_plot`, `ridgeline` |
 | Directional and polar plots | `polar_rose`, `antenna_pattern_polar`, `polar_heatmap`, `compass_plot` |
 | 3D views | `surface_3d`, `wireframe_3d`, `isosurface`, `slice_3d`, `quiver_3d` |
+| Power and energy | `load_profile`, `power_quality_trend`, `energy_mix_bar`, `converter_efficiency_map` |
+| Diagram-like outputs | `workflow_diagram`, `system_block_overview`, `data_flow_panel` |
 
 The rule is the same for every row: new schemes need synthetic data, new MATLAB
 code, gallery provenance, and tests. A chart name is allowed to become a task.
@@ -78,10 +80,12 @@ If any item is missing, keep the idea in the backlog instead of promoting it.
 
 ## Private Prototype Library Review
 
-A separate private prototype pass now contains 216 plotting ideas with Python
-and MATLAB counterparts, 27 palette families, and a small Origin automation
-sketch. That is a useful map of user needs, but it is still private workspace
-material.
+A separate private prototype pass first contained 216 plotting ideas with
+Python and MATLAB counterparts, 27 palette families, and a small Origin
+automation sketch. A later private index reports a broader 239-template map,
+60 palette families, Go-side helper experiments, Origin scripting notes, and
+color-science audit material. That is a useful map of user needs, but it is
+still private workspace material.
 
 The skill should only use that prototype in three ways:
 
@@ -90,12 +94,13 @@ The skill should only use that prototype in three ways:
 - prompt and selection vocabulary, such as "I have an impedance curve" or "I
   need a calibration plot";
 - quality-policy pressure, such as better palette documentation, stricter
-  binary-file checks, and clearer Origin interop notes.
+  binary-file checks, clearer Origin interop notes, and better handling of
+  generated preview assets from toolchains outside MATLAB.
 
 The skill should not import the prototype functions, gallery images, palette
-files, Origin scripts, or local README text. A future public scheme still needs
-the normal path: data contract, synthetic demo data, MATLAB implementation,
-report text, gallery provenance, and tests.
+files, Go helpers, Origin scripts, audit outputs, or local README text. A future
+public scheme still needs the normal path: data contract, synthetic demo data,
+MATLAB implementation, report text, gallery provenance, and tests.
 
 ## Palette And Origin Boundary
 

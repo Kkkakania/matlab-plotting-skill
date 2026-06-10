@@ -99,6 +99,10 @@ reports from private data.
 - Positive and negative values: diverging bar or positive-negative area.
 - "Zoom", "event", "detail", or "local": zoomed inset line.
 - "Paper", "panel", "overview", or "layout": multi-panel or annotated layout.
+- "Spectrum", "impedance", "power", "energy", "harmonic", "block", or
+  "workflow": check whether the public catalog already has a matching scheme;
+  if not, describe the closest existing option and record a backlog task rather
+  than importing a private local template.
 
 When a MAT file has multiple plausible variables, list the candidates and ask
 the user which variable to render instead of guessing.
