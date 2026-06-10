@@ -107,6 +107,18 @@ small and reproducible:
 - say "agent-facing layer for the MATLAB plotting ecosystem" rather than
   claiming independent adoption before public usage evidence exists.
 
+Use a review packet when the audience is a maintainer or contributor. Include
+the current commit, the `Quality` workflow run URL, `./scripts/release_check.sh`,
+the issue or PR that motivated the change, and the exact files that changed.
+When the change touches rendering behavior, include `render_report.md/json`,
+the selected scheme, warnings, and redaction status.
+
+Use an application packet when the audience is outside the issue queue. Keep it
+short: public repository link, current commit or release line, workflow run URL,
+first-use feedback link, `mfigci-report.md` if exported figures were checked,
+and one redacted issue or PR link. This is not an approval argument. It is a
+record of what was checked and where the boundary sits.
+
 Do not include private datasets, local screenshots, raw MATLAB paths,
 unreviewed local prototype outputs, or claims that an external benefit program
 will approve the project.

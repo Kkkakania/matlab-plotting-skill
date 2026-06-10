@@ -88,6 +88,8 @@
 渲染前，可以先运行 `./scripts/doctor.sh --out <诊断输出目录>` 做一次 metadata-only 体检，并生成 `first_use_doctor.md/json`。
 渲染完成后，可以运行 `./scripts/collect_first_use_feedback.sh --out <渲染输出目录> --doctor <诊断输出目录>` 生成一份已经做基础脱敏的 Markdown 反馈草稿，再人工检查后粘贴到 issue。
 
+如果要把这个仓库作为维护证据使用，请只引用公开可查的内容：当前 commit、`Quality` workflow、`./scripts/release_check.sh`、`render_report.md/json` 摘要、first-use issue，以及已经脱敏的 PR 或 issue 链接。不要把这些材料写成已有用户规模、下载量或外部项目通过保证。
+
 ## 前 5 分钟
 
 先用内置数据跑通一遍，再处理自己的私有数据。
