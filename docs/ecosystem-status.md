@@ -46,6 +46,9 @@ rather than broad adoption claims.
 - `matlab-figure-ci` records downstream adoption status for
   `matlab-scientific-figures`, including gallery checks, provenance/privacy
   checks, and the current no-render CI boundary.
+- `matlab-scientific-figures` currently pins its figure-quality workflow to
+  `matlab-figure-ci` `v2.5.0`, so the gallery repository is testing the same
+  checker release described by the companion adoption report.
 - This repository should keep its own issue queue small and focused on first-use
   rendering, installer behavior, scheme selection, and report clarity.
 
