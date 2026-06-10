@@ -85,7 +85,7 @@ rather than broad adoption claims.
 - This repository now has its own companion adoption report at
   [`adoption-report-matlab-plotting-skill.md`](https://github.com/Kkkakania/matlab-figure-ci/blob/main/docs/adoption-report-matlab-plotting-skill.md),
   with the current `mfigci` dogfooding evidence tied to workflow run
-  `27293977420`.
+  `27294667935`.
 - This repository should keep its own issue queue small and focused on first-use
   rendering, installer behavior, scheme selection, and report clarity.
 
