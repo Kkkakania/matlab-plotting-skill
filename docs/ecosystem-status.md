@@ -129,6 +129,8 @@ mfigci report --style evidence --output mfigci-evidence.md
 This report style is available on matlab-figure-ci main after v2.5.0. Treat it
 as a main-branch convenience until a later `matlab-figure-ci` release is pinned
 by downstream workflows.
+Do not commit mfigci-evidence.md by default; keep the filled packet as a local
+note or CI artifact unless it has been reviewed for public release.
 
 Do not include private datasets, local screenshots, raw MATLAB paths,
 unreviewed local prototype outputs, or claims that an external benefit program
