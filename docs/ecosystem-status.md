@@ -12,6 +12,24 @@ reproducible MATLAB rendering commands.
 | [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci) | CI/CLI checks for gallery outputs, provenance, privacy, risky files, and release readiness |
 | [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill) | Data inspection, scheme selection, MATLAB CLI rendering, and render reports for agent workflows |
 
+## Handoff Contract
+
+This repository hands off render evidence, not source material. Handoff means
+artifacts and commands that a maintainer can inspect without seeing the user's
+private data.
+
+| Producer | Producer artifact | Next consumer | What to review |
+|---|---|---|---|
+| `matlab-plotting-skill` | `render_report.md and render_report.json`, selected scheme, exported PNG/SVG | First-use feedback issue or maintainer triage | Data-shape summary, selected scheme, alternatives, warnings, output formats, and redaction status |
+| `matlab-figure-ci` | `mfigci-report.md and .mfigci-results.json` | Maintainer review before sharing outputs | Gallery presence, risky files, provenance warnings, privacy errors, and relative-path reporting |
+| `matlab-scientific-figures` | clean-room gallery examples and reusable APIs | Future template request, only after review | Whether the chart task deserves a public synthetic example and reusable MATLAB function |
+
+Do not move private datasets, local absolute paths, screenshots, copied
+templates, watermarked images, binary MATLAB files, or third-party helper code
+from a user session into a public issue or gallery request. If a render report
+suggests a useful missing chart type, rewrite it as a small public task with
+synthetic data and a reproducible command.
+
 ## Feedback Channels
 
 - First-render feedback for this skill:

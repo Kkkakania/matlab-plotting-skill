@@ -34,6 +34,12 @@ I keep this boundary strict because the skill is meant to be installed into
 other people's agent runtimes. It should explain its choices from public code
 and synthetic examples, not from a private folder the user cannot inspect.
 
+The ecosystem handoff contract is documented in
+[`docs/ecosystem-status.md`](docs/ecosystem-status.md): this repository hands
+off `render_report.md/json` and exported figures, `matlab-figure-ci` reviews
+those artifacts, and reusable gallery work moves into `matlab-scientific-figures`
+only after a clean-room rewrite.
+
 ## What It Does
 
 - Reads CSV, Excel, or MAT data.

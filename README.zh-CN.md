@@ -18,6 +18,8 @@
 
 这个边界要守住，因为 Skill 最后会被安装到别人的 agent 运行环境里。它应该用公开代码和合成示例解释自己的选择，而不是依赖一个外部用户看不到的私人文件夹。
 
+跨仓库交接的规则见 [`docs/ecosystem-status.md`](docs/ecosystem-status.md)。这个仓库只交出 `render_report.md/json`、选中的 scheme 和导出的 PNG/SVG；`matlab-figure-ci` 负责检查这些产物；真正值得沉淀成通用模板的任务，才会在 clean-room 重写后进入 `matlab-scientific-figures`。
+
 ## 它能做什么
 
 - 读取 CSV、Excel 或 MAT 数据。
