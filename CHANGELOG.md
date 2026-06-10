@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `docs/troubleshooting.md` for first-render failures, MATLAB path
+  problems, missing outputs, MAT-variable ambiguity, and redacted issue reports.
 - Added `docs/writing-style.md` and a docs voice check so README, walkthrough,
   and Skill wording stay practical, current, and free of unsupported adoption
   claims.

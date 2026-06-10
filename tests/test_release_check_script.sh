@@ -17,5 +17,6 @@ grep -q "check_privacy.sh" <<<"$help_output"
 grep -q "PYTHONDONTWRITEBYTECODE=1" "$SCRIPT"
 grep -q "find scripts -type d -name '__pycache__'" "$SCRIPT"
 grep -q "tests/test_docs_voice.sh" "$SCRIPT"
+grep -q "tests/test_troubleshooting_docs.sh" "$SCRIPT"
 
 echo "release check script test passed."

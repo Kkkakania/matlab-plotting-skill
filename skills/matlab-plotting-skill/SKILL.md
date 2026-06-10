@@ -73,6 +73,8 @@ For a first-time user, mirror the sequence in
 `docs/first-render-walkthrough.md`: run `scripts/doctor.sh` when the checkout
 is new or confusing, check MATLAB, inspect data, run `--plan-only`, render
 PNG/SVG, then review the report and privacy checks.
+Use `docs/troubleshooting.md` when MATLAB cannot be found, a render hangs, no
+figure files appear, or the selected scheme looks wrong.
 
 When writing user-facing summaries, reports, or documentation snippets, keep the
 tone grounded, maintainer-style, and specific. Follow `docs/writing-style.md`:

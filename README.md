@@ -115,6 +115,8 @@ Before rendering, `./scripts/doctor.sh --out <diagnostic-dir>` can run a
 metadata-only checkout diagnostic and write `first_use_doctor.md/json`.
 After a render, `./scripts/collect_first_use_feedback.sh --out <render-output>`
 can generate a redacted Markdown draft for that issue.
+If something fails before a useful report appears, start with
+[`docs/troubleshooting.md`](docs/troubleshooting.md).
 
 ## First 5 Minutes
 
@@ -346,6 +348,8 @@ Similar schemes share parameterized renderers so the skill stays maintainable.
 
 See `skills/matlab-plotting-skill/references/scheme-catalog.md`.
 See `docs/first-use-doctor.md` for the pre-render checkout diagnostic.
+See `docs/troubleshooting.md` when the first render, MATLAB path, or scheme
+choice fails.
 See `docs/first-render-walkthrough.md` for the shortest first-render path.
 See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/selection-algorithm.md` when auditing why a scheme was selected.

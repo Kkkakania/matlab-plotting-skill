@@ -236,6 +236,7 @@ GitHub Actions 会检查打包、文档、manifest、隐私、来源和 MATLAB w
 ## 重要文档
 
 - [`docs/first-use-doctor.md`](docs/first-use-doctor.md)：渲染前的 checkout 体检。
+- [`docs/troubleshooting.md`](docs/troubleshooting.md)：第一次渲染失败、MATLAB 路径异常或选图不合理时先看这里。
 - [`docs/first-render-walkthrough.zh-CN.md`](docs/first-render-walkthrough.zh-CN.md)：中文第一次渲染流程。
 - [`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md)：英文第一次渲染流程。
 - [`docs/chart-selection-guide.md`](docs/chart-selection-guide.md)：如何按研究任务选图。
