@@ -139,6 +139,7 @@ tests/test_release_check_script.sh
 tests/test_skill_plan_only_guidance.sh
 tests/test_example_prompts.sh
 tests/test_render_with_matlab_args.sh
+tests/test_mfigci_dogfood_config.sh
 
 echo "== Repository checks =="
 find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +

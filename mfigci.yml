@@ -1,0 +1,51 @@
+project:
+  name: matlab-plotting-skill
+
+presets:
+  - matlab-figures
+
+scan:
+  include:
+    - "."
+  exclude:
+    - ".git"
+    - ".venv"
+    - "venv"
+    - "__pycache__"
+    - "dist"
+    - "build"
+    - ".pytest_cache"
+    - "tmp"
+    - "figures"
+    - "LICENSE"
+    - "scripts/check_privacy.sh"
+    - "scripts/collect_first_use_feedback.sh"
+    - "tests"
+
+gallery:
+  path: "docs/gallery"
+  allowed_extensions:
+    - ".png"
+    - ".svg"
+    - ".pdf"
+  min_size_bytes: 1024
+  expected:
+    - "confidence_band.png"
+    - "contour_scatter.png"
+    - "density_scatter.png"
+    - "grouped_bar.png"
+    - "grouped_scatter.png"
+    - "heatmap_matrix.png"
+    - "line_trend.png"
+    - "multi_line_comparison.png"
+    - "positive_negative_area.png"
+    - "regression_scatter.png"
+    - "scatter_relationship.png"
+    - "segmented_line.png"
+    - "zoomed_inset_line.png"
+
+strict:
+  fail_on_warnings: false
+
+matlab:
+  enabled: false

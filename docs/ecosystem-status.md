@@ -24,6 +24,18 @@ private data.
 | `matlab-figure-ci` | `mfigci-report.md and .mfigci-results.json` | Maintainer review before sharing outputs | Gallery presence, risky files, provenance warnings, privacy errors, and relative-path reporting |
 | `matlab-scientific-figures` | clean-room gallery examples and reusable APIs | Future template request, only after review | Whether the chart task deserves a public synthetic example and reusable MATLAB function |
 
+The handoff is now checked inside this repository as well:
+`matlab-figure-ci reviews exported gallery artifacts` through `mfigci.yml` and
+the public `Quality` workflow. The configured command is:
+
+```bash
+mfigci check --config mfigci.yml --report mfigci-report.md
+```
+
+This check is intentionally no-render on GitHub-hosted runners. It verifies the
+committed preview gallery, risky files, provenance warnings, and privacy errors
+before a maintainer reuses the outputs in a public issue or gallery request.
+
 Do not move private datasets, local absolute paths, screenshots, copied
 templates, watermarked images, binary MATLAB files, or third-party helper code
 from a user session into a public issue or gallery request. If a render report

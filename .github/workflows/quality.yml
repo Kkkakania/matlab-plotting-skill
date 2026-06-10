@@ -12,6 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install matlab-figure-ci
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install git+https://github.com/Kkkakania/matlab-figure-ci.git@v2.5.0
       - name: Shell syntax
         run: |
           python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
@@ -106,6 +113,7 @@ jobs:
           bash -n tests/test_skill_plan_only_guidance.sh
           bash -n tests/test_example_prompts.sh
           bash -n tests/test_render_with_matlab_args.sh
+          bash -n tests/test_mfigci_dogfood_config.sh
       - name: Shell tests
         run: |
           tests/test_install_script.sh
@@ -187,12 +195,23 @@ jobs:
           tests/test_skill_plan_only_guidance.sh
           tests/test_example_prompts.sh
           tests/test_render_with_matlab_args.sh
+          tests/test_mfigci_dogfood_config.sh
       - name: Clean generated Python cache
         run: find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +
       - name: Forbidden files
         run: scripts/check_forbidden_files.sh
       - name: Privacy scan
         run: scripts/check_privacy.sh
+      - name: mfigci figure artifact checks
+        run: |
+          mfigci rules --config mfigci.yml
+          mfigci check --config mfigci.yml --report mfigci-report.md
+      - name: Upload mfigci report
+        uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: mfigci-report
+          path: mfigci-report.md
       - name: Skill validation
         run: python3 scripts/validate_skill.py
       - name: Build automation manifest

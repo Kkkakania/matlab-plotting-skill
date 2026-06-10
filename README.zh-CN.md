@@ -20,6 +20,14 @@
 
 跨仓库交接的规则见 [`docs/ecosystem-status.md`](docs/ecosystem-status.md)。这个仓库只交出 `render_report.md/json`、选中的 scheme 和导出的 PNG/SVG；`matlab-figure-ci` 负责检查这些产物；真正值得沉淀成通用模板的任务，才会在 clean-room 重写后进入 `matlab-scientific-figures`。
 
+这个仓库也用一个小的 `mfigci.yml` 来 dogfood 这条交接路径；matlab-figure-ci 会检查导出的 gallery 产物、隐私/来源规则和风险文件扩展名。公开 workflow 运行：
+
+```bash
+mfigci check --config mfigci.yml --report mfigci-report.md
+```
+
+这不是在 GitHub runner 上强制跑 MATLAB，而是先确认已经提交的公开预览和报告边界是干净的。
+
 ## 它能做什么
 
 - 读取 CSV、Excel 或 MAT 数据。

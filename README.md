@@ -40,6 +40,16 @@ off `render_report.md/json` and exported figures, `matlab-figure-ci` reviews
 those artifacts, and reusable gallery work moves into `matlab-scientific-figures`
 only after a clean-room rewrite.
 
+This repository also dogfoods that handoff with a small `mfigci.yml`. The public
+workflow runs:
+
+```bash
+mfigci check --config mfigci.yml --report mfigci-report.md
+```
+
+The check covers committed gallery previews, privacy/provenance rules, and risky
+file extensions. It does not run MATLAB on GitHub-hosted runners.
+
 ## What It Does
 
 - Reads CSV, Excel, or MAT data.

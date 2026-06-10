@@ -13,4 +13,8 @@ tmp/
 *.vsd
 *.xlsx
 *.xls
-
+mfigci-report.md
+mfigci-report.json
+mfigci-pr-comment.md
+mfigci-evidence.md
+.mfigci-results.json
