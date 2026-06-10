@@ -31,6 +31,29 @@ assert item["best_for"] == "One time or ordered series"
 assert item["palette"] == "categorical"
 '
 
+status_output="$("$ROOT_DIR/scripts/render_with_matlab.sh" --scheme-info regression_scatter --status)"
+if [[ "$status_output" != *"Readiness: gallery-backed"* ]]; then
+  echo "scheme info --status should include readiness" >&2
+  echo "$status_output" >&2
+  exit 1
+fi
+
+if [[ "$status_output" != *"Gallery: preview"* ]]; then
+  echo "scheme info --status should normalize gallery preview status" >&2
+  echo "$status_output" >&2
+  exit 1
+fi
+
+status_json_output="$("$ROOT_DIR/scripts/render_with_matlab.sh" --scheme-info-json bubble_scatter --status)"
+printf '%s\n' "$status_json_output" | python3 -c '
+import json, sys
+item = json.load(sys.stdin)
+assert item["schema_version"] == "1.0"
+assert item["scheme"] == "bubble_scatter"
+assert item["readiness"] == "render path started"
+assert item["gallery"] == "no"
+'
+
 if "$ROOT_DIR/scripts/render_with_matlab.sh" --scheme-info not_a_scheme >/tmp/mp-scheme-info.out 2>/tmp/mp-scheme-info.err; then
   echo "unknown scheme info request should fail" >&2
   exit 1

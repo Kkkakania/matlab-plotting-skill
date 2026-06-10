@@ -25,6 +25,7 @@ for asset in "${assets[@]}"; do
     exit 1
   fi
   grep -q "$asset" "$ROOT_DIR/README.md"
+  grep -q "$asset" "$ROOT_DIR/README.zh-CN.md"
 done
 
 echo "README gallery assets test passed."

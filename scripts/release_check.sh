@@ -64,6 +64,7 @@ tests/test_install_script.sh
 tests/test_check_gallery_outputs.sh
 tests/test_collect_first_use_feedback.sh
 tests/test_check_privacy.sh
+tests/test_cli_output_contract.sh
 tests/test_list_schemes.sh
 tests/test_list_schemes_json.sh
 tests/test_first_five_minutes_fixtures.sh

@@ -4,6 +4,11 @@
 
 - Auto-scale `--smoke-test` timeout budgets from the catalog size and print the
   applied budget before MATLAB starts.
+- Added single-scheme readiness output through `--scheme-info <name> --status`
+  and `--scheme-info-json <name> --status`.
+- Documented JSON and report field boundaries in `docs/cli-output-contract.md`.
+- Added `docs/private-data-handling.md` so first-use reports can be useful
+  without exposing private data.
 - Added `--explain` and `docs/selection-algorithm.md` so users can audit why a
   scheme was selected.
 - Make `run_visual_fixtures.sh` write to a `/tmp` scratch path by default so

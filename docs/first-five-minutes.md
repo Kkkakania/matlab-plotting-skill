@@ -10,6 +10,7 @@ These commands only read bundled metadata:
 ./scripts/render_with_matlab.sh --list-schemes
 ./scripts/render_with_matlab.sh --list-schemes --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
+./scripts/render_with_matlab.sh --scheme-info line_trend --status
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
 ```
 
@@ -36,6 +37,12 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matl
 
 The plan-only command should name the selected scheme and top alternatives
 without writing figure files.
+
+For a short human-readable explanation, run:
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matlab.sh --explain --data examples/data/time_series.csv --goal "show a time trend"
+```
 
 ## 4. Use More Bundled Fixtures
 
@@ -71,3 +78,4 @@ choose the render location.
   scheme, output formats, and report summary.
 - Use the first-use feedback issue template instead of attaching private data
   files.
+- See `docs/private-data-handling.md` for a short checklist before posting.

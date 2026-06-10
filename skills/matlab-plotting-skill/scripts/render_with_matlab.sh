@@ -35,8 +35,8 @@ Usage:
   render_with_matlab.sh --smoke-test [--out <dir>] [--formats png]
   render_with_matlab.sh --list-schemes [--status]
   render_with_matlab.sh --list-schemes-json [--status]
-  render_with_matlab.sh --scheme-info <name>
-  render_with_matlab.sh --scheme-info-json <name>
+  render_with_matlab.sh --scheme-info <name> [--status]
+  render_with_matlab.sh --scheme-info-json <name> [--status]
   render_with_matlab.sh --check
   render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
@@ -316,6 +316,7 @@ PY
 scheme_info() {
   local scheme_name="$1"
   local output_mode="$2"
+  local show_status="$3"
 
   if [[ -z "$scheme_name" ]]; then
     echo "Scheme name is required." >&2
@@ -327,16 +328,29 @@ scheme_info() {
     exit 1
   fi
 
-  python3 - "$SCHEME_CATALOG" "$scheme_name" "$output_mode" <<'PY'
+  python3 - "$SCHEME_CATALOG" "$SCHEME_READINESS" "$scheme_name" "$output_mode" "$show_status" <<'PY'
 import json
 import re
 import sys
 from pathlib import Path
 
 catalog = Path(sys.argv[1])
-scheme_name = sys.argv[2]
-output_mode = sys.argv[3]
+readiness_path = Path(sys.argv[2])
+scheme_name = sys.argv[3]
+output_mode = sys.argv[4]
+show_status = sys.argv[5] == "1"
 pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| (?P<family>[^|]+) \| (?P<best_for>[^|]+) \| (?P<palette>[^|]+) \|")
+readiness_pattern = re.compile(r"^\| `(?P<scheme>[^`]+)` \| [^|]+ \| (?P<readiness>[^|]+) \| (?P<gallery>[^|]+) \|")
+
+readiness = {}
+if show_status and readiness_path.is_file():
+    for line in readiness_path.read_text(encoding="utf-8").splitlines():
+        match = readiness_pattern.match(line)
+        if not match:
+            continue
+        item = {key: value.strip() for key, value in match.groupdict().items()}
+        gallery = "preview" if item["gallery"].startswith("[preview]") else item["gallery"]
+        readiness[item["scheme"]] = {"readiness": item["readiness"], "gallery": gallery}
 
 for line in catalog.read_text(encoding="utf-8").splitlines():
     match = pattern.match(line)
@@ -346,6 +360,8 @@ for line in catalog.read_text(encoding="utf-8").splitlines():
     if item["scheme"] != scheme_name:
         continue
     item["schema_version"] = "1.0"
+    if show_status:
+        item.update(readiness.get(item["scheme"], {"readiness": "unknown", "gallery": "unknown"}))
     if output_mode == "json":
         print(json.dumps(item, indent=2))
     else:
@@ -353,6 +369,9 @@ for line in catalog.read_text(encoding="utf-8").splitlines():
         print(f"Family: {item['family']}")
         print(f"Best for: {item['best_for']}")
         print(f"Default palette: {item['palette']}")
+        if show_status:
+            print(f"Readiness: {item['readiness']}")
+            print(f"Gallery: {item['gallery']}")
     raise SystemExit(0)
 
 print(f"Unknown scheme: {scheme_name}", file=sys.stderr)
@@ -439,12 +458,12 @@ PY
 fi
 
 if [[ "$SCHEME_INFO" -eq 1 ]]; then
-  scheme_info "$SCHEME_INFO_NAME" text
+  scheme_info "$SCHEME_INFO_NAME" text "$SHOW_STATUS"
   exit 0
 fi
 
 if [[ "$SCHEME_INFO_JSON" -eq 1 ]]; then
-  scheme_info "$SCHEME_INFO_NAME" json
+  scheme_info "$SCHEME_INFO_NAME" json "$SHOW_STATUS"
   exit 0
 fi
 

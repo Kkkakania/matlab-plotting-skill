@@ -36,7 +36,8 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    `references/data-contract.md` when the data shape is unclear.
 3. Choose the plot by reading `references/scheme-catalog.md` only when the
    built-in name/tag mapping is not enough. To inspect one scheme without
-   opening MATLAB, use `--scheme-info <name>` or `--scheme-info-json <name>`.
+   opening MATLAB, use `--scheme-info <name>`, `--scheme-info <name> --status`,
+   or `--scheme-info-json <name> --status`.
    Read `references/example-prompts.md` when writing usage examples for a user.
    If the idea came from a private local plotting folder, write it as a public
    communication task first and check `docs/local-resource-intake.md` before
@@ -50,6 +51,9 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    skills/matlab-plotting-skill/scripts/render_with_matlab.sh --plan-only --data <file> --goal "<goal>"
    ```
 
+   Use `--explain` instead of `--plan-only` when the user wants a concise
+   terminal explanation rather than JSON.
+
 6. Prefer the bundled CLI for rendering:
 
    ```bash
@@ -62,7 +66,8 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    exact command to run later. Do not claim a figure was rendered.
 8. After rendering, report the selected scheme, output files, and any quality
    warnings from `render_report.md`. Use `render_report.json` when a script or
-   follow-up automation needs structured metadata.
+   follow-up automation needs structured metadata. Read
+   `docs/cli-output-contract.md` before depending on JSON fields.
 
 For a first-time user, mirror the sequence in
 `docs/first-render-walkthrough.md`: check MATLAB, inspect data, run
@@ -81,6 +86,8 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab
 ```
 
 Read `references/matlab-cli.md` for troubleshooting.
+Read `docs/private-data-handling.md` before asking a user to share logs or
+reports from private data.
 
 ## Selection Defaults
 

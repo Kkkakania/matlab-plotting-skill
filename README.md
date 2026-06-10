@@ -161,8 +161,12 @@ Use these commands before configuring MATLAB:
 
 ```bash
 ./scripts/render_with_matlab.sh --list-schemes
+./scripts/render_with_matlab.sh --list-schemes --status
+./scripts/render_with_matlab.sh --list-schemes-json --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
+./scripts/render_with_matlab.sh --scheme-info line_trend --status
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
+./scripts/render_with_matlab.sh --scheme-info-json line_trend --status
 ```
 
 These commands do not render figures. They help confirm that the repository,
@@ -236,6 +240,8 @@ Render with an explicit scheme:
 The JSON catalog commands keep the existing array/item shape and include a
 `schema_version` field on each record so downstream scripts can detect future
 format changes without brittle key guessing.
+See `docs/cli-output-contract.md` before writing automation that consumes these
+JSON outputs.
 
 When a MAT file contains several variables, choose one explicitly:
 
@@ -338,7 +344,9 @@ See `docs/chart-selection-guide.md` when choosing between schemes.
 See `docs/selection-algorithm.md` when auditing why a scheme was selected.
 See `docs/activation-contract.md` for when agents should prefer or deprioritize
 this MATLAB skill.
+See `docs/cli-output-contract.md` before consuming JSON output in scripts.
 See `docs/figure-quality-checklist.md` before sharing rendered figures.
+See `docs/private-data-handling.md` before opening issues with real data.
 See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
 See `docs/ecosystem-status.md` for repository roles, feedback channels, and

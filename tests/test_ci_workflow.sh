@@ -17,6 +17,7 @@ grep -Fq "find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +" "$W
 grep -q "tests/test_check_privacy.sh" "$WORKFLOW"
 grep -q "tests/test_collect_first_use_feedback.sh" "$WORKFLOW"
 grep -q "scripts/collect_first_use_feedback.sh" "$WORKFLOW"
+grep -q "tests/test_cli_output_contract.sh" "$WORKFLOW"
 grep -q "tests/test_first_five_minutes_fixtures.sh" "$WORKFLOW"
 grep -q "tests/test_scheme_info.sh" "$WORKFLOW"
 grep -q "tests/test_automation_manifest.sh" "$WORKFLOW"

@@ -10,7 +10,9 @@ Use these commands before configuring MATLAB:
 
 ```bash
 ./scripts/render_with_matlab.sh --list-schemes
+./scripts/render_with_matlab.sh --list-schemes --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
+./scripts/render_with_matlab.sh --scheme-info line_trend --status
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
 ```
 
@@ -66,6 +68,15 @@ an explicit scheme:
 ./scripts/render_with_matlab.sh --scheme-info line_trend
 ```
 
+For a terminal-friendly explanation of the selector's reasoning, use:
+
+```bash
+./scripts/render_with_matlab.sh \
+  --explain \
+  --data examples/data/time_series.csv \
+  --goal "show a time trend"
+```
+
 ## 5. Render PNG And SVG
 
 Render only after the data and scheme make sense:
@@ -115,6 +126,7 @@ Useful reports include the MATLAB version, operating system, command sequence,
 selected scheme, `render_report.md` summary, and a short description of what was
 expected. Redact private paths, research data, emails, and local account names
 before posting.
+See `docs/private-data-handling.md` for the exact sharing boundary.
 
 After rendering, you can generate a redacted Markdown draft from the output
 directory:

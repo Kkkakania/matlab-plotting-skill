@@ -13,6 +13,8 @@ grep -q "Use More Bundled Fixtures" "$DOC"
 grep -q "Fixture" "$DOC"
 grep -q "Expected direction" "$DOC"
 grep -q -- "--list-schemes --status" "$DOC"
+grep -q -- "--scheme-info line_trend --status" "$DOC"
+grep -q -- "--explain --data examples/data/time_series.csv" "$DOC"
 grep -q "docs/first-five-minutes.md" "$README"
 grep -q "multi_series.csv" "$README"
 

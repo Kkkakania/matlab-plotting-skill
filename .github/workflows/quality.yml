@@ -29,6 +29,7 @@ jobs:
           bash -n tests/test_check_gallery_outputs.sh
           bash -n tests/test_collect_first_use_feedback.sh
           bash -n tests/test_check_privacy.sh
+          bash -n tests/test_cli_output_contract.sh
           bash -n tests/test_list_schemes.sh
           bash -n tests/test_list_schemes_json.sh
           bash -n tests/test_first_five_minutes_fixtures.sh
@@ -104,6 +105,7 @@ jobs:
           tests/test_check_gallery_outputs.sh
           tests/test_collect_first_use_feedback.sh
           tests/test_check_privacy.sh
+          tests/test_cli_output_contract.sh
           tests/test_list_schemes.sh
           tests/test_list_schemes_json.sh
           tests/test_first_five_minutes_fixtures.sh

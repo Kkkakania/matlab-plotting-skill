@@ -27,6 +27,9 @@ Use `--explain` when you want to inspect why a scheme was selected without
 rendering a figure. It still requires MATLAB because data loading, schema
 inference, and scoring run in the bundled MATLAB code.
 
+Use `--scheme-info <name> --status` or `--scheme-info-json <name> --status`
+when you need readiness for one scheme without scanning the full matrix.
+
 Common failures:
 
 | Symptom | Cause | Fix |

@@ -48,6 +48,10 @@
 |---|---|---|
 | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |
 
+| 分段趋势 |
+|---|
+| ![segmented line](docs/gallery/segmented_line.png) |
+
 ## 安装
 
 把 Skill 安装到你实际使用的 agent 运行环境。默认仍然面向 Codex，
@@ -127,7 +131,9 @@
 ./scripts/render_with_matlab.sh --list-schemes --status
 ./scripts/render_with_matlab.sh --list-schemes-json --status
 ./scripts/render_with_matlab.sh --scheme-info line_trend
+./scripts/render_with_matlab.sh --scheme-info line_trend --status
 ./scripts/render_with_matlab.sh --scheme-info-json line_trend
+./scripts/render_with_matlab.sh --scheme-info-json line_trend --status
 ```
 
 如果 MATLAB 不在 `PATH`，可以手动指定：
@@ -185,6 +191,8 @@ export MP_MATLAB_TIMEOUT_SECONDS=0
 ./scripts/render_with_matlab.sh --data examples/data/method_scores.csv --scheme grouped_bar --out figures --formats png,svg
 ```
 
+如果你要用脚本读取 JSON 输出，请先看 [`docs/cli-output-contract.md`](docs/cli-output-contract.md)。这里说明了 `schema_version`、catalog 字段、readiness 字段、`--plan-only` 输出和 `render_report.json` 的稳定边界。
+
 MAT 文件里有多个变量时，请明确指定变量名：
 
 ```bash
@@ -230,7 +238,9 @@ GitHub Actions 会检查打包、文档、manifest、隐私、来源和 MATLAB w
 - [`docs/chart-selection-guide.md`](docs/chart-selection-guide.md)：如何按研究任务选图。
 - [`docs/selection-algorithm.md`](docs/selection-algorithm.md)：选择算法和解释字段。
 - [`docs/activation-contract.md`](docs/activation-contract.md)：Agent 什么时候应该优先或暂缓使用这个 MATLAB Skill。
+- [`docs/cli-output-contract.md`](docs/cli-output-contract.md)：CLI 和 JSON 输出契约。
 - [`docs/figure-quality-checklist.md`](docs/figure-quality-checklist.md)：论文图质量检查清单。
+- [`docs/private-data-handling.md`](docs/private-data-handling.md)：提交反馈前如何处理私有数据。
 - [`docs/scheme-readiness.md`](docs/scheme-readiness.md)：当前方案成熟度。
 - [`docs/palette-accessibility-notes.md`](docs/palette-accessibility-notes.md)：配色和可访问性说明。
 - [`docs/ecosystem-status.md`](docs/ecosystem-status.md)：三个仓库的角色和边界。
