@@ -31,6 +31,7 @@ tests/test_install_script.sh
 tests/test_check_gallery_outputs.sh
 tests/test_list_schemes.sh
 tests/test_repo_docs.sh
+tests/test_docs_voice.sh
 python3 scripts/validate_skill.py
 scripts/check_forbidden_files.sh
 scripts/check_privacy.sh
@@ -49,6 +50,13 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/release_check.sh
 `run_visual_fixtures.sh` writes to `/tmp/matlab-plotting-skill-visual-fixtures`
 by default. Use `--out <directory>` when you intentionally want to keep the
 fixture images.
+
+## Documentation Voice
+
+When editing README, walkthrough, or Skill wording, follow
+`docs/writing-style.md`. Keep the text practical: say what works today, name the
+MATLAB boundary, and avoid claims about adoption or external program approval
+unless there is public evidence in the repository.
 
 ## Pull Request Notes
 

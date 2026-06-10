@@ -247,6 +247,7 @@ GitHub Actions 会检查打包、文档、manifest、隐私、来源和 MATLAB w
 - [`docs/scheme-readiness.md`](docs/scheme-readiness.md)：当前方案成熟度。
 - [`docs/palette-accessibility-notes.md`](docs/palette-accessibility-notes.md)：配色和可访问性说明。
 - [`docs/ecosystem-status.md`](docs/ecosystem-status.md)：三个仓库的角色和边界。
+- [`docs/writing-style.md`](docs/writing-style.md)：README、入门指南和 Skill 文案的维护者口吻规则。
 - [`docs/maintenance-cadence.md`](docs/maintenance-cadence.md)：issue、批量维护和 release 节奏。
 - [`ROADMAP.md`](ROADMAP.md)：当前路线图和非目标。
 

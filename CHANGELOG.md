@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added `docs/writing-style.md` and a docs voice check so README, walkthrough,
+  and Skill wording stay practical, current, and free of unsupported adoption
+  claims.
 - Added `scripts/doctor.sh` and `docs/first-use-doctor.md` for pre-render
   checkout diagnostics that do not require MATLAB by default.
 - Auto-scale `--smoke-test` timeout budgets from the catalog size and print the

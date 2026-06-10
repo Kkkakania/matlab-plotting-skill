@@ -256,6 +256,9 @@ See `skills/matlab-plotting-skill/references/example-prompts.md` for more
 prompts.
 Use `docs/local-resource-intake.md` when turning local plotting resources into
 auditable scheme candidates.
+Use `docs/writing-style.md` when editing user-facing docs so the project keeps
+a maintainer voice: concrete commands, current boundaries, and no unsupported
+adoption claims.
 
 Smoke-test all bundled schemes with synthetic data:
 
@@ -355,6 +358,7 @@ See `docs/scheme-readiness.md` for the current user-facing support matrix.
 See `docs/palette-accessibility-notes.md` when color choice affects the result.
 See `docs/ecosystem-status.md` for repository roles, feedback channels, and
 claim boundaries.
+See `docs/writing-style.md` for README, walkthrough, and Skill wording rules.
 See `docs/automation-manifest.md` for the generated check matrix.
 See `docs/maintenance-cadence.md` for the normal issue, batching, and release
 rhythm.

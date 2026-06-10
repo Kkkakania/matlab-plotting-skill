@@ -74,6 +74,11 @@ For a first-time user, mirror the sequence in
 is new or confusing, check MATLAB, inspect data, run `--plan-only`, render
 PNG/SVG, then review the report and privacy checks.
 
+When writing user-facing summaries, reports, or documentation snippets, keep the
+tone grounded, maintainer-style, and specific. Follow `docs/writing-style.md`:
+say what works today, name the MATLAB boundary, and avoid unsupported adoption
+or approval claims.
+
 ## MATLAB CLI
 
 The renderer uses `MATLAB_BIN` when set, then falls back to `matlab` on `PATH`.
