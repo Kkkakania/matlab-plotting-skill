@@ -52,6 +52,16 @@ body:
     validations:
       required: true
   - type: textarea
+    id: doctor_summary
+    attributes:
+      label: Doctor summary
+      description: Paste the overall status and failed/warn checks from first_use_doctor.md/json. Do not paste full local paths.
+      placeholder: |
+        Overall status:
+        Failed or warn checks:
+    validations:
+      required: false
+  - type: textarea
     id: result
     attributes:
       label: Result

@@ -131,6 +131,7 @@ OS:
 MATLAB:
 Commit:
 Command sequence:
+first_use_doctor.md/json summary:
 Data shape:
 Goal text:
 Selected scheme:

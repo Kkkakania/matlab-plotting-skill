@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a doctor-summary field to first-use feedback so issue reports can
+  separate checkout health from rendering failures.
 - Added a skill-local doctor script and `render_with_matlab.sh --doctor` so a
   copied Skill install can run first-use diagnostics without the repository
   root.
