@@ -48,7 +48,10 @@ mfigci check --config mfigci.yml --report mfigci-report.md
 ```
 
 The check covers committed gallery previews, privacy/provenance rules, and risky
-file extensions. It does not run MATLAB on GitHub-hosted runners.
+file extensions. It does not run MATLAB on GitHub-hosted runners. The workflow
+uploads `mfigci-report.md` and `.mfigci-results.json`: the Markdown file is for
+quick maintainer review, while the JSON file keeps the same result available for
+later evidence packets or debugging.
 
 ## What It Does
 

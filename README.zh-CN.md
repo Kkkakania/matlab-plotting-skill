@@ -27,6 +27,7 @@ mfigci check --config mfigci.yml --report mfigci-report.md
 ```
 
 这不是在 GitHub runner 上强制跑 MATLAB，而是先确认已经提交的公开预览和报告边界是干净的。
+workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便维护者快速阅读，后者保留给后续证据包、复盘或调试使用。
 
 ## 它能做什么
 
