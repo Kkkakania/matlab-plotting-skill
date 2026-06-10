@@ -47,6 +47,13 @@ end
 fprintf(fid, '\n## Selection Explanation\n\n');
 fprintf(fid, '- %s\n', string(explanation.selectedReason));
 fprintf(fid, '- %s\n', string(explanation.caution));
+if isfield(explanation, 'warnings') && ~isempty(explanation.warnings)
+    fprintf(fid, '\n### Selection Warnings\n\n');
+    for k = 1:numel(explanation.warnings)
+        fprintf(fid, '- %s\n', string(explanation.warnings(k)));
+    end
+    fprintf(fid, '\n');
+end
 for k = 1:numel(explanation.matchedRules)
     rule = explanation.matchedRules(k);
     fprintf(fid, '- %s: %s %s\n', string(rule.rule), string(rule.reason), string(rule.effect));

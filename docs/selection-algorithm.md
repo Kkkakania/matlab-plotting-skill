@@ -77,6 +77,18 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab ./scripts/render_with_matl
 Rendered reports also include a `Selection Explanation` section and a
 machine-readable `selectionExplanation` field in `render_report.json`.
 
+### Warnings
+
+`Explanation.warnings` is reserved for goal-data mismatch notes. These warnings
+do not fail the run and do not claim that the selected scheme is wrong; they
+show where a goal asks for evidence the current data shape does not clearly
+provide. Current examples include:
+
+- `Panel/layout goal may be trivial` when a panel or small-multiple request is
+  made for a thin single-series table.
+- `Outlier goal needs explicit outlier evidence` when an outlier request is
+  made without an outlier flag, threshold, or rich enough data shape.
+
 ## Limits
 
 The score is a deterministic routing hint. It is not a claim that the selected

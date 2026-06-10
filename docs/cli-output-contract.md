@@ -53,6 +53,10 @@ is safe, or a `<data-file>` placeholder otherwise.
 - `Explanation`
 - `ScoreSnapshot`
 
+`Explanation` may include a `warnings` array for goal-data mismatch notes, such
+as panel/layout requests on thin time-series data or outlier requests without
+explicit outlier evidence.
+
 Full rendering writes `render_report.json`, which includes:
 
 - `schema_version`

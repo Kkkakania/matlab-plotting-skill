@@ -5,6 +5,7 @@ goal = lower(string(goalText));
 signals = localSchemaSignals(schema);
 keywords = localGoalKeywords(goal);
 rules = localMatchedRules(schema, goal);
+warnings = localWarnings(schema, goal);
 
 if isempty(rules)
     rules = struct('rule', "fallback", ...
@@ -18,6 +19,7 @@ explanation.selectedReason = "Selected `" + string(selection.Selected.Name) + ..
 explanation.schemaSignals = signals;
 explanation.goalKeywords = keywords;
 explanation.matchedRules = rules;
+explanation.warnings = warnings;
 explanation.caution = "Scores are deterministic selection hints, not a statistical quality measure.";
 end
 
@@ -119,6 +121,19 @@ if schema.TimeCount > 0 && any(contains(goal, ["segment", "segmented", "phase", 
     rules(end + 1) = localRule("phase or segment goal", ...
         "The goal asks for phases, regimes, stages, or transitions.", ...
         "`segmented_line` receives a targeted score boost.");
+end
+end
+
+function warnings = localWarnings(schema, goal)
+warnings = strings(0, 1);
+
+thinTimeSeries = schema.TimeCount > 0 && schema.NumericCount <= 2;
+if thinTimeSeries && any(contains(goal, ["panel", "panels", "layout", "multiples", "small multiples"]))
+    warnings(end + 1) = "Panel/layout goal may be trivial with this data shape; add grouping variables or multiple measures before using a multi-panel scheme.";
+end
+
+if thinTimeSeries && any(contains(goal, ["outlier", "outliers"]))
+    warnings(end + 1) = "Outlier goal needs explicit outlier evidence or thresholds; this planner can highlight a local event but does not prove which points are outliers.";
 end
 end
 

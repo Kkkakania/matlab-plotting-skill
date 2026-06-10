@@ -6,6 +6,9 @@ lineCount = 14 + numel(plan.Explanation.schemaSignals) + ...
 if ~isempty(plan.Explanation.goalKeywords)
     lineCount = lineCount + 3;
 end
+if isfield(plan.Explanation, 'warnings') && ~isempty(plan.Explanation.warnings)
+    lineCount = lineCount + 2 + numel(plan.Explanation.warnings);
+end
 lines = strings(lineCount, 1);
 idx = 0;
 
@@ -27,6 +30,14 @@ if ~isempty(plan.Explanation.goalKeywords)
     idx = idx + 1; lines(idx) = "";
     idx = idx + 1; lines(idx) = "Goal keywords:";
     idx = idx + 1; lines(idx) = "- " + strjoin(string(plan.Explanation.goalKeywords), ", ");
+end
+
+if isfield(plan.Explanation, 'warnings') && ~isempty(plan.Explanation.warnings)
+    idx = idx + 1; lines(idx) = "";
+    idx = idx + 1; lines(idx) = "Warnings:";
+    for k = 1:numel(plan.Explanation.warnings)
+        idx = idx + 1; lines(idx) = "- " + string(plan.Explanation.warnings(k));
+    end
 end
 
 idx = idx + 1; lines(idx) = "";

@@ -364,6 +364,26 @@ verifyTrue(testCase, contains(text, "time-series data"));
 verifyTrue(testCase, contains(text, "Top score snapshot:"));
 end
 
+function testPlanWarnsWhenPanelGoalHasThinTimeSeries(testCase)
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+plan = mpPlan(dataPath, "show this in three small panels", "", "");
+verifyTrue(testCase, isfield(plan.Explanation, 'warnings'));
+verifyTrue(testCase, any(contains(string(plan.Explanation.warnings), "Panel/layout goal may be trivial")));
+text = mpFormatPlanExplanation(plan);
+verifyTrue(testCase, contains(text, "Warnings:"));
+verifyTrue(testCase, contains(text, "Panel/layout goal may be trivial"));
+end
+
+function testPlanWarnsWhenOutlierGoalNeedsSupport(testCase)
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
+plan = mpPlan(dataPath, "highlight outliers", "", "");
+verifyTrue(testCase, isfield(plan.Explanation, 'warnings'));
+verifyTrue(testCase, any(contains(string(plan.Explanation.warnings), "Outlier goal needs explicit outlier evidence")));
+text = mpFormatPlanExplanation(plan);
+verifyTrue(testCase, contains(text, "Warnings:"));
+verifyTrue(testCase, contains(text, "Outlier goal needs explicit outlier evidence"));
+end
+
 function testInspectDataSummarizesSchema(testCase)
 dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'time_series.csv');
 inspection = mpInspectData(dataPath, "");
