@@ -23,6 +23,15 @@ ecosystem:
   CI/CLI checks for gallery outputs, provenance, privacy, and release readiness.
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
   helps agents choose and render suitable MATLAB figures from user data.
+- [`scientific-plotting-function-library`](https://github.com/Kkkakania/scientific-plotting-function-library)
+  is a larger Python + MATLAB reference library for template taxonomy,
+  palette names, and stricter large-gallery release checks.
+
+This skill deliberately keeps a curated core instead of mirroring every
+available plotting resource. A scheme belongs here only when the agent can
+inspect the data, choose the chart, render it through MATLAB CLI, and explain
+the result without exposing private material. See
+[`docs/curated-core-policy.md`](docs/curated-core-policy.md).
 
 Local course folders or legacy plotting collections can be useful for spotting
 missing chart tasks. They are not treated as source material. The public skill

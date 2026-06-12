@@ -13,6 +13,9 @@
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)：clean-room MATLAB 图形 gallery 和模板参考。
 - [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci)：用于检查 gallery 输出、隐私、来源和发布质量的 CI/CLI 工具。
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)：帮助 Agent 从用户数据中选择并渲染合适的 MATLAB 图。
+- [`scientific-plotting-function-library`](https://github.com/Kkkakania/scientific-plotting-function-library)：更大的 Python + MATLAB 双语参考库，用来沉淀图形分类、配色名称和大规模 gallery/release gate 经验。
+
+这个 Skill 不追求把所有绘图资源都公开，也不追求搬运大图库。它只保留精选核心方案：Agent 能检查数据、选择图形、通过 MATLAB CLI 渲染，并在报告里解释选择理由，同时不暴露私有资料。详细边界见 [`docs/curated-core-policy.md`](docs/curated-core-policy.md)。
 
 本地课程资料、旧绘图库和个人示例可以帮助我发现“还缺什么图形任务”，但不能作为公开仓库的素材来源。这个 Skill 不复制私有模板、论文图片、二进制工程文件、水印、作者标记代码或来源不清的脚本；相关边界见 [`docs/local-resource-intake.md`](docs/local-resource-intake.md)。
 
