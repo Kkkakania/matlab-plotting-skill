@@ -30,6 +30,7 @@ These inputs are useful as warnings for maintainers, not as material to publish:
 | Origin projects and add-ons (`.opju`, `.opj`, `.ogwu`, `.opx`) | Do not publish; treat as private/binary source material |
 | Office files, archives, OCR batches, and copied tutorials | Keep out of the public skill repository |
 | Third-party palettes, helper functions, or author-marked scripts | Require clear license review; otherwise do not use |
+| Local sales packages, delivery bundles, or packaged-course folders | Keep as private local output; do not turn them into public skill examples or adoption evidence |
 
 ## Accepted Signals
 
@@ -102,6 +103,12 @@ files, Go helpers, Origin scripts, audit outputs, or local README text. A future
 public scheme still needs the normal path: data contract, synthetic demo data,
 MATLAB implementation, report text, gallery provenance, and tests.
 
+If the local prototype produces a packaged bundle, treat the bundle as an
+output of the private workspace, not as an input to this skill. The skill may
+learn that users need clearer export, gallery, or report steps, but the public
+repository should receive only rewritten guidance, synthetic fixtures, and
+reviewable scripts.
+
 ## Palette And Origin Boundary
 
 Palette work is welcome, but it should be small and reviewable. Add palettes
@@ -123,3 +130,5 @@ If a user asks to open-source local plotting material, first separate:
 
 Only the safe requirements can flow into this skill. Everything else stays
 private unless the maintainer can prove authorship and redistribution rights.
+Even when authorship is clear, local packaging folders should be reviewed as a
+separate release artifact instead of being copied into the skill repository.
