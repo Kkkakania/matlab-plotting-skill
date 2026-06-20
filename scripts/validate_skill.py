@@ -8,6 +8,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "matlab-plotting-skill"
+DIAGRAM_SKILL = ROOT / "skills" / "scientific-diagram-skill"
 
 
 def fail(message: str) -> None:
@@ -53,6 +54,26 @@ def main() -> None:
     schemes = re.findall(r"\| `([a-z0-9_]+)` \|", catalog)
     if len(schemes) != 50:
         fail(f"expected 50 schemes in catalog, found {len(schemes)}")
+
+    diagram_skill_md = DIAGRAM_SKILL / "SKILL.md"
+    if not diagram_skill_md.is_file():
+        fail("missing scientific-diagram-skill/SKILL.md")
+    diagram_text = diagram_skill_md.read_text(encoding="utf-8")
+    if "name: scientific-diagram-skill" not in diagram_text:
+        fail("scientific diagram skill frontmatter name is wrong")
+    if "draw.io" not in diagram_text or "diagrams.net" not in diagram_text:
+        fail("scientific diagram skill must mention draw.io and diagrams.net")
+    diagram_required = [
+        DIAGRAM_SKILL / "agents" / "openai.yaml",
+        DIAGRAM_SKILL / "references" / "drawio-workflow.md",
+        DIAGRAM_SKILL / "references" / "diagram-quality-checklist.md",
+        DIAGRAM_SKILL / "references" / "export-and-provenance.md",
+    ]
+    diagram_missing = [
+        str(path.relative_to(ROOT)) for path in diagram_required if not path.is_file()
+    ]
+    if diagram_missing:
+        fail("missing required diagram skill files: " + ", ".join(diagram_missing))
 
     print("Skill validation passed.")
 

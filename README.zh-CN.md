@@ -2,7 +2,11 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-这是一个面向 Agent 的 MATLAB 科研绘图 Skill。我做它主要是为了解决一个很具体的问题：Agent 拿到表格、矩阵或 MAT 文件后，怎样先判断数据形状，再选择一个合理的 MATLAB 图形方案，最后通过 MATLAB CLI 渲染，并留下可复查的报告。
+这个仓库现在放了两个面向科研写作和工程表达的 Agent Skill。
+
+第一个，也是主线，是 `matlab-plotting-skill`。我做它主要是为了解决一个很具体的问题：Agent 拿到表格、矩阵或 MAT 文件后，怎样先判断数据形状，再选择一个合理的 MATLAB 图形方案，最后通过 MATLAB CLI 渲染，并留下可复查的报告。
+
+第二个是 `scientific-diagram-skill`。它不负责画数据图，而是负责科研流程图、系统框图、信号链路图、实验流程图和 agent 工作流图。初稿可以先用 Mermaid 讨论结构；需要可编辑文件时，再进入 draw.io / diagrams.net 的 `.drawio` 交付方式。
 
 这个仓库是自包含的，不依赖私有资料夹、本地模板库，也不要求用户再克隆其他绘图库。有 MATLAB 时可以渲染；暂时没有 MATLAB 时，也可以先用元数据命令查看方案目录和使用边界。
 
@@ -12,7 +16,7 @@
 
 - [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures)：clean-room MATLAB 图形 gallery 和模板参考。
 - [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci)：用于检查 gallery 输出、隐私、来源和发布质量的 CI/CLI 工具。
-- [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)：帮助 Agent 从用户数据中选择并渲染合适的 MATLAB 图。
+- [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)：帮助 Agent 从用户数据中选择并渲染合适的 MATLAB 图；同仓库也提供 `scientific-diagram-skill`，用于 Mermaid 和 draw.io 科研图示。
 - [`scientific-plotting-function-library`](https://github.com/Kkkakania/scientific-plotting-function-library)：更大的 Python + MATLAB 双语参考库，用来沉淀图形分类、配色名称和大规模 gallery/release gate 经验。
 
 这个 Skill 不追求把所有绘图资源都公开，也不追求搬运大图库。它只保留精选核心方案：Agent 能检查数据、选择图形、通过 MATLAB CLI 渲染，并在报告里解释选择理由，同时不暴露私有资料。详细边界见 [`docs/curated-core-policy.md`](docs/curated-core-policy.md)。
@@ -34,6 +38,8 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 
 ## 它能做什么
 
+`matlab-plotting-skill`：
+
 - 读取 CSV、Excel 或 MAT 数据。
 - 识别时间列、类别列、数值列、矩阵、百分比和样本规模等结构信号。
 - 从 50 个绘图方案中选择主方案，并保留备选方案。
@@ -41,6 +47,13 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 - 默认导出 PNG 和 SVG，也支持 PDF。
 - 生成 Markdown 和 JSON 报告，说明为什么选择这个图。
 - 在报告中保留选择信号和候选方案快照，方便复盘和审查。
+
+`scientific-diagram-skill`：
+
+- 先用 Mermaid 快速整理科研图示结构，再决定是否生成可编辑 `.drawio`。
+- 支持方法流程、系统模块、信号链路、实验流程和维护工作流这类图。
+- 把图示来源、导出文件和公开仓库边界分开写清楚。
+- 默认不放水印、个人信息、学校/组织标记、本地路径、论文截图或来源不清的图形素材。
 
 ## 预览
 
@@ -75,6 +88,7 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 ./scripts/install_skill.sh
 ./scripts/install_skill.sh --target claude-code
 ./scripts/install_skill.sh --target dir --path ./skills
+./scripts/install_skill.sh --skill scientific-diagram-skill --target dir --path ./skills
 ```
 
 先预览安装目标：
@@ -92,6 +106,8 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 用我的 CSV 选择一种适合比较方法效果的 MATLAB 图。
 从这个 Excel 表生成相关性图。
 检查这个 MAT 文件适合画什么图，并导出 PNG/SVG。
+先用 Mermaid 梳理我的方法流程，再做一个可编辑的 draw.io 图。
+检查这张实验流程图，看看能不能放进 README 或论文补充材料。
 ```
 
 第一次使用建议从 [`docs/first-render-walkthrough.zh-CN.md`](docs/first-render-walkthrough.zh-CN.md) 开始。它会带你完成 MATLAB 设置、数据检查、`--plan-only`、实际渲染、结果检查和反馈草稿生成。英文版见 [`docs/first-render-walkthrough.md`](docs/first-render-walkthrough.md)。

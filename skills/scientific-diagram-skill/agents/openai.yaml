@@ -1,0 +1,3 @@
+display_name: Scientific Diagram Skill
+short_description: Plan and export research diagrams with Mermaid and draw.io.
+default_prompt: Create a clean scientific diagram for my method or workflow, start with a Mermaid draft, then prepare an editable draw.io version if needed.

@@ -19,5 +19,6 @@ grep -q "find scripts -type d -name '__pycache__'" "$SCRIPT"
 grep -q "tests/test_docs_voice.sh" "$SCRIPT"
 grep -q "tests/test_troubleshooting_docs.sh" "$SCRIPT"
 grep -q "tests/test_render_with_matlab_args.sh" "$SCRIPT"
+grep -q "tests/test_scientific_diagram_skill.sh" "$SCRIPT"
 
 echo "release check script test passed."

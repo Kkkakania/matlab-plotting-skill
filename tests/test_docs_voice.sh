@@ -32,6 +32,10 @@ voice_checked_files=(
   "$ROOT_DIR/docs/ecosystem-status.md"
   "$ROOT_DIR/docs/maintenance-cadence.md"
   "$SKILL_DOC"
+  "$ROOT_DIR/skills/scientific-diagram-skill/SKILL.md"
+  "$ROOT_DIR/skills/scientific-diagram-skill/references/drawio-workflow.md"
+  "$ROOT_DIR/skills/scientific-diagram-skill/references/diagram-quality-checklist.md"
+  "$ROOT_DIR/skills/scientific-diagram-skill/references/export-and-provenance.md"
 )
 
 english_hype='seamless|cutting-edge|revolutionary|game-changing|state-of-the-art|robust and scalable|powerful and intuitive|comprehensive solution|widely adopted|users worldwide|trusted by'

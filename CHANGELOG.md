@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added `scientific-diagram-skill`, a companion Agent Skill for Mermaid and
+  draw.io / diagrams.net research diagrams, with install support, provenance
+  guidance, and CI coverage.
 - Added an issue-triage checklist workflow that prompts for track, evidence
   level, synthetic data, affected scheme/command, and platform details on new
   issues while the cross-repo Project board remains pending.

@@ -6,6 +6,40 @@ TARGET_DIR="$(mktemp -d)"
 trap 'rm -rf "$TARGET_DIR"' EXIT
 
 set +e
+"$ROOT_DIR/scripts/install_skill.sh" --skill >/dev/null 2>"$TARGET_DIR/missing-skill.err"
+missing_skill_status=$?
+set -e
+
+if [[ "$missing_skill_status" -ne 2 ]]; then
+  echo "expected --skill without a value to exit 2, got $missing_skill_status" >&2
+  cat "$TARGET_DIR/missing-skill.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "--skill requires a value" "$TARGET_DIR/missing-skill.err"; then
+  echo "expected clear missing-value message for --skill" >&2
+  cat "$TARGET_DIR/missing-skill.err" >&2
+  exit 1
+fi
+
+set +e
+"$ROOT_DIR/scripts/install_skill.sh" --skill unknown-skill --target "$TARGET_DIR" >/dev/null 2>"$TARGET_DIR/unknown-skill.err"
+unknown_skill_status=$?
+set -e
+
+if [[ "$unknown_skill_status" -ne 2 ]]; then
+  echo "expected unknown --skill to exit 2, got $unknown_skill_status" >&2
+  cat "$TARGET_DIR/unknown-skill.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "Unknown skill" "$TARGET_DIR/unknown-skill.err"; then
+  echo "expected clear unknown skill message" >&2
+  cat "$TARGET_DIR/unknown-skill.err" >&2
+  exit 1
+fi
+
+set +e
 "$ROOT_DIR/scripts/install_skill.sh" --target >/dev/null 2>"$TARGET_DIR/missing-target.err"
 missing_target_status=$?
 set -e
@@ -91,6 +125,26 @@ if [[ ! -s "$TARGET_DIR/installed-doctor/first_use_doctor.md" || ! -s "$TARGET_D
 fi
 if grep -q "$TARGET_DIR" "$TARGET_DIR/installed-doctor/first_use_doctor.md" "$TARGET_DIR/installed-doctor/first_use_doctor.json"; then
   echo "installed skill doctor reports should not leak the install path" >&2
+  exit 1
+fi
+
+diagram_target="$TARGET_DIR/diagram-skills"
+diagram_dry="$("$ROOT_DIR/scripts/install_skill.sh" --skill scientific-diagram-skill --target dir --path "$diagram_target" --dry-run)"
+if [[ "$diagram_dry" != *"$diagram_target/scientific-diagram-skill"* ]]; then
+  echo "diagram skill dry-run should resolve to the selected skill name" >&2
+  echo "$diagram_dry" >&2
+  exit 1
+fi
+
+"$ROOT_DIR/scripts/install_skill.sh" --skill scientific-diagram-skill --target dir --path "$diagram_target" --copy
+
+if [[ ! -f "$diagram_target/scientific-diagram-skill/SKILL.md" ]]; then
+  echo "copy install should create the scientific diagram SKILL.md under target" >&2
+  exit 1
+fi
+
+if [[ ! -s "$diagram_target/scientific-diagram-skill/references/drawio-workflow.md" ]]; then
+  echo "copy install should include scientific diagram references" >&2
   exit 1
 fi
 

@@ -1,8 +1,11 @@
 # Install Targets
 
-`matlab-plotting-skill` is a portable skill folder. The repository keeps Codex
-as the default because that was the first supported workflow, but the installed
-artifact is just:
+This repository contains two portable skill folders. The default install still
+uses `matlab-plotting-skill` because that was the first supported workflow, but
+`scientific-diagram-skill` can be installed with `--skill` when the user needs
+Mermaid and draw.io research diagrams.
+
+The installed artifact is just a skill folder:
 
 ```text
 matlab-plotting-skill/
@@ -14,6 +17,16 @@ matlab-plotting-skill/
 
 That folder can be linked or copied into any agent runtime that can load
 `SKILL.md`-style skills.
+
+The diagram skill has the same shape, but it contains references instead of
+MATLAB renderer assets:
+
+```text
+scientific-diagram-skill/
+  SKILL.md
+  agents/
+  references/
+```
 
 ## Supported Targets
 
@@ -30,6 +43,13 @@ The default command is still equivalent to the Codex target:
 ./scripts/install_skill.sh
 ```
 
+Install the diagram skill explicitly:
+
+```bash
+./scripts/install_skill.sh --skill scientific-diagram-skill --target codex
+./scripts/install_skill.sh --skill scientific-diagram-skill --target dir --path ./skills
+```
+
 ## Preview Before Installing
 
 Use `--dry-run` to inspect the destination without creating files:
@@ -37,6 +57,7 @@ Use `--dry-run` to inspect the destination without creating files:
 ```bash
 ./scripts/install_skill.sh --target claude-code --dry-run
 ./scripts/install_skill.sh --target dir --path ./skills --dry-run
+./scripts/install_skill.sh --skill scientific-diagram-skill --target dir --path ./skills --dry-run
 ```
 
 The preview prints the source folder, final target folder, and whether the
@@ -71,6 +92,12 @@ For an explicit directory:
 
 ```bash
 test -f ./skills/matlab-plotting-skill/SKILL.md
+```
+
+For the diagram skill:
+
+```bash
+test -f ./skills/scientific-diagram-skill/SKILL.md
 ```
 
 ## Boundaries

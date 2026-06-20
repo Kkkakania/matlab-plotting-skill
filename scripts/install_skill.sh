@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SOURCE_DIR="$ROOT_DIR/skills/matlab-plotting-skill"
+SKILL_NAME="matlab-plotting-skill"
 TARGET_KIND="codex"
 TARGET_DIR=""
 TARGET_PATH=""
@@ -12,11 +12,15 @@ DRY_RUN=0
 usage() {
   cat <<'USAGE'
 Usage:
-  install_skill.sh [--target codex|claude-code|dir] [--path <skills-dir>] [--copy] [--dry-run]
+  install_skill.sh [--skill matlab-plotting-skill|scientific-diagram-skill] [--target codex|claude-code|dir] [--path <skills-dir>] [--copy] [--dry-run]
   install_skill.sh --target <skills-dir> [--copy] [--dry-run]
 
 Default:
   Symlink skills/matlab-plotting-skill into ${CODEX_HOME:-$HOME/.codex}/skills.
+
+Skills:
+  matlab-plotting-skill      Choose and render MATLAB scientific figures.
+  scientific-diagram-skill   Plan and export Mermaid/draw.io research diagrams.
 
 Targets:
   codex        Install into ${CODEX_HOME:-$HOME/.codex}/skills.
@@ -41,6 +45,20 @@ require_value() {
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --skill)
+      require_value "$1" "${2:-}"
+      case "$2" in
+        matlab-plotting-skill|scientific-diagram-skill)
+          SKILL_NAME="$2"
+          ;;
+        *)
+          echo "Unknown skill: $2" >&2
+          usage >&2
+          exit 2
+          ;;
+      esac
+      shift 2
+      ;;
     --target)
       require_value "$1" "${2:-}"
       case "$2" in
@@ -103,15 +121,17 @@ case "$TARGET_KIND" in
     ;;
 esac
 
+SOURCE_DIR="$ROOT_DIR/skills/$SKILL_NAME"
+
 if [[ ! -f "$SOURCE_DIR/SKILL.md" ]]; then
   echo "Skill source not found: $SOURCE_DIR" >&2
   exit 1
 fi
 
-DEST_DIR="$TARGET_DIR/matlab-plotting-skill"
+DEST_DIR="$TARGET_DIR/$SKILL_NAME"
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
-  echo "Would install matlab-plotting-skill"
+  echo "Would install $SKILL_NAME"
   echo "  source: $SOURCE_DIR"
   echo "  target: $DEST_DIR"
   echo "  mode:   $MODE"
@@ -122,7 +142,7 @@ mkdir -p "$TARGET_DIR"
 
 if [[ -e "$DEST_DIR" || -L "$DEST_DIR" ]]; then
   if [[ -L "$DEST_DIR" && "$(readlink "$DEST_DIR")" == "$SOURCE_DIR" ]]; then
-    echo "matlab-plotting-skill is already linked at $DEST_DIR"
+    echo "$SKILL_NAME is already linked at $DEST_DIR"
     exit 0
   fi
   echo "Target already exists: $DEST_DIR" >&2
@@ -136,4 +156,4 @@ else
   ln -s "$SOURCE_DIR" "$DEST_DIR"
 fi
 
-echo "Installed matlab-plotting-skill at $DEST_DIR"
+echo "Installed $SKILL_NAME at $DEST_DIR"

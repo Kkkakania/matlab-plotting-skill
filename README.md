@@ -2,10 +2,17 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-This is a small Agent Skill for the part of plotting that usually gets messy:
+This repository now carries two small research skills. The first, and still the
+main one, is for the part of MATLAB plotting that usually gets messy:
 looking at a table or matrix, deciding which MATLAB figure is a sensible first
 try, rendering it through MATLAB CLI, and leaving a report that explains the
 choice.
+
+The second is `scientific-diagram-skill`, a companion skill for Mermaid and
+draw.io / diagrams.net research diagrams. It covers method flows, system block
+diagrams, signal chains, experiment pipelines, and editable diagram handoff.
+That work is kept separate from MATLAB plotting because diagrams and numeric
+figures have different review risks.
 
 The skill is self-contained. It does not depend on private archives, local
 template folders, or another plotting repository. If MATLAB is available, it can
@@ -22,7 +29,9 @@ ecosystem:
 - [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci) provides
   CI/CLI checks for gallery outputs, provenance, privacy, and release readiness.
 - [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill)
-  helps agents choose and render suitable MATLAB figures from user data.
+  helps agents choose and render suitable MATLAB figures from user data. It also
+  includes `scientific-diagram-skill` for clean Mermaid and draw.io research
+  diagrams.
 - [`scientific-plotting-function-library`](https://github.com/Kkkakania/scientific-plotting-function-library)
   is a larger Python + MATLAB reference library for template taxonomy,
   palette names, and stricter large-gallery release checks.
@@ -64,6 +73,8 @@ later evidence packets or debugging.
 
 ## What It Does
 
+`matlab-plotting-skill`:
+
 - Reads CSV, Excel, or MAT data.
 - Infers the data shape and the user's plotting goal.
 - Selects one of 50 plotting schemes.
@@ -72,6 +83,15 @@ later evidence packets or debugging.
 - Writes Markdown and JSON render reports explaining the selected scheme and alternatives.
 - Includes concrete selection signals in reports so automatic choices are easier to audit.
 - Includes a score snapshot for the top scheme candidates.
+
+`scientific-diagram-skill`:
+
+- Drafts research diagrams in Mermaid before committing to a layout.
+- Guides editable `.drawio` source for diagrams.net / draw.io.
+- Reviews method flows, system diagrams, signal chains, experiment pipelines,
+  and agent workflow diagrams.
+- Keeps diagram provenance separate from data plots, with no watermarks,
+  private logos, paper-figure tracing, local paths, or hidden author marks.
 
 ## Preview
 
@@ -111,6 +131,7 @@ explicit flags:
 ./scripts/install_skill.sh
 ./scripts/install_skill.sh --target claude-code
 ./scripts/install_skill.sh --target dir --path ./skills
+./scripts/install_skill.sh --skill scientific-diagram-skill --target dir --path ./skills
 ```
 
 Preview the install target first:
@@ -128,6 +149,8 @@ Then ask your agent for tasks such as:
 Use my CSV to make the best MATLAB figure for comparing methods.
 Render a correlation figure from this Excel sheet.
 Choose a plot for this MAT file and export PNG/SVG.
+Sketch my method as Mermaid, then make an editable draw.io diagram.
+Review this experiment pipeline diagram before I put it in the README.
 ```
 
 For a first hands-on pass, follow
