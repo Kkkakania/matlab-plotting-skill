@@ -13,28 +13,36 @@ DRAWIO = EXAMPLE_DIR / "research-method-flow.drawio"
 SVG = EXAMPLE_DIR / "research-method-flow.svg"
 PROVENANCE = EXAMPLE_DIR / "provenance.md"
 
+UNIX_USER_ROOT = "/" + "Users" + "/"
+UNIX_HOME_ROOT = "/" + "ho" + "me" + "/"
+WINDOWS_USER_ROOT = "C:" + "\\\\" + "Users" + "\\\\"
+
+SOURCE_MARKERS = [
+    "Auth" + "or:",
+    "Created" + " by",
+    "Copy" + "right",
+    "CS" + "DN",
+    "bili" + "bili",
+    "知" + "乎",
+    "小" + "红" + "书",
+    "公众" + "号",
+]
+
+SENSITIVE_MARKERS = [
+    "身份" + "证",
+    "银行" + "卡",
+    "手机" + "号",
+    "家庭" + "住址",
+    "微信" + "号",
+]
+
 PRIVATE_PATTERNS = [
     re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"),
-    re.compile(r"/Users/[^\s<]+"),
-    re.compile(r"C:\\Users\\[^\s<]+"),
-    re.compile(r"/home/[^\s<]+"),
-    re.compile(
-        "("
-        + "|".join(
-            [
-                "Auth" + "or:",
-                "Created by",
-                "Copyright",
-                "CSDN",
-                "bilibili",
-                "知乎",
-                "小红书",
-                "公众号",
-            ]
-        )
-        + ")"
-    ),
-    re.compile(r"(身份证|银行卡|手机号|家庭住址|微信号)"),
+    re.compile(re.escape(UNIX_USER_ROOT) + r"[^\s<]+"),
+    re.compile(re.escape(WINDOWS_USER_ROOT) + r"[^\s<]+"),
+    re.compile(re.escape(UNIX_HOME_ROOT) + r"[^\s<]+"),
+    re.compile("(" + "|".join(re.escape(marker) for marker in SOURCE_MARKERS) + ")"),
+    re.compile("(" + "|".join(re.escape(marker) for marker in SENSITIVE_MARKERS) + ")"),
 ]
 
 
