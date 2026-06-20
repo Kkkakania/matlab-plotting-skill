@@ -36,6 +36,9 @@ mfigci check --config mfigci.yml --report mfigci-report.md
 这不是在 GitHub runner 上强制跑 MATLAB，而是先确认已经提交的公开预览和报告边界是干净的。
 workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便维护者快速阅读，后者保留给后续证据包、复盘或调试使用。
 
+如果需要一份给评审快速看的公开证据摘要，见
+[`docs/application-evidence.md`](docs/application-evidence.md)。这份文档只写可复查的仓库、workflow、检查脚本和边界，不把内部 dogfooding 写成已有采用规模。
+
 ## 它能做什么
 
 `matlab-plotting-skill`：

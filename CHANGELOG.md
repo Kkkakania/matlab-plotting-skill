@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a reviewer-facing application evidence note so the skill-first story
+  has one public, bounded evidence packet without claiming adoption.
 - Added `scientific-diagram-skill`, a companion Agent Skill for Mermaid and
   draw.io / diagrams.net research diagrams, with install support, provenance
   guidance, and CI coverage.

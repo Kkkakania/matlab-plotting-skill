@@ -71,6 +71,11 @@ uploads `mfigci-report.md` and `.mfigci-results.json`: the Markdown file is for
 quick maintainer review, while the JSON file keeps the same result available for
 later evidence packets or debugging.
 
+For a short reviewer-facing packet, see
+[`docs/application-evidence.md`](docs/application-evidence.md). It keeps the
+skill-first application story separate from the user guide and avoids treating
+internal dogfooding as adoption.
+
 ## What It Does
 
 `matlab-plotting-skill`:
