@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added an issue-triage checklist workflow that prompts for track, evidence
+  level, synthetic data, affected scheme/command, and platform details on new
+  issues while the cross-repo Project board remains pending.
 - Let `collect_first_use_feedback.sh` include a short doctor-summary block from
   `first_use_doctor.md/json` when a diagnostic output directory is provided.
 - Added a doctor-summary field to first-use feedback so issue reports can
