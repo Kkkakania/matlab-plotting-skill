@@ -32,6 +32,8 @@ ecosystem:
   helps agents choose and render suitable MATLAB figures from user data. It also
   includes `scientific-diagram-skill` for clean Mermaid and draw.io research
   diagrams.
+- [`python-plotting-skill`](https://github.com/Kkkakania/python-plotting-skill)
+  is the Python sibling for small Matplotlib-based scientific plotting tasks.
 - [`scientific-plotting-function-library`](https://github.com/Kkkakania/scientific-plotting-function-library)
   is a larger Python + MATLAB reference library for template taxonomy,
   palette names, and stricter large-gallery release checks.

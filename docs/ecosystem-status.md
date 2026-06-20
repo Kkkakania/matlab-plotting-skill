@@ -11,6 +11,7 @@ reproducible MATLAB rendering commands.
 | [`matlab-scientific-figures`](https://github.com/Kkkakania/matlab-scientific-figures) | Clean-room MATLAB gallery, reusable plotting APIs, themes, and export helpers |
 | [`matlab-figure-ci`](https://github.com/Kkkakania/matlab-figure-ci) | CI/CLI checks for gallery outputs, provenance, privacy, risky files, and release readiness |
 | [`matlab-plotting-skill`](https://github.com/Kkkakania/matlab-plotting-skill) | Data inspection, scheme selection, MATLAB CLI rendering, and render reports for agent workflows |
+| [`python-plotting-skill`](https://github.com/Kkkakania/python-plotting-skill) | Python sibling skill for Matplotlib-based scientific plots, synthetic gallery examples, and small chart-selection workflows |
 
 ## Handoff Contract
 
@@ -88,6 +89,8 @@ rather than broad adoption claims.
   `27294667935`.
 - This repository should keep its own issue queue small and focused on first-use
   rendering, installer behavior, scheme selection, and report clarity.
+- `python-plotting-skill` is now public and should stay a small sibling project
+  until it has its own first-use feedback and template-request signals.
 
 ## Current Boundaries
 

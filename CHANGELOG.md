@@ -4,6 +4,8 @@
 
 - Added a reviewer-facing application evidence note so the skill-first story
   has one public, bounded evidence packet without claiming adoption.
+- Linked the new public `python-plotting-skill` sibling from the README and
+  ecosystem status docs.
 - Added `scientific-diagram-skill`, a companion Agent Skill for Mermaid and
   draw.io / diagrams.net research diagrams, with install support, provenance
   guidance, and CI coverage.
