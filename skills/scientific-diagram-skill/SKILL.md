@@ -29,6 +29,24 @@ revise a `.drawio` file for draw.io / diagrams.net.
 6. Read `references/export-and-provenance.md` before committing generated
    diagram files or advising what belongs in a public repository.
 
+## Bundled Example
+
+Use `assets/examples/research-method-flow.drawio` as the smallest editable
+example of the intended file shape. It has a matching
+`assets/examples/research-method-flow.svg` preview and
+`assets/examples/provenance.md` note. The example is clean-room and uses
+synthetic workflow labels.
+
+Repository maintainers can run:
+
+```bash
+python3 scripts/check_diagram_examples.py
+```
+
+That check parses the `.drawio` XML and SVG preview, verifies expected labels,
+and scans the example files for private paths, emails, obvious source markers,
+and personal-data keywords.
+
 ## Diagram Defaults
 
 - Keep labels short and technical. Prefer noun phrases over slogans.

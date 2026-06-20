@@ -36,6 +36,7 @@ voice_checked_files=(
   "$ROOT_DIR/skills/scientific-diagram-skill/references/drawio-workflow.md"
   "$ROOT_DIR/skills/scientific-diagram-skill/references/diagram-quality-checklist.md"
   "$ROOT_DIR/skills/scientific-diagram-skill/references/export-and-provenance.md"
+  "$ROOT_DIR/skills/scientific-diagram-skill/assets/examples/provenance.md"
 )
 
 english_hype='seamless|cutting-edge|revolutionary|game-changing|state-of-the-art|robust and scalable|powerful and intuitive|comprehensive solution|widely adopted|users worldwide|trusted by'

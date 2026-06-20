@@ -100,6 +100,12 @@ For the diagram skill:
 test -f ./skills/scientific-diagram-skill/SKILL.md
 ```
 
+When working from this repository, validate the bundled diagram example too:
+
+```bash
+python3 scripts/check_diagram_examples.py
+```
+
 ## Boundaries
 
 The installer only places the skill folder on disk. It does not edit agent

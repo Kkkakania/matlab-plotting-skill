@@ -68,6 +68,9 @@ def main() -> None:
         DIAGRAM_SKILL / "references" / "drawio-workflow.md",
         DIAGRAM_SKILL / "references" / "diagram-quality-checklist.md",
         DIAGRAM_SKILL / "references" / "export-and-provenance.md",
+        DIAGRAM_SKILL / "assets" / "examples" / "research-method-flow.drawio",
+        DIAGRAM_SKILL / "assets" / "examples" / "research-method-flow.svg",
+        DIAGRAM_SKILL / "assets" / "examples" / "provenance.md",
     ]
     diagram_missing = [
         str(path.relative_to(ROOT)) for path in diagram_required if not path.is_file()

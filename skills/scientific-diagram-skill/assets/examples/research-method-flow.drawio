@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="research-method-flow" name="Research method flow">
+    <mxGraphModel dx="1200" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="720" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="group-data" value="Data and planning" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6f8fa;strokeColor=#6b7280;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="330" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="group-render" value="Render and review" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6f8fa;strokeColor=#6b7280;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="420" y="60" width="360" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="group-publish" value="Publishable artifacts" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6f8fa;strokeColor=#6b7280;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="830" y="60" width="330" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-input-data" value="Input data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2563eb;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="120" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-inspect-schema" value="Inspect schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2563eb;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="220" y="130" width="120" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-plot-plan" value="Plot plan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2563eb;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="460" y="130" width="120" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-matlab-figure" value="MATLAB figure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef6ff;strokeColor=#0891b2;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="610" y="130" width="130" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-mfigci-check" value="mfigci check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#d97706;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="870" y="130" width="120" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-readme-gallery" value="README or gallery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="130" width="120" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="node-provenance" value="Provenance note" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6b7280;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="870" y="210" width="260" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge-input-inspect" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#374151;" edge="1" parent="1" source="node-input-data" target="node-inspect-schema">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge-inspect-plan" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#374151;" edge="1" parent="1" source="node-inspect-schema" target="node-plot-plan">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge-plan-figure" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#374151;" edge="1" parent="1" source="node-plot-plan" target="node-matlab-figure">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge-figure-check" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#374151;" edge="1" parent="1" source="node-matlab-figure" target="node-mfigci-check">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge-check-gallery" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#374151;" edge="1" parent="1" source="node-mfigci-check" target="node-readme-gallery">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge-check-provenance" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#6b7280;dashed=1;" edge="1" parent="1" source="node-mfigci-check" target="node-provenance">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

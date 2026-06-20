@@ -54,6 +54,10 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 - 支持方法流程、系统模块、信号链路、实验流程和维护工作流这类图。
 - 把图示来源、导出文件和公开仓库边界分开写清楚。
 - 默认不放水印、个人信息、学校/组织标记、本地路径、论文截图或来源不清的图形素材。
+- 带一个经过检查的示例：
+  `skills/scientific-diagram-skill/assets/examples/research-method-flow.drawio`
+  和 `research-method-flow.svg`。修改示例前可以运行
+  `python3 scripts/check_diagram_examples.py`。
 
 ## 预览
 

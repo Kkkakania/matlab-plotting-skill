@@ -22,6 +22,7 @@ jobs:
       - name: Shell syntax
         run: |
           python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
+          python3 -m py_compile scripts/check_diagram_examples.py
           find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +
           bash -n scripts/render_with_matlab.sh
           bash -n scripts/doctor.sh
@@ -113,6 +114,7 @@ jobs:
           bash -n tests/test_release_check_script.sh
           bash -n tests/test_skill_plan_only_guidance.sh
           bash -n tests/test_scientific_diagram_skill.sh
+          bash -n tests/test_scientific_diagram_examples.sh
           bash -n tests/test_example_prompts.sh
           bash -n tests/test_render_with_matlab_args.sh
           bash -n tests/test_mfigci_dogfood_config.sh
@@ -197,6 +199,7 @@ jobs:
           tests/test_release_check_script.sh
           tests/test_skill_plan_only_guidance.sh
           tests/test_scientific_diagram_skill.sh
+          tests/test_scientific_diagram_examples.sh
           tests/test_example_prompts.sh
           tests/test_render_with_matlab_args.sh
           tests/test_mfigci_dogfood_config.sh
@@ -221,6 +224,8 @@ jobs:
             .mfigci-results.json
       - name: Skill validation
         run: python3 scripts/validate_skill.py
+      - name: Diagram example validation
+        run: python3 scripts/check_diagram_examples.py
       - name: Build automation manifest
         run: python3 scripts/build_automation_manifest.py --out automation-manifest.json
       - name: Upload automation manifest

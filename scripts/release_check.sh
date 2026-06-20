@@ -53,7 +53,7 @@ done
 cd "$ROOT_DIR"
 
 echo "== Syntax checks =="
-python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
+python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py scripts/check_diagram_examples.py
 find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +
 bash -n scripts/*.sh
 bash -n skills/matlab-plotting-skill/scripts/*.sh
@@ -139,6 +139,7 @@ tests/test_visual_fixtures_script.sh
 tests/test_release_check_script.sh
 tests/test_skill_plan_only_guidance.sh
 tests/test_scientific_diagram_skill.sh
+tests/test_scientific_diagram_examples.sh
 tests/test_example_prompts.sh
 tests/test_render_with_matlab_args.sh
 tests/test_mfigci_dogfood_config.sh
@@ -146,6 +147,7 @@ tests/test_mfigci_dogfood_config.sh
 echo "== Repository checks =="
 find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +
 python3 scripts/validate_skill.py
+python3 scripts/check_diagram_examples.py
 scripts/check_forbidden_files.sh
 scripts/check_privacy.sh
 git diff --check
