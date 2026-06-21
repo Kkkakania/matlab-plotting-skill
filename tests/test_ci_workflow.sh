@@ -11,7 +11,11 @@ fi
 
 grep -q "scripts/build_automation_manifest.py" "$WORKFLOW"
 grep -q "actions/checkout@v6" "$WORKFLOW"
-grep -q "actions/upload-artifact@v5" "$WORKFLOW"
+grep -q "actions/upload-artifact@v7" "$WORKFLOW"
+if grep -q "actions/upload-artifact@v5" "$WORKFLOW"; then
+  echo "quality workflow should not use Node 20 upload-artifact runtime" >&2
+  exit 1
+fi
 grep -q "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24" "$WORKFLOW"
 grep -Fq "find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +" "$WORKFLOW"
 grep -q "bash -n scripts/doctor.sh" "$WORKFLOW"

@@ -214,7 +214,7 @@ jobs:
           mfigci rules --config mfigci.yml
           mfigci check --config mfigci.yml --report mfigci-report.md
       - name: Upload mfigci report
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: mfigci-report
@@ -229,14 +229,14 @@ jobs:
       - name: Build automation manifest
         run: python3 scripts/build_automation_manifest.py --out automation-manifest.json
       - name: Upload automation manifest
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: automation-manifest
           path: automation-manifest.json
       - name: Build 500-task plan
         run: python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md --status-overrides docs/task-status.json
       - name: Upload 500-task plan
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: task-plan
           path: |
