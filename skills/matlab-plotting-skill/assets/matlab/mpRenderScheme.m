@@ -118,15 +118,101 @@ for k = 1:seriesCount
     ax = nexttile;
     plot(ax, x, y(:, k), 'LineWidth', 1.25, 'Color', colors(k, :));
     grid(ax, 'on');
-    ylabel(ax, names.y(k), 'Interpreter', 'none');
+    ylabel(ax, axisDisplayLabel(names.y(k)), 'Interpreter', 'none');
     if k == seriesCount
-        xlabel(ax, names.x, 'Interpreter', 'none');
+        xlabel(ax, axisDisplayLabel(names.x), 'Interpreter', 'none');
     else
         set(ax, 'XTickLabel', []);
     end
     styleAxes(ax);
     ax.XColor = [0.26 0.26 0.26];
     ax.YColor = [0.26 0.26 0.26];
+end
+end
+
+function label = axisDisplayLabel(rawName)
+rawName = string(rawName);
+parts = split(rawName, "_");
+unit = "";
+if numel(parts) >= 2 && isKnownUnitToken(parts(end))
+    unit = formatUnitToken(parts(end));
+    base = strjoin(parts(1:end - 1), "_");
+else
+    base = rawName;
+end
+
+baseText = char(base);
+baseText = regexprep(baseText, '[_-]+', ' ');
+baseText = regexprep(baseText, '([a-z])([A-Z])', '$1 $2');
+baseText = strtrim(baseText);
+if isempty(baseText)
+    label = "Value";
+else
+    label = titleCase(string(baseText));
+end
+
+if strlength(unit) > 0
+    label = label + " (" + unit + ")";
+end
+end
+
+function tf = isKnownUnitToken(token)
+token = string(token);
+knownExact = ["MV", "MW", "MA"];
+knownLower = ["s", "sec", "ms", "min", "h", "v", "mv", "kv", "a", ...
+    "ma", "ka", "w", "mw", "kw", "hz", "khz", "rpm", "c", "degc", ...
+    "percent", "pct", "pu"];
+tf = any(token == knownExact) || any(lower(token) == knownLower);
+end
+
+function unit = formatUnitToken(token)
+token = string(token);
+switch token
+    case "MV"
+        unit = "MV";
+    case "MW"
+        unit = "MW";
+    case "MA"
+        unit = "MA";
+    otherwise
+        unit = formatLowerUnitToken(lower(token));
+end
+end
+
+function unit = formatLowerUnitToken(token)
+switch string(token)
+    case "sec"
+        unit = "s";
+    case "v"
+        unit = "V";
+    case "mv"
+        unit = "mV";
+    case "kv"
+        unit = "kV";
+    case "a"
+        unit = "A";
+    case "ma"
+        unit = "mA";
+    case "ka"
+        unit = "kA";
+    case "w"
+        unit = "W";
+    case "mw"
+        unit = "mW";
+    case "kw"
+        unit = "kW";
+    case "hz"
+        unit = "Hz";
+    case "khz"
+        unit = "kHz";
+    case "degc"
+        unit = "degC";
+    case {"percent", "pct"}
+        unit = "%";
+    case "pu"
+        unit = "p.u.";
+    otherwise
+        unit = string(token);
 end
 end
 

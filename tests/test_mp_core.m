@@ -64,6 +64,33 @@ verifyGreaterThanOrEqual(testCase, numel(axesObjects), 3);
 verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'line')), 3);
 end
 
+function testStackedTimeSeriesUsesUnitAwareAxisLabels(testCase)
+t = (0:4)';
+voltage = 220 + [0; 1; -1; 2; 0];
+current = 10 + [0; 0.5; -0.2; 0.3; 0.1];
+power = voltage .* current / 1000;
+loss = [12; 10; 14; 11; 13];
+data = table(t, voltage, current, power, loss, ...
+    'VariableNames', {'time_s', 'voltage_V', 'current_A', 'power_kW', 'loss_mW'});
+schema = mpInferDataSchema(data);
+fig = mpRenderScheme("stacked_time_series", data, schema, "unit-aware labels");
+cleanup = onCleanup(@() close(fig));
+
+axesObjects = findobj(fig, 'Type', 'axes');
+yLabels = strings(1, numel(axesObjects));
+xLabels = strings(1, numel(axesObjects));
+for k = 1:numel(axesObjects)
+    yLabels(k) = string(axesObjects(k).YLabel.String);
+    xLabels(k) = string(axesObjects(k).XLabel.String);
+end
+
+verifyTrue(testCase, any(yLabels == "Voltage (V)"));
+verifyTrue(testCase, any(yLabels == "Current (A)"));
+verifyTrue(testCase, any(yLabels == "Power (kW)"));
+verifyTrue(testCase, any(yLabels == "Loss (mW)"));
+verifyTrue(testCase, any(xLabels == "Time (s)"));
+end
+
 function testConfidenceBandDemoDataSupportsUncertaintyRender(testCase)
 data = mpDemoDataForScheme("confidence_band");
 verifyTrue(testCase, istable(data));

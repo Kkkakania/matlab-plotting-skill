@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Made `stacked_time_series` axis labels unit-aware for simple column-name
+  hints such as `time_s`, `voltage_V`, `current_A`, and `power_kW`.
 - Added a reviewer-facing application evidence note so the skill-first story
   has one public, bounded evidence packet without claiming adoption.
 - Linked the new public `python-plotting-skill` sibling from the README and
