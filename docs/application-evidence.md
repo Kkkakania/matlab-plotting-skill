@@ -1,6 +1,6 @@
 # Application Evidence
 
-Snapshot date: 2026-06-20.
+Snapshot date: 2026-06-21.
 
 This note is for reviewers who want to understand what is public and
 checkable in `matlab-plotting-skill`. It is not a promise of Codex for Open
@@ -8,14 +8,20 @@ Source eligibility, credits, or ChatGPT Pro access.
 
 ## Repository to cite
 
-Use this repository as the main skill-first application repository:
+Use this repository as companion skill evidence for the MATLAB plotting
+ecosystem:
 
 <https://github.com/Kkkakania/matlab-plotting-skill>
 
-The supporting repositories are:
+Do not present it as the main Codex for Open Source application repository.
+Use `matlab-scientific-figures` as the main repository when a form asks for one
+GitHub repository, then cite this skill as the agent-facing workflow layer.
+
+Related repositories:
 
 - <https://github.com/Kkkakania/matlab-scientific-figures>
 - <https://github.com/Kkkakania/matlab-figure-ci>
+- <https://github.com/Kkkakania/python-plotting-skill>
 
 ## Public evidence
 
@@ -23,7 +29,7 @@ The supporting repositories are:
 |---|---|
 | MATLAB plotting skill | `skills/matlab-plotting-skill/SKILL.md`, bundled MATLAB helpers, 50-scheme catalog, gallery previews, and first-render walkthrough |
 | Scientific diagram skill | `skills/scientific-diagram-skill/SKILL.md`, draw.io workflow references, checked `research-method-flow.drawio`, checked `research-method-flow.svg`, and provenance note |
-| CI | `Quality` workflow on push and pull request |
+| CI | `Quality` workflow on push and pull request, green and annotation-free at the 2026-06-21 snapshot |
 | Local release gate | `./scripts/release_check.sh` |
 | Figure QA dogfooding | `mfigci check --config mfigci.yml --report mfigci-report.md` |
 | Maintainer workflow | issue-triage workflow, first-use feedback path, installer checks, docs voice check, and release cadence notes |
