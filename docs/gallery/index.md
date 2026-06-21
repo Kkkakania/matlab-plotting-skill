@@ -17,3 +17,4 @@ Gallery directory: `docs/gallery`
 | `regression_scatter` | Relationship | Relationship plus trend line | ![regression_scatter](regression_scatter.png) |
 | `heatmap_matrix` | Matrix | Numeric matrix | ![heatmap_matrix](heatmap_matrix.png) |
 | `grouped_bar` | Bar | Category comparison | ![grouped_bar](grouped_bar.png) |
+| `stacked_time_series` | Trend | Stacked synchronized signals | ![stacked_time_series](stacked_time_series.png) |

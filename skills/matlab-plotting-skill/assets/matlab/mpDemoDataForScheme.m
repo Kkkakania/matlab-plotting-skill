@@ -117,6 +117,16 @@ if schemeName == "segmented_line"
     return
 end
 
+if schemeName == "stacked_time_series"
+    time = linspace(0, 0.24, 240)';
+    voltage = 220 + 7.5 * sin(2 * pi * 50 * time) + 1.2 * sin(2 * pi * 150 * time);
+    current = 14 + 2.3 * sin(2 * pi * 50 * time - 0.42) + 0.35 * sin(2 * pi * 100 * time);
+    power = 3.1 + 0.42 * sin(2 * pi * 25 * time + 0.18) + 0.18 * sin(2 * pi * 75 * time);
+    data = table(time, voltage, current, power, ...
+        'VariableNames', {'time', 'voltage', 'current', 'power'});
+    return
+end
+
 if schemeName == "zoomed_inset_line"
     t = (1:180)';
     localEvent = 0.85 * exp(-((t - 118) / 9) .^ 2);

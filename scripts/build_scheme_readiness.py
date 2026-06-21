@@ -64,7 +64,7 @@ def write_markdown(rows: list[dict[str, object]], output: Path) -> None:
     lines = [
         "# Scheme Readiness",
         "",
-        "This matrix separates the 50-scheme catalog from the smaller set of schemes",
+        f"This matrix separates the {len(rows)}-scheme catalog from the smaller set of schemes",
         "that currently have committed gallery previews and completed support tasks.",
         "",
         "## Summary",

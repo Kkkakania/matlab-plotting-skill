@@ -90,7 +90,7 @@ The MATLAB check inherits the same `MATLAB_BIN` and
 ## What It Checks
 
 - repository skeleton: README and `SKILL.md`
-- scheme catalog count: 50 public schemes
+- scheme catalog count: 51 public schemes
 - readiness matrix: committed support status
 - privacy scan: no obvious private/provenance traces
 - forbidden-file scan: no `.p`, `.fig`, committed `.mat`, document bundles, or archives

@@ -3,15 +3,15 @@
 This board is a planning backlog, not a release cadence. Batch related
 tasks into normal maintenance releases instead of tagging every row.
 
-Total schemes: 50
+Total schemes: 51
 Task lanes per scheme: 10
-Total tasks: 500
+Total tasks: 510
 
 ## Family Summary
 
 | Family | Tasks |
 |---|---:|
-| Trend | 60 |
+| Trend | 70 |
 | Relationship | 70 |
 | Matrix | 70 |
 | Bar | 70 |
@@ -26,22 +26,22 @@ Total tasks: 500
 
 | Lane | Tasks |
 |---|---:|
-| catalog | 50 |
-| data-contract | 50 |
-| demo-data | 50 |
-| selection-rule | 50 |
-| explicit-cli | 50 |
-| png-render | 50 |
-| vector-render | 50 |
-| report | 50 |
-| gallery | 50 |
-| safety | 50 |
+| catalog | 51 |
+| data-contract | 51 |
+| demo-data | 51 |
+| selection-rule | 51 |
+| explicit-cli | 51 |
+| png-render | 51 |
+| vector-render | 51 |
+| report | 51 |
+| gallery | 51 |
+| safety | 51 |
 
 ## Status Summary
 
 | Status | Tasks |
 |---|---:|
-| done | 118 |
+| done | 128 |
 | planned | 382 |
 
 ## Task Board
@@ -548,3 +548,13 @@ Total tasks: 500
 | `TASK-498-annotated_callout-report` | `annotated_callout` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "annotated_callout" <output-dir>/render_report.md <output-dir>/render_report.json` | planned |
 | `TASK-499-annotated_callout-gallery` | `annotated_callout` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
 | `TASK-500-annotated_callout-safety` | `annotated_callout` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
+| `TASK-501-stacked_time_series-catalog` | `stacked_time_series` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info stacked_time_series` | done |
+| `TASK-502-stacked_time_series-data-contract` | `stacked_time_series` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "stacked_time_series" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |
+| `TASK-503-stacked_time_series-demo-data` | `stacked_time_series` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | done |
+| `TASK-504-stacked_time_series-selection-rule` | `stacked_time_series` | selection-rule | Route suitable data to the scheme | Plan-only output can explain when this scheme is selected or considered. | `./scripts/render_with_matlab.sh --plan-only --data <file> --goal <goal> --scheme stacked_time_series` | done |
+| `TASK-505-stacked_time_series-explicit-cli` | `stacked_time_series` | explicit-cli | Support explicit CLI selection | The scheme can be requested with --scheme and receives a deterministic report. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme stacked_time_series --formats png` | done |
+| `TASK-506-stacked_time_series-png-render` | `stacked_time_series` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme stacked_time_series --formats png` | done |
+| `TASK-507-stacked_time_series-vector-render` | `stacked_time_series` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme stacked_time_series --formats svg,pdf` | done |
+| `TASK-508-stacked_time_series-report` | `stacked_time_series` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "stacked_time_series" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
+| `TASK-509-stacked_time_series-gallery` | `stacked_time_series` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
+| `TASK-510-stacked_time_series-safety` | `stacked_time_series` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |

@@ -10,18 +10,18 @@ if [[ ! -s "$BOARD" ]]; then
 fi
 
 task_count="$(grep -Ec '^\| `TASK-[0-9]{3}-' "$BOARD")"
-if [[ "$task_count" -ne 500 ]]; then
-  echo "expected 500 committed task rows, found $task_count" >&2
+if [[ "$task_count" -ne 510 ]]; then
+  echo "expected 510 committed task rows, found $task_count" >&2
   exit 1
 fi
 
-grep -q "Total tasks: 500" "$BOARD"
+grep -q "Total tasks: 510" "$BOARD"
 grep -q "Long-Horizon Scheme Backlog" "$BOARD"
 grep -q "planning backlog, not a release cadence" "$BOARD"
 grep -q "TASK-001-line_trend-catalog" "$BOARD"
-grep -q "TASK-500-annotated_callout-safety" "$BOARD"
+grep -q "TASK-510-stacked_time_series-safety" "$BOARD"
 grep -q "Command Hint" "$BOARD"
-grep -q "| done | 118 |" "$BOARD"
+grep -q "| done | 128 |" "$BOARD"
 grep -q "| planned | 382 |" "$BOARD"
 grep -q '| `TASK-001-line_trend-catalog` | `line_trend` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info line_trend` | done |' "$BOARD"
 grep -q '| `TASK-002-line_trend-data-contract` | `line_trend` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "line_trend" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | done |' "$BOARD"
@@ -109,6 +109,8 @@ grep -q '| `TASK-104-regression_scatter-selection-rule` | `regression_scatter` |
 grep -q '| `TASK-110-regression_scatter-safety` | `regression_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |' "$BOARD"
 grep -q '| `TASK-111-bubble_scatter-catalog` | `bubble_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info bubble_scatter` | done |' "$BOARD"
 grep -q '| `TASK-118-bubble_scatter-report` | `bubble_scatter` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "bubble_scatter" <output-dir>/render_report.md <output-dir>/render_report.json` | done |' "$BOARD"
+grep -q '| `TASK-501-stacked_time_series-catalog` | `stacked_time_series` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info stacked_time_series` | done |' "$BOARD"
+grep -q '| `TASK-510-stacked_time_series-safety` | `stacked_time_series` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |' "$BOARD"
 grep -q "Catalog entry names the scheme" "$BOARD"
 grep -q "No private paths, forbidden files" "$BOARD"
 

@@ -21,6 +21,7 @@ grep -q 'scripts/collect_first_use_feedback.sh' "$CONFIG"
 grep -q '"line_trend.png"' "$CONFIG"
 grep -q '"density_scatter.png"' "$CONFIG"
 grep -q '"segmented_line.png"' "$CONFIG"
+grep -q '"stacked_time_series.png"' "$CONFIG"
 
 grep -q "mfigci-report.md" "$GITIGNORE"
 grep -q ".mfigci-results.json" "$GITIGNORE"

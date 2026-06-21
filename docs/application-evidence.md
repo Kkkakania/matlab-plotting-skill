@@ -27,7 +27,7 @@ Related repositories:
 
 | Area | Evidence |
 |---|---|
-| MATLAB plotting skill | `skills/matlab-plotting-skill/SKILL.md`, bundled MATLAB helpers, 50-scheme catalog, gallery previews, and first-render walkthrough |
+| MATLAB plotting skill | `skills/matlab-plotting-skill/SKILL.md`, bundled MATLAB helpers, 51-scheme catalog, gallery previews, and first-render walkthrough |
 | Scientific diagram skill | `skills/scientific-diagram-skill/SKILL.md`, draw.io workflow references, checked `research-method-flow.drawio`, checked `research-method-flow.svg`, and provenance note |
 | CI | `Quality` workflow on push and pull request, green and annotation-free at the 2026-06-21 snapshot |
 | Local release gate | `./scripts/release_check.sh` |

@@ -18,6 +18,9 @@ Use trend schemes when order matters.
   meaningful reference line)
 - Phase or regime changes: `segmented_line` (best when a segment, phase,
   regime, stage, or period column marks the boundaries)
+- Synchronized channels on one time axis: `stacked_time_series` (best for
+  voltage/current/power, sensors, or other signals that need separate y-scales
+  but should stay aligned on the same x-axis)
 
 When Not To Use: avoid trend plots when the x-axis order is arbitrary. A bar,
 box, or ranking plot will usually be clearer.

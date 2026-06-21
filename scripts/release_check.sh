@@ -93,6 +93,7 @@ tests/test_confidence_band_catalog.sh
 tests/test_zoomed_inset_line_catalog.sh
 tests/test_positive_negative_area_catalog.sh
 tests/test_segmented_line_catalog.sh
+tests/test_stacked_time_series_catalog.sh
 tests/test_scatter_relationship_catalog.sh
 tests/test_grouped_scatter_catalog.sh
 tests/test_density_scatter_catalog.sh
@@ -103,6 +104,7 @@ tests/test_confidence_band_data_contract.sh
 tests/test_zoomed_inset_line_data_contract.sh
 tests/test_positive_negative_area_data_contract.sh
 tests/test_segmented_line_data_contract.sh
+tests/test_stacked_time_series_data_contract.sh
 tests/test_scatter_relationship_data_contract.sh
 tests/test_grouped_scatter_data_contract.sh
 tests/test_density_scatter_data_contract.sh
@@ -116,6 +118,7 @@ tests/test_confidence_band_gallery.sh
 tests/test_zoomed_inset_line_gallery.sh
 tests/test_positive_negative_area_gallery.sh
 tests/test_segmented_line_gallery.sh
+tests/test_stacked_time_series_gallery.sh
 tests/test_scatter_relationship_gallery.sh
 tests/test_grouped_scatter_gallery.sh
 tests/test_density_scatter_gallery.sh
@@ -126,6 +129,7 @@ tests/test_confidence_band_safety.sh
 tests/test_zoomed_inset_line_safety.sh
 tests/test_positive_negative_area_safety.sh
 tests/test_segmented_line_safety.sh
+tests/test_stacked_time_series_safety.sh
 tests/test_scatter_relationship_safety.sh
 tests/test_grouped_scatter_safety.sh
 tests/test_density_scatter_safety.sh

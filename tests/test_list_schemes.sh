@@ -15,9 +15,14 @@ if [[ "$output" != *"annotated_callout"* ]]; then
   exit 1
 fi
 
+if [[ "$output" != *"stacked_time_series"* ]]; then
+  echo "scheme list should include stacked_time_series" >&2
+  exit 1
+fi
+
 count="$(printf '%s\n' "$output" | grep -Ec '^[A-Za-z0-9_]+[[:space:]]')"
-if [[ "$count" -ne 50 ]]; then
-  echo "scheme list should include 50 schemes, found $count" >&2
+if [[ "$count" -ne 51 ]]; then
+  echo "scheme list should include 51 schemes, found $count" >&2
   exit 1
 fi
 

@@ -29,7 +29,8 @@ switch scheme.Family
         renderTrend(fig, "line_trend", data);
 end
 
-sgtitle(fig, titleCase(strrep(schemeName, "_", " ")), 'FontWeight', 'bold');
+titleHandle = sgtitle(fig, titleCase(strrep(schemeName, "_", " ")), 'FontWeight', 'bold');
+titleHandle.Color = [0.18 0.18 0.18];
 set(findall(fig, '-property', 'FontName'), 'FontName', 'Arial');
 set(findall(fig, '-property', 'FontSize'), 'FontSize', 10);
 drawnow;
@@ -55,6 +56,10 @@ switch schemeName
         for k = 1:size(y, 2)
             stairs(ax, x, y(:, k), 'LineWidth', 1.4, 'Color', colors(k, :));
         end
+    case "stacked_time_series"
+        delete(ax);
+        renderStackedTimeSeries(fig, x, y, names, colors);
+        return
     case "confidence_band"
         center = y(:, 1);
         if size(y, 2) >= 3
@@ -104,6 +109,25 @@ if size(y, 2) > 1 && schemeName == "multi_line_comparison"
     legend(ax, names.y, 'Location', 'best');
 end
 styleAxes(ax);
+end
+
+function renderStackedTimeSeries(fig, x, y, names, colors)
+seriesCount = max(1, size(y, 2));
+tiledlayout(fig, seriesCount, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
+for k = 1:seriesCount
+    ax = nexttile;
+    plot(ax, x, y(:, k), 'LineWidth', 1.25, 'Color', colors(k, :));
+    grid(ax, 'on');
+    ylabel(ax, names.y(k), 'Interpreter', 'none');
+    if k == seriesCount
+        xlabel(ax, names.x, 'Interpreter', 'none');
+    else
+        set(ax, 'XTickLabel', []);
+    end
+    styleAxes(ax);
+    ax.XColor = [0.26 0.26 0.26];
+    ax.YColor = [0.26 0.26 0.26];
+end
 end
 
 function renderRelationship(fig, schemeName, data)
@@ -473,6 +497,9 @@ if numel(unique(x)) < numel(x)
 end
 names = struct();
 names.x = "Index";
+if numel(numericNames) >= size(y, 2) + 1
+    names.x = numericNames(1);
+end
 if numel(numericNames) >= size(y, 2)
     names.y = numericNames(end - size(y, 2) + 1:end);
 else

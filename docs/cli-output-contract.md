@@ -6,7 +6,7 @@ field names.
 
 ## Metadata Commands
 
-`--list-schemes-json` returns an array of 50 records. Each record includes:
+`--list-schemes-json` returns an array of 51 records. Each record includes:
 
 - `schema_version`: currently `1.0`
 - `scheme`

@@ -38,6 +38,14 @@ if schema.TimeCount > 0 && schema.NumericCount >= 3 && ...
         any(contains(goal, ["compare", "comparison", "multiple", "methods", "series"]))
     scores(nameIndex(schemes, "multi_line_comparison")) = scores(nameIndex(schemes, "multi_line_comparison")) + 28;
 end
+if schema.TimeCount > 0 && schema.NumericCount >= 4
+    scores(nameIndex(schemes, "stacked_time_series")) = scores(nameIndex(schemes, "stacked_time_series")) + 12;
+end
+if schema.TimeCount > 0 && schema.NumericCount >= 4 && any(contains(goal, ...
+        ["stacked", "shared axis", "shared time", "synchronized", "synchronised", ...
+        "separate axes", "separate y", "multi-signal", "voltage", "current", "power"]))
+    scores(nameIndex(schemes, "stacked_time_series")) = scores(nameIndex(schemes, "stacked_time_series")) + 56;
+end
 if schema.HasMatrix
     scores = addFamily(scores, schemes, "matrix", 14);
 end

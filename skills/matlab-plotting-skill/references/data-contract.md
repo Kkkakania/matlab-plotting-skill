@@ -84,6 +84,18 @@ text names the transition points or explains the phase structure. Otherwise use
 `line_trend`, `multi_line_comparison`, or `zoomed_inset_line` so the chart does
 not imply unsupported regime changes.
 
+### `stacked_time_series`
+
+Use one ordered x-axis column plus at least three related numeric signal columns
+when the viewer needs to compare timing rather than put every value on one
+y-scale. Good table shapes include `time, voltage, current, power` or
+`sample, temperature, pressure, flow`.
+
+Choose this scheme when the goal mentions stacked channels, synchronized
+signals, a shared x-axis, separate y-axes, or electrical/sensor measurements
+that would become unreadable on a single axis. Use `multi_line_comparison`
+instead when the series share units and can be compared on one y-axis.
+
 ### `scatter_relationship`
 
 Use at least two numeric columns representing paired observations, such as

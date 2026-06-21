@@ -52,8 +52,8 @@ def main() -> None:
 
     catalog = (SKILL / "references" / "scheme-catalog.md").read_text(encoding="utf-8")
     schemes = re.findall(r"\| `([a-z0-9_]+)` \|", catalog)
-    if len(schemes) != 50:
-        fail(f"expected 50 schemes in catalog, found {len(schemes)}")
+    if len(schemes) != 51:
+        fail(f"expected 51 schemes in catalog, found {len(schemes)}")
 
     diagram_skill_md = DIAGRAM_SKILL / "SKILL.md"
     if not diagram_skill_md.is_file():

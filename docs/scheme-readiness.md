@@ -1,20 +1,20 @@
 # Scheme Readiness
 
-This matrix separates the 50-scheme catalog from the smaller set of schemes
+This matrix separates the 51-scheme catalog from the smaller set of schemes
 that currently have committed gallery previews and completed support tasks.
 
 ## Summary
 
 | Readiness | Schemes |
 |---|---:|
-| gallery-backed | 11 |
+| gallery-backed | 12 |
 | preview available | 2 |
 | render path started | 1 |
 | cataloged | 36 |
 
 ## Stable First-Use Schemes
 
-`line_trend`, `multi_line_comparison`, `confidence_band`, `zoomed_inset_line`, `positive_negative_area`, `segmented_line`, `scatter_relationship`, `grouped_scatter`, `density_scatter`, `contour_scatter`, `regression_scatter`
+`line_trend`, `multi_line_comparison`, `confidence_band`, `zoomed_inset_line`, `positive_negative_area`, `segmented_line`, `scatter_relationship`, `grouped_scatter`, `density_scatter`, `contour_scatter`, `regression_scatter`, `stacked_time_series`
 
 Start with these before trying cataloged-only schemes.
 
@@ -72,6 +72,7 @@ Start with these before trying cataloged-only schemes.
 | `multi_panel_overview` | Layout | cataloged | no | no | no | no | no | no | no |
 | `small_multiples` | Layout | cataloged | no | no | no | no | no | no | no |
 | `annotated_callout` | Layout | cataloged | no | no | no | no | no | no | no |
+| `stacked_time_series` | Trend | gallery-backed | [preview](gallery/stacked_time_series.png) | yes | yes | yes | yes | yes | yes |
 
 ## Notes
 

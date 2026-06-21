@@ -19,7 +19,7 @@ activation:
 ## Overview
 
 Use this skill to turn user data and a plotting goal into a rendered MATLAB
-figure. The bundled MATLAB assets include 50 plotting schemes, a data-schema
+figure. The bundled MATLAB assets include 51 plotting schemes, a data-schema
 inference layer, palette defaults, exporters, and a report writer.
 
 This skill is self-contained. Do not rely on private local folders, external

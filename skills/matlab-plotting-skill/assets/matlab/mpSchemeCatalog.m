@@ -52,6 +52,7 @@ data = {
     "multi_panel_overview", "layout", "Several views in one figure", ["layout", "panel"], "categorical"
     "small_multiples", "layout", "Repeated panels by group", ["layout", "multiples"], "categorical"
     "annotated_callout", "layout", "Highlight a point or event", ["layout", "annotation"], "categorical"
+    "stacked_time_series", "trend", "Stacked synchronized signals", ["trend", "time", "stacked", "shared", "signal", "synchronized"], "categorical"
 };
 
 schemes = repmat(struct('Name', "", 'Family', "", 'Task', "", 'Tags', strings(1, 0), ...

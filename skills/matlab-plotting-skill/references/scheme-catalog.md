@@ -1,6 +1,6 @@
 # Scheme Catalog
 
-The skill exposes 50 plotting schemes. Similar schemes share parameterized
+The skill exposes 51 plotting schemes. Similar schemes share parameterized
 MATLAB renderers.
 
 | Scheme | Family | Best For | Palette |
@@ -55,3 +55,4 @@ MATLAB renderers.
 | `multi_panel_overview` | Layout | Several views in one figure | categorical |
 | `small_multiples` | Layout | Repeated panels by group | categorical |
 | `annotated_callout` | Layout | Highlight one point or event | categorical |
+| `stacked_time_series` | Trend | Stacked synchronized signals | categorical |

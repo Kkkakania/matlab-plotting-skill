@@ -23,7 +23,7 @@ Use the waffle composition scheme for this category-share table.
 ```
 
 ```text
-Render all 50 built-in schemes as a smoke test so I can inspect the gallery.
+Render all 51 built-in schemes as a smoke test so I can inspect the gallery.
 ```
 
 ```text

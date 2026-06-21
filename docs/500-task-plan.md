@@ -1,6 +1,6 @@
 # Long-Horizon Scheme Backlog
 
-This roadmap is generated from the public 50-scheme catalog:
+This roadmap is generated from the public 51-scheme catalog:
 
 ```bash
 python3 scripts/build_task_manifest.py \
@@ -15,9 +15,9 @@ row.
 
 Current scope:
 
-- 50 plotting schemes.
+- 51 plotting schemes.
 - 10 task lanes for each scheme.
-- 500 planned tasks total.
+- 510 planned tasks total.
 
 The next catalog refresh should be driven by task gaps, not by copying local
 examples. Recent local review points toward signal-processing plots, electrical
@@ -35,7 +35,7 @@ calibration, PSD, confusion-matrix, or residual-history plots.
 The generated JSON is the source of truth for planning coverage. The Markdown
 board is a readable view for maintainers. It includes family and lane summaries
 before the full task table, so maintainers can review coverage without scanning
-all 500 rows. The repository also commits a full generated board at
+all 510 rows. The repository also commits a full generated board at
 `docs/500-task-board.md`.
 
 For focused work, filter the generated board:
@@ -88,7 +88,7 @@ Task IDs are stable and ordered:
 TASK-001-line_trend-catalog
 TASK-002-line_trend-data-contract
 ...
-TASK-500-annotated_callout-safety
+TASK-510-stacked_time_series-safety
 ```
 
 ## CI
@@ -98,6 +98,6 @@ GitHub Actions generates and uploads:
 - `task-manifest.json`
 - `task-board.md`
 
-`tests/test_task_manifest.sh` fails if the plan is not exactly 500 tasks, if
+`tests/test_task_manifest.sh` fails if the plan is not exactly 510 tasks, if
 any task ID is duplicated, or if any scheme does not receive exactly 10 tasks.
-It also checks that the generated summaries add up to exactly 500 tasks.
+It also checks that the generated summaries add up to exactly 510 tasks.

@@ -9,10 +9,11 @@ addpath(genpath(matlabDir));
 testCase.TestData.Root = root;
 end
 
-function testCatalogHasFiftySchemes(testCase)
+function testCatalogHasFiftyOneSchemes(testCase)
 schemes = mpSchemeCatalog();
-verifyEqual(testCase, numel(schemes), 50);
+verifyEqual(testCase, numel(schemes), 51);
 verifyTrue(testCase, any(string({schemes.Name}) == "line_trend"));
+verifyTrue(testCase, any(string({schemes.Name}) == "stacked_time_series"));
 verifyTrue(testCase, any(string({schemes.Name}) == "annotated_callout"));
 end
 
@@ -47,6 +48,20 @@ fig = mpRenderScheme("multi_line_comparison", data, schema, "demo data");
 cleanup = onCleanup(@() close(fig));
 lines = findobj(fig, 'Type', 'line');
 verifyGreaterThanOrEqual(testCase, numel(lines), 2);
+end
+
+function testStackedTimeSeriesDemoDataSupportsSharedAxisRender(testCase)
+data = mpDemoDataForScheme("stacked_time_series");
+verifyTrue(testCase, istable(data));
+verifyTrue(testCase, all(ismember(["time", "voltage", "current", "power"], string(data.Properties.VariableNames))));
+schema = mpInferDataSchema(data);
+verifyEqual(testCase, schema.TimeCount, 1);
+verifyGreaterThanOrEqual(testCase, schema.NumericCount, 4);
+fig = mpRenderScheme("stacked_time_series", data, schema, "demo data");
+cleanup = onCleanup(@() close(fig));
+axesObjects = findobj(fig, 'Type', 'axes');
+verifyGreaterThanOrEqual(testCase, numel(axesObjects), 3);
+verifyGreaterThanOrEqual(testCase, numel(findobj(fig, 'Type', 'line')), 3);
 end
 
 function testConfidenceBandDemoDataSupportsUncertaintyRender(testCase)
@@ -205,6 +220,19 @@ multiLineScore = selection.AllScores(names == "multi_line_comparison");
 lineScore = selection.AllScores(names == "line_trend");
 verifyEqual(testCase, string(selection.Selected.Name), "multi_line_comparison");
 verifyGreaterThan(testCase, multiLineScore, lineScore);
+end
+
+function testStackedTimeSeriesSelectionRulePrefersSharedAxisGoal(testCase)
+data = mpDemoDataForScheme("stacked_time_series");
+schema = mpInferDataSchema(data);
+selection = mpSelectScheme(schema, "show stacked synchronized voltage current power signals on one shared time axis");
+names = string({mpSchemeCatalog().Name});
+stackedScore = selection.AllScores(names == "stacked_time_series");
+multiLineScore = selection.AllScores(names == "multi_line_comparison");
+lineScore = selection.AllScores(names == "line_trend");
+verifyEqual(testCase, string(selection.Selected.Name), "stacked_time_series");
+verifyGreaterThan(testCase, stackedScore, multiLineScore);
+verifyGreaterThan(testCase, stackedScore, lineScore);
 end
 
 function testConfidenceBandSelectionRulePrefersUncertaintyGoal(testCase)

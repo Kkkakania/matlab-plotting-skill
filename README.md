@@ -84,7 +84,7 @@ internal dogfooding as adoption.
 
 - Reads CSV, Excel, or MAT data.
 - Infers the data shape and the user's plotting goal.
-- Selects one of 50 plotting schemes.
+- Selects one of 51 plotting schemes.
 - Renders the figure with clean-room MATLAB code bundled in the skill.
 - Exports PNG and SVG by default, with optional PDF.
 - Writes Markdown and JSON render reports explaining the selected scheme and alternatives.
@@ -110,7 +110,7 @@ All previews below are generated from bundled synthetic data.
 The generated preview index is in `docs/gallery/index.md`, and preview
 provenance is tracked in `docs/gallery/provenance.md`.
 Current support status is tracked in `docs/scheme-readiness.md`, which separates
-the 50-scheme catalog from gallery-backed and still-maturing schemes.
+the 51-scheme catalog from gallery-backed and still-maturing schemes.
 
 | Trend | Multi-Line | Confidence Band |
 |---|---|---|
@@ -128,9 +128,9 @@ the 50-scheme catalog from gallery-backed and still-maturing schemes.
 |---|---|---|
 | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |
 
-| Segmented Line |
-|---|
-| ![segmented line](docs/gallery/segmented_line.png) |
+| Segmented Line | Stacked Time Series |
+|---|---|
+| ![segmented line](docs/gallery/segmented_line.png) | ![stacked time series](docs/gallery/stacked_time_series.png) |
 
 ## Install
 
@@ -376,7 +376,7 @@ Build the long-horizon scheme backlog:
 python3 scripts/build_task_manifest.py --json-out task-manifest.json --markdown-out task-board.md
 ```
 
-The backlog maps 50 plotting schemes to 10 concrete task lanes each and
+The backlog maps 51 plotting schemes to 10 concrete task lanes each and
 summarizes coverage by family and lane. It is planning infrastructure, not a
 release cadence, so related rows should be batched into normal maintenance
 releases. GitHub Actions uploads both `task-manifest.json` and `task-board.md`.
@@ -416,7 +416,7 @@ For the exact policy, see `docs/maintenance-cadence.md`.
 
 ## Scheme Coverage
 
-The catalog contains 50 plotting schemes across trends, relationships,
+The catalog contains 51 plotting schemes across trends, relationships,
 heatmaps, bars, distributions, rankings, compositions, multivariate plots, and
 paper layout helpers. Treat the gallery-backed schemes listed in
 `docs/scheme-readiness.md` as the most stable first-use path: they have

@@ -150,10 +150,10 @@ else
 fi
 
 SCHEME_COUNT="$("$RENDER_SCRIPT" --list-schemes | grep -Ec '^[A-Za-z0-9_]+[[:space:]]' || true)"
-if [[ "$SCHEME_COUNT" -eq 50 ]]; then
-  add_check "scheme catalog count" "pass" "50 schemes listed"
+if [[ "$SCHEME_COUNT" -eq 51 ]]; then
+  add_check "scheme catalog count" "pass" "51 schemes listed"
 else
-  add_check "scheme catalog count" "fail" "$SCHEME_COUNT schemes listed; expected 50"
+  add_check "scheme catalog count" "fail" "$SCHEME_COUNT schemes listed; expected 51"
 fi
 
 if [[ -s "$REPO_ROOT/docs/scheme-readiness.md" ]] && grep -q "| gallery-backed |" "$REPO_ROOT/docs/scheme-readiness.md"; then

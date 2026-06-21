@@ -42,6 +42,7 @@ gallery:
     - "regression_scatter.png"
     - "scatter_relationship.png"
     - "segmented_line.png"
+    - "stacked_time_series.png"
     - "zoomed_inset_line.png"
 
 strict:

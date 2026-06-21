@@ -22,19 +22,19 @@ per_scheme = Counter(schemes)
 family_counts = manifest["family_counts"]
 lane_counts = manifest["lane_counts"]
 
-assert manifest["scheme_count"] == 50
+assert manifest["scheme_count"] == 51
 assert manifest["lane_count"] == 10
-assert manifest["task_count"] == 500
-assert sum(family_counts.values()) == 500
-assert sum(lane_counts.values()) == 500
-assert lane_counts["catalog"] == 50
-assert lane_counts["safety"] == 50
-assert family_counts["Trend"] == 60
+assert manifest["task_count"] == 510
+assert sum(family_counts.values()) == 510
+assert sum(lane_counts.values()) == 510
+assert lane_counts["catalog"] == 51
+assert lane_counts["safety"] == 51
+assert family_counts["Trend"] == 70
 assert family_counts["Layout"] == 30
-assert len(tasks) == 500
+assert len(tasks) == 510
 assert len(ids) == len(set(ids))
 assert ids[0] == "TASK-001-line_trend-catalog"
-assert ids[-1] == "TASK-500-annotated_callout-safety"
+assert ids[-1] == "TASK-510-stacked_time_series-safety"
 assert set(per_scheme.values()) == {10}
 assert lanes == {
     "catalog",
@@ -54,17 +54,17 @@ assert all(task["status"] == "planned" for task in tasks)
 PY
 
 grep -q "TASK-001-line_trend-catalog" "$TMP_MD"
-grep -q "TASK-500-annotated_callout-safety" "$TMP_MD"
+grep -q "TASK-510-stacked_time_series-safety" "$TMP_MD"
 grep -q "Long-Horizon Scheme Backlog" "$TMP_MD"
 grep -q "planning backlog, not a release cadence" "$TMP_MD"
-grep -q "Total tasks: 500" "$TMP_MD"
+grep -q "Total tasks: 510" "$TMP_MD"
 grep -q "| ID | Scheme | Lane | Goal | Acceptance | Command Hint | Status |" "$TMP_MD"
 grep -q "Catalog entry names the scheme" "$TMP_MD"
 grep -q "MATLAB_BIN=/path/to/matlab" "$TMP_MD"
 grep -q "## Family Summary" "$TMP_MD"
 grep -q "## Lane Summary" "$TMP_MD"
-grep -q "| Trend | 60 |" "$TMP_MD"
-grep -q "| catalog | 50 |" "$TMP_MD"
+grep -q "| Trend | 70 |" "$TMP_MD"
+grep -q "| catalog | 51 |" "$TMP_MD"
 
 rm -f "$TMP_JSON" "$TMP_MD"
 

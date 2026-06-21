@@ -18,12 +18,13 @@ ids = [item["id"] for item in checks]
 families = {item["family"] for item in checks}
 stages = {item["stage"] for item in checks}
 
-assert manifest["scheme_count"] == 50
-assert manifest["check_count"] >= 500
+assert manifest["scheme_count"] == 51
+assert manifest["check_count"] >= 510
 assert len(checks) == manifest["check_count"]
 assert len(ids) == len(set(ids))
 assert "line_trend" in schemes
 assert "annotated_callout" in schemes
+assert "stacked_time_series" in schemes
 assert "Trend" in families
 assert {"catalog", "selection", "render", "report", "safety"} <= stages
 assert all(item["command_hint"] for item in checks)

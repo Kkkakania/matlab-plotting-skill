@@ -267,7 +267,7 @@ if ! grep -q -- "Smoke test:" "$TMP_DIR/smoke.out"; then
   cat "$TMP_DIR/smoke.out" >&2
   exit 1
 fi
-if ! grep -q -- "budget 2310s" "$TMP_DIR/smoke.out"; then
+if ! grep -q -- "budget 2355s" "$TMP_DIR/smoke.out"; then
   echo "smoke-test should auto-scale timeout from scheme count" >&2
   cat "$TMP_DIR/smoke.out" >&2
   exit 1

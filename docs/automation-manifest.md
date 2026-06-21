@@ -7,7 +7,7 @@ plotting schemes:
 python3 scripts/build_automation_manifest.py --out figures/automation-manifest.json
 ```
 
-The current manifest expands 50 schemes into 1,100 audit checks. Each scheme
+The current manifest expands 51 schemes into 1,122 audit checks. Each scheme
 gets the same set of catalog, selection, render, report, and safety checks, so
 coverage stays balanced as the catalog grows.
 
@@ -28,8 +28,8 @@ which command is responsible for the check.
 `scripts/release_check.sh` runs `tests/test_automation_manifest.sh`. The test
 checks that the generated manifest has:
 
-- 50 schemes.
-- At least 500 checks.
+- 51 schemes.
+- At least 510 checks.
 - Unique check IDs.
 - Coverage for every required stage.
 - A command hint for every check.

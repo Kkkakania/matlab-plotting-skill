@@ -43,9 +43,9 @@ LANE_OUT="$(python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
   --lane safety)"
 
 case "$LANE_OUT" in
-  *"Wrote 50 backlog tasks for 50 schemes:"*) ;;
+  *"Wrote 51 backlog tasks for 51 schemes:"*) ;;
   *)
-    echo "lane-filter summary should report all 50 schemes" >&2
+    echo "lane-filter summary should report all 51 schemes" >&2
     echo "$LANE_OUT" >&2
     exit 1
     ;;
@@ -59,15 +59,15 @@ from pathlib import Path
 manifest = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
 tasks = manifest["tasks"]
 
-assert manifest["task_count"] == 50
+assert manifest["task_count"] == 51
 assert manifest["filters"] == {"scheme": "", "lane": "safety"}
 assert {task["lane"] for task in tasks} == {"safety"}
 assert tasks[0]["id"] == "TASK-010-line_trend-safety"
-assert tasks[-1]["id"] == "TASK-500-annotated_callout-safety"
+assert tasks[-1]["id"] == "TASK-510-stacked_time_series-safety"
 PY
 
 grep -q "Active filters: lane=safety" "$TMP_MD"
-grep -q "TASK-500-annotated_callout-safety" "$TMP_MD"
+grep -q "TASK-510-stacked_time_series-safety" "$TMP_MD"
 
 if python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
   --json-out "$TMP_JSON" \

@@ -46,7 +46,7 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 
 - 读取 CSV、Excel 或 MAT 数据。
 - 识别时间列、类别列、数值列、矩阵、百分比和样本规模等结构信号。
-- 从 50 个绘图方案中选择主方案，并保留备选方案。
+- 从 51 个绘图方案中选择主方案，并保留备选方案。
 - 使用仓库内置的 clean-room MATLAB 代码渲染图形。
 - 默认导出 PNG 和 SVG，也支持 PDF。
 - 生成 Markdown 和 JSON 报告，说明为什么选择这个图。
@@ -83,9 +83,9 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 |---|---|---|
 | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |
 
-| 分段趋势 |
-|---|
-| ![segmented line](docs/gallery/segmented_line.png) |
+| 分段趋势 | 堆叠时间序列 |
+|---|---|
+| ![segmented line](docs/gallery/segmented_line.png) | ![stacked time series](docs/gallery/stacked_time_series.png) |
 
 ## 安装
 
@@ -254,13 +254,13 @@ MAT 文件里有多个变量时，请明确指定变量名：
 
 ## 方案覆盖
 
-目录中包含 50 个绘图方案，覆盖趋势、关系、热图、柱状、分布、排名、组成、多变量和论文排版等场景。
+目录中包含 51 个绘图方案，覆盖趋势、关系、热图、柱状、分布、排名、组成、多变量和论文排版等场景。
 
 建议优先使用 [`docs/scheme-readiness.md`](docs/scheme-readiness.md) 中标记为 `gallery-backed` 的方案。它们已经具备预览图、数据契约、CLI 覆盖、PNG/矢量检查、报告和安全检查。仍处于 `cataloged-only` 的方案是设计目标，不应当被当作完整可用功能宣传。
 
 相近图形会共享参数化 renderer，这样仓库更容易维护，也不容易变成不可控的模板堆。
 
-长期任务板见 [`docs/500-task-plan.md`](docs/500-task-plan.md) 和 [`docs/500-task-board.md`](docs/500-task-board.md)。它们用于规划 50 个方案的逐步完善，不代表每完成一行就发布一个版本。
+长期任务板见 [`docs/500-task-plan.md`](docs/500-task-plan.md) 和 [`docs/500-task-board.md`](docs/500-task-board.md)。它们用于规划 51 个方案的逐步完善，不代表每完成一行就发布一个版本。
 
 ## 发布状态
 

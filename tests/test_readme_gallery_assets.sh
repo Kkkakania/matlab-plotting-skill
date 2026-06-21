@@ -14,6 +14,7 @@ assets=(
   "docs/gallery/regression_scatter.png"
   "docs/gallery/positive_negative_area.png"
   "docs/gallery/segmented_line.png"
+  "docs/gallery/stacked_time_series.png"
   "docs/gallery/grouped_bar.png"
   "docs/gallery/heatmap_matrix.png"
   "docs/gallery/density_scatter.png"

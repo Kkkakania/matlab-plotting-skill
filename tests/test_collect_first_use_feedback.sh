@@ -41,7 +41,7 @@ cat >"$DOCTOR_DIR/first_use_doctor.json" <<'JSON'
     {
       "name": "scheme catalog count",
       "status": "pass",
-      "detail": "50 schemes listed"
+      "detail": "51 schemes listed"
     },
     {
       "name": "data extension",

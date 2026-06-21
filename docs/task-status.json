@@ -116,5 +116,15 @@
   "TASK-115-bubble_scatter-explicit-cli": "done",
   "TASK-116-bubble_scatter-png-render": "done",
   "TASK-117-bubble_scatter-vector-render": "done",
-  "TASK-118-bubble_scatter-report": "done"
+  "TASK-118-bubble_scatter-report": "done",
+  "TASK-501-stacked_time_series-catalog": "done",
+  "TASK-502-stacked_time_series-data-contract": "done",
+  "TASK-503-stacked_time_series-demo-data": "done",
+  "TASK-504-stacked_time_series-selection-rule": "done",
+  "TASK-505-stacked_time_series-explicit-cli": "done",
+  "TASK-506-stacked_time_series-png-render": "done",
+  "TASK-507-stacked_time_series-vector-render": "done",
+  "TASK-508-stacked_time_series-report": "done",
+  "TASK-509-stacked_time_series-gallery": "done",
+  "TASK-510-stacked_time_series-safety": "done"
 }
