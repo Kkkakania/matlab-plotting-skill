@@ -274,9 +274,9 @@ grep -q "Kkkakania/python-plotting-skill" "$ROOT_DIR/docs/application-evidence.m
 grep -q "Use this repository as companion skill evidence" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "Do not present it as the main Codex for Open Source application repository" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "green and annotation-free" "$ROOT_DIR/docs/application-evidence.md"
-grep -q "f09dcca" "$ROOT_DIR/docs/application-evidence.md"
-grep -q "27926156956" "$ROOT_DIR/docs/application-evidence.md"
-if grep -q "49711e1\\|27923803978" "$ROOT_DIR/docs/application-evidence.md"; then
+grep -q "9fd2478" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "27928892308" "$ROOT_DIR/docs/application-evidence.md"
+if grep -q "49711e1\\|27923803978\\|f09dcca\\|27926156956" "$ROOT_DIR/docs/application-evidence.md"; then
   echo "application evidence still cites the older CI snapshot" >&2
   exit 1
 fi
