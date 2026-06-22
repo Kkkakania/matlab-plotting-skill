@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Let `collect_first_use_feedback.sh` include a redacted `--data-shape`
+  summary so first-use reports can describe structure without sharing raw rows.
 - Made `stacked_time_series` axis labels unit-aware for simple column-name
   hints such as `time_s`, `voltage_V`, `current_A`, and `power_kW`.
 - Added a reviewer-facing application evidence note so the skill-first story

@@ -12,6 +12,7 @@ mkdir -p "$DOCTOR_DIR"
 
 help_output="$("$ROOT_DIR/scripts/collect_first_use_feedback.sh" --help)"
 grep -q -- "--doctor <dir>" <<<"$help_output"
+grep -q -- "--data-shape <text>" <<<"$help_output"
 
 cat >"$OUT_DIR/render_report.md" <<'REPORT'
 # Render Report
@@ -59,11 +60,13 @@ feedback="$("$ROOT_DIR/scripts/collect_first_use_feedback.sh" \
   --matlab R2025a \
   --os "macOS" \
   --commit abc1234 \
-  --goal "show a trend")"
+  --goal "show a trend" \
+  --data-shape "24 rows, 1 time column, 1 value column")"
 
 grep -q "First-use feedback draft" <<<"$feedback"
 grep -q "MATLAB: R2025a" <<<"$feedback"
 grep -q "Commit: abc1234" <<<"$feedback"
+grep -q "Data shape: 24 rows, 1 time column, 1 value column" <<<"$feedback"
 grep -q "Selected scheme: line_trend" <<<"$feedback"
 grep -q "Top alternatives: multi_line_comparison, confidence_band" <<<"$feedback"
 grep -q "Output formats: png, svg" <<<"$feedback"

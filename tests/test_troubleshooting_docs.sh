@@ -19,6 +19,7 @@ grep -q "MAT file has multiple variables" "$DOC"
 grep -q "Do not paste private data" "$DOC"
 grep -q "scripts/doctor.sh" "$DOC"
 grep -q "collect_first_use_feedback.sh" "$DOC"
+grep -q -- "--data-shape" "$DOC"
 grep -q "docs/private-data-handling.md" "$DOC"
 
 grep -q "docs/troubleshooting.md" "$ROOT_DIR/README.md"

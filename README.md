@@ -170,16 +170,18 @@ walks through MATLAB setup, data inspection, `--plan-only`, rendering, and
 post-render checks with one bundled CSV.
 
 Fresh-clone feedback is most useful when it includes the MATLAB version,
-commands run, selected scheme, report summary, and any redacted failure output.
-Use the first-use feedback issue template for that path instead of pasting
-private data files or local path dumps.
+commands run, a short data-shape summary, selected scheme, report summary, and
+any redacted failure output. Use the first-use feedback issue template for that
+path instead of pasting private data files or local path dumps.
 Before rendering, `./scripts/doctor.sh --out <diagnostic-dir>` can run a
 metadata-only checkout diagnostic and write `first_use_doctor.md/json`. The
 same diagnostic is also available through the main CLI:
 `./scripts/render_with_matlab.sh --doctor --out <diagnostic-dir>`.
 After a render, `./scripts/collect_first_use_feedback.sh --out <render-output>`
 can generate a redacted Markdown draft for that issue. Pass
-`--doctor <diagnostic-dir>` too when you have a doctor report.
+`--doctor <diagnostic-dir>` too when you have a doctor report, and
+`--data-shape "<rows/columns/role summary>"` when `--inspect-data` produced a
+useful structure summary.
 If something fails before a useful report appears, start with
 [`docs/troubleshooting.md`](docs/troubleshooting.md).
 

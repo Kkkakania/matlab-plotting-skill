@@ -8,6 +8,7 @@ MATLAB_VERSION=""
 OS_NAME=""
 COMMIT_REF=""
 GOAL_TEXT=""
+DATA_SHAPE=""
 
 usage() {
   cat <<'USAGE'
@@ -21,6 +22,8 @@ Options:
   --os <text>       Operating system.
   --commit <text>   Commit or branch tested.
   --goal <text>     Goal text passed to --goal.
+  --data-shape <text>
+                    Redacted data-shape summary, such as rows/columns/role hints.
 
 Creates a redacted Markdown draft that can be pasted into issue #11.
 USAGE
@@ -72,6 +75,11 @@ while [[ $# -gt 0 ]]; do
     --goal)
       require_value "$1" "${2:-}"
       GOAL_TEXT="$2"
+      shift 2
+      ;;
+    --data-shape)
+      require_value "$1" "${2:-}"
+      DATA_SHAPE="$2"
       shift 2
       ;;
     --help|-h)
@@ -259,6 +267,7 @@ Command sequence:
 ${COMMAND_TEXT:-not provided}
 \`\`\`
 Goal text: ${GOAL_TEXT:-not provided}
+Data shape: ${DATA_SHAPE:-not provided}
 Selected scheme: ${SELECTED_SCHEME:-unknown}
 Top alternatives: ${TOP_ALTERNATIVES:-unknown}
 Output formats: ${OUTPUT_FORMATS:-unknown}

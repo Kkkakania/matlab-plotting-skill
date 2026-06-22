@@ -166,12 +166,15 @@ directory:
   --matlab R2025a \
   --os macOS \
   --commit "$(git rev-parse --short HEAD)" \
-  --goal "show a time trend"
+  --goal "show a time trend" \
+  --data-shape "24 rows, 1 time column, 1 value column"
 ```
 
 Review the draft before posting it. The helper redacts common local absolute
 paths and emails, but you are still responsible for removing private research
 data, lab names, account names, and anything that should not be public.
+Use `--data-shape` for a short structural summary from `--inspect-data`; do not
+paste raw rows from a private dataset.
 
 Copy this template when reporting a first-use result:
 

@@ -139,10 +139,12 @@ https://github.com/Kkkakania/matlab-plotting-skill/issues/11
   --matlab R2025a \
   --os macOS \
   --commit "$(git rev-parse --short HEAD)" \
-  --goal "show a time trend"
+  --goal "show a time trend" \
+  --data-shape "24 rows, 1 time column, 1 value column"
 ```
 
 提交前仍然要人工复核。这个 helper 会处理常见本地路径和邮件地址形状，但不能替你判断研究内容、实验室信息、账号名或第三方材料是否适合公开。
+`--data-shape` 只写 `--inspect-data` 得到的结构摘要，例如行数、列数和角色提示；不要把私有数据行直接贴进反馈。
 
 复制反馈时可以使用这个结构：
 
