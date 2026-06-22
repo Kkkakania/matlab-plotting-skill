@@ -29,7 +29,7 @@ Related repositories:
 |---|---|
 | MATLAB plotting skill | `skills/matlab-plotting-skill/SKILL.md`, bundled MATLAB helpers, 51-scheme catalog, gallery previews, and first-render walkthrough |
 | Scientific diagram skill | `skills/scientific-diagram-skill/SKILL.md`, draw.io workflow references, checked `research-method-flow.drawio`, checked `research-method-flow.svg`, provenance note, and `tests/test_scientific_diagram_examples.sh` |
-| CI | Commit `49711e1`; `Quality` run `27923803978`, green and annotation-free at the 2026-06-22 snapshot |
+| CI | Commit `f09dcca`; `Quality` run `27926156956`, green and annotation-free at the 2026-06-22 snapshot, including diagram example validation |
 | Local release gate | `./scripts/release_check.sh` |
 | Figure QA dogfooding | `mfigci check --config mfigci.yml --report mfigci-report.md` |
 | Maintainer workflow | issue-triage workflow, first-use feedback path, installer checks, docs voice check, and release cadence notes |
