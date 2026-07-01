@@ -46,7 +46,7 @@ synthetic data and a reproducible command.
 ## Feedback Channels
 
 - First-render feedback for this skill:
-  [`matlab-plotting-skill#11`](https://github.com/Kkkakania/matlab-plotting-skill/issues/11).
+  [first-use feedback form](https://github.com/Kkkakania/matlab-plotting-skill/issues/new?template=first_use_feedback.yml).
 - Gallery/API feedback for reusable MATLAB functions:
   [`matlab-scientific-figures#9`](https://github.com/Kkkakania/matlab-scientific-figures/issues/9).
 - CI/adoption feedback for figure repositories:

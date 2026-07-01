@@ -92,6 +92,8 @@ grep -q "Cataloged-only schemes are" "$ROOT_DIR/README.md"
 grep -q "long-horizon scheme backlog" "$ROOT_DIR/README.md"
 grep -q "without turning every task into a release" "$ROOT_DIR/README.md"
 grep -q "first-use feedback issue template" "$ROOT_DIR/README.md"
+grep -q "issues/new?template=first_use_feedback.yml" "$ROOT_DIR/README.md"
+grep -q "issues/new?template=first_use_feedback.yml" "$ROOT_DIR/README.zh-CN.md"
 grep -q "collect_first_use_feedback.sh --out" "$ROOT_DIR/README.md"
 grep -q -- "--data-shape" "$ROOT_DIR/README.md"
 grep -q 'uploads `mfigci-report.md` and `.mfigci-results.json`' "$ROOT_DIR/README.md"
@@ -167,7 +169,7 @@ grep -q -- "--inspect-data" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q -- "--plan-only" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q "render_report.md" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q "rejects unknown format names before MATLAB starts" "$ROOT_DIR/docs/first-render-walkthrough.md"
-grep -q "matlab-plotting-skill/issues/11" "$ROOT_DIR/docs/first-render-walkthrough.md"
+grep -q "issues/new?template=first_use_feedback.yml" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q "Redact private paths" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q "collect_first_use_feedback.sh" "$ROOT_DIR/docs/first-render-walkthrough.md"
 grep -q -- "--data-shape" "$ROOT_DIR/docs/first-render-walkthrough.md"
@@ -185,7 +187,7 @@ grep -q '使用 `--scheme` 会跳过自动规划' "$ROOT_DIR/docs/first-render-w
 grep -q -- "--inspect-data" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
 grep -q -- "--plan-only" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
 grep -q "render_report.md" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
-grep -q "matlab-plotting-skill/issues/11" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
+grep -q "issues/new?template=first_use_feedback.yml" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
 grep -q "collect_first_use_feedback.sh" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
 grep -q -- "--data-shape" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
 grep -q "Private details redacted: yes/no" "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
@@ -218,6 +220,15 @@ grep -q "Review new issues and first-use feedback weekly" "$ROOT_DIR/docs/mainte
 grep -q "# Roadmap" "$ROOT_DIR/ROADMAP.md"
 grep -q 'Current public line: `v0.1.x`' "$ROOT_DIR/ROADMAP.md"
 grep -q "No artificial stars, forks, usage claims, or download claims" "$ROOT_DIR/ROADMAP.md"
+
+grep -q "issues/new?template=first_use_feedback.yml" "$ROOT_DIR/docs/ecosystem-status.md"
+if grep -R "matlab-plotting-skill/issues/11" \
+  "$ROOT_DIR/README.md" \
+  "$ROOT_DIR/README.zh-CN.md" \
+  "$ROOT_DIR/docs"; then
+  echo "stale first-use feedback hub link remains" >&2
+  exit 1
+fi
 grep -q "No release tag for every checklist row" "$ROOT_DIR/ROADMAP.md"
 grep -q "# Install Targets" "$ROOT_DIR/docs/install-targets.md"
 grep -q "scientific-diagram-skill" "$ROOT_DIR/docs/install-targets.md"

@@ -171,8 +171,9 @@ post-render checks with one bundled CSV.
 
 Fresh-clone feedback is most useful when it includes the MATLAB version,
 commands run, a short data-shape summary, selected scheme, report summary, and
-any redacted failure output. Use the first-use feedback issue template for that
-path instead of pasting private data files or local path dumps.
+any redacted failure output. Use the
+[first-use feedback issue template](https://github.com/Kkkakania/matlab-plotting-skill/issues/new?template=first_use_feedback.yml)
+for that path instead of pasting private data files or local path dumps.
 Before rendering, `./scripts/doctor.sh --out <diagnostic-dir>` can run a
 metadata-only checkout diagnostic and write `first_use_doctor.md/json`. The
 same diagnostic is also available through the main CLI:

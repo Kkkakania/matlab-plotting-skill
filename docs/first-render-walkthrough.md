@@ -145,9 +145,9 @@ Before using a figure in a paper, report, or repository:
 
 ## 7. Share First-Use Feedback
 
-If this walkthrough fails on a fresh clone, open the first-use feedback issue:
+If this walkthrough fails on a fresh clone, open the first-use feedback form:
 
-https://github.com/Kkkakania/matlab-plotting-skill/issues/11
+https://github.com/Kkkakania/matlab-plotting-skill/issues/new?template=first_use_feedback.yml
 
 Useful reports include the MATLAB version, operating system, command sequence,
 selected scheme, `render_report.md` summary, and a short description of what was
