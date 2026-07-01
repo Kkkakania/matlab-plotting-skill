@@ -125,7 +125,7 @@ Markdown 报告适合人工阅读，JSON 报告适合后续自动化处理。
 
 公开反馈入口是：
 
-https://github.com/Kkkakania/matlab-plotting-skill/issues/11
+https://github.com/Kkkakania/matlab-plotting-skill/issues/new?template=first_use_feedback.yml
 
 有价值的反馈应尽量具体：操作系统、MATLAB 版本、命令序列、选中的 scheme、`render_report.md` 摘要、预期结果和实际结果。不要上传私有数据文件、未脱敏日志、论文截图、第三方绘图库或完整本地路径。
 
