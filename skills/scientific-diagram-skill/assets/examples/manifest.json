@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "manual clean-room example inventory",
+  "exampleCount": 1,
+  "examples": [
+    {
+      "id": "research-method-flow",
+      "title": "Research method flow",
+      "diagramType": "method-flow",
+      "drawio": "research-method-flow.drawio",
+      "svg": "research-method-flow.svg",
+      "provenance": "provenance.md",
+      "privateData": false
+    }
+  ]
+}

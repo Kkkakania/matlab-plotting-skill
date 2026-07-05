@@ -24,12 +24,21 @@ if [[ ! -s "$EXAMPLE_DIR/provenance.md" ]]; then
   exit 1
 fi
 
+if [[ ! -s "$EXAMPLE_DIR/manifest.json" ]]; then
+  echo "missing diagram example manifest" >&2
+  exit 1
+fi
+
 python3 "$ROOT_DIR/scripts/check_diagram_examples.py"
 
 grep -q "research-method-flow.drawio" "$ROOT_DIR/skills/scientific-diagram-skill/SKILL.md"
 grep -q "research-method-flow.svg" "$ROOT_DIR/skills/scientific-diagram-skill/SKILL.md"
+grep -q "manifest.json" "$ROOT_DIR/skills/scientific-diagram-skill/SKILL.md"
 grep -q "check_diagram_examples.py" "$ROOT_DIR/README.md"
 grep -q "check_diagram_examples.py" "$ROOT_DIR/README.zh-CN.md"
+grep -q "manifest.json" "$ROOT_DIR/README.md"
+grep -q "manifest.json" "$ROOT_DIR/README.zh-CN.md"
+grep -q "example manifest" "$ROOT_DIR/docs/install-targets.md"
 grep -q "check_diagram_examples.py" "$ROOT_DIR/docs/install-targets.md"
 
 echo "scientific diagram examples test passed."
