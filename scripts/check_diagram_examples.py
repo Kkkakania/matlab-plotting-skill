@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import pathlib
 import re
 import sys
@@ -12,6 +13,7 @@ EXAMPLE_DIR = ROOT / "skills" / "scientific-diagram-skill" / "assets" / "example
 DRAWIO = EXAMPLE_DIR / "research-method-flow.drawio"
 SVG = EXAMPLE_DIR / "research-method-flow.svg"
 PROVENANCE = EXAMPLE_DIR / "provenance.md"
+MANIFEST = EXAMPLE_DIR / "manifest.json"
 
 UNIX_USER_ROOT = "/" + "Users" + "/"
 UNIX_HOME_ROOT = "/" + "ho" + "me" + "/"
@@ -142,10 +144,43 @@ def check_provenance() -> None:
         fail("provenance note missing markers: " + ", ".join(missing))
 
 
+def check_manifest() -> None:
+    text = read_text(MANIFEST)
+    check_no_private_markers(MANIFEST, text)
+    try:
+        manifest = json.loads(text)
+    except json.JSONDecodeError as exc:
+        fail(f"manifest JSON is not parseable: {exc}")
+
+    if manifest.get("schemaVersion") != 1:
+        fail("manifest schemaVersion must be 1")
+    if manifest.get("exampleCount") != 1:
+        fail("manifest exampleCount must be 1")
+
+    examples = manifest.get("examples")
+    if not isinstance(examples, list) or len(examples) != 1:
+        fail("manifest must contain exactly one example")
+
+    example = examples[0]
+    required = {
+        "id": "research-method-flow",
+        "drawio": DRAWIO.name,
+        "svg": SVG.name,
+        "provenance": PROVENANCE.name,
+        "privateData": False,
+    }
+    mismatched = [
+        key for key, expected in required.items() if example.get(key) != expected
+    ]
+    if mismatched:
+        fail("manifest example fields mismatch: " + ", ".join(mismatched))
+
+
 def main() -> None:
     check_drawio()
     check_svg()
     check_provenance()
+    check_manifest()
     print("Diagram examples check passed.")
 
 

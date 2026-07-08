@@ -25,6 +25,7 @@ MATLAB renderer assets:
 scientific-diagram-skill/
   SKILL.md
   agents/
+  assets/examples/
   references/
 ```
 
@@ -100,7 +101,8 @@ For the diagram skill:
 test -f ./skills/scientific-diagram-skill/SKILL.md
 ```
 
-When working from this repository, validate the bundled diagram example too:
+When working from this repository, validate the bundled diagram example too.
+The check also verifies the example manifest:
 
 ```bash
 python3 scripts/check_diagram_examples.py

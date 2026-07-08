@@ -101,8 +101,9 @@ internal dogfooding as adoption.
   private logos, paper-figure tracing, local paths, or hidden author marks.
 - Includes a checked example pair,
   `skills/scientific-diagram-skill/assets/examples/research-method-flow.drawio`
-  and `research-method-flow.svg`, plus provenance notes. Maintainers can run
-  `python3 scripts/check_diagram_examples.py` before changing the example.
+  and `research-method-flow.svg`, plus provenance notes and `manifest.json`.
+  Maintainers can run `python3 scripts/check_diagram_examples.py` before
+  changing the example.
 
 ## Preview
 
