@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import re
 from pathlib import Path
 
@@ -25,7 +26,7 @@ def parse_catalog(path: Path) -> list[dict[str, str]]:
 
 
 def relative_link(target: Path, base: Path) -> str:
-    return target.relative_to(base).as_posix() if target.is_relative_to(base) else target.as_posix()
+    return Path(os.path.relpath(target.resolve(), start=base.resolve())).as_posix()
 
 
 def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_existing: bool) -> None:
