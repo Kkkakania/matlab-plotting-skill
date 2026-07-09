@@ -36,6 +36,7 @@ body:
     attributes:
       label: Provenance
       options:
+        - label: I used synthetic data descriptions and did not include private data, local paths, emails, or tokens.
+          required: true
         - label: This request can be implemented with clean-room code and synthetic demo data.
           required: true
-
