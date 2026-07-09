@@ -88,6 +88,7 @@ check_bad_formats() {
 }
 
 check_bad_formats "png,jpg" "Invalid --formats entry: jpg"
+check_bad_formats "p ng" "Invalid --formats entry: p ng"
 check_bad_formats "," "--formats must include at least one"
 
 check_empty_out_dir() {
