@@ -40,6 +40,23 @@ check_missing_value --dir
 check_missing_value --format
 check_missing_value --catalog
 
+set +e
+"$ROOT_DIR/scripts/check_gallery_outputs.sh" --dir "$TMP_DIR" --catalog "$CATALOG" --format '../png' >"$TMP_DIR/bad-format.out" 2>"$TMP_DIR/bad-format.err"
+bad_format_status=$?
+set -e
+
+if [[ "$bad_format_status" -ne 2 ]]; then
+  echo "expected unsafe --format to exit 2, got $bad_format_status" >&2
+  cat "$TMP_DIR/bad-format.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "Invalid --format" "$TMP_DIR/bad-format.err"; then
+  echo "expected clear invalid format message" >&2
+  cat "$TMP_DIR/bad-format.err" >&2
+  exit 1
+fi
+
 printf 'not empty\n' > "$TMP_DIR/line_trend.png"
 
 if "$ROOT_DIR/scripts/check_gallery_outputs.sh" --dir "$TMP_DIR" --catalog "$CATALOG" --format png; then

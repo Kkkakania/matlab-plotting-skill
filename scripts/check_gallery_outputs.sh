@@ -67,6 +67,12 @@ if [[ -z "$FORMAT" ]]; then
   exit 2
 fi
 
+if [[ ! "$FORMAT" =~ ^(png|svg|pdf)$ ]]; then
+  echo "Invalid --format: $FORMAT" >&2
+  echo "Use one of: png, svg, pdf." >&2
+  exit 2
+fi
+
 if [[ ! -d "$GALLERY_DIR" ]]; then
   echo "Gallery directory not found: $GALLERY_DIR" >&2
   exit 1
