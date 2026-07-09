@@ -111,6 +111,7 @@ def main() -> int:
     args = parser.parse_args()
 
     manifest = build_manifest(args.catalog)
+    args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {manifest['check_count']} checks for {manifest['scheme_count']} schemes: {args.out}")
     return 0

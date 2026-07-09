@@ -30,6 +30,12 @@ assert {"catalog", "selection", "render", "report", "safety"} <= stages
 assert all(item["command_hint"] for item in checks)
 PY
 
+NESTED_DIR="$(mktemp -d)"
+rm -rf "$NESTED_DIR"
+python3 "$ROOT_DIR/scripts/build_automation_manifest.py" --out "$NESTED_DIR/out/automation.json"
+test -s "$NESTED_DIR/out/automation.json"
+rm -rf "$NESTED_DIR"
+
 rm -f "$TMP_JSON"
 
 echo "automation manifest test passed."
