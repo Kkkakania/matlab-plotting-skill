@@ -21,6 +21,8 @@ cat >"$OUT_DIR/render_report.md" <<'REPORT'
 - Top alternatives: multi_line_comparison, confidence_band
 - Output formats: png, svg
 - Warning: source path /Users/example/private/project/data.csv was redacted
+- Temporary output: /tmp/private-project/rendered/report.json
+- macOS cache: /var/folders/zz/private-project/cache/figure.png
 REPORT
 
 cat >"$OUT_DIR/render_report.json" <<'JSON'
@@ -84,6 +86,12 @@ fi
 
 if grep -q "private-data.csv" <<<"$feedback"; then
   echo "feedback draft leaked a Windows user-path filename from a path with spaces" >&2
+  echo "$feedback" >&2
+  exit 1
+fi
+
+if grep -q "/tmp/private-project\\|/var/folders/zz/private-project" <<<"$feedback"; then
+  echo "feedback draft leaked a temporary absolute path" >&2
   echo "$feedback" >&2
   exit 1
 fi
