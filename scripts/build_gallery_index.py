@@ -15,10 +15,16 @@ SCHEME_ROW = re.compile(
 
 def parse_catalog(path: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
+    seen: set[str] = set()
     for line in path.read_text(encoding="utf-8").splitlines():
         match = SCHEME_ROW.match(line)
         if match:
-            rows.append({key: value.strip() for key, value in match.groupdict().items()})
+            row = {key: value.strip() for key, value in match.groupdict().items()}
+            scheme = row["scheme"]
+            if scheme in seen:
+                raise SystemExit(f"Duplicate scheme in catalog: {scheme}")
+            seen.add(scheme)
+            rows.append(row)
     if not rows:
         raise SystemExit(f"No schemes found in catalog: {path}")
     return rows
