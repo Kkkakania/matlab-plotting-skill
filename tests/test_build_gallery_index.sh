@@ -18,6 +18,11 @@ printf 'png\n' > "$TMP_DIR/grouped_bar.png"
 
 python3 "$ROOT_DIR/scripts/build_gallery_index.py" --dir "$TMP_DIR" --catalog "$CATALOG" --out "$TMP_DIR/index.md" --format png
 
+if grep -Fq "$TMP_DIR" "$TMP_DIR/index.md"; then
+  echo "gallery index leaked absolute gallery directory" >&2
+  exit 1
+fi
+
 grep -q "line_trend" "$TMP_DIR/index.md"
 grep -q "grouped_bar" "$TMP_DIR/index.md"
 grep -q "line_trend.png" "$TMP_DIR/index.md"
