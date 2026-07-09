@@ -65,6 +65,7 @@ tests/test_doctor.sh
 tests/test_doctor_docs.sh
 tests/test_check_gallery_outputs.sh
 tests/test_collect_first_use_feedback.sh
+tests/test_check_forbidden_files.sh
 tests/test_check_privacy.sh
 tests/test_cli_output_contract.sh
 tests/test_list_schemes.sh
