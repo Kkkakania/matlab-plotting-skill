@@ -40,6 +40,16 @@ check_missing_value --dir
 check_missing_value --format
 check_missing_value --catalog
 
+if "$ROOT_DIR/scripts/check_gallery_outputs.sh" \
+  --dir "$TMP_DIR" \
+  --catalog "$CATALOG" \
+  --format '../png' >"$TMP_DIR/bad-format.out" 2>"$TMP_DIR/bad-format.err"; then
+  echo "invalid gallery output format should fail" >&2
+  exit 1
+fi
+
+grep -q "Invalid gallery format" "$TMP_DIR/bad-format.err"
+
 printf 'not empty\n' > "$TMP_DIR/line_trend.png"
 
 if "$ROOT_DIR/scripts/check_gallery_outputs.sh" --dir "$TMP_DIR" --catalog "$CATALOG" --format png; then
