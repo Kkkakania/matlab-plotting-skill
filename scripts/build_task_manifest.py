@@ -256,6 +256,8 @@ def main() -> int:
     args = parser.parse_args()
 
     manifest = build_tasks(args.catalog, args.scheme, args.lane, load_status_overrides(args.status_overrides))
+    args.json_out.parent.mkdir(parents=True, exist_ok=True)
+    args.markdown_out.parent.mkdir(parents=True, exist_ok=True)
     args.json_out.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     write_markdown(manifest, args.markdown_out)
     print(
