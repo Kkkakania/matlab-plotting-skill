@@ -17,6 +17,9 @@ grep -q "synthetic CSV/MATLAB example" "$WORKFLOW"
 grep -q "Kkkakania/matlab-scientific-figures#31" "$WORKFLOW"
 grep -q "Awaiting feedback" "$WORKFLOW"
 grep -q "gh issue comment" "$WORKFLOW"
+grep -q "run_gh()" "$WORKFLOW"
+grep -q "max_attempts=3" "$WORKFLOW"
+grep -q "HTTP 5" "$WORKFLOW"
 
 if grep -q "read:project" "$WORKFLOW"; then
   echo "issue triage workflow must not require GitHub Projects scopes" >&2
