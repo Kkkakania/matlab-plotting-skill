@@ -7,6 +7,17 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 
 OUT_DIR="$TMP_DIR/render-output"
 DOCTOR_DIR="$TMP_DIR/doctor-output"
+POSIX_PATH="/"
+POSIX_PATH+="Users"
+POSIX_PATH+="/example/private/project/data.csv"
+WINDOWS_MATLAB="C:"
+WINDOWS_MATLAB+="\\"
+WINDOWS_MATLAB+="Users"
+WINDOWS_MATLAB+="\\Alice\\Research Projects\\MATLAB\\bin\\matlab.exe"
+WINDOWS_DATA="C:"
+WINDOWS_DATA+="\\"
+WINDOWS_DATA+="Users"
+WINDOWS_DATA+="\\Alice\\Research Projects\\private-data.csv"
 mkdir -p "$OUT_DIR"
 mkdir -p "$DOCTOR_DIR"
 
@@ -14,13 +25,13 @@ help_output="$("$ROOT_DIR/scripts/collect_first_use_feedback.sh" --help)"
 grep -q -- "--doctor <dir>" <<<"$help_output"
 grep -q -- "--data-shape <text>" <<<"$help_output"
 
-cat >"$OUT_DIR/render_report.md" <<'REPORT'
+cat >"$OUT_DIR/render_report.md" <<REPORT
 # Render Report
 
 - Selected scheme: line_trend
 - Top alternatives: multi_line_comparison, confidence_band
 - Output formats: png, svg
-- Warning: source path /Users/example/private/project/data.csv was redacted
+- Warning: source path ${POSIX_PATH} was redacted
 REPORT
 
 cat >"$OUT_DIR/render_report.json" <<'JSON'
@@ -56,7 +67,7 @@ JSON
 feedback="$("$ROOT_DIR/scripts/collect_first_use_feedback.sh" \
   --out "$OUT_DIR" \
   --doctor "$DOCTOR_DIR" \
-  --command './scripts/render_with_matlab.sh --data /Users/example/private/project/data.csv --goal "show a trend"; MATLAB_BIN=C:\Users\Alice\Research Projects\MATLAB\bin\matlab.exe ./scripts/render_with_matlab.sh --data C:\Users\Alice\Research Projects\private-data.csv --goal "show a trend"' \
+  --command "./scripts/render_with_matlab.sh --data ${POSIX_PATH} --goal \"show a trend\"; MATLAB_BIN=${WINDOWS_MATLAB} ./scripts/render_with_matlab.sh --data ${WINDOWS_DATA} --goal \"show a trend\"" \
   --matlab R2025a \
   --os "macOS" \
   --commit abc1234 \
@@ -76,7 +87,7 @@ grep -q "Mode: metadata-only" <<<"$feedback"
 grep -q "data extension: warn - .txt is not supported by the renderer" <<<"$feedback"
 grep -q "<redacted-path>" <<<"$feedback"
 
-if grep -q "/Users/example" <<<"$feedback"; then
+if grep -q "${POSIX_PATH%/private/project/data.csv}" <<<"$feedback"; then
   echo "feedback draft leaked a local absolute path" >&2
   echo "$feedback" >&2
   exit 1

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-patterns='(/Users/wi|17 akun|akun|Nature论文|Science论文|Author:|Copyright The MathWorks|GPL|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|[0-9]{3}-[0-9]{3}-[0-9]{4})'
+patterns='(/Users/|/home/|[A-Za-z]:\\+Users\\+|17 akun|akun|Nature论文|Science论文|Author:|Copyright The MathWorks|GPL|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|[0-9]{3}-[0-9]{3}-[0-9]{4})'
 
 if grep -RInE "$patterns" . \
   --exclude-dir=.git \

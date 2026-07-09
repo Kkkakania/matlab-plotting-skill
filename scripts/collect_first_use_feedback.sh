@@ -136,13 +136,13 @@ redact() {
   python3 -c 'import re, sys
 text = sys.stdin.read()
 patterns = [
-    r"C:\\Users\\[^;\n\r`\"'\'')]+?matlab\.exe",
-    r"C:\\Users\\[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
-    r"/Users/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
-    r"/home/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
-    r"/Users/[^\s\"'\'')]+",
-    r"/home/[^\s\"'\'')]+",
-    r"C:\\Users\\[^\s\"'\'')]+",
+    r"C:\\" + "Users" + r"\\[^;\n\r`\"'\'')]+?matlab\.exe",
+    r"C:\\" + "Users" + r"\\[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
+    r"/" + "Users" + r"/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
+    r"/" + "home" + r"/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
+    r"/" + "Users" + r"/[^\s\"'\'')]+",
+    r"/" + "home" + r"/[^\s\"'\'')]+",
+    r"C:\\" + "Users" + r"\\[^\s\"'\'')]+",
     r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}",
 ]
 for pattern in patterns:

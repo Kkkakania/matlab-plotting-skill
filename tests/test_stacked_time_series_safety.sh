@@ -13,7 +13,7 @@ if [[ ! -s "$PREVIEW" ]]; then
 fi
 
 patterns=(
-  '/Users/'
+  '/''Users/'
   '17 ak''un'
   'ak''un'
   'Author'':'
