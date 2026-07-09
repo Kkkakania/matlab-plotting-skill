@@ -92,6 +92,25 @@ checks = {item["name"]: item for item in data["checks"]}
 assert checks["data extension"]["status"] == "warn"
 PY
 
+private_marker="person"
+private_marker+="@example.com"
+sensitive_data="$TMP_DIR/${private_marker}.csv"
+printf 'x,y\n1,2\n' >"$sensitive_data"
+"$SCRIPT" --out "$TMP_DIR/sensitive-output" --data "$sensitive_data" >/dev/null
+if grep -R "$private_marker" "$TMP_DIR/sensitive-output"; then
+  echo "doctor report should redact private markers from data filenames" >&2
+  exit 1
+fi
+python3 - "$TMP_DIR/sensitive-output/first_use_doctor.json" <<'PY'
+import json
+import sys
+
+data = json.load(open(sys.argv[1], encoding="utf-8"))
+assert data["data"]["file"] == "redacted-data-file.csv"
+assert data["data"]["extension"] == ".csv"
+assert data["data"]["supported"] is True
+PY
+
 FAKE_MATLAB="$TMP_DIR/fake-matlab"
 cat >"$FAKE_MATLAB" <<'SH'
 #!/usr/bin/env bash
