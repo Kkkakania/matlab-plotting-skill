@@ -34,4 +34,23 @@ fi
 
 grep -q "Invalid gallery format" "$TMP_DIR/bad-format.err"
 
+DUPLICATE_CATALOG="$TMP_DIR/duplicate-catalog.md"
+cat > "$DUPLICATE_CATALOG" <<'CATALOG_MD'
+| Scheme | Family | Best For | Palette |
+|---|---|---|---|
+| `line_trend` | Trend | One series | categorical |
+| `line_trend` | Trend | Duplicate | categorical |
+CATALOG_MD
+
+if python3 "$ROOT_DIR/scripts/build_gallery_index.py" \
+  --dir "$TMP_DIR" \
+  --catalog "$DUPLICATE_CATALOG" \
+  --out "$TMP_DIR/duplicate-index.md" \
+  --format png >"$TMP_DIR/duplicate.out" 2>"$TMP_DIR/duplicate.err"; then
+  echo "duplicate gallery index schemes should fail" >&2
+  exit 1
+fi
+
+grep -q "Duplicate scheme in catalog: line_trend" "$TMP_DIR/duplicate.err"
+
 echo "gallery index test passed."
