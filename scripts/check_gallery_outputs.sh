@@ -27,6 +27,16 @@ require_value() {
   fi
 }
 
+validate_format() {
+  case "$FORMAT" in
+    png|svg|pdf) ;;
+    *)
+      echo "Invalid gallery format. Use one of: png, svg, pdf." >&2
+      exit 2
+      ;;
+  esac
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dir)
@@ -66,6 +76,7 @@ if [[ -z "$FORMAT" ]]; then
   echo "Missing --format value." >&2
   exit 2
 fi
+validate_format
 
 if [[ ! -d "$GALLERY_DIR" ]]; then
   echo "Gallery directory not found: $GALLERY_DIR" >&2
