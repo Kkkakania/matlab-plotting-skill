@@ -57,6 +57,7 @@ def build_readiness(catalog: Path, status_file: Path, gallery_dir: Path) -> list
 
 
 def write_markdown(rows: list[dict[str, object]], output: Path) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
     counts: dict[str, int] = {}
     for row in rows:
         label = str(row["readiness"])

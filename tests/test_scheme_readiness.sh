@@ -21,4 +21,10 @@ grep -q '| `regression_scatter` | Relationship | gallery-backed | \[preview\](ga
 grep -q '| `stacked_time_series` | Trend | gallery-backed | \[preview\](gallery/stacked_time_series.png) | yes | yes | yes | yes | yes | yes |' "$TMP_MD"
 grep -q '| `bubble_scatter` | Relationship | render path started | no | yes | yes | yes | yes | yes | no |' "$TMP_MD"
 
+NESTED_DIR="$(mktemp -d)"
+rm -rf "$NESTED_DIR"
+python3 "$ROOT_DIR/scripts/build_scheme_readiness.py" --out "$NESTED_DIR/docs/scheme-readiness.md" >/dev/null
+test -s "$NESTED_DIR/docs/scheme-readiness.md"
+rm -rf "$NESTED_DIR"
+
 echo "scheme readiness test passed."
