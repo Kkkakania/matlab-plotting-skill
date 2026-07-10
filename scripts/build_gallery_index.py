@@ -43,7 +43,7 @@ def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_e
     lines = [
         "# Gallery Index",
         "",
-        f"Gallery directory: `{gallery_dir}`",
+        f"Gallery directory: `{relative_link(gallery_dir, base)}`",
         "",
         "| Scheme | Family | Best For | Output |",
         "|---|---|---|---|",
