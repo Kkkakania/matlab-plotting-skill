@@ -3,7 +3,12 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TARGET_DIR="$(mktemp -d)"
-trap 'rm -rf "$TARGET_DIR"' EXIT
+REL_LINK_DIR="$ROOT_DIR/.install-link-selftest"
+
+cleanup() {
+  rm -rf "$TARGET_DIR" "$REL_LINK_DIR"
+}
+trap cleanup EXIT
 
 set +e
 "$ROOT_DIR/scripts/install_skill.sh" --skill >/dev/null 2>"$TARGET_DIR/missing-skill.err"
@@ -105,6 +110,16 @@ if [[ -e "$TARGET_DIR/matlab-plotting-skill" ]]; then
   echo "dry-run must not create the skill directory" >&2
   exit 1
 fi
+
+mkdir -p "$REL_LINK_DIR"
+ln -s ../skills/matlab-plotting-skill "$REL_LINK_DIR/matlab-plotting-skill"
+relative_link_output="$("$ROOT_DIR/scripts/install_skill.sh" --target "$REL_LINK_DIR")"
+if [[ "$relative_link_output" != *"already linked"* ]]; then
+  echo "relative symlink target should be recognized as already installed" >&2
+  echo "$relative_link_output" >&2
+  exit 1
+fi
+rm -rf "$REL_LINK_DIR"
 
 "$ROOT_DIR/scripts/install_skill.sh" --target "$TARGET_DIR" --copy
 

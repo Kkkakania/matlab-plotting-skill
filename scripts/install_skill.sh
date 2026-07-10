@@ -127,8 +127,31 @@ if [[ ! -f "$SOURCE_DIR/SKILL.md" ]]; then
   echo "Skill source not found: $SOURCE_DIR" >&2
   exit 1
 fi
+SOURCE_REAL_DIR="$(cd "$SOURCE_DIR" && pwd -P)"
 
 DEST_DIR="$TARGET_DIR/$SKILL_NAME"
+
+link_points_to_source() {
+  local link_path="$1"
+  local target="$2"
+  local target_dir
+  local target_base
+  local resolved
+
+  if [[ "$target" == "$SOURCE_DIR" || "$target" == "$SOURCE_REAL_DIR" ]]; then
+    return 0
+  fi
+
+  target_dir="$(dirname "$target")"
+  target_base="$(basename "$target")"
+  if [[ "$target" == /* ]]; then
+    resolved="$(cd "$target_dir" 2>/dev/null && printf '%s/%s' "$(pwd -P)" "$target_base")" || return 1
+  else
+    resolved="$(cd "$(dirname "$link_path")/$target_dir" 2>/dev/null && printf '%s/%s' "$(pwd -P)" "$target_base")" || return 1
+  fi
+
+  [[ "$resolved" == "$SOURCE_REAL_DIR" ]]
+}
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
   echo "Would install $SKILL_NAME"
@@ -141,7 +164,7 @@ fi
 mkdir -p "$TARGET_DIR"
 
 if [[ -e "$DEST_DIR" || -L "$DEST_DIR" ]]; then
-  if [[ -L "$DEST_DIR" && "$(readlink "$DEST_DIR")" == "$SOURCE_DIR" ]]; then
+  if [[ -L "$DEST_DIR" ]] && link_points_to_source "$DEST_DIR" "$(readlink "$DEST_DIR")"; then
     echo "$SKILL_NAME is already linked at $DEST_DIR"
     exit 0
   fi
