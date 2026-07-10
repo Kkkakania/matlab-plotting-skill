@@ -222,6 +222,31 @@ if ! grep -q -- "Invalid timeout seconds" "$TMP_DIR/timeout.err"; then
   exit 1
 fi
 
+ZERO_TIMEOUT_FAKE="$TMP_DIR/fake_zero_timeout_matlab"
+cat >"$ZERO_TIMEOUT_FAKE" <<'SH'
+#!/usr/bin/env bash
+sleep 0.1
+exit 0
+SH
+chmod +x "$ZERO_TIMEOUT_FAKE"
+
+set +e
+env MP_MATLAB_TIMEOUT_SECONDS=0.0 MATLAB_BIN="$ZERO_TIMEOUT_FAKE" "$SCRIPT" --check >"$TMP_DIR/zero-timeout.out" 2>"$TMP_DIR/zero-timeout.err"
+zero_timeout_status=$?
+set -e
+
+if [[ "$zero_timeout_status" -ne 0 ]]; then
+  echo "expected MP_MATLAB_TIMEOUT_SECONDS=0.0 to disable the timeout guard, got $zero_timeout_status" >&2
+  cat "$TMP_DIR/zero-timeout.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "MATLAB CLI check passed" "$TMP_DIR/zero-timeout.out"; then
+  echo "expected successful MATLAB check output when decimal zero disables timeout" >&2
+  cat "$TMP_DIR/zero-timeout.out" >&2
+  exit 1
+fi
+
 DATA_FILE="$TMP_DIR/data.csv"
 printf 'x,y\n1,2\n' >"$DATA_FILE"
 
