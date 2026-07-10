@@ -23,6 +23,20 @@ grep -q "grouped_bar" "$TMP_DIR/index.md"
 grep -q "line_trend.png" "$TMP_DIR/index.md"
 grep -q "Category comparison" "$TMP_DIR/index.md"
 
+NESTED_GALLERY="$TMP_DIR/gallery"
+NESTED_OUT="$TMP_DIR/site/index.md"
+mkdir -p "$NESTED_GALLERY"
+printf 'png\n' > "$NESTED_GALLERY/line_trend.png"
+python3 "$ROOT_DIR/scripts/build_gallery_index.py" --dir "$NESTED_GALLERY" --catalog "$CATALOG" --out "$NESTED_OUT" --format png
+
+line_trend_row="$(grep '!\[line_trend\]' "$NESTED_OUT")"
+grep -q "../gallery/line_trend.png" <<<"$line_trend_row"
+if grep -q "$TMP_DIR" <<<"$line_trend_row"; then
+  echo "gallery index image links should not leak absolute local paths" >&2
+  echo "$line_trend_row" >&2
+  exit 1
+fi
+
 if python3 "$ROOT_DIR/scripts/build_gallery_index.py" \
   --dir "$TMP_DIR" \
   --catalog "$CATALOG" \
