@@ -142,6 +142,9 @@ patterns = [
     r"/home/[^;\n\r`\"'\'')]+?\.(?:csv|xlsx|xls|mat|json|md|txt|png|svg|pdf|fig|m)",
     r"/Users/[^\s\"'\'')]+",
     r"/home/[^\s\"'\'')]+",
+    r"/(?:private/)?tmp/[^\s\"'\'')]+",
+    r"/var/folders/[^\s\"'\'')]+",
+    r"/var/tmp/[^\s\"'\'')]+",
     r"C:\\Users\\[^\s\"'\'')]+",
     r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}",
 ]
