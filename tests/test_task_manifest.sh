@@ -66,6 +66,16 @@ grep -q "## Lane Summary" "$TMP_MD"
 grep -q "| Trend | 70 |" "$TMP_MD"
 grep -q "| catalog | 51 |" "$TMP_MD"
 
+NESTED_DIR="$(mktemp -d)"
+rm -rf "$NESTED_DIR"
+python3 "$ROOT_DIR/scripts/build_task_manifest.py" \
+  --json-out "$NESTED_DIR/out/tasks.json" \
+  --markdown-out "$NESTED_DIR/docs/tasks.md"
+
+test -s "$NESTED_DIR/out/tasks.json"
+test -s "$NESTED_DIR/docs/tasks.md"
+rm -rf "$NESTED_DIR"
+
 rm -f "$TMP_JSON" "$TMP_MD"
 
 echo "task manifest test passed."
