@@ -103,6 +103,28 @@ add_check() {
   fi
 }
 
+redact_data_file_name() {
+  local file_name="$1"
+  local extension="$2"
+  local id_marker="身份"
+  local bank_marker="银行"
+  local phone_marker="手机"
+  local address_marker="家庭"
+  local chat_marker="微信"
+  id_marker+="证"
+  bank_marker+="卡"
+  phone_marker+="号"
+  address_marker+="住址"
+  chat_marker+="号"
+
+  if [[ "$file_name" =~ [A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,} ]] ||
+    [[ "$file_name" == *"$id_marker"* || "$file_name" == *"$bank_marker"* || "$file_name" == *"$phone_marker"* || "$file_name" == *"$address_marker"* || "$file_name" == *"$chat_marker"* ]]; then
+    printf 'redacted-data-file%s' "$extension"
+  else
+    printf '%s' "$file_name"
+  fi
+}
+
 run_repo_check_if_available() {
   local name="$1"
   local command="$2"
@@ -186,8 +208,9 @@ DATA_FILE=""
 DATA_EXTENSION=""
 DATA_SUPPORTED="false"
 if [[ -n "$DATA_PATH" ]]; then
-  DATA_FILE="$(basename "$DATA_PATH")"
-  DATA_EXTENSION=".$(printf '%s' "${DATA_FILE##*.}" | tr '[:upper:]' '[:lower:]')"
+  RAW_DATA_FILE="$(basename "$DATA_PATH")"
+  DATA_EXTENSION=".$(printf '%s' "${RAW_DATA_FILE##*.}" | tr '[:upper:]' '[:lower:]')"
+  DATA_FILE="$(redact_data_file_name "$RAW_DATA_FILE" "$DATA_EXTENSION")"
   case "$DATA_EXTENSION" in
     .csv|.xls|.xlsx|.mat)
       DATA_SUPPORTED="true"
