@@ -277,16 +277,23 @@ grep -q "not an approval argument" "$ROOT_DIR/docs/ecosystem-status.md"
 grep -q "agent-facing layer for the MATLAB plotting ecosystem" "$ROOT_DIR/docs/ecosystem-status.md"
 grep -q "Do not include private datasets" "$ROOT_DIR/docs/ecosystem-status.md"
 grep -q "# Application Evidence" "$ROOT_DIR/docs/application-evidence.md"
-grep -q "Snapshot date: 2026-06-22" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "Snapshot date: 2026-07-15" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "Kkkakania/matlab-plotting-skill" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "Kkkakania/matlab-scientific-figures" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "Kkkakania/matlab-figure-ci" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "Kkkakania/python-plotting-skill" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "Use this repository as companion skill evidence" "$ROOT_DIR/docs/application-evidence.md"
-grep -q "Do not present it as the main Codex for Open Source application repository" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "Do not present it as the main Claude for Open Source application repository" "$ROOT_DIR/docs/application-evidence.md"
 grep -q "green and annotation-free" "$ROOT_DIR/docs/application-evidence.md"
-grep -q "6b6d653" "$ROOT_DIR/docs/application-evidence.md"
-grep -q "27936759727" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "8756f77" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "29073837604" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "releases/tag/v0.1.100" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "1122 automation checks" "$ROOT_DIR/docs/application-evidence.md"
+grep -q "510 backlog tasks" "$ROOT_DIR/docs/application-evidence.md"
+if grep -q "2026-06-22\\|6b6d653\\|27936759727" "$ROOT_DIR/docs/application-evidence.md"; then
+  echo "stale application evidence remains" >&2
+  exit 1
+fi
 if grep -q "49711e1\\|27923803978\\|f09dcca\\|27926156956\\|9fd2478\\|27928892308" "$ROOT_DIR/docs/application-evidence.md"; then
   echo "application evidence still cites a stale CI snapshot" >&2
   exit 1
