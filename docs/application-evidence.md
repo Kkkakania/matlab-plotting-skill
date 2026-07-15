@@ -1,10 +1,10 @@
 # Application Evidence
 
-Snapshot date: 2026-06-22.
+Snapshot date: 2026-07-15.
 
 This note is for reviewers who want to understand what is public and
-checkable in `matlab-plotting-skill`. It is not a promise of Codex for Open
-Source eligibility, credits, or ChatGPT Pro access.
+checkable in `matlab-plotting-skill`. It is not a promise of Claude for Open
+Source eligibility, approval, or subscription access.
 
 ## Repository to cite
 
@@ -13,7 +13,7 @@ ecosystem:
 
 <https://github.com/Kkkakania/matlab-plotting-skill>
 
-Do not present it as the main Codex for Open Source application repository.
+Do not present it as the main Claude for Open Source application repository.
 Use `matlab-scientific-figures` as the main repository when a form asks for one
 GitHub repository, then cite this skill as the agent-facing workflow layer.
 
@@ -29,14 +29,15 @@ Related repositories:
 |---|---|
 | MATLAB plotting skill | `skills/matlab-plotting-skill/SKILL.md`, bundled MATLAB helpers, 51-scheme catalog, gallery previews, and first-render walkthrough |
 | Scientific diagram skill | `skills/scientific-diagram-skill/SKILL.md`, draw.io workflow references, checked `research-method-flow.drawio`, checked `research-method-flow.svg`, provenance note, and `tests/test_scientific_diagram_examples.sh` |
-| CI | Commit `6b6d653`; `Quality` run `27936759727`, green and annotation-free at the 2026-06-22 snapshot, including diagram example validation |
-| Local release gate | `./scripts/release_check.sh` |
+| CI | Commit `8756f77`; `Quality` run `29073837604`, green and annotation-free at the 2026-07-15 snapshot |
+| Public release | [`v0.1.100`](https://github.com/Kkkakania/matlab-plotting-skill/releases/tag/v0.1.100), published 2026-05-30 |
+| Local release gate | `./scripts/release_check.sh`; passed on 2026-07-15 for 51 schemes, 1122 automation checks, 510 backlog tasks, gallery/provenance/privacy checks, installer tests, and the bundled diagram skill |
 | Figure QA dogfooding | `mfigci check --config mfigci.yml --report mfigci-report.md` |
 | Maintainer workflow | issue-triage workflow, first-use feedback path, installer checks, docs voice check, and release cadence notes |
 | Private data boundary | `docs/private-data-handling.md` and `docs/local-resource-intake.md` |
 | Ecosystem handoff | `docs/ecosystem-status.md` |
 
-## What Codex or API credits would help with
+## What a Claude subscription would help with
 
 - Review skill changes for missing references, install drift, and unclear task boundaries.
 - Triage first-use reports into setup, MATLAB discovery, data-shape, rendering, and documentation issues.
@@ -59,7 +60,8 @@ checked examples, issue links, and redacted reports.
 ## Short draft
 
 `matlab-plotting-skill` is an agent-facing workflow for MATLAB scientific
-plotting and research diagrams. It helps Codex inspect data, choose chart
-patterns, render through MATLAB CLI, and produce redacted review reports. The
-ecosystem is early, but it already has clean-room gallery evidence, provenance
-checks, issue/PR templates, and a companion figure-QA tool.
+plotting and research diagrams. It helps maintainers and coding agents inspect
+data, choose chart patterns, render through MATLAB CLI, and produce redacted
+review reports. The ecosystem is early, but it already has
+clean-room gallery evidence, provenance checks, issue/PR templates, and a
+companion figure-QA tool.
