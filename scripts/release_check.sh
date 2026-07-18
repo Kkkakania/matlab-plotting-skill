@@ -148,6 +148,7 @@ tests/test_scientific_diagram_examples.sh
 tests/test_example_prompts.sh
 tests/test_render_with_matlab_args.sh
 tests/test_validate_plot_review.sh
+tests/test_build_week_workflow.sh
 tests/test_mfigci_dogfood_config.sh
 
 echo "== Repository checks =="

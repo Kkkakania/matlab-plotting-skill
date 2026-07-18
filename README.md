@@ -91,6 +91,37 @@ internal dogfooding as adoption.
 - Includes concrete selection signals in reports so automatic choices are easier to audit.
 - Includes a score snapshot for the top scheme candidates.
 
+### Build Week additions
+
+The OpenAI Build Week 2026 work extends the single-render workflow into an
+evidence-backed review loop:
+
+```text
+data + goal -> ranked MATLAB candidates -> GPT-5.6 review in Codex
+            -> validated repair allowlist -> final figure + before/after evidence
+```
+
+The important behavior is semantic as well as visual. In the bundled demo, a
+rule-ranked confidence band is rejected because the source columns are two
+methods, not lower and upper uncertainty bounds. The workflow selects the
+honest multi-line comparison, applies controlled contrast and typography
+repairs, and records why it changed.
+
+![GPT-5.6 review before and after](docs/build-week/before_after.png)
+
+Run the complete synthetic-data demo:
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
+  ./scripts/run_review_demo.sh --out /tmp/matlab-plot-review-demo
+```
+
+See [`docs/build-week-2026.md`](docs/build-week-2026.md) for the explicit
+pre-event/new-work boundary and
+[`review-contract.md`](skills/matlab-plotting-skill/references/review-contract.md)
+for the Codex review schema. The repository commits only the key comparison
+figure; candidates and evidence are regenerated from bundled synthetic data.
+
 `scientific-diagram-skill`:
 
 - Drafts research diagrams in Mermaid before committing to a layout.

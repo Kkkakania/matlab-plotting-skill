@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "selected_candidate": "candidate-02",
+  "verdict": "repair",
+  "reviewer": {"surface": "codex", "model": "gpt-5.6-terra"},
+  "summary": "Candidate 02 is the only option that names both method series without reinterpreting one series as uncertainty. It needs stronger foreground contrast and slightly larger typography for reliable reading in a short demo.",
+  "scores": {"claim_support": 5, "legibility": 3, "accessibility": 3, "honesty": 5, "reproducibility": 5},
+  "findings": [
+    {
+      "code": "semantic_mismatch_in_candidate_01",
+      "severity": "high",
+      "evidence": "Candidate 01 treats the two method columns as lower and upper uncertainty bounds even though the input columns are named baseline and candidate.",
+      "recommendation": "Select the explicit multi-line comparison instead of presenting method values as uncertainty."
+    },
+    {
+      "code": "missing_series_identity_in_candidate_03",
+      "severity": "medium",
+      "evidence": "Candidate 03 draws both lines but provides no legend, so the method identities cannot be recovered from the image.",
+      "recommendation": "Use Candidate 02, which includes a series legend."
+    },
+    {
+      "code": "low_foreground_contrast",
+      "severity": "medium",
+      "evidence": "Candidate 02 uses pale axis and label colors that become difficult to read at video playback size.",
+      "recommendation": "Apply the high-contrast palette and increase the minimum font size."
+    }
+  ],
+  "repair_actions": [
+    {"action": "increase_font_size", "value": 12},
+    {"action": "high_contrast_palette"},
+    {"action": "legend_best"},
+    {"action": "enable_grid"}
+  ]
+}
