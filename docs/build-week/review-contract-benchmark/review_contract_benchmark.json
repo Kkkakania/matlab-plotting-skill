@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "benchmark": "plot-review-contract-adversarial",
+  "status": "passed",
+  "summary": {
+    "checks": 15,
+    "passed": 15,
+    "failed": 0,
+    "fail_closed_checks": 14
+  },
+  "cases": [
+    {
+      "id": "valid_control",
+      "expected": "accept",
+      "observed": "accept",
+      "passed": true,
+      "detail": "accepted by the strict review validator"
+    },
+    {
+      "id": "unknown_action",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "unsupported repair action: run_matlab_code"
+    },
+    {
+      "id": "action_value_injection",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "repair_actions[0] has unknown fields: value"
+    },
+    {
+      "id": "unknown_candidate",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "selected_candidate is not present in the candidate manifest"
+    },
+    {
+      "id": "unknown_model",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "reviewer.model must be one of: gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra"
+    },
+    {
+      "id": "wrong_surface",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "reviewer.surface must be codex"
+    },
+    {
+      "id": "unknown_top_level_field",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "review has unknown fields: matlab_code"
+    },
+    {
+      "id": "missing_summary",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "review is missing fields: summary"
+    },
+    {
+      "id": "score_out_of_range",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "scores.honesty must be an integer from 1 to 5"
+    },
+    {
+      "id": "boolean_score",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "scores.legibility must be an integer from 1 to 5"
+    },
+    {
+      "id": "duplicate_action",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "duplicate repair action: enable_grid"
+    },
+    {
+      "id": "accept_with_actions",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "an accepted review must not contain repair_actions"
+    },
+    {
+      "id": "repair_without_actions",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "a repair review must contain at least one repair_action"
+    },
+    {
+      "id": "too_many_findings",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "findings must be an array with at most 20 items"
+    },
+    {
+      "id": "malformed_json",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true,
+      "detail": "invalid JSON in review: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+    }
+  ]
+}

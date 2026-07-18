@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "candidates": [
+    {"id": "candidate-01", "scheme": "confidence_band"},
+    {"id": "candidate-02", "scheme": "multi_line_comparison"},
+    {"id": "candidate-03", "scheme": "line_trend"}
+  ]
+}

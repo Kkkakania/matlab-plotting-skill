@@ -28,6 +28,8 @@ Development starts from remote commit `1f82b1b`, with implementation on the
 - Export the final figure, a before/after comparison, and Markdown/JSON review
   evidence.
 - Provide a one-command synthetic-data demo and a checked review fixture.
+- Exercise the model-to-MATLAB boundary with one valid control and 14
+  adversarial mutations that must fail closed.
 
 The key product change is not "more chart types." It is a reviewable loop that
 can reject a highly ranked but semantically misleading chart before it reaches
@@ -42,6 +44,24 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
 
 Review `candidate_manifest.json`, `before_after.png`, and
 `review_evidence.md/json` in the output directory.
+
+## Reproduce The Adversarial Benchmark
+
+```bash
+./scripts/run_review_contract_benchmark.py \
+  --validator scripts/validate_plot_review.py \
+  --manifest examples/review/multi_series_manifest.json \
+  --review examples/review/multi_series_review.json \
+  --out /tmp/plot-review-contract-benchmark
+```
+
+The checked result is
+[`15/15`](build-week/review-contract-benchmark/review_contract_benchmark.md):
+the valid control is accepted and all 14 adversarial outputs are rejected. The
+benchmark covers unknown executable actions, injected values, candidate and
+model spoofing, extra or missing fields, invalid score types and ranges,
+duplicate actions, contradictory verdicts, oversized findings, and malformed
+JSON. Its JSON report contains no local absolute paths.
 
 All bundled inputs are synthetic. No private archive, paper figure, local path,
 or unpublished research data is required or included.
