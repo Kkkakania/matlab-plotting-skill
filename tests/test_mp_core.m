@@ -227,6 +227,32 @@ verifyNotEmpty(testCase, findobj(fig, 'Type', 'scatter'));
 verifyNotEmpty(testCase, findobj(fig, 'Type', 'colorbar'));
 end
 
+function testCandidatePackWritesRankedRelativeManifest(testCase)
+outputDir = string(tempname);
+mkdir(outputDir);
+cleanup = onCleanup(@() rmdir(outputDir, 's'));
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'multi_series.csv');
+
+result = mpBuildCandidatePack(dataPath, "compare three methods over time", ...
+    outputDir, "png", 3, "");
+
+verifyEqual(testCase, string(result.ManifestPath), fullfile(outputDir, "candidate_manifest.json"));
+verifyTrue(testCase, isfile(result.ManifestPath));
+manifest = jsondecode(fileread(result.ManifestPath));
+verifyEqual(testCase, string(manifest.schema_version), "1.0");
+verifyEqual(testCase, string(manifest.workflow), "codex-visual-review");
+verifyEqual(testCase, numel(manifest.candidates), 3);
+verifyEqual(testCase, string({manifest.candidates.id}), ...
+    ["candidate-01", "candidate-02", "candidate-03"]);
+verifyEqual(testCase, string(manifest.candidates(1).scheme), "multi_line_comparison");
+for k = 1:numel(manifest.candidates)
+    files = string(manifest.candidates(k).files);
+    verifyTrue(testCase, all(startsWith(files, "candidates/")));
+    verifyFalse(testCase, any(startsWith(files, "/")));
+    verifyTrue(testCase, all(isfile(fullfile(outputDir, files))));
+end
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
