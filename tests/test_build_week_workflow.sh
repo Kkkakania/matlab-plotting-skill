@@ -7,7 +7,8 @@ SKILL="$ROOT_DIR/skills/matlab-plotting-skill/SKILL.md"
 CONTRACT="$ROOT_DIR/skills/matlab-plotting-skill/references/review-contract.md"
 FIXTURE="$ROOT_DIR/examples/review/multi_series_review.json"
 
-for path in "$DEMO" "$CONTRACT" "$FIXTURE" "$ROOT_DIR/docs/build-week-2026.md"; do
+for path in "$DEMO" "$CONTRACT" "$FIXTURE" "$ROOT_DIR/docs/build-week-2026.md" \
+  "$ROOT_DIR/docs/build-week-video-script.md" "$ROOT_DIR/docs/build-week-submission-checklist.md"; do
   if [[ ! -s "$path" ]]; then
     echo "missing Build Week workflow file: $path" >&2
     exit 1
@@ -26,6 +27,9 @@ grep -q -- "candidate_manifest.json" "$CONTRACT"
 grep -q -- "Do not infer uncertainty bounds" "$CONTRACT"
 grep -q -- "Before July 13, 2026" "$ROOT_DIR/docs/build-week-2026.md"
 grep -q -- "Build Week additions" "$ROOT_DIR/README.md"
+grep -q -- "How Codex and GPT-5.6 were used" "$ROOT_DIR/README.md"
+grep -q -- "0:00-0:15" "$ROOT_DIR/docs/build-week-video-script.md"
+grep -q -- "/feedback" "$ROOT_DIR/docs/build-week-submission-checklist.md"
 
 python3 "$ROOT_DIR/scripts/validate_plot_review.py" --review "$FIXTURE" \
   >"${TMPDIR:-/tmp}/matlab-plotting-demo-review.json"

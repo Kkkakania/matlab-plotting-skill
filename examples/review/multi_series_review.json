@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "selected_candidate": "candidate-02",
   "verdict": "repair",
-  "reviewer": {"surface": "codex", "model": "gpt-5.6-terra"},
+  "reviewer": {"surface": "codex", "model": "gpt-5.6-sol"},
   "summary": "Candidate 02 is the only option that names both method series without reinterpreting one series as uncertainty. It needs stronger foreground contrast and slightly larger typography for reliable reading in a short demo.",
   "scores": {"claim_support": 5, "legibility": 3, "accessibility": 3, "honesty": 5, "reproducibility": 5},
   "findings": [

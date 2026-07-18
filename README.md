@@ -122,6 +122,27 @@ pre-event/new-work boundary and
 for the Codex review schema. The repository commits only the key comparison
 figure; candidates and evidence are regenerated from bundled synthetic data.
 
+#### How Codex and GPT-5.6 were used
+
+Codex was the primary Build Week development environment. It inspected the
+existing skill and release gates, added failing contract tests before the new
+implementation, ran MATLAB R2025a, rendered real candidates, inspected their
+pixels, fixed a JSON-decoding edge case found by the end-to-end run, and
+repeated the full release gate.
+
+GPT-5.6 Sol supplied the visual review in the checked demo. Its important
+decision was semantic rather than cosmetic: it rejected a higher-ranked
+confidence band because `baseline` and `candidate` are method columns, not
+uncertainty bounds. That finding selected the multi-line comparison and led to
+controlled contrast, typography, legend, and grid repairs.
+
+The maintainer made the product and release decisions: use the existing MATLAB
+skill as the foundation, keep the workflow usable on Codex's free tier without
+a paid API key, execute no model-authored MATLAB, keep private `akun` material
+out of the repository, and publish only the key synthetic before/after figure.
+See the [three-minute demo script](docs/build-week-video-script.md) and
+[submission checklist](docs/build-week-submission-checklist.md).
+
 `scientific-diagram-skill`:
 
 - Drafts research diagrams in Mermaid before committing to a layout.
