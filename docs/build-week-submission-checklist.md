@@ -12,7 +12,8 @@ from a YouTube upload or Devpost form failure.
 - [x] One-command MATLAB demo works from a clean output directory.
 - [x] Installation and supported platform information remains in the README.
 - [x] Default and MATLAB-backed release gates pass.
-- [ ] Merge the Build Week PR into `main` before recording the final video.
+- [x] Merge [Build Week PR #42](https://github.com/Kkkakania/matlab-plotting-skill/pull/42)
+  into `main` before recording the final video.
 
 ## Devpost
 
