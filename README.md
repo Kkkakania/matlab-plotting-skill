@@ -138,7 +138,7 @@ controlled contrast, typography, legend, and grid repairs.
 
 The maintainer made the product and release decisions: use the existing MATLAB
 skill as the foundation, keep the workflow usable on Codex's free tier without
-a paid API key, execute no model-authored MATLAB, keep private `akun` material
+a paid API key, execute no model-authored MATLAB, keep private source material
 out of the repository, and publish only the key synthetic before/after figure.
 See the [three-minute demo script](docs/build-week-video-script.md) and
 [submission checklist](docs/build-week-submission-checklist.md).
