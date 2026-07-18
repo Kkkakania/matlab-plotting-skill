@@ -6,6 +6,7 @@ MATLAB_DIR="$SKILL_DIR/assets/matlab"
 SCHEME_CATALOG="$SKILL_DIR/references/scheme-catalog.md"
 REPO_ROOT="$(cd "$SKILL_DIR/../.." && pwd)"
 SCHEME_READINESS="$REPO_ROOT/docs/scheme-readiness.md"
+REVIEW_VALIDATOR="$REPO_ROOT/scripts/validate_plot_review.py"
 MATLAB_BIN="${MATLAB_BIN:-matlab}"
 MP_MATLAB_TIMEOUT_SECONDS="${MP_MATLAB_TIMEOUT_SECONDS:-600}"
 MP_MATLAB_COLD_START_BUDGET_SECONDS="${MP_MATLAB_COLD_START_BUDGET_SECONDS:-60}"
@@ -27,6 +28,11 @@ EXPLAIN=0
 DOCTOR=0
 DOCTOR_WITH_MATLAB=0
 OUT_DIR_EXPLICIT=0
+CANDIDATE_PACK=0
+CANDIDATE_COUNT=3
+FINALIZE_REVIEW=0
+REVIEW_PATH=""
+MANIFEST_PATH=""
 SCHEME_NAME=""
 SCHEME_INFO_NAME=""
 MAT_VARIABLE=""
@@ -45,6 +51,8 @@ Usage:
   render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
   render_with_matlab.sh --explain --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
+  render_with_matlab.sh --candidate-pack --data <file> --goal "<text>" [--candidate-count 3] [--out <dir>] [--formats png,svg]
+  render_with_matlab.sh --finalize-review <review.json> --candidate-manifest <manifest.json> --data <file> --goal "<text>" [--out <dir>] [--formats png,svg]
 
 Environment:
   MATLAB_BIN=/path/to/matlab
@@ -186,6 +194,26 @@ while [[ $# -gt 0 ]]; do
       INSPECT_DATA=1
       shift
       ;;
+    --candidate-pack)
+      CANDIDATE_PACK=1
+      shift
+      ;;
+    --candidate-count)
+      require_value "$1" "${2:-}"
+      CANDIDATE_COUNT="$2"
+      shift 2
+      ;;
+    --finalize-review)
+      require_value "$1" "${2:-}"
+      FINALIZE_REVIEW=1
+      REVIEW_PATH="$2"
+      shift 2
+      ;;
+    --candidate-manifest)
+      require_value "$1" "${2:-}"
+      MANIFEST_PATH="$2"
+      shift 2
+      ;;
     --help|-h)
       usage
       exit 0
@@ -199,6 +227,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 validate_formats "$FORMATS"
+
+if [[ ! "$CANDIDATE_COUNT" =~ ^[2-5]$ ]]; then
+  echo "--candidate-count must be an integer from 2 to 5." >&2
+  exit 2
+fi
 
 if [[ "$DOCTOR_WITH_MATLAB" -eq 1 && "$DOCTOR" -ne 1 ]]; then
   echo "--with-matlab is only valid with --doctor." >&2
@@ -536,6 +569,24 @@ if [[ -n "$DATA_PATH" && ! -f "$DATA_PATH" ]]; then
   exit 66
 fi
 
+if [[ "$FINALIZE_REVIEW" -eq 1 ]]; then
+  if [[ -z "$MANIFEST_PATH" ]]; then
+    echo "--finalize-review requires --candidate-manifest <manifest.json>." >&2
+    exit 2
+  fi
+  if [[ ! -f "$REVIEW_PATH" ]]; then
+    echo "Review file not found: $REVIEW_PATH" >&2
+    exit 66
+  fi
+  if [[ ! -f "$MANIFEST_PATH" ]]; then
+    echo "Candidate manifest not found: $MANIFEST_PATH" >&2
+    exit 66
+  fi
+  mkdir -p "$OUT_DIR"
+  python3 "$REVIEW_VALIDATOR" --review "$REVIEW_PATH" --manifest "$MANIFEST_PATH" \
+    --out "$OUT_DIR/validated_review.json"
+fi
+
 check_matlab_bin
 
 if [[ "$CHECK_ONLY" -eq 1 ]]; then
@@ -568,6 +619,17 @@ if [[ "$PLAN_ONLY" -eq 1 ]]; then
   else
     run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); plan = mpPlan($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$SCHEME_NAME"), $(matlab_quote "$MAT_VARIABLE")); disp(jsonencode(plan));"
   fi
+  exit 0
+fi
+
+if [[ "$CANDIDATE_PACK" -eq 1 ]]; then
+  mkdir -p "$OUT_DIR"
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpBuildCandidatePack($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$OUT_DIR"), $formats_expr, $CANDIDATE_COUNT, $(matlab_quote "$MAT_VARIABLE")); disp(result.ManifestPath);"
+  exit 0
+fi
+
+if [[ "$FINALIZE_REVIEW" -eq 1 ]]; then
+  run_with_timeout "$MP_MATLAB_TIMEOUT_SECONDS" "$MATLAB_BIN" -batch "addpath(genpath($(matlab_quote "$MATLAB_DIR"))); result = mpFinalizeReviewPack($(matlab_quote "$DATA_PATH"), $(matlab_quote "$GOAL_TEXT"), $(matlab_quote "$MANIFEST_PATH"), $(matlab_quote "$OUT_DIR/validated_review.json"), $(matlab_quote "$OUT_DIR"), $formats_expr, $(matlab_quote "$MAT_VARIABLE")); disp(result.EvidenceMarkdownPath);"
   exit 0
 fi
 

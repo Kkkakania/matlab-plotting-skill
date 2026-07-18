@@ -61,6 +61,9 @@ check_missing_value --scheme
 check_missing_value --var
 check_missing_value --scheme-info
 check_missing_value --scheme-info-json
+check_missing_value --candidate-count
+check_missing_value --finalize-review
+check_missing_value --candidate-manifest
 
 check_bad_formats() {
   local formats="$1"
@@ -303,6 +306,69 @@ MP_FAKE_MATLAB_ARGS_FILE="$TMP_DIR/smoke-no-guard.args" env MATLAB_BIN="$SMOKE_F
 if ! grep -q -- "timeout guard disabled" "$TMP_DIR/smoke-no-guard.out"; then
   echo "smoke-test should preserve MP_MATLAB_TIMEOUT_SECONDS=0 as disabled guard" >&2
   cat "$TMP_DIR/smoke-no-guard.out" >&2
+  exit 1
+fi
+
+set +e
+env MATLAB_BIN="$SMOKE_FAKE" "$SCRIPT" --candidate-pack --candidate-count 1 \
+  --data "$DATA_FILE" --goal "compare methods" --out "$TMP_DIR/candidates-invalid" \
+  >"$TMP_DIR/candidates-invalid.out" 2>"$TMP_DIR/candidates-invalid.err"
+candidate_count_status=$?
+set -e
+if [[ "$candidate_count_status" -ne 2 ]]; then
+  echo "candidate count outside 2..5 must exit 2" >&2
+  exit 1
+fi
+grep -q -- "--candidate-count must be an integer from 2 to 5" "$TMP_DIR/candidates-invalid.err"
+
+MP_FAKE_MATLAB_ARGS_FILE="$TMP_DIR/candidates.args" env MATLAB_BIN="$SMOKE_FAKE" "$SCRIPT" \
+  --candidate-pack --candidate-count 3 --data "$DATA_FILE" --goal "compare methods" \
+  --out "$TMP_DIR/candidates" --formats png >"$TMP_DIR/candidates.out"
+grep -q "mpBuildCandidatePack" "$TMP_DIR/candidates.args"
+grep -q "compare methods" "$TMP_DIR/candidates.args"
+grep -q ", 3," "$TMP_DIR/candidates.args"
+if grep -q "mpRun(" "$TMP_DIR/candidates.args"; then
+  echo "candidate-pack mode must not run the single-figure workflow" >&2
+  exit 1
+fi
+
+cat >"$TMP_DIR/review-manifest.json" <<'JSON'
+{"schema_version":"1.0","candidates":[{"id":"candidate-01","scheme":"line_trend","files":["candidates/candidate-01__line_trend.png"]}]}
+JSON
+cat >"$TMP_DIR/review-input.json" <<'JSON'
+{
+  "schema_version":"1.0",
+  "selected_candidate":"candidate-01",
+  "verdict":"accept",
+  "reviewer":{"surface":"codex","model":"gpt-5.6-terra"},
+  "summary":"The figure is clear and needs no repair.",
+  "scores":{"claim_support":5,"legibility":5,"accessibility":4,"honesty":5,"reproducibility":5},
+  "findings":[],
+  "repair_actions":[]
+}
+JSON
+
+set +e
+env MATLAB_BIN="$SMOKE_FAKE" "$SCRIPT" --finalize-review "$TMP_DIR/review-input.json" \
+  --data "$DATA_FILE" --goal "show trend" --out "$TMP_DIR/finalize-missing-manifest" \
+  >"$TMP_DIR/finalize-missing-manifest.out" 2>"$TMP_DIR/finalize-missing-manifest.err"
+finalize_missing_manifest_status=$?
+set -e
+if [[ "$finalize_missing_manifest_status" -ne 2 ]]; then
+  echo "finalize-review without a candidate manifest must exit 2" >&2
+  exit 1
+fi
+grep -q -- "--finalize-review requires --candidate-manifest" "$TMP_DIR/finalize-missing-manifest.err"
+
+MP_FAKE_MATLAB_ARGS_FILE="$TMP_DIR/finalize.args" env MATLAB_BIN="$SMOKE_FAKE" "$SCRIPT" \
+  --finalize-review "$TMP_DIR/review-input.json" \
+  --candidate-manifest "$TMP_DIR/review-manifest.json" \
+  --data "$DATA_FILE" --goal "show trend" --out "$TMP_DIR/finalize" --formats png,svg \
+  >"$TMP_DIR/finalize.out"
+grep -q "mpFinalizeReviewPack" "$TMP_DIR/finalize.args"
+grep -q "validated_review.json" "$TMP_DIR/finalize.args"
+if [[ ! -s "$TMP_DIR/finalize/validated_review.json" ]]; then
+  echo "finalize-review must persist the normalized review evidence" >&2
   exit 1
 fi
 

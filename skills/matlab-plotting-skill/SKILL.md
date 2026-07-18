@@ -69,6 +69,29 @@ read `docs/local-resource-intake.md` before turning any idea into public code.
    follow-up automation needs structured metadata. Read
    `docs/cli-output-contract.md` before depending on JSON fields.
 
+## Evidence-Backed Visual Review
+
+For a publication, report, or decision-facing figure, use the candidate review
+loop instead of trusting the top rule score:
+
+1. Run `--candidate-pack --candidate-count 3` with the data and communication
+   goal. This writes `candidate_manifest.json` and ranked candidate images.
+2. Read the manifest and inspect every candidate PNG. Judge whether the visual
+   encoding honestly matches column roles and the stated claim, then score
+   legibility, accessibility, honesty, claim support, and reproducibility.
+3. Write a review that follows `references/review-contract.md`. Record the
+   Codex GPT-5.6 model actually used. Do not generate MATLAB code or invent a
+   repair action.
+4. Run `--finalize-review <review.json> --candidate-manifest
+   <candidate_manifest.json>` with the same data and goal.
+5. Return the final PNG/SVG, `before_after.png`, and
+   `review_evidence.md/json`. Explain semantic rejections, not just style
+   changes.
+
+The validator fails closed on unknown candidates, fields, models, scores, and
+repair actions. A bundled review fixture supports a quick deterministic demo,
+but new data requires a fresh visual review.
+
 For a first-time user, mirror the sequence in
 `docs/first-render-walkthrough.md`: run `scripts/doctor.sh` or
 `render_with_matlab.sh --doctor --out <dir>` when the checkout or installed
