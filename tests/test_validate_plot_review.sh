@@ -21,6 +21,7 @@ cat >"$TMP_DIR/review.json" <<'JSON'
   "schema_version": "1.0",
   "selected_candidate": "candidate-02",
   "verdict": "repair",
+  "reviewer": {"surface": "codex", "model": "gpt-5.6-terra"},
   "summary": "Candidate 02 communicates the comparison most clearly after a small legibility repair.",
   "scores": {
     "claim_support": 5,
@@ -57,6 +58,7 @@ from pathlib import Path
 
 review = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
 assert review["selected_candidate"] == "candidate-02"
+assert review["reviewer"] == {"surface": "codex", "model": "gpt-5.6-terra"}
 assert review["repair_actions"][0] == {"action": "increase_font_size", "value": 12}
 assert review["repair_actions"][1] == {"action": "enable_grid"}
 assert review["validation"]["status"] == "validated"

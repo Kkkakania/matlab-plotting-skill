@@ -27,6 +27,7 @@ ALLOWED_ACTIONS = {
 }
 ALLOWED_SEVERITIES = {"low", "medium", "high"}
 ALLOWED_VERDICTS = {"accept", "repair", "reject"}
+ALLOWED_REVIEW_MODELS = {"gpt-5.6-luna", "gpt-5.6-sol", "gpt-5.6-terra"}
 
 
 class ReviewValidationError(ValueError):
@@ -94,6 +95,20 @@ def normalize_scores(value: Any) -> dict[str, int]:
     return normalized
 
 
+def normalize_reviewer(value: Any) -> dict[str, str]:
+    reviewer = require_object(value, "reviewer")
+    exact_keys(reviewer, {"surface", "model"}, "reviewer")
+    surface = require_string(reviewer["surface"], "reviewer.surface", 40)
+    model = require_string(reviewer["model"], "reviewer.model", 80)
+    if surface != "codex":
+        raise ReviewValidationError("reviewer.surface must be codex")
+    if model not in ALLOWED_REVIEW_MODELS:
+        raise ReviewValidationError(
+            f"reviewer.model must be one of: {', '.join(sorted(ALLOWED_REVIEW_MODELS))}"
+        )
+    return {"surface": surface, "model": model}
+
+
 def normalize_findings(value: Any) -> list[dict[str, str]]:
     if not isinstance(value, list) or len(value) > 20:
         raise ReviewValidationError("findings must be an array with at most 20 items")
@@ -154,6 +169,7 @@ def normalize_review(review_value: Any, candidate_ids: set[str] | None) -> dict[
         "schema_version",
         "selected_candidate",
         "verdict",
+        "reviewer",
         "summary",
         "scores",
         "findings",
@@ -181,6 +197,7 @@ def normalize_review(review_value: Any, candidate_ids: set[str] | None) -> dict[
         "schema_version": SCHEMA_VERSION,
         "selected_candidate": selected,
         "verdict": verdict,
+        "reviewer": normalize_reviewer(review["reviewer"]),
         "summary": require_string(review["summary"], "summary", 2000),
         "scores": normalize_scores(review["scores"]),
         "findings": findings,

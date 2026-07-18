@@ -253,6 +253,100 @@ for k = 1:numel(manifest.candidates)
 end
 end
 
+function testReviewFixesApplyOnlyWhitelistedFigureChanges(testCase)
+data = mpDemoDataForScheme("multi_line_comparison");
+schema = mpInferDataSchema(data);
+fig = mpRenderScheme("multi_line_comparison", data, schema, "compare methods");
+cleanup = onCleanup(@() close(fig));
+review = struct();
+review.repair_actions = [ ...
+    struct('action', "increase_font_size", 'value', 13), ...
+    struct('action', "enable_grid", 'value', []), ...
+    struct('action', "legend_best", 'value', []), ...
+    struct('action', "high_contrast_palette", 'value', [])];
+
+applied = mpApplyReviewFixes(fig, review);
+
+verifyEqual(testCase, applied, ...
+    ["increase_font_size", "enable_grid", "legend_best", "high_contrast_palette"]);
+fontObjects = findall(fig, '-property', 'FontSize');
+verifyTrue(testCase, all(arrayfun(@(h) h.FontSize >= 13, fontObjects)));
+axesObjects = findall(fig, 'Type', 'axes');
+verifyTrue(testCase, all(arrayfun(@(ax) strcmp(ax.XGrid, 'on'), axesObjects)));
+legendObjects = findall(fig, 'Type', 'legend');
+verifyTrue(testCase, all(arrayfun(@(lgd) strcmp(lgd.Location, 'best'), legendObjects)));
+end
+
+function testReviewFixesRejectUnknownActions(testCase)
+data = mpDemoDataForScheme("line_trend");
+schema = mpInferDataSchema(data);
+fig = mpRenderScheme("line_trend", data, schema, "show trend");
+cleanup = onCleanup(@() close(fig));
+review = struct('repair_actions', struct('action', "run_matlab_code", 'value', "close all"));
+
+verifyError(testCase, @() mpApplyReviewFixes(fig, review), ...
+    'mpApplyReviewFixes:UnsupportedAction');
+end
+
+function testReviewFixesAcceptHeterogeneousJsonObjectArrays(testCase)
+data = mpDemoDataForScheme("line_trend");
+schema = mpInferDataSchema(data);
+fig = mpRenderScheme("line_trend", data, schema, "show trend");
+cleanup = onCleanup(@() close(fig));
+review = jsondecode(['{"repair_actions":[' ...
+    '{"action":"increase_font_size","value":12},' ...
+    '{"action":"enable_grid"}]}']);
+
+applied = mpApplyReviewFixes(fig, review);
+
+verifyEqual(testCase, applied, ["increase_font_size", "enable_grid"]);
+end
+
+function testFinalizeReviewPackWritesComparisonAndEvidence(testCase)
+outputDir = string(tempname);
+mkdir(outputDir);
+cleanup = onCleanup(@() rmdir(outputDir, 's'));
+dataPath = fullfile(testCase.TestData.Root, 'examples', 'data', 'multi_series.csv');
+candidateResult = mpBuildCandidatePack(dataPath, "compare methods", ...
+    outputDir, "png", 2, "");
+
+review = struct();
+review.schema_version = "1.0";
+review.selected_candidate = "candidate-02";
+review.verdict = "repair";
+review.reviewer = struct('surface', "codex", 'model', "gpt-5.6-terra");
+review.summary = "The second candidate separates the series more clearly.";
+review.scores = struct('claim_support', 5, 'legibility', 4, ...
+    'accessibility', 4, 'honesty', 5, 'reproducibility', 5);
+review.findings = struct('code', "small_text", 'severity', "medium", ...
+    'evidence', "Labels are small in the video frame.", ...
+    'recommendation', "Increase the font size.");
+review.repair_actions = struct('action', "increase_font_size", 'value', 13);
+review.validation = struct('status', "validated", ...
+    'allowed_actions', ["enable_grid", "enforce_zero_baseline", ...
+    "high_contrast_palette", "increase_font_size", "legend_best"]);
+reviewPath = fullfile(outputDir, "validated_review.json");
+fid = fopen(reviewPath, 'w');
+fidCleanup = onCleanup(@() fclose(fid));
+fprintf(fid, '%s\n', jsonencode(review));
+clear fidCleanup
+
+result = mpFinalizeReviewPack(dataPath, "compare methods", ...
+    candidateResult.ManifestPath, reviewPath, outputDir, ["png", "svg"], "");
+
+verifyTrue(testCase, isfile(result.ComparisonPath));
+verifyGreaterThan(testCase, dir(result.ComparisonPath).bytes, 1000);
+verifyTrue(testCase, isfile(result.EvidenceJsonPath));
+verifyTrue(testCase, isfile(result.EvidenceMarkdownPath));
+verifyTrue(testCase, all(isfile(result.FinalFiles)));
+evidence = jsondecode(fileread(result.EvidenceJsonPath));
+verifyEqual(testCase, string(evidence.selected_candidate), "candidate-02");
+verifyEqual(testCase, string(evidence.reviewer.model), "gpt-5.6-terra");
+verifyEqual(testCase, string(evidence.applied_actions), "increase_font_size");
+verifyFalse(testCase, startsWith(string(evidence.before_file), "/"));
+verifyFalse(testCase, any(startsWith(string(evidence.after_files), "/")));
+end
+
 function testLineTrendSelectionRulePrefersTimeSeries(testCase)
 data = mpDemoDataForScheme("line_trend");
 schema = mpInferDataSchema(data);
