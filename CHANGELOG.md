@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a reproducible model-to-MATLAB adversarial benchmark with one valid
+  control, 14 fail-closed mutations, committed JSON/Markdown evidence, and
+  release-gate coverage.
 - Let `collect_first_use_feedback.sh` include a redacted `--data-shape`
   summary so first-use reports can describe structure without sharing raw rows.
 - Made `stacked_time_series` axis labels unit-aware for simple column-name

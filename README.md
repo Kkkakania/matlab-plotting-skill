@@ -116,6 +116,23 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
   ./scripts/run_review_demo.sh --out /tmp/matlab-plot-review-demo
 ```
 
+The model-to-MATLAB boundary also has a reproducible adversarial benchmark. A
+valid checked review is accepted, while 14 mutations covering executable-action
+injection, candidate/model spoofing, field smuggling, malformed scores, and
+contradictory verdicts must fail closed. The committed result is
+**15/15 checks passed**:
+
+```bash
+./scripts/run_review_contract_benchmark.py \
+  --validator scripts/validate_plot_review.py \
+  --manifest examples/review/multi_series_manifest.json \
+  --review examples/review/multi_series_review.json \
+  --out /tmp/plot-review-contract-benchmark
+```
+
+See the [human-readable benchmark report](docs/build-week/review-contract-benchmark/review_contract_benchmark.md)
+and its [machine-readable evidence](docs/build-week/review-contract-benchmark/review_contract_benchmark.json).
+
 See [`docs/build-week-2026.md`](docs/build-week-2026.md) for the explicit
 pre-event/new-work boundary and
 [`review-contract.md`](skills/matlab-plotting-skill/references/review-contract.md)
