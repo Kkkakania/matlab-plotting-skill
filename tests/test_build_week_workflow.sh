@@ -34,6 +34,11 @@ grep -q -- "How Codex and GPT-5.6 were used" "$ROOT_DIR/README.md"
 grep -q -- "0:00-0:15" "$ROOT_DIR/docs/build-week-video-script.md"
 grep -q -- "/feedback" "$ROOT_DIR/docs/build-week-submission-checklist.md"
 
+if grep -q -- '- \[ \]' "$ROOT_DIR/docs/build-week-submission-checklist.md"; then
+  echo "Build Week submission checklist still has incomplete items" >&2
+  exit 1
+fi
+
 python3 "$ROOT_DIR/scripts/validate_plot_review.py" --review "$FIXTURE" \
   >"${TMPDIR:-/tmp}/matlab-plotting-demo-review.json"
 

@@ -12,33 +12,47 @@ from a YouTube upload or Devpost form failure.
 - [x] One-command MATLAB demo works from a clean output directory.
 - [x] Installation and supported platform information remains in the README.
 - [x] Default and MATLAB-backed release gates pass.
-- [x] Merge [Build Week PR #42](https://github.com/Kkkakania/matlab-plotting-skill/pull/42)
-  into `main` before recording the final video.
+- [x] [Build Week PR #42](https://github.com/Kkkakania/matlab-plotting-skill/pull/42)
+  merged into `main` before the final video was recorded.
 
 ## Devpost
 
-- [ ] Join the challenge and start a draft submission now.
-- [ ] Choose a final project name in the maintainer's own words.
-- [ ] Write the project description in the maintainer's own voice. Use the
-  factual points below, but do not paste AI-authored prose unchanged.
-- [ ] Add the public GitHub repository URL.
-- [ ] Add exact macOS/MATLAB R2025a testing instructions and the demo command.
-- [ ] Retrieve the `/feedback` Codex Session ID from the primary build thread
+- [x] Joined the challenge and created the submission.
+- [x] Chose the final project name in the maintainer's own words.
+- [x] Edited and saved the project description in the maintainer's own voice.
+- [x] Added the public GitHub repository URL.
+- [x] Added exact macOS/MATLAB R2025a testing instructions and the demo command.
+- [x] Retrieved the `/feedback` Codex Session ID from the primary build thread
   where the candidate-review implementation was created.
-- [ ] Confirm the Devpost residence and eligibility fields are accurate.
-- [ ] Submit before the deadline, then reopen the project page and verify every
-  link while edits are still allowed.
+- [x] Confirmed the Devpost residence and eligibility fields are accurate.
+- [x] Submitted before the deadline, reopened the public project page, and
+  verified its repository, release, video, and test-path links.
 
 ## Video
 
-- [ ] Record the flow in `docs/build-week-video-script.md` at 1080p.
-- [ ] Keep the public YouTube video below three minutes.
-- [ ] Include clear audio naming both Codex and GPT-5.6.
-- [ ] Show live candidate generation, not only committed screenshots.
-- [ ] Show the semantic rejection of the confidence-band candidate.
-- [ ] Show `validated_review.json`, the repair allowlist, and final evidence.
-- [ ] Remove desktop notifications, private paths, email addresses, and API
+- [x] Recorded the flow in `docs/build-week-video-script.md` at 1080p.
+- [x] Kept the public YouTube video below three minutes.
+- [x] Included clear audio naming both Codex and GPT-5.6.
+- [x] Showed live candidate generation, not only committed screenshots.
+- [x] Showed the semantic rejection of the confidence-band candidate.
+- [x] Showed `validated_review.json`, the repair allowlist, and final evidence.
+- [x] Removed desktop notifications, private paths, email addresses, and API
   keys from the recording.
+
+## Final Verification
+
+Verified on July 21, 2026, while submission edits were still open:
+
+- Devpost status: submitted and publicly accessible as
+  [PlotProof for MATLAB](https://devpost.com/software/plotproof-for-matlab).
+- Demo video: [public YouTube upload](https://youtu.be/7w3rR0AiON8), 1080p,
+  2 minutes 28 seconds, with voiceover and captions.
+- Release: immutable
+  [`build-week-2026.1`](https://github.com/Kkkakania/matlab-plotting-skill/releases/tag/build-week-2026.1)
+  source archive and documented judge path.
+- Repository: public, MIT licensed, and green on the latest `main` quality run.
+- Codex evidence: the primary build thread's `/feedback` Session ID is entered
+  in the private Devpost judging field; it is intentionally not repeated here.
 
 ## Factual Description Notes
 
