@@ -53,7 +53,7 @@ done
 cd "$ROOT_DIR"
 
 echo "== Syntax checks =="
-python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py scripts/check_diagram_examples.py scripts/run_review_contract_benchmark.py scripts/validate_plot_review.py
+python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py scripts/check_diagram_examples.py scripts/build_review_bundle.py scripts/verify_review_bundle.py scripts/run_review_contract_benchmark.py scripts/validate_plot_review.py
 find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +
 bash -n scripts/*.sh
 bash -n skills/matlab-plotting-skill/scripts/*.sh
@@ -149,6 +149,7 @@ tests/test_example_prompts.sh
 tests/test_render_with_matlab_args.sh
 tests/test_validate_plot_review.sh
 tests/test_review_contract_benchmark.sh
+tests/test_review_evidence_bundle.sh
 tests/test_build_week_workflow.sh
 tests/test_mfigci_dogfood_config.sh
 

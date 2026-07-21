@@ -10,6 +10,8 @@ if [[ ! -s "$WORKFLOW" ]]; then
 fi
 
 grep -q "scripts/build_automation_manifest.py" "$WORKFLOW"
+grep -q "scripts/build_review_bundle.py" "$WORKFLOW"
+grep -q "scripts/verify_review_bundle.py" "$WORKFLOW"
 grep -q "actions/checkout@v6" "$WORKFLOW"
 grep -q "actions/upload-artifact@v7" "$WORKFLOW"
 if grep -q "actions/upload-artifact@v5" "$WORKFLOW"; then
@@ -32,6 +34,14 @@ grep -q "tests/test_first_five_minutes_fixtures.sh" "$WORKFLOW"
 grep -q "tests/test_scheme_info.sh" "$WORKFLOW"
 grep -q "tests/test_automation_manifest.sh" "$WORKFLOW"
 grep -q "tests/test_ci_workflow.sh" "$WORKFLOW"
+grep -q "bash -n tests/test_review_evidence_bundle.sh" "$WORKFLOW"
+grep -q "tests/test_review_evidence_bundle.sh" "$WORKFLOW"
+grep -q "bash -n tests/test_validate_plot_review.sh" "$WORKFLOW"
+grep -q "tests/test_validate_plot_review.sh" "$WORKFLOW"
+grep -q "bash -n tests/test_review_contract_benchmark.sh" "$WORKFLOW"
+grep -q "tests/test_review_contract_benchmark.sh" "$WORKFLOW"
+grep -q "bash -n tests/test_build_week_workflow.sh" "$WORKFLOW"
+grep -q "tests/test_build_week_workflow.sh" "$WORKFLOW"
 grep -q "tests/test_task_manifest.sh" "$WORKFLOW"
 grep -q "tests/test_task_manifest_filter.sh" "$WORKFLOW"
 grep -q "tests/test_task_manifest_status.sh" "$WORKFLOW"
