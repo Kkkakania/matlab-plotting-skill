@@ -27,6 +27,10 @@ Development starts from remote commit `1f82b1b`, with implementation on the
   never executed.
 - Export the final figure, a before/after comparison, and Markdown/JSON review
   evidence.
+- Build a self-contained HTML decision report with embedded candidate images,
+  review findings, repairs, and truncated artifact digests.
+- Write and independently verify a SHA-256 manifest for every evidence source
+  file, failing when an artifact is missing, resized, or changed.
 - Provide a one-command synthetic-data demo and a checked review fixture.
 - Exercise the model-to-MATLAB boundary with one valid control and 14
   adversarial mutations that must fail closed.
@@ -42,8 +46,16 @@ MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
   ./scripts/run_review_demo.sh --out /tmp/matlab-plot-review-demo
 ```
 
-Review `candidate_manifest.json`, `before_after.png`, and
-`review_evidence.md/json` in the output directory.
+Open `review_report.html` for the complete offline review surface. The same
+directory also contains `candidate_manifest.json`, `before_after.png`,
+`review_evidence.md/json`, and `review_bundle_manifest.json`. Recheck the
+bundle after copying it with:
+
+```bash
+python3 scripts/verify_review_bundle.py \
+  --manifest /tmp/matlab-plot-review-demo/review_bundle_manifest.json \
+  --root /tmp/matlab-plot-review-demo
+```
 
 ## Reproduce The Adversarial Benchmark
 

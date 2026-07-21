@@ -99,6 +99,7 @@ evidence-backed review loop:
 ```text
 data + goal -> ranked MATLAB candidates -> GPT-5.6 review in Codex
             -> validated repair allowlist -> final figure + before/after evidence
+            -> offline HTML report + SHA-256 integrity manifest
 ```
 
 The important behavior is semantic as well as visual. In the bundled demo, a
@@ -115,6 +116,22 @@ Run the complete synthetic-data demo:
 MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
   ./scripts/run_review_demo.sh --out /tmp/matlab-plot-review-demo
 ```
+
+The demo now finishes with `review_report.html`, a self-contained HTML review
+surface that embeds the rendered candidates, decision, scores, findings,
+before/after comparison, and artifact hashes without network dependencies. The
+companion `review_bundle_manifest.json` records every source artifact with its
+byte count and SHA-256 digest. Verify a copied or downloaded bundle with:
+
+```bash
+python3 scripts/verify_review_bundle.py \
+  --manifest /tmp/matlab-plot-review-demo/review_bundle_manifest.json \
+  --root /tmp/matlab-plot-review-demo
+```
+
+The bundle builder rejects absolute paths, path traversal, missing candidate
+files, unsupported previews, malformed scores, and unescaped model-authored
+text before writing the report.
 
 The model-to-MATLAB boundary also has a reproducible adversarial benchmark. A
 valid checked review is accepted, while 14 mutations covering executable-action
@@ -137,7 +154,8 @@ See [`docs/build-week-2026.md`](docs/build-week-2026.md) for the explicit
 pre-event/new-work boundary and
 [`review-contract.md`](skills/matlab-plotting-skill/references/review-contract.md)
 for the Codex review schema. The repository commits only the key comparison
-figure; candidates and evidence are regenerated from bundled synthetic data.
+figure; candidates, the offline report, and evidence are regenerated from
+bundled synthetic data.
 
 #### How Codex and GPT-5.6 were used
 

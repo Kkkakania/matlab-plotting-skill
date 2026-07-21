@@ -22,7 +22,7 @@ jobs:
       - name: Shell syntax
         run: |
           python3 -m py_compile scripts/build_gallery_index.py scripts/build_automation_manifest.py scripts/build_task_manifest.py
-          python3 -m py_compile scripts/check_diagram_examples.py
+          python3 -m py_compile scripts/check_diagram_examples.py scripts/build_review_bundle.py scripts/verify_review_bundle.py
           find scripts -type d -name '__pycache__' -prune -exec rm -rf {} +
           bash -n scripts/render_with_matlab.sh
           bash -n scripts/doctor.sh
@@ -121,6 +121,10 @@ jobs:
           bash -n tests/test_scientific_diagram_examples.sh
           bash -n tests/test_example_prompts.sh
           bash -n tests/test_render_with_matlab_args.sh
+          bash -n tests/test_validate_plot_review.sh
+          bash -n tests/test_review_contract_benchmark.sh
+          bash -n tests/test_review_evidence_bundle.sh
+          bash -n tests/test_build_week_workflow.sh
           bash -n tests/test_mfigci_dogfood_config.sh
       - name: Shell tests
         run: |
@@ -210,6 +214,10 @@ jobs:
           tests/test_scientific_diagram_examples.sh
           tests/test_example_prompts.sh
           tests/test_render_with_matlab_args.sh
+          tests/test_validate_plot_review.sh
+          tests/test_review_contract_benchmark.sh
+          tests/test_review_evidence_bundle.sh
+          tests/test_build_week_workflow.sh
           tests/test_mfigci_dogfood_config.sh
       - name: Clean generated Python cache
         run: find . -type d -name '__pycache__' -not -path './.git/*' -prune -exec rm -rf {} +

@@ -51,6 +51,25 @@ workflow 会上传 `mfigci-report.md` 和 `.mfigci-results.json`：前者方便�
 - 默认导出 PNG 和 SVG，也支持 PDF。
 - 生成 Markdown 和 JSON 报告，说明为什么选择这个图。
 - 在报告中保留选择信号和候选方案快照，方便复盘和审查。
+- 对重要图形生成多个候选，通过 GPT-5.6 审查契约选择和修复最终图。
+- 生成无需联网即可打开的 `review_report.html`，集中展示候选图、评分、
+  发现、受控修复和前后对比。
+- 生成 `review_bundle_manifest.json`，为每个证据文件记录字节数和 SHA-256，
+  并可用独立命令检查复制或下载后的文件是否发生变化。
+
+运行完整的合成数据审查演示：
+
+```bash
+MATLAB_BIN=/Applications/MATLAB_R2025a.app/bin/matlab \
+  ./scripts/run_review_demo.sh --out /tmp/matlab-plot-review-demo
+
+python3 scripts/verify_review_bundle.py \
+  --manifest /tmp/matlab-plot-review-demo/review_bundle_manifest.json \
+  --root /tmp/matlab-plot-review-demo
+```
+
+HTML 报告把图片嵌入文件本身，不加载 JavaScript 或网络资源；构建器会拒绝
+绝对路径、目录穿越、缺失文件、不支持的预览格式和未转义的模型文本。
 
 `scientific-diagram-skill`：
 

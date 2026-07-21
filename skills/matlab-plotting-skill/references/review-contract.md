@@ -79,5 +79,28 @@ The command validates the review before MATLAB starts. It writes
 `review_evidence.md/json`. Unknown fields, candidates, models, scores, or repair
 actions fail closed with exit code 2.
 
+## Build And Verify The Evidence Bundle
+
+After finalization, create one offline review surface and its integrity record:
+
+```bash
+python3 scripts/build_review_bundle.py \
+  --evidence <directory>/review_evidence.json \
+  --candidate-manifest <directory>/candidate_manifest.json \
+  --out <directory>/review_report.html \
+  --manifest-out <directory>/review_bundle_manifest.json
+
+python3 scripts/verify_review_bundle.py \
+  --manifest <directory>/review_bundle_manifest.json \
+  --root <directory>
+```
+
+`review_report.html` is self-contained HTML: candidate and comparison images
+are embedded as data URIs, all review text is HTML-escaped, and no JavaScript or
+network resource is required. The manifest hashes the review, candidate
+manifest, validated review, candidate images, final exports, and comparison.
+Both commands reject absolute paths, traversal outside the evidence directory,
+missing files, duplicate manifest entries, and changed bytes.
+
 The bundled review fixture is a deterministic judge demo, not a substitute for
 a fresh visual review when the input data or goal changes.

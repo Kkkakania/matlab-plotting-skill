@@ -84,8 +84,10 @@ loop instead of trusting the top rule score:
    repair action.
 4. Run `--finalize-review <review.json> --candidate-manifest
    <candidate_manifest.json>` with the same data and goal.
-5. Return the final PNG/SVG, `before_after.png`, and
-   `review_evidence.md/json`. Explain semantic rejections, not just style
+5. Build `review_report.html` and `review_bundle_manifest.json` with
+   `scripts/build_review_bundle.py`, then run `scripts/verify_review_bundle.py`.
+6. Return the final PNG/SVG, `before_after.png`, self-contained HTML report,
+   and Markdown/JSON evidence. Explain semantic rejections, not just style
    changes.
 
 The validator fails closed on unknown candidates, fields, models, scores, and

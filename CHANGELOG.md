@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Added a self-contained HTML plot-review report that embeds candidate and
+  before/after images, scores, findings, repairs, and provenance with no network
+  dependencies.
+- Added a SHA-256 evidence manifest and independent verifier that fail on path
+  traversal, missing files, changed bytes, or changed hashes.
+- Extended the one-command Build Week demo and release gate to build, verify,
+  document, and regression-test the complete offline evidence bundle.
 - Added a reproducible model-to-MATLAB adversarial benchmark with one valid
   control, 14 fail-closed mutations, committed JSON/Markdown evidence, and
   release-gate coverage.
