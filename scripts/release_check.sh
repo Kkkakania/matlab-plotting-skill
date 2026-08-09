@@ -125,6 +125,7 @@ tests/test_grouped_scatter_gallery.sh
 tests/test_density_scatter_gallery.sh
 tests/test_contour_scatter_gallery.sh
 tests/test_regression_scatter_gallery.sh
+tests/test_bubble_scatter_gallery.sh
 tests/test_multi_line_comparison_safety.sh
 tests/test_confidence_band_safety.sh
 tests/test_zoomed_inset_line_safety.sh
@@ -136,6 +137,7 @@ tests/test_grouped_scatter_safety.sh
 tests/test_density_scatter_safety.sh
 tests/test_contour_scatter_safety.sh
 tests/test_regression_scatter_safety.sh
+tests/test_bubble_scatter_safety.sh
 tests/test_gallery_provenance.sh
 tests/test_docs_palette_accessibility.sh
 tests/test_readme_gallery_assets.sh

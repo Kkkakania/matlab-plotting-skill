@@ -12,6 +12,7 @@ assets=(
   "docs/gallery/grouped_scatter.png"
   "docs/gallery/contour_scatter.png"
   "docs/gallery/regression_scatter.png"
+  "docs/gallery/bubble_scatter.png"
   "docs/gallery/positive_negative_area.png"
   "docs/gallery/segmented_line.png"
   "docs/gallery/stacked_time_series.png"

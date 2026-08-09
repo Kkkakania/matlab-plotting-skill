@@ -50,8 +50,8 @@ import json, sys
 item = json.load(sys.stdin)
 assert item["schema_version"] == "1.0"
 assert item["scheme"] == "bubble_scatter"
-assert item["readiness"] == "render path started"
-assert item["gallery"] == "no"
+assert item["readiness"] == "gallery-backed"
+assert item["gallery"] == "preview"
 '
 
 if "$ROOT_DIR/scripts/render_with_matlab.sh" --scheme-info not_a_scheme >/tmp/mp-scheme-info.out 2>/tmp/mp-scheme-info.err; then

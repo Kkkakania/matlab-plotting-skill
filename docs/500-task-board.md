@@ -41,8 +41,8 @@ Total tasks: 510
 
 | Status | Tasks |
 |---|---:|
-| done | 128 |
-| planned | 382 |
+| done | 130 |
+| planned | 380 |
 
 ## Task Board
 
@@ -166,8 +166,8 @@ Total tasks: 510
 | `TASK-116-bubble_scatter-png-render` | `bubble_scatter` | png-render | Render PNG output | PNG output is generated and non-empty for the scheme. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme bubble_scatter --formats png` | done |
 | `TASK-117-bubble_scatter-vector-render` | `bubble_scatter` | vector-render | Render vector output | SVG or PDF output is generated for paper/report workflows. | `./scripts/render_with_matlab.sh --data <file> --goal <goal> --scheme bubble_scatter --formats svg,pdf` | done |
 | `TASK-118-bubble_scatter-report` | `bubble_scatter` | report | Explain output in reports | Markdown and JSON reports name the scheme and explain selection context. | `grep -R "bubble_scatter" <output-dir>/render_report.md <output-dir>/render_report.json` | done |
-| `TASK-119-bubble_scatter-gallery` | `bubble_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | planned |
-| `TASK-120-bubble_scatter-safety` | `bubble_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | planned |
+| `TASK-119-bubble_scatter-gallery` | `bubble_scatter` | gallery | Represent scheme in gallery | Gallery generation can include the rendered output and catalog metadata. | `python3 scripts/build_gallery_index.py --dir <render-dir> --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out <index.md>` | done |
+| `TASK-120-bubble_scatter-safety` | `bubble_scatter` | safety | Pass privacy and provenance checks | No private paths, forbidden files, or provenance-unclear assets are introduced. | `./scripts/check_privacy.sh && ./scripts/check_forbidden_files.sh` | done |
 | `TASK-121-residual_scatter-catalog` | `residual_scatter` | catalog | Clarify catalog entry | Catalog entry names the scheme, family, best use, and palette. | `./scripts/render_with_matlab.sh --scheme-info residual_scatter` | planned |
 | `TASK-122-residual_scatter-data-contract` | `residual_scatter` | data-contract | Document input shape | Data expectations are clear enough to choose the scheme without private examples. | `grep -n "residual_scatter" skills/matlab-plotting-skill/references/scheme-catalog.md docs/chart-selection-guide.md` | planned |
 | `TASK-123-residual_scatter-demo-data` | `residual_scatter` | demo-data | Provide synthetic demo data | Synthetic data can exercise the scheme with no private files. | `MATLAB_BIN=/path/to/matlab ./scripts/render_with_matlab.sh --smoke-test --formats png` | planned |

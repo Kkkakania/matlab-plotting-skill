@@ -186,6 +186,10 @@ the 51-scheme catalog from gallery-backed and still-maturing schemes.
 |---|---|---|
 | ![grouped scatter](docs/gallery/grouped_scatter.png) | ![contour scatter](docs/gallery/contour_scatter.png) | ![regression scatter](docs/gallery/regression_scatter.png) |
 
+| Bubble Scatter |
+|---|
+| ![bubble scatter](docs/gallery/bubble_scatter.png) |
+
 | Heatmap | Grouped Bar | Positive/Negative Area |
 |---|---|---|
 | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |

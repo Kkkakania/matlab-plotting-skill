@@ -33,7 +33,7 @@ if [[ "$status_output" != *"gallery-backed"* ]]; then
   exit 1
 fi
 
-if [[ "$status_output" != *"render path started"* ]]; then
+if [[ "$status_output" != *"cataloged"* ]]; then
   echo "scheme list with status should surface partially supported schemes" >&2
   exit 1
 fi
