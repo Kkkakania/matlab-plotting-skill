@@ -33,10 +33,14 @@ grep -q -- "review_report.html" "$CONTRACT"
 grep -q -- "Do not infer uncertainty bounds" "$CONTRACT"
 grep -q -- "Before July 13, 2026" "$ROOT_DIR/docs/build-week-2026.md"
 grep -q -- "run_review_contract_benchmark.py" "$ROOT_DIR/docs/build-week-2026.md"
-grep -q -- "Build Week additions" "$ROOT_DIR/README.md"
+grep -q -- "Candidate review and evidence bundle" "$ROOT_DIR/README.md"
 grep -q -- "15/15" "$ROOT_DIR/README.md"
 grep -q -- "self-contained HTML" "$ROOT_DIR/README.md"
-grep -q -- "How Codex and GPT-5.6 were used" "$ROOT_DIR/README.md"
+grep -q -- "docs/build-week-2026.md" "$ROOT_DIR/README.md"
+if grep -q -- "How Codex and GPT-5.6 were used" "$ROOT_DIR/README.md"; then
+  echo "event narrative should stay in the historical Build Week documentation" >&2
+  exit 1
+fi
 grep -q -- "0:00-0:15" "$ROOT_DIR/docs/build-week-video-script.md"
 grep -q -- "/feedback" "$ROOT_DIR/docs/build-week-submission-checklist.md"
 

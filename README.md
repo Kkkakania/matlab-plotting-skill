@@ -73,11 +73,6 @@ uploads `mfigci-report.md` and `.mfigci-results.json`: the Markdown file is for
 quick maintainer review, while the JSON file keeps the same result available for
 later evidence packets or debugging.
 
-For a short reviewer-facing packet, see
-[`docs/application-evidence.md`](docs/application-evidence.md). It keeps the
-skill-first application story separate from the user guide and avoids treating
-internal dogfooding as adoption.
-
 ## What It Does
 
 `matlab-plotting-skill`:
@@ -91,13 +86,13 @@ internal dogfooding as adoption.
 - Includes concrete selection signals in reports so automatic choices are easier to audit.
 - Includes a score snapshot for the top scheme candidates.
 
-### Build Week additions
+### Candidate review and evidence bundle
 
-The OpenAI Build Week 2026 work extends the single-render workflow into an
-evidence-backed review loop:
+The optional review workflow extends a single render into a checked candidate
+comparison:
 
 ```text
-data + goal -> ranked MATLAB candidates -> GPT-5.6 review in Codex
+data + goal -> ranked MATLAB candidates -> validated review
             -> validated repair allowlist -> final figure + before/after evidence
             -> offline HTML report + SHA-256 integrity manifest
 ```
@@ -108,7 +103,7 @@ methods, not lower and upper uncertainty bounds. The workflow selects the
 honest multi-line comparison, applies controlled contrast and typography
 repairs, and records why it changed.
 
-![GPT-5.6 review before and after](docs/build-week/before_after.png)
+![Review before and after](docs/build-week/before_after.png)
 
 Run the complete synthetic-data demo:
 
@@ -133,7 +128,7 @@ The bundle builder rejects absolute paths, path traversal, missing candidate
 files, unsupported previews, malformed scores, and unescaped model-authored
 text before writing the report.
 
-The model-to-MATLAB boundary also has a reproducible adversarial benchmark. A
+The review-to-MATLAB boundary also has a reproducible adversarial benchmark. A
 valid checked review is accepted, while 14 mutations covering executable-action
 injection, candidate/model spoofing, field smuggling, malformed scores, and
 contradictory verdicts must fail closed. The committed result is
@@ -150,33 +145,12 @@ contradictory verdicts must fail closed. The committed result is
 See the [human-readable benchmark report](docs/build-week/review-contract-benchmark/review_contract_benchmark.md)
 and its [machine-readable evidence](docs/build-week/review-contract-benchmark/review_contract_benchmark.json).
 
-See [`docs/build-week-2026.md`](docs/build-week-2026.md) for the explicit
-pre-event/new-work boundary and
+The implementation history and event boundary remain in
+[`docs/build-week-2026.md`](docs/build-week-2026.md). See
 [`review-contract.md`](skills/matlab-plotting-skill/references/review-contract.md)
-for the Codex review schema. The repository commits only the key comparison
+for the checked review schema. The repository commits only the key comparison
 figure; candidates, the offline report, and evidence are regenerated from
 bundled synthetic data.
-
-#### How Codex and GPT-5.6 were used
-
-Codex was the primary Build Week development environment. It inspected the
-existing skill and release gates, added failing contract tests before the new
-implementation, ran MATLAB R2025a, rendered real candidates, inspected their
-pixels, fixed a JSON-decoding edge case found by the end-to-end run, and
-repeated the full release gate.
-
-GPT-5.6 Sol supplied the visual review in the checked demo. Its important
-decision was semantic rather than cosmetic: it rejected a higher-ranked
-confidence band because `baseline` and `candidate` are method columns, not
-uncertainty bounds. That finding selected the multi-line comparison and led to
-controlled contrast, typography, legend, and grid repairs.
-
-The maintainer made the product and release decisions: use the existing MATLAB
-skill as the foundation, keep the workflow usable on Codex's free tier without
-a paid API key, execute no model-authored MATLAB, keep private source material
-out of the repository, and publish only the key synthetic before/after figure.
-See the [three-minute demo script](docs/build-week-video-script.md) and
-[submission checklist](docs/build-week-submission-checklist.md).
 
 `scientific-diagram-skill`:
 

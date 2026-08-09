@@ -30,7 +30,6 @@ voice_checked_files=(
   "$ROOT_DIR/docs/first-render-walkthrough.zh-CN.md"
   "$ROOT_DIR/docs/first-use-doctor.md"
   "$ROOT_DIR/docs/ecosystem-status.md"
-  "$ROOT_DIR/docs/application-evidence.md"
   "$ROOT_DIR/docs/maintenance-cadence.md"
   "$SKILL_DOC"
   "$ROOT_DIR/skills/scientific-diagram-skill/SKILL.md"
