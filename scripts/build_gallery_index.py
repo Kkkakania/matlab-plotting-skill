@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import difflib
 import os
 import re
 from pathlib import Path
@@ -35,9 +36,8 @@ def relative_link(target: Path, base: Path) -> str:
     return Path(os.path.relpath(target.resolve(), start=base.resolve())).as_posix()
 
 
-def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_existing: bool) -> None:
+def render_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_existing: bool) -> str:
     schemes = parse_catalog(catalog)
-    output.parent.mkdir(parents=True, exist_ok=True)
     base = output.parent
 
     lines = [
@@ -62,7 +62,13 @@ def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_e
             f"| `{row['scheme']}` | {row['family']} | {row['best_for']} | {output_cell} |"
         )
 
-    output.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return "\n".join(lines) + "\n"
+
+
+def build_index(gallery_dir: Path, catalog: Path, output: Path, fmt: str, only_existing: bool) -> None:
+    content = render_index(gallery_dir, catalog, output, fmt, only_existing)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(content, encoding="utf-8")
     print(f"Wrote gallery index: {output}")
 
 
@@ -80,13 +86,25 @@ def main() -> None:
     parser.add_argument("--out", required=True, type=Path, help="Markdown index output path.")
     parser.add_argument("--format", default="png", help="Rendered file extension to link.")
     parser.add_argument("--only-existing", action="store_true", help="Only include schemes with non-empty outputs.")
+    parser.add_argument("--check", action="store_true", help="Fail if the existing index differs from generated content.")
     args = parser.parse_args()
 
     if not args.dir.is_dir():
         raise SystemExit(f"Gallery directory not found: {args.dir}")
     if not args.catalog.is_file():
         raise SystemExit(f"Scheme catalog not found: {args.catalog}")
-    build_index(args.dir, args.catalog, args.out, normalize_format(args.format), args.only_existing)
+    fmt = normalize_format(args.format)
+    if args.check:
+        expected = render_index(args.dir, args.catalog, args.out, fmt, args.only_existing)
+        if not args.out.is_file():
+            raise SystemExit(f"Gallery index not found: {args.out}")
+        actual = args.out.read_text(encoding="utf-8")
+        if actual != expected:
+            print("".join(difflib.unified_diff(actual.splitlines(True), expected.splitlines(True), fromfile=str(args.out), tofile=f"{args.out} (generated)")), end="")
+            raise SystemExit("Gallery index is stale; regenerate it without --check.")
+        print(f"Gallery index is current: {args.out}")
+        return
+    build_index(args.dir, args.catalog, args.out, fmt, args.only_existing)
 
 
 if __name__ == "__main__":
