@@ -28,6 +28,14 @@ grep -q "grouped_bar" "$TMP_DIR/index.md"
 grep -q "line_trend.png" "$TMP_DIR/index.md"
 grep -q "Category comparison" "$TMP_DIR/index.md"
 
+python3 "$ROOT_DIR/scripts/build_gallery_index.py" --dir "$TMP_DIR" --catalog "$CATALOG" --out "$TMP_DIR/index.md" --format png --check
+printf '\n<!-- stale -->\n' >> "$TMP_DIR/index.md"
+if python3 "$ROOT_DIR/scripts/build_gallery_index.py" --dir "$TMP_DIR" --catalog "$CATALOG" --out "$TMP_DIR/index.md" --format png --check; then
+  echo "stale gallery index should fail --check" >&2
+  exit 1
+fi
+python3 "$ROOT_DIR/scripts/build_gallery_index.py" --dir "$TMP_DIR" --catalog "$CATALOG" --out "$TMP_DIR/index.md" --format png
+
 NESTED_GALLERY="$TMP_DIR/gallery"
 NESTED_OUT="$TMP_DIR/site/index.md"
 mkdir -p "$NESTED_GALLERY"

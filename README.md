@@ -420,6 +420,8 @@ python3 scripts/build_gallery_index.py --dir figures/smoke --catalog skills/matl
 python3 scripts/build_gallery_index.py --dir docs/gallery --catalog skills/matlab-plotting-skill/references/scheme-catalog.md --out docs/gallery/index.md --format png --only-existing
 ```
 
+Add `--check` in CI to detect a stale gallery index without rewriting it.
+
 Run the representative visual fixture suite:
 
 ```bash
