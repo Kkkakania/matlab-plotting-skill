@@ -30,8 +30,8 @@ schemes = json.load(sys.stdin)
 by_name = {item["scheme"]: item for item in schemes}
 assert by_name["regression_scatter"]["readiness"] == "gallery-backed"
 assert by_name["regression_scatter"]["gallery"] == "preview"
-assert by_name["bubble_scatter"]["readiness"] == "render path started"
-assert by_name["bubble_scatter"]["gallery"] == "no"
+assert by_name["bubble_scatter"]["readiness"] == "gallery-backed"
+assert by_name["bubble_scatter"]["gallery"] == "preview"
 assert all({"scheme", "family", "best_for", "palette", "readiness", "gallery"} <= set(item) for item in schemes)
 '
 

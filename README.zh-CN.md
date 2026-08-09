@@ -95,6 +95,10 @@ HTML 报告把图片嵌入文件本身，不加载 JavaScript 或网络资源；
 |---|---|---|
 | ![grouped scatter](docs/gallery/grouped_scatter.png) | ![contour scatter](docs/gallery/contour_scatter.png) | ![regression scatter](docs/gallery/regression_scatter.png) |
 
+| 气泡散点 |
+|---|
+| ![bubble scatter](docs/gallery/bubble_scatter.png) |
+
 | 热图 | 分组柱状 | 正负面积 |
 |---|---|---|
 | ![heatmap matrix](docs/gallery/heatmap_matrix.png) | ![grouped bar](docs/gallery/grouped_bar.png) | ![positive negative area](docs/gallery/positive_negative_area.png) |

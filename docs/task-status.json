@@ -117,6 +117,8 @@
   "TASK-116-bubble_scatter-png-render": "done",
   "TASK-117-bubble_scatter-vector-render": "done",
   "TASK-118-bubble_scatter-report": "done",
+  "TASK-119-bubble_scatter-gallery": "done",
+  "TASK-120-bubble_scatter-safety": "done",
   "TASK-501-stacked_time_series-catalog": "done",
   "TASK-502-stacked_time_series-data-contract": "done",
   "TASK-503-stacked_time_series-demo-data": "done",
