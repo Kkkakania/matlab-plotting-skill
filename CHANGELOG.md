@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Reject unsupported `--data` extensions before MATLAB starts, with a direct
+  CSV, Excel, or MAT guidance message and a stable data-error exit code.
 - Added a self-contained HTML plot-review report that embeds candidate and
   before/after images, scores, findings, repairs, and provenance with no network
   dependencies.

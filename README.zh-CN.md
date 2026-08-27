@@ -236,6 +236,8 @@ export MP_MATLAB_TIMEOUT_SECONDS=0
 
 `--formats` 支持 `png`、`svg` 和 `pdf`，多个格式用逗号分隔。非法格式会在 MATLAB 启动前失败。
 
+`--data` 接受 `.csv`、`.xls`、`.xlsx` 和 `.mat`。文件不存在或扩展名不受支持时，脚本会在启动 MATLAB 前直接报错，避免把输入问题误判成 MATLAB 配置问题。
+
 只检查数据结构：
 
 ```bash

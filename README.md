@@ -252,6 +252,10 @@ useful structure summary.
 If something fails before a useful report appears, start with
 [`docs/troubleshooting.md`](docs/troubleshooting.md).
 
+Data commands accept `.csv`, `.xls`, `.xlsx`, and `.mat` files. A missing file
+or another extension is reported before MATLAB is launched, so input mistakes
+do not look like MATLAB setup failures.
+
 ## First 5 Minutes
 
 Use this narrow path on a fresh clone before trying private data:
