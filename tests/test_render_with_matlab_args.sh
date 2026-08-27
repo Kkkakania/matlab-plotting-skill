@@ -252,6 +252,26 @@ fi
 
 DATA_FILE="$TMP_DIR/data.csv"
 printf 'x,y\n1,2\n' >"$DATA_FILE"
+UNSUPPORTED_DATA_FILE="$TMP_DIR/data.txt"
+printf 'x y\n1 2\n' >"$UNSUPPORTED_DATA_FILE"
+
+set +e
+env MATLAB_BIN=/no/such/matlab "$SCRIPT" --inspect-data --data "$UNSUPPORTED_DATA_FILE" \
+  >"$TMP_DIR/unsupported-data.out" 2>"$TMP_DIR/unsupported-data.err"
+unsupported_data_status=$?
+set -e
+
+if [[ "$unsupported_data_status" -ne 65 ]]; then
+  echo "expected unsupported data extension to exit 65 before MATLAB lookup, got $unsupported_data_status" >&2
+  cat "$TMP_DIR/unsupported-data.err" >&2
+  exit 1
+fi
+
+if ! grep -q -- "Unsupported data file extension: .txt" "$TMP_DIR/unsupported-data.err"; then
+  echo "expected a clear unsupported data extension message" >&2
+  cat "$TMP_DIR/unsupported-data.err" >&2
+  exit 1
+fi
 
 set +e
 env MATLAB_BIN="$FAKE_MATLAB" "$SCRIPT" --plan-only --data "$DATA_FILE" >"$TMP_DIR/missing-goal.out" 2>"$TMP_DIR/missing-goal.err"

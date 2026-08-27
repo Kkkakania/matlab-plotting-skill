@@ -48,7 +48,7 @@ Usage:
   render_with_matlab.sh --scheme-info-json <name> [--status]
   render_with_matlab.sh --doctor --out <dir> [--data <file>] [--with-matlab]
   render_with_matlab.sh --check
-  render_with_matlab.sh --inspect-data --data <file> [--var <mat-variable>]
+  render_with_matlab.sh --inspect-data --data <csv|xls|xlsx|mat> [--var <mat-variable>]
   render_with_matlab.sh --plan-only --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
   render_with_matlab.sh --explain --data <file> --goal "<text>" [--scheme <name>] [--var <mat-variable>]
   render_with_matlab.sh --candidate-pack --data <file> --goal "<text>" [--candidate-count 3] [--out <dir>] [--formats png,svg]
@@ -567,6 +567,19 @@ fi
 if [[ -n "$DATA_PATH" && ! -f "$DATA_PATH" ]]; then
   echo "Data file not found: $DATA_PATH" >&2
   exit 66
+fi
+
+if [[ -n "$DATA_PATH" ]]; then
+  data_extension=".${DATA_PATH##*.}"
+  data_extension="$(printf '%s' "$data_extension" | tr '[:upper:]' '[:lower:]')"
+  case "$data_extension" in
+    .csv|.xls|.xlsx|.mat) ;;
+    *)
+      echo "Unsupported data file extension: $data_extension" >&2
+      echo "Use a CSV, Excel, or MAT file." >&2
+      exit 65
+      ;;
+  esac
 fi
 
 if [[ "$FINALIZE_REVIEW" -eq 1 ]]; then
